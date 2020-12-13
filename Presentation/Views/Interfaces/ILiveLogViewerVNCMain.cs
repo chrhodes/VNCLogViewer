@@ -1,8 +1,11 @@
 ﻿using VNC.Core.Mvvm;
 
+using VNCLogViewer.Resources;
+
 namespace VNCLogViewer.Presentation.Views
 {
-    public interface IDogDetail : IView
+    public interface ILiveLogViewerVNCMain : IView
     {
+
     }
 }

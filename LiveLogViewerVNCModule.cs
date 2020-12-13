@@ -38,17 +38,17 @@ namespace VNCLogViewer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<ILiveLogViewerVNCDetailViewModel, LiveLogViewerVNCDetailViewModel>();
-            containerRegistry.Register<ILiveLogViewerVNCDetail, LiveLogViewerVNCDetail>();
+            //containerRegistry.Register<ILiveLogViewerVNCDetailViewModel, LiveLogViewerVNCDetailViewModel>();
+            //containerRegistry.Register<ILiveLogViewerVNCDetail, LiveLogViewerVNCDetail>();
 
             containerRegistry.Register<ILiveLogViewerVNCMainViewModel, LiveLogViewerVNCMainViewModel>();
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNCMain>();
 
-            containerRegistry.RegisterSingleton<ILiveLogViewerVNCNavigationViewModel, LiveLogViewerVNCNavigationViewModel>();
-            containerRegistry.RegisterSingleton<ILiveLogViewerVNCNavigation, LiveLogViewerVNCNavigation>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerVNCNavigationViewModel, LiveLogViewerVNCNavigationViewModel>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerVNCNavigation, LiveLogViewerVNCNavigation>();
 
-            containerRegistry.RegisterSingleton<ILiveLogViewerVNCLookupDataService, LiveLogViewerVNCLookupDataService>();
-            containerRegistry.RegisterSingleton<ILiveLogViewerVNCDataService, LiveLogViewerVNCDataService>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerVNCLookupDataService, LiveLogViewerVNCLookupDataService>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerVNCDataService, LiveLogViewerVNCDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -63,8 +63,8 @@ namespace VNCLogViewer
             _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCMainRegion, typeof(LiveLogViewerVNCMain));
 
             // These load into LiveLogViewerVNCMain.xaml
-            _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCNavigationRegion, typeof(LiveLogViewerVNCNavigation));
-            _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCDetailRegion, typeof(LiveLogViewerVNCDetail));
+            //_regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCNavigationRegion, typeof(LiveLogViewerVNCNavigation));
+            //_regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCDetailRegion, typeof(LiveLogViewerVNCDetail));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -113,7 +113,6 @@ namespace VNCLogViewer
         {
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
 
-            moduleCatalog.AddModule(typeof(DogModule));
             moduleCatalog.AddModule(typeof(LiveLogViewerEASEModule));
             moduleCatalog.AddModule(typeof(LiveLogViewerVNCModule));
             // moduleCatalog.AddModule(typeof(TYPEModule));
@@ -162,8 +161,8 @@ namespace VNCLogViewer
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
 
-            //return Container.Resolve<MainWindow>();
-            return Container.Resolve<MainWindowDxLayout>();
+            return Container.Resolve<MainWindow>();
+            //return Container.Resolve<MainWindowDxLayout>();
             //return Container.Resolve<MainWindowDxDockLayoutManager>();
         }
 

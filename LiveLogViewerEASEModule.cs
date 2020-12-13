@@ -38,17 +38,17 @@ namespace VNCLogViewer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<ILiveLogViewerEASEDetailViewModel, LiveLogViewerEASEDetailViewModel>();
-            containerRegistry.Register<ILiveLogViewerEASEDetail, LiveLogViewerEASEDetail>();
+            //containerRegistry.Register<ILiveLogViewerEASEDetailViewModel, LiveLogViewerEASEDetailViewModel>();
+            //containerRegistry.Register<ILiveLogViewerEASEDetail, LiveLogViewerEASEDetail>();
 
             containerRegistry.Register<ILiveLogViewerEASEMainViewModel, LiveLogViewerEASEMainViewModel>();
             containerRegistry.Register<ILiveLogViewerEASEMain, LiveLogViewerEASEMain>();
 
-            containerRegistry.RegisterSingleton<ILiveLogViewerEASENavigationViewModel, LiveLogViewerEASENavigationViewModel>();
-            containerRegistry.RegisterSingleton<ILiveLogViewerEASENavigation, LiveLogViewerEASENavigation>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerEASENavigationViewModel, LiveLogViewerEASENavigationViewModel>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerEASENavigation, LiveLogViewerEASENavigation>();
 
-            containerRegistry.RegisterSingleton<ILiveLogViewerEASELookupDataService, LiveLogViewerEASELookupDataService>();
-            containerRegistry.RegisterSingleton<ILiveLogViewerEASEDataService, LiveLogViewerEASEDataService>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerEASELookupDataService, LiveLogViewerEASELookupDataService>();
+            //containerRegistry.RegisterSingleton<ILiveLogViewerEASEDataService, LiveLogViewerEASEDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

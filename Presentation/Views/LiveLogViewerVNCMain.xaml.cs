@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,31 +15,34 @@ using Microsoft.AspNet.SignalR.Client;
 using VNC;
 using VNC.Core.Mvvm;
 
+using VNCLogViewer.Presentation.ViewModels;
+using VNCLogViewer.Resources;
+
 namespace VNCLogViewer.Presentation.Views
 {
-    public partial class LiveLogViewerEASEMain : UserControl, ILiveLogViewerEASEMain
+    public partial class LiveLogViewerVNCMain : UserControl, ILiveLogViewerVNCMain
     {
 
-        public LiveLogViewerEASEMain(ViewModels.ILiveLogViewerEASEMainViewModel viewModel)
+        public LiveLogViewerVNCMain(ViewModels.ILiveLogViewerVNCMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
             InitializeComponent();
 
             ViewModel = viewModel;
-            Loaded += UserControl_Loaded;
+            //Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            Int64 startTicks = Log.VIEW("Enter", Common.LOG_APPNAME);
+        //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    Int64 startTicks = Log.VIEW("Enter", Common.LOG_APPNAME);
 
-            await ((ViewModels.ILiveLogViewerEASEMainViewModel)ViewModel).LoadAsync();
+        //    await ((ViewModels.ILiveLogViewerVNCMainViewModel)ViewModel).LoadAsync();
 
-            Log.VIEW("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        //    Log.VIEW("Exit", Common.LOG_APPNAME, startTicks);
+        //}
 
         public IViewModel ViewModel
         {
@@ -173,17 +178,18 @@ namespace VNCLogViewer.Presentation.Views
             string formattedMessage = "";
 
             HubProxy.On<string, string>("AddUserMessage", (name, message) =>
-                this.Dispatcher.Invoke(() =>
+                this.Dispatcher.Invoke(
+                () =>
                 {
                     formattedMessage = String.Format("{0}: {1}\n", name, message);
 
                     AppendFormattedMessage(recLogStream, formattedMessage);
-                }
-                )
+                })
             );
 
             HubProxy.On<string>("AddMessage", (message) =>
-                this.Dispatcher.Invoke(() =>
+                this.Dispatcher.Invoke(
+                () =>
                 {
                     formattedMessage = String.Format("{0}\r", message);
                     AppendFormattedMessage(recLogStream, formattedMessage);
@@ -191,7 +197,8 @@ namespace VNCLogViewer.Presentation.Views
             );
 
             HubProxy.On<string, int>("AddPriorityMessage", (message, priority) =>
-                this.Dispatcher.Invoke(() =>
+                this.Dispatcher.Invoke(
+                () =>
                 {
                     Boolean displayMessage = false;
 
@@ -209,42 +216,48 @@ namespace VNCLogViewer.Presentation.Views
                         case 100:
                             if (ceInfo00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info00);
                             }
                             break;
 
-                        case 101:
+                        case 101: // Not Used
                             if (ceInfo01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info01);
                             }
                             break;
 
-                        case 102:
+                        case 102: // Not Used
                             if (ceInfo02.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info02);
                             }
                             break;
 
-                        case 103:
+                        case 103: // Not Used
                             if (ceInfo00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info03);
                             }
                             break;
 
-                        case 104:
+                        case 104: // Not Used
                             if (ceInfo04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info04);
                             }
                             break;
 
-                        case 105:
+                        case 105: // Not Used
                             if (ceInfo05.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info05);
                             }
                             break;
 
@@ -252,52 +265,59 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Debug
 
-                        case 1000:
+                        case 1000: // Not Used
                             if (ceDebug00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug00);
                             }
                             break;
 
-                        case 1001:
+                        case 1001: // Not Used
                             if (ceDebug01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug01);
                             }
                             break;
 
-                        case 1002:
+                        case 1002: // Not Used
                             if (formattedMessage.Contains("Enter"))
                             {
                                 if (ceDebug02Enter.IsChecked == true)
                                 {
-                                    displayMessage = ColorFormatMessage(formattedMessage, Color.Red);
+                                    displayMessage = ColorFormatMessage(formattedMessage, 
+                                        ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug02);
                                 }
                             }
                             else if (ceDebug02Exit.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Red);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug02);
                             }
                             break;
 
-                        case 1003:
+                        case 1003: // Not Used
                             if (ceDebug03.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug03);
                             }
                             break;
 
-                        case 1004:
+                        case 1004: // Not Used
                             if (ceDebug04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug04);
                             }
                             break;
 
-                        case 1005:
+                        case 1005: // Not Used
                             if (ceDebug05.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug05);
                             }
                             break;
 
@@ -305,70 +325,83 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace00 - Trace09
 
-                        case 10000: // PAGE_LOAD - FORM_LOAD
+                        case 10000: // Not Used
                             if (ceTrace00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Lime);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace00);
                             }
                             break;
 
-                        case 10001: // EVENTHANDLER
+                        case 10001: // EVENT_HANDLER
                             if (ceTrace01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Cyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace01);
                             }
                             break;
 
-                        case 10002: // STATUS
-                            if (ceTrace02.IsChecked == true) displayMessage = true;
+                        case 10002: // APPLICATION_INITIALIZE
+                            if (ceTrace02.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace02);
+                            }
                             break;
 
-                        case 10003: // REDIRECT_TRANSFER
+                        case 10003: // Not Used
                             if (ceTrace03.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.GreenYellow);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace03);
                             }
                             break;
 
-                        case 10004: // POLLING
+                        case 10004: // Not Used
                             if (ceTrace04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.BurlyWood);
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace04);
                             }
                             break;
 
-                        case 10005: // ERROR_TRACE
+                        case 10005: // Not Used
                             if (ceTrace05.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Yellow);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace05);
                             }
                             break;
 
-                        case 10006: // EASESYS_IO
+                        case 10006: // Not Used
                             if (ceTrace06.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace06);
                             }
                             break;
 
-                        case 10007: // UI_CONTROL
+                        case 10007: // PRESENTATION
                             if (ceTrace07.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace07);
                             }
                             break;
 
-                        case 10008: // UTILITY
+                        case 10008: // Not Used
                             if (ceTrace08.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace08);
                             }
                             break;
 
-                        case 10009: // OPERATION
+                        case 10009: // CORE
                             if (ceTrace09.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace09);
                             }
                             break;
 
@@ -376,73 +409,84 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace10 - Trace19
 
-                        case 10010: // APPLICATION_SESSION
+                        case 10010: // APPLICATION
                             if (ceTrace10.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Plum);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace10);
                             }
                             break;
 
-                        case 10011: // SYSTEM_CONFIG
+                        case 10011: // Not Used
                             if (ceTrace11.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Orange);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace11);
                             }
                             break;
 
                         case 10012: // FILE_DIR_IO
                             if (ceTrace12.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Chocolate);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace12);
                             }
                             break;
 
-                        case 10013: // DATABASE_IO
+                        case 10013: // PERSISTENCE
                             if (ceTrace13.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Olive);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace13);
                             }
                             break;
 
-                        case 10014: // SECURITY
+                        case 10014: // Not Used
                             if (ceTrace14.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Fuchsia);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace14);
                             }
                             break;
 
-                        case 10015: // ERROR_TRACE_LOW
+                        case 10015: // Not Used
+
                             if (ceTrace15.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Yellow);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace15);
                             }
                             break;
 
-                        case 10016: // EASESYS_IO_MED
+                        case 10016: // Not Used
                             if (ceTrace16.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace16);
                             }
                             break;
 
-                        case 10017: // UI_CONTROL_MED
+                        case 10017: // VIEW
                             if (ceTrace17.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace17);
                             }
                             break;
 
-                        case 10018: // UTILITY_MED
+                        case 10018: // VIEWMODEL
                             if (ceTrace18.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace18);
                             }
                             break;
 
-                        case 10019: // OPERATION_LOW - DEFAULT
+                        case 10019: // MODULES
                             if (ceTrace19.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace19);
                             }
                             break;
 
@@ -450,73 +494,83 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace20 - Trace29
 
-                        case 10020: // APPLICAITON_SESSION_LOW
+                        case 10020: // APPLICATION_SERVICES
                             if (ceTrace20.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Plum);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace20);
                             }
                             break;
 
-                        case 10021: // SYSTEM_CONFIG_LOW
+                        case 10021: // EVENT
                             if (ceTrace21.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Orange);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace21);
                             }
                             break;
 
-                        case 10022: // FILE_DIR_IO_LOW
+                        case 10022: // DOMAIN SERVICES
                             if (ceTrace22.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Chocolate);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace22);
                             }
                             break;
 
-                        case 10023: // DATABASE_IO_LOW
+                        case 10023: // PERSISTENCE_LOW
                             if (ceTrace23.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Olive);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace23);
                             }
                             break;
 
-                        case 10024: // SECURITY_LOW
+                        case 10024: // Not Used
                             if (ceTrace24.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Fuchsia);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace24);
                             }
                             break;
 
-                        case 10025: // CLEAR_INITIALIZE
+                        case 10025: // CONSTRUCTOR
                             if (ceTrace25.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace25);
                             }
                             break;
 
-                        case 10026: // EASESYS_IO_LOW
+                        case 10026: // Not Used
                             if (ceTrace26.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace26);
                             }
                             break;
 
-                        case 10027: // UI_CONTROL_LOW
+                        case 10027: // VIEW_LOW
                             if (ceTrace27.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace27);
                             }
                             break;
 
-                        case 10028: // UTILITY_LOW
+                        case 10028: // VIEWMODEL_LOW
                             if (ceTrace28.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace28);
                             }
                             break;
 
-                        case 10029:
+                        case 10029: // Not Used
                             if (ceTrace29.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
+                                displayMessage = ColorFormatMessage(formattedMessage, 
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace29);
                             }
                             break;
 

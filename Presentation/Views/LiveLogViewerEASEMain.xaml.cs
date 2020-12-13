@@ -15,29 +15,29 @@ using VNC.Core.Mvvm;
 
 namespace VNCLogViewer.Presentation.Views
 {
-    public partial class LiveLogViewerVNCMain : UserControl, ILiveLogViewerVNCMain
+    public partial class LiveLogViewerEASEMain : UserControl, ILiveLogViewerEASEMain
     {
 
-        public LiveLogViewerVNCMain(ViewModels.ILiveLogViewerVNCMainViewModel viewModel)
+        public LiveLogViewerEASEMain(ViewModels.ILiveLogViewerEASEMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
             InitializeComponent();
 
             ViewModel = viewModel;
-            Loaded += UserControl_Loaded;
+            //Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            Int64 startTicks = Log.VIEW("Enter", Common.LOG_APPNAME);
+        //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    Int64 startTicks = Log.VIEW("Enter", Common.LOG_APPNAME);
 
-            await ((ViewModels.ILiveLogViewerVNCMainViewModel)ViewModel).LoadAsync();
+        //    await ((ViewModels.ILiveLogViewerEASEMainViewModel)ViewModel).LoadAsync();
 
-            Log.VIEW("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        //    Log.VIEW("Exit", Common.LOG_APPNAME, startTicks);
+        //}
 
         public IViewModel ViewModel
         {
@@ -213,35 +213,35 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 101: // Not Used
+                        case 101:
                             if (ceInfo01.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 102: // Not Used
+                        case 102:
                             if (ceInfo02.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 103: // Not Used
+                        case 103:
                             if (ceInfo00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 104: // Not Used
+                        case 104:
                             if (ceInfo04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 105: // Not Used
+                        case 105:
                             if (ceInfo05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
@@ -252,21 +252,21 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Debug
 
-                        case 1000: // Not Used
+                        case 1000:
                             if (ceDebug00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 1001: // Not Used
+                        case 1001:
                             if (ceDebug01.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 1002: // Not Used
+                        case 1002:
                             if (formattedMessage.Contains("Enter"))
                             {
                                 if (ceDebug02Enter.IsChecked == true)
@@ -280,21 +280,21 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 1003: // Not Used
+                        case 1003:
                             if (ceDebug03.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 1004: // Not Used
+                        case 1004:
                             if (ceDebug04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 1005: // Not Used
+                        case 1005:
                             if (ceDebug05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
@@ -305,73 +305,70 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace00 - Trace09
 
-                        case 10000: // Not Used
+                        case 10000: // PAGE_LOAD - FORM_LOAD
                             if (ceTrace00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Lime);
                             }
                             break;
 
-                        case 10001: // EVENT_HANDLER
+                        case 10001: // EVENTHANDLER
                             if (ceTrace01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Red);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Cyan);
                             }
                             break;
 
-                        case 10002: // APPLICATION_INITIALIZE
-                            if (ceTrace02.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightGray);
-                            }
+                        case 10002: // STATUS
+                            if (ceTrace02.IsChecked == true) displayMessage = true;
                             break;
 
-                        case 10003: // Not Used
+                        case 10003: // REDIRECT_TRANSFER
                             if (ceTrace03.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.GreenYellow);
                             }
                             break;
 
-                        case 10004: // Not Used
+                        case 10004: // POLLING
                             if (ceTrace04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.BurlyWood);
                             }
                             break;
 
-                        case 10005: // Not Used
+                        case 10005: // ERROR_TRACE
                             if (ceTrace05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Yellow);
                             }
                             break;
 
-                        case 10006: // Not Used
+                        case 10006: // EASESYS_IO
                             if (ceTrace06.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
                             }
                             break;
 
-                        case 10007: // PRESENTATION
+                        case 10007: // UI_CONTROL
                             if (ceTrace07.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
                             }
                             break;
 
-                        case 10008: // Not Used
+                        case 10008: // UTILITY
                             if (ceTrace08.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
                             }
                             break;
 
-                        case 10009: // CORE
+                        case 10009: // OPERATION
                             if (ceTrace09.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkGray);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
@@ -379,14 +376,14 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace10 - Trace19
 
-                        case 10010: // APPLICATION
+                        case 10010: // APPLICATION_SESSION
                             if (ceTrace10.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Green);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Plum);
                             }
                             break;
 
-                        case 10011: // Not Used
+                        case 10011: // SYSTEM_CONFIG
                             if (ceTrace11.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Orange);
@@ -400,53 +397,52 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 10013: // Persistence
+                        case 10013: // DATABASE_IO
                             if (ceTrace13.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Purple);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Olive);
                             }
                             break;
 
-                        case 10014: // Not Used
+                        case 10014: // SECURITY
                             if (ceTrace14.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Fuchsia);
                             }
                             break;
 
-                        case 10015: // Not Used
-
+                        case 10015: // ERROR_TRACE_LOW
                             if (ceTrace15.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Yellow);
                             }
                             break;
 
-                        case 10016: // Not Used
+                        case 10016: // EASESYS_IO_MED
                             if (ceTrace16.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
                             }
                             break;
 
-                        case 10017: // VIEW
+                        case 10017: // UI_CONTROL_MED
                             if (ceTrace17.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Cyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
                             }
                             break;
 
-                        case 10018: // VIEWMODEL
+                        case 10018: // UTILITY_MED
                             if (ceTrace18.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
                             }
                             break;
 
-                        case 10019: // MODULES
+                        case 10019: // OPERATION_LOW - DEFAULT
                             if (ceTrace19.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkGray);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
@@ -454,70 +450,70 @@ namespace VNCLogViewer.Presentation.Views
 
                         #region Trace20 - Trace29
 
-                        case 10020: // APPLICATION_SERVICES
+                        case 10020: // APPLICAITON_SESSION_LOW
                             if (ceTrace20.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkGreen);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Plum);
                             }
                             break;
 
-                        case 10021: // EVENT
+                        case 10021: // SYSTEM_CONFIG_LOW
                             if (ceTrace21.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Red);
-                            }
-                            break;
-
-                        case 10022: // DOMAIN SERVICES
-                            if (ceTrace22.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Orange);
                             }
                             break;
 
-                        case 10023: // PERSISTENCE_LOW
-                            if (ceTrace23.IsChecked == true)
+                        case 10022: // FILE_DIR_IO_LOW
+                            if (ceTrace22.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Purple);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Chocolate);
                             }
                             break;
 
-                        case 10024: // Not Used
+                        case 10023: // DATABASE_IO_LOW
+                            if (ceTrace23.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.Olive);
+                            }
+                            break;
+
+                        case 10024: // SECURITY_LOW
                             if (ceTrace24.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.Fuchsia);
                             }
                             break;
 
-                        case 10025: // CONSTRUCTOR
+                        case 10025: // CLEAR_INITIALIZE
                             if (ceTrace25.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);
                             }
                             break;
 
-                        case 10026: // Not Used
+                        case 10026: // EASESYS_IO_LOW
                             if (ceTrace26.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
                             }
                             break;
 
-                        case 10027: // VIEW_LOW
+                        case 10027: // UI_CONTROL_LOW
                             if (ceTrace27.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.Cyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.LightPink);
                             }
                             break;
 
-                        case 10028: // VIEWMODEL_LOW
+                        case 10028: // UTILITY_LOW
                             if (ceTrace28.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage, Color.DarkCyan);
+                                displayMessage = ColorFormatMessage(formattedMessage, Color.SlateGray);
                             }
                             break;
 
-                        case 10029: // Not Used
+                        case 10029:
                             if (ceTrace29.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, Color.White);

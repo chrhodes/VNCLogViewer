@@ -8,6 +8,6 @@ namespace VNCLogViewer.Persistence.Data
     {
         int SaveChanges();
 
-        DbSet<Dog> DogSet { get; set; }
+        //DbSet<Dog> DogSet { get; set; }
     }
 }

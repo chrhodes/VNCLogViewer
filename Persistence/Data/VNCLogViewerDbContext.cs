@@ -19,7 +19,6 @@ namespace VNCLogViewer.Persistence.Data
         // TODO(crhodes)
         // Add additional DbSet<TYPE> as needed.
 
-        public DbSet<Dog> DogSet { get; set; }
         public DbSet<LiveLogViewerEASE> LiveLogViewerEASESet { get; set; }
         public DbSet<LiveLogViewerVNC> LiveLogViewerVNCSet { get; set; }
 

@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
-using Prism.Commands;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-using VNCLogViewer.Core.Events;
-using VNCLogViewer.DomainServices;
 using VNCLogViewer.Resources;
 
 namespace VNCLogViewer.Presentation.ViewModels
@@ -55,6 +48,5 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             throw new NotImplementedException();
         }
-
     }
 }

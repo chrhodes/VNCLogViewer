@@ -31,6 +31,7 @@ namespace VNCLogViewer.Presentation.Views
 
             ViewModel = viewModel;
             //Loaded += UserControl_Loaded;
+            lgCaptureFilter.IsCollapsed = true;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <UseWindowForms>true</UseWindowForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>Resources\Icons\application.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

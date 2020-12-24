@@ -9,7 +9,6 @@ using Unity;
 using VNC;
 
 using VNCLogViewer.Core;
-using VNCLogViewer.DomainServices;
 using VNCLogViewer.Presentation.ViewModels;
 using VNCLogViewer.Presentation.Views;
 

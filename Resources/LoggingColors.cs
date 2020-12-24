@@ -41,7 +41,7 @@ namespace VNCLogViewer.Resources
         public Color Trace13 { get; set; } = Color.FromArgb(160, 115, 225); // PERSISTENCE
         public Color Trace14 { get; set; } = defaultColor;
         public Color Trace15 { get; set; } = defaultColor;
-        public Color Trace16 { get; set; } = defaultColor;
+        public Color Trace16 { get; set; } = Color.White; // INFRASTRUCTURE
         public Color Trace17 { get; set; } = Color.FromArgb(0, 220, 220); // VIEW
         public Color Trace18 { get; set; } = Color.FromArgb(90, 255, 255); // VIEWMODEL
         public Color Trace19 { get; set; } = Color.Fuchsia; // MODULES

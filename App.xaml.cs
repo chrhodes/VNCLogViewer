@@ -10,7 +10,6 @@ using Prism.Unity;
 using VNC;
 using VNC.Core.Services;
 
-using VNCLogViewer.DomainServices;
 using VNCLogViewer.Presentation.Views;
 
 namespace VNCLogViewer

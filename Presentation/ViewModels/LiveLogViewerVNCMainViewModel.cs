@@ -14,7 +14,6 @@ using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
 using VNCLogViewer.Core.Events;
-using VNCLogViewer.DomainServices;
 using VNCLogViewer.Resources;
 
 namespace VNCLogViewer.Presentation.ViewModels

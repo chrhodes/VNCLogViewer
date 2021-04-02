@@ -24,7 +24,7 @@
     xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
     xmlns:infra="clr-namespace:VNCLogViewer.Core"
   
-      xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.CoreNF"  
+      xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"  
   
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"

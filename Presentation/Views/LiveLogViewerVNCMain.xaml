@@ -26,11 +26,12 @@
     xmlns:converters="clr-namespace:VNCLogViewer.Presentation.Converters"
     xmlns:infra="clr-namespace:VNCLogViewer.Core"
 
-    xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.CoreNF"
+    xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
 
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
-    d:DesignHeight="650" d:DesignWidth="800">
+    d:DesignHeight="650" d:DesignWidth="800"
+>
 
     <!--xmlns:views="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.Views"
     xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.ViewModels"-->
@@ -78,17 +79,21 @@
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <Label Content="lg_Header Stuff Goes Here" />
         </dxlc:LayoutGroup>
+        
         <dxlc:LayoutGroup Name="lg_Body">
-            <!-- Use this if you want a LayoutManager -->
+
             <dxdo:DockLayoutManager dx:StyleManager.ApplyApplicationTheme="True"
                 FontSize="12"
                 Name="lg_Body_dlm">
+                
                 <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
+                    
                     <dxdo:LayoutPanel AllowClose="False"
                         AllowDock="False"
                         AllowFloat="False"
                         AllowHide="False"
                         Name="lg_Body_dlm_lg_lpRoot">
+                        
                         <dxlc:LayoutControl Grid.Row="1"
                             Grid.Column="0"
                             Background="Transparent"
@@ -361,149 +366,167 @@
 
                                                     <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
 
-                                                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical" Header="CORE" View="GroupBox" Width="200" Background="Gray">
+                                                        <dxlc:LayoutGroup Header="CORE" 
+                                                                          HorizontalAlignment="Stretch" Orientation="Vertical" 
+                                                                          View="GroupBox" 
+                                                                          Width="200" 
+                                                                          Background="#FF969696">
 
                                                             <dxe:CheckEdit x:Name="ceTrace21"
-                                                        Content="EVENT"
-                                                        Foreground="{Binding LoggingColors.Trace21, Converter={StaticResource ColorToBrushConverter}}"
-                                                        IsChecked="True"
-                                                        ToolTip="10021 / Trace21 / EVENT" />
+                                                                Content="EVENT"
+                                                                Foreground="{Binding LoggingColors.Trace21, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="True"
+                                                                ToolTip="10021 / Trace21 / EVENT" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace01"
-                                                        Content="EVENT_HANDLER"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace01, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10001 / Trace01 / EVENT_HANDLER" />
+                                                                Content="EVENT_HANDLER"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace01, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10001 / Trace01 / EVENT_HANDLER" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace02"
-                                                        Content="APPLICATION_INITIALIZE"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace02, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10002 / Trace02 / APPLICATION_INITIALIZE" />
+                                                                Content="APPLICATION_INITIALIZE"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace02, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10002 / Trace02 / APPLICATION_INITIALIZE" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace09"
-                                                        Content="CORE"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace09, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10009 / Trace09 / CORE" />
+                                                                Content="CORE"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace09, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10009 / Trace09 / CORE" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace19"
-                                                        Content="MODULES"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace19, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10019 / Trace19 / MODULES" />
+                                                                Content="MODULES"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace19, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10019 / Trace19 / MODULES" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace25"
-                                                        Content="CONSTRUCTOR"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace25, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10025 / Trace25 / CONSTRUCTOR" />
+                                                                Content="CONSTRUCTOR"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace25, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10025 / Trace25 / CONSTRUCTOR" />
 
                                                             <dxe:CheckEdit x:Name="ceInfo00"
-                                                        Content="APPLICATION_START / APPLICATION_END"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Info00, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="100 / Info00 / APPLICATION_START / APPLICATION_END" />
+                                                                Content="APPLICATION_START / APPLICATION_END"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Info00, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="100 / Info00 / APPLICATION_START / APPLICATION_END" />
+                                                            
                                                         </dxlc:LayoutGroup>
 
                                                         <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical">
 
                                                             <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
 
-                                                                <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical" Header="PRESENTATION" View="GroupBox">
+                                                                <dxlc:LayoutGroup Header="PRESENTATION" 
+                                                                                  HorizontalAlignment="Stretch" Orientation="Vertical" 
+                                                                                  View="GroupBox"
+                                                                                  Background="#FF00DCDC">
 
                                                                     <dxe:CheckEdit x:Name="ceTrace17"
-                                                        Content="VIEW"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace17, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10017 / Trace17 / VIEW" />
+                                                                        Content="VIEW"
+                                                                        IsChecked="True"
+                                                                        ToolTip="10017 / Trace17 / VIEW" />
 
                                                                     <dxe:CheckEdit x:Name="ceTrace18"
-                                                        Content="VIEWMODEL"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace18, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10018 / Trace18 / VIEWMODEL" />
+                                                                        Content="VIEWMODEL"
+                                                                        IsChecked="True"
+                                                                        ToolTip="10018 / Trace18 / VIEWMODEL" />
 
                                                                     <dxe:CheckEdit x:Name="ceTrace27"
-                                                        Content="VIEW_LOW"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace27, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10027 / Trace27 / VIEW_LOW" />
+                                                                        Content="VIEW_LOW"
+                                                                        IsChecked="True"
+                                                                        ToolTip="10027 / Trace27 / VIEW_LOW" />
 
                                                                     <dxe:CheckEdit x:Name="ceTrace28"
-                                                        Content="VIEWMODEL_LOW"
-                                                        IsChecked="True"
-                                                        Foreground="{Binding LoggingColors.Trace28, Converter={StaticResource ColorToBrushConverter}}"
-                                                        ToolTip="10028 / Trace28 / VIEWMODEL_LOW" />
+                                                                        Content="VIEWMODEL_LOW"
+                                                                        IsChecked="True"
+                                                                        ToolTip="10028 / Trace28 / VIEWMODEL_LOW" />
 
                                                                     <dxe:CheckEdit x:Name="ceTrace07"
                                                                         Content="PRESENTAION"
                                                                         IsChecked="True"
-                                                                        Foreground="{Binding LoggingColors.Trace07, Converter={StaticResource ColorToBrushConverter}}"
                                                                         ToolTip="10007 / Trace07 / PRESENTATION" />
                                                                 </dxlc:LayoutGroup>
 
-                                                                <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical" Header="PERSISTENCE" View="GroupBox">
+                                                                <dxlc:LayoutGroup Header="PERSISTENCE"
+                                                                                  HorizontalAlignment="Stretch" Orientation="Vertical"  
+                                                                                  View="GroupBox"
+                                                                                  Background="#FFA073E1">
 
                                                                     <dxe:CheckEdit x:Name="ceTrace13"
                                                                         Content="PERSISTENCE"
-                                                                        Foreground="{Binding LoggingColors.Trace13, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="True"
                                                                         ToolTip="10013" />
 
                                                                     <dxe:CheckEdit x:Name="ceTrace23"
                                                                         Content="PERSISTENCE_LOW"
-                                                                        Foreground="{Binding LoggingColors.Trace23, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="True"
                                                                         ToolTip="10023" />
                                                                 </dxlc:LayoutGroup>
 
-                                                                <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical" Header="INFRASTRUCTURE" View="GroupBox">
+                                                                <dxlc:LayoutGroup Header="INFRASTRUCTURE"
+                                                                                  HorizontalAlignment="Stretch" Orientation="Vertical"  
+                                                                                  View="GroupBox"
+                                                                                  Background="WhiteSmoke">
                                                                     <dxe:CheckEdit x:Name="ceTrace16"
                                                                         Content="INFRASTRUCTURE"
-                                                                        Foreground="{Binding LoggingColors.Trace16, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="True"
                                                                         ToolTip="10016" />
                                                                 </dxlc:LayoutGroup>
                                                             </dxlc:LayoutGroup>
 
-                                                            <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal" Header="APPLICATION" View="GroupBox">
+                                                            <dxlc:LayoutGroup Header="APPLICATION" 
+                                                                              HorizontalAlignment="Stretch" Orientation="Horizontal" 
+                                                                              View="GroupBox"
+                                                                              Background="#FF64F064">
 
                                                                 <dxe:CheckEdit x:Name="ceTrace20"
-                                                        Content="APPLICATION SERVICES"
-                                                        Foreground="{Binding LoggingColors.Trace20, Converter={StaticResource ColorToBrushConverter}}"
-                                                        IsChecked="True"
-                                                        ToolTip="10020" />
+                                                                    Content="APPLICATION SERVICES"
+                                                                    IsChecked="True"
+                                                                    ToolTip="10020" />
 
                                                                 <dxe:CheckEdit x:Name="ceTrace10"
-                                                        Content="APPLICATION"
-                                                        Foreground="{Binding LoggingColors.Trace10, Converter={StaticResource ColorToBrushConverter}}"
-                                                        IsChecked="True"
-                                                        ToolTip="10010" />
+                                                                    Content="APPLICATION"
+                                                                    IsChecked="True"
+                                                                    ToolTip="10010" />
+                                                                
                                                             </dxlc:LayoutGroup>
 
-                                                            <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal" Header="DOMAIN" View="GroupBox">
+                                                            <dxlc:LayoutGroup Header="DOMAIN"
+                                                                              View="GroupBox"
+                                                                              HorizontalAlignment="Stretch" Orientation="Horizontal" 
+                                                                              Background="#FFFFB400">
 
                                                                 <dxe:CheckEdit x:Name="ceTrace12"
-                                                        Content="DOMAIN"
-                                                        Foreground="{Binding LoggingColors.Trace12, Converter={StaticResource ColorToBrushConverter}}"
-                                                        IsChecked="True"
-                                                        ToolTip="10012" />
+                                                                    Content="DOMAIN"
+                                                                    IsChecked="True"
+                                                                    ToolTip="10012" />
 
                                                                 <dxe:CheckEdit x:Name="ceTrace22"
-                                                        Content="DOMAIN SERVICES"
-                                                        Foreground="{Binding LoggingColors.Trace22, Converter={StaticResource ColorToBrushConverter}}"
-                                                        IsChecked="True"
-                                                        ToolTip="10022" />
+                                                                    Content="DOMAIN SERVICES"
+                                 
+                                                                    IsChecked="True"
+                                                                    ToolTip="10022" />
                                                             </dxlc:LayoutGroup>
+                                                            
                                                         </dxlc:LayoutGroup>
+                                                        
                                                     </dxlc:LayoutGroup>
+                                                    
                                                 </dxlc:LayoutGroup>
+                                                
                                             </dxlc:LayoutGroup>
+                                            
                                         </dxlc:LayoutGroup>
+                                        
                                         <dxlc:LayoutGroup VerticalAlignment="Bottom"
                                             Orientation="Vertical">
+                                            
                                             <dxlc:LayoutGroup Orientation="Horizontal">
+                                                
                                                 <dxlc:LayoutItem HorizontalAlignment="Left">
                                                     <dxe:CheckEdit x:Name="ceAutoUpdate"
                                                         Content="Auto Update"
@@ -511,6 +534,7 @@
                                                         ToolTip="Not available with RichEditControl-yet"
                                                         IsChecked="False" />
                                                 </dxlc:LayoutItem>
+                                                
                                                 <dxlc:LayoutItem>
                                                     <Button x:Name="btnUpdateScreen"
                                                         HorizontalAlignment="Left"

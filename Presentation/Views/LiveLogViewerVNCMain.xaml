@@ -425,25 +425,32 @@
                                                                                   View="GroupBox"
                                                                                   Background="#FF00DCDC">
 
-                                                                    <dxe:CheckEdit x:Name="ceTrace17"
-                                                                        Content="VIEW"
-                                                                        IsChecked="True"
-                                                                        ToolTip="10017 / Trace17 / VIEW" />
+                                                                    <dxlc:LayoutGroup 
+                                                                    	View="Group" Orientation="Horizontal" >
+                                                                        <dxe:CheckEdit x:Name="ceTrace17"
+                                                                            Content="VIEW"
+                                                                            IsChecked="True"
+                                                                            ToolTip="10017 / Trace17 / VIEW" />
 
-                                                                    <dxe:CheckEdit x:Name="ceTrace18"
-                                                                        Content="VIEWMODEL"
-                                                                        IsChecked="True"
-                                                                        ToolTip="10018 / Trace18 / VIEWMODEL" />
+                                                                        <dxe:CheckEdit x:Name="ceTrace27"
+                                                                            Content="VIEW_LOW"
+                                                                            IsChecked="True"
+                                                                            ToolTip="10027 / Trace27 / VIEW_LOW" />
+                                                                    </dxlc:LayoutGroup>
 
-                                                                    <dxe:CheckEdit x:Name="ceTrace27"
-                                                                        Content="VIEW_LOW"
-                                                                        IsChecked="True"
-                                                                        ToolTip="10027 / Trace27 / VIEW_LOW" />
+                                                                    <dxlc:LayoutGroup 
+                                                                    	View="Group" Orientation="Horizontal" >
+                                                                        <dxe:CheckEdit x:Name="ceTrace18"
+                                                                            Content="VIEWMODEL"
+                                                                            IsChecked="True"
+                                                                            ToolTip="10018 / Trace18 / VIEWMODEL" />
 
-                                                                    <dxe:CheckEdit x:Name="ceTrace28"
-                                                                        Content="VIEWMODEL_LOW"
-                                                                        IsChecked="True"
-                                                                        ToolTip="10028 / Trace28 / VIEWMODEL_LOW" />
+
+                                                                        <dxe:CheckEdit x:Name="ceTrace28"
+                                                                            Content="VIEWMODEL_LOW"
+                                                                            IsChecked="True"
+                                                                            ToolTip="10028 / Trace28 / VIEWMODEL_LOW" />
+                                                                    </dxlc:LayoutGroup>
 
                                                                     <dxe:CheckEdit x:Name="ceTrace07"
                                                                         Content="PRESENTAION"
@@ -452,7 +459,7 @@
                                                                 </dxlc:LayoutGroup>
 
                                                                 <dxlc:LayoutGroup Header="PERSISTENCE"
-                                                                                  HorizontalAlignment="Stretch" Orientation="Vertical"  
+                                                                                  HorizontalAlignment="Stretch" Orientation="Horizontal"  
                                                                                   View="GroupBox"
                                                                                   Background="#FFA073E1">
 

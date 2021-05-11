@@ -352,11 +352,11 @@
                                                                     IsChecked="True"
                                                                     Foreground="{Binding LoggingColors.Trace26, Converter={StaticResource ColorToBrushConverter}}"
                                                                     ToolTip="10026 / Trace26 / EASESYS_IO_LOW" />
-                                                    <dxe:CheckEdit x:Name="ceTrace29" Visibility="Hidden"
+                                                    <!--<dxe:CheckEdit x:Name="ceTrace29" Visibility="Hidden"
                                                                     Content="10029"
                                                                     IsChecked="True"
                                                                     Foreground="{Binding LoggingColors.Trace29, Converter={StaticResource ColorToBrushConverter}}"
-                                                                    ToolTip="10029" />
+                                                                    ToolTip="10029" />-->
                                                 </dxlc:LayoutGroup>
                                             </dxlc:LayoutGroup>
 
@@ -397,11 +397,17 @@
                                                                 ToolTip="10009 / Trace09 / CORE" />
 
                                                             <dxe:CheckEdit x:Name="ceTrace19"
-                                                                Content="MODULES"
+                                                                Content="MODULE"
                                                                 IsChecked="True"
                                                                 Foreground="{Binding LoggingColors.Trace19, Converter={StaticResource ColorToBrushConverter}}"
-                                                                ToolTip="10019 / Trace19 / MODULES" />
+                                                                ToolTip="10019 / Trace19 / MODULE" />
 
+                                                            <dxe:CheckEdit x:Name="ceTrace29"
+                                                                Content="MODULE_INITIALIZE"
+                                                                IsChecked="True"
+                                                                Foreground="{Binding LoggingColors.Trace29, Converter={StaticResource ColorToBrushConverter}}"
+                                                                ToolTip="10029 / Trace29 / MODULE_INITIALIZE" />
+                                                            
                                                             <dxe:CheckEdit x:Name="ceTrace25"
                                                                 Content="CONSTRUCTOR"
                                                                 IsChecked="True"
@@ -411,7 +417,7 @@
                                                             <dxe:CheckEdit x:Name="ceInfo00"
                                                                 Content="APPLICATION_START / APPLICATION_END"
                                                                 IsChecked="True"
-                                                                Foreground="{Binding LoggingColors.Info00, Converter={StaticResource ColorToBrushConverter}}"
+                                                                Foreground="{Binding LoggingColors.APPLICATION_START, Converter={StaticResource ColorToBrushConverter}}"
                                                                 ToolTip="100 / Info00 / APPLICATION_START / APPLICATION_END" />
                                                             
                                                         </dxlc:LayoutGroup>

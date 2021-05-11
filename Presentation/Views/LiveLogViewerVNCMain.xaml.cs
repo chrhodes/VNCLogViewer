@@ -483,7 +483,7 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 10019: // MODULES
+                        case 10019: // MODULE
                             if (ceTrace19.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
@@ -567,7 +567,7 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 10029: // Not Used
+                        case 10029: // MODULE_INITIALIZE
                             if (ceTrace29.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 

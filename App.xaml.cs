@@ -96,14 +96,16 @@ namespace VNCLogViewer
 
         // 06
 
-        protected override void ConfigureServiceLocator()
-        {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+        // NOTE(crhodes)
+        // This was removed in Prism 8.0
+        //protected override void ConfigureServiceLocator()
+        //{
+        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
 
-            base.ConfigureServiceLocator();
+        //    base.ConfigureServiceLocator();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+        //}
 
         // 07 - Configure the catalog of modules
         // Modules are loaded at Startup and must be a project reference

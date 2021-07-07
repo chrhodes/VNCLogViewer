@@ -61,6 +61,7 @@
         Background="Transparent"
         Name="lc_Root"
         Orientation="Vertical">
+        
         <dxlc:LayoutControl.AvailableItems>
             <!-- Add things that are optionally displayable-->
             <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
@@ -69,6 +70,7 @@
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
@@ -76,6 +78,7 @@
                 </StackPanel>
             </dxdo:LayoutPanel>
         </dxlc:LayoutControl.AvailableItems>
+        
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <Label Content="lg_Header Stuff Goes Here" />
         </dxlc:LayoutGroup>
@@ -114,65 +117,7 @@
                                 <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
                                 <dxlc:LayoutGroup Header="LiveLogView" Name="lg_X">
                                     <dxlc:LayoutGroup Orientation="Vertical">
-                                        <!--<dxlc:LayoutItem Label="ServerURI: ">
-                                            <TextBox x:Name="ServerURI"
-                                                Height="20"
-                                                Margin="0,0,80,0"
-                                                Text="http://localhost:8095/signalr"
-                                                TextWrapping="Wrap" />
-                                        </dxlc:LayoutItem>
-                                        <dxlc:LayoutGroup VerticalAlignment="Top">
-                                            <StackPanel x:Name="SignInPanel" Margin="10,0">
-                                                <Label Content="Enter user name:" />
-                                                <Grid>
-                                                    <TextBox x:Name="UserNameTextBox"
-                                                        Height="20"
-                                                        Margin="0,0,80,0" />
-                                                    <Button x:Name="SignInButton"
-                                                        Width="75"
-                                                        HorizontalAlignment="Right"
-                                                        Click="btnSignIn_Click"
-                                                        Content="Sign In" />
-                                                </Grid>
-                                                <Label x:Name="StatusText"
-                                                    Margin="0,10"
-                                                    HorizontalAlignment="Center"
-                                                    Visibility="Collapsed" />
-                                            </StackPanel>
-                                            <dxlc:LayoutGroup x:Name="ChatPanel"
-                                                Orientation="Vertical"
-                                                Visibility="Hidden">
-                                                <dxlc:LayoutGroup Orientation="Horizontal">
-                                                    <dxlc:LayoutItem HorizontalAlignment="Left"
-                                                        Label="Message"
-                                                        LabelPosition="Top">
-                                                        <TextBox x:Name="tbMessage"
-                                                            Width="300"
-                                                            TextWrapping="Wrap" />
-                                                    </dxlc:LayoutItem>
-                                                    <dxlc:LayoutItem HorizontalAlignment="Left"
-                                                        Label="Priority"
-                                                        LabelPosition="Top">
-                                                        <TextBox x:Name="tbMessagePriority" Width="100" />
-                                                    </dxlc:LayoutItem>
-                                                </dxlc:LayoutGroup>
-                                                <dxlc:LayoutGroup Orientation="Horizontal">
-                                                    <Button x:Name="btnSend"
-                                                        Width="75"
-                                                        Height="20"
-                                                        Click="btnSend_Click"
-                                                        Content="Send"
-                                                        IsDefault="True"
-                                                        IsEnabled="False" />
-                                                    <Button x:Name="btnSendPriority"
-                                                        Height="20"
-                                                        HorizontalAlignment="Left"
-                                                        Click="btnSendPriority_Click"
-                                                        Content="Send Priority"
-                                                        IsEnabled="False" />
-                                                </dxlc:LayoutGroup>
-                                            </dxlc:LayoutGroup>
-                                        </dxlc:LayoutGroup>-->
+                                       
                                         <dxre:RichEditControl x:Name="recLogStream"
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Stretch"
@@ -181,6 +126,7 @@
                                             Background="Black"
                                             FontSize="{Binding ElementName=sbFontSize, Path=Value}"
                                             TextChanged="recLogStream_TextChanged" />
+                                        
                                         <dxlc:LayoutGroup x:Name="lgCaptureFilter" VerticalAlignment="Bottom"
                                             Header="Capture Filter"
                                             IsCollapsible="True"
@@ -604,14 +550,16 @@
                         </dxlc:LayoutControl>
                     </dxdo:LayoutPanel>
                 </dxdo:LayoutGroup>
+                
                 <dxdo:DockLayoutManager.AutoHideGroups>
+                    
                     <dxdo:AutoHideGroup DockType="Top">
 
                         <dxdo:LayoutPanel x:Name="lp_TopStuff"
                             Caption="SignalR Connection"
-                            ItemWidth="150">
+                            ItemWidth="150" MaxHeight="130">
                             <dxlc:LayoutGroup
-                        	    View="Group" Orientation="Vertical">
+                        	    View="Group" Orientation="Vertical" >
                                 <dxlc:LayoutItem Label="ServerURI: ">
                                     <TextBox x:Name="ServerURI"
                                                 Height="20"
@@ -619,6 +567,7 @@
                                                 Text="http://localhost:8095/signalr"
                                                 TextWrapping="Wrap" />
                                 </dxlc:LayoutItem>
+
                                 <dxlc:LayoutGroup VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <StackPanel x:Name="SignInPanel" Margin="10,0">
                                         <Label Content="Enter user name:" />
@@ -638,6 +587,7 @@
                                                     HorizontalAlignment="Center"
                                                     Visibility="Collapsed" />
                                     </StackPanel>
+                                    
                                     <dxlc:LayoutGroup x:Name="ChatPanel"
                                                 Orientation="Vertical"
                                                 Visibility="Hidden">
@@ -687,6 +637,7 @@
             </dxdo:DockLayoutManager>
             <!--  Use this if you have simple Content -->
         </dxlc:LayoutGroup>
+        
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
             <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>

@@ -26,7 +26,7 @@ namespace VNCLogViewer.Persistence.Data
 
         public VNCLogViewerDbContext() : base("VNCLogViewer_DB")
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<VNCLogViewerDbContext, Configuration>());
 
             // There are four database initialization strategies
@@ -50,12 +50,12 @@ namespace VNCLogViewer.Persistence.Data
 
             //Database.SetInitializer<VNCLogViewerDbContext>(new VNCLogViewerDbContextDatabaseInitializer());
 
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -96,12 +96,12 @@ namespace VNCLogViewer.Persistence.Data
             //modelBuilder.Configurations.Add(new FriendConfiguration());
 
             // Alternatively can use DataAnnotations on model class.
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public override int SaveChanges()
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -182,12 +182,12 @@ namespace VNCLogViewer.Persistence.Data
                 throw (ex);
             }
 
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public override async Task<int> SaveChangesAsync()
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -268,7 +268,7 @@ namespace VNCLogViewer.Persistence.Data
                 throw (ex);
             }
 
-            Log.PERSISTENCE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.PERSISTENCE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 

@@ -23,19 +23,19 @@ namespace VNCLogViewer
 
         public LiveLogViewerEASEModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             //_container = container;
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.Register<ILiveLogViewerEASEDetailViewModel, LiveLogViewerEASEDetailViewModel>();
             //containerRegistry.Register<ILiveLogViewerEASEDetail, LiveLogViewerEASEDetail>();
@@ -49,14 +49,14 @@ namespace VNCLogViewer
             //containerRegistry.RegisterSingleton<ILiveLogViewerEASELookupDataService, LiveLogViewerEASELookupDataService>();
             //containerRegistry.RegisterSingleton<ILiveLogViewerEASEDataService, LiveLogViewerEASEDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //this loads LiveLogViewerEASEMain into the Shell loaded in App.Xaml.cs
             _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerEASEMainRegion, typeof(LiveLogViewerEASEMain));
@@ -65,7 +65,7 @@ namespace VNCLogViewer
             //_regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerEASENavigationRegion, typeof(LiveLogViewerEASENavigation));
             //_regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerEASEDetailRegion, typeof(LiveLogViewerEASEDetail));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

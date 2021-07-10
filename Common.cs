@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VNCLogViewer
 {
     public class Common
     {
         public const string PROJECT_NAME = "VNCLogViewer";
-        public const string LOG_APPNAME = "VNCLogViewer";
+        public const string LOG_CATEGORY = "VNCLogViewer";
 
         public const string cCONFIG_FILE = @"C:\temp\VNCLogViewer_Config.xml";
+
+        private static string _runtimeVersion;
+        public static string RuntimeVersion
+        {
+            get => _runtimeVersion;
+            set => _runtimeVersion = value;
+        }
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 

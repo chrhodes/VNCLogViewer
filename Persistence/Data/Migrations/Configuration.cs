@@ -9,28 +9,28 @@ namespace VNCLogViewer.Persistence.Data.Migrations
     {
         public Configuration()
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             AutomaticMigrationsEnabled = true;
 
-            Log.Trace("Exit", Common.LOG_APPNAME, startTicks);
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override void Seed(VNCLogViewerDbContext context)
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             //  This method will be called after migrating to the latest version.
 
             SeedInitialDatabaseTables(context);
             base.Seed(context);
 
-            Log.Trace("Exit", Common.LOG_APPNAME, startTicks);
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         void SeedInitialDatabaseTables(VNCLogViewerDbContext context)
         {
-            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.PERSISTENCE("Enter", Common.LOG_CATEGORY);
 
             //  Use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
@@ -68,7 +68,7 @@ namespace VNCLogViewer.Persistence.Data.Migrations
             //        DateCreated = DateTime.Now
             //    });
 
-            Log.Trace("Exit", Common.LOG_APPNAME, startTicks);
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

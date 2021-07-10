@@ -25,7 +25,7 @@ namespace VNCLogViewer.Presentation.Views
 
         public LiveLogViewerVNCMain(ViewModels.ILiveLogViewerVNCMainViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeComponent();
 
@@ -33,16 +33,16 @@ namespace VNCLogViewer.Presentation.Views
             //Loaded += UserControl_Loaded;
             lgCaptureFilter.IsCollapsed = true;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         //{
-        //    Int64 startTicks = Log.VIEW("Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.VIEW("Enter", Common.LOG_CATEGORY);
 
         //    await ((ViewModels.ILiveLogViewerVNCMainViewModel)ViewModel).LoadAsync();
 
-        //    Log.VIEW("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.VIEW("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
         public IViewModel ViewModel

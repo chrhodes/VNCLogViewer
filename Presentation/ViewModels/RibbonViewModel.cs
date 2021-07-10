@@ -1,23 +1,26 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
+using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-using VNCLogViewer.Resources;
-
 namespace VNCLogViewer.Presentation.ViewModels
 {
-    public class LiveLogViewerEASEMainViewModel : EventViewModelBase, ILiveLogViewerEASEMainViewModel, IInstanceCountVM
+    public class RibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
     {
-        private IEventAggregator _eventAggregator;
-        private IMessageDialogService _messageDialogService;
 
-        public LiveLogViewerEASEMainViewModel(
+        #region Constructors, Initialization, and Load
+
+        public RibbonViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -43,26 +46,42 @@ namespace VNCLogViewer.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private LoggingColors _loggingColors = new LoggingColors();
+        #endregion
 
-        public LoggingColors LoggingColors
-        {
-            get
-            {
-                return
-                    _loggingColors;
-            }
-            private set
-            {
-                _loggingColors = value;
-                OnPropertyChanged();
-            }
-        }
+        #region Enums (none)
 
-        public Task LoadAsync()
-        {
-            throw new NotImplementedException();
-        }
+
+        #endregion
+
+        #region Structures (none)
+
+
+        #endregion
+
+        #region Fields and Properties (none)
+
+
+        #endregion
+
+        #region Event Handlers (none)
+
+
+        #endregion
+
+        #region Public Methods (none)
+
+
+        #endregion
+
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
+
+
+        #endregion
 
         #region IInstanceCount
 

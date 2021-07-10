@@ -19,7 +19,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
 
-    xmlns:drec="clr-namespace:DevExpress.XtraRichEdit;assembly=DevExpress.RichEdit.v19.2.Core"
+    xmlns:drec="clr-namespace:DevExpress.XtraRichEdit;assembly=DevExpress.RichEdit.v21.1.Core"
 
     xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"

@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 using Prism.Commands;
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Events;
@@ -18,21 +19,35 @@ using VNCLogViewer.Resources;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
-    public class LiveLogViewerVNCMainViewModel : ViewModelBase, ILiveLogViewerVNCMainViewModel
+    public class LiveLogViewerVNCMainViewModel : EventViewModelBase, ILiveLogViewerVNCMainViewModel, IInstanceCountVM
     {
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
 
         public LiveLogViewerVNCMainViewModel(
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            _eventAggregator = eventAggregator;
-            _messageDialogService = messageDialogService;
+            // TODO(crhodes)
+            // Save constructor parameters here
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            InitializeViewModel();
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializeViewModel()
+        {
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
+
+            // TODO(crhodes)
+            //
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private LoggingColors _loggingColors = new LoggingColors();
@@ -56,5 +71,17 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

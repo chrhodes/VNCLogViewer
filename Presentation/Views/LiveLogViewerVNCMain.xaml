@@ -304,6 +304,7 @@
                                                                     Foreground="{Binding LoggingColors.Trace29, Converter={StaticResource ColorToBrushConverter}}"
                                                                     ToolTip="10029" />-->
                                                 </dxlc:LayoutGroup>
+                                                
                                             </dxlc:LayoutGroup>
 
                                             <dxlc:LayoutGroup Orientation="Vertical">
@@ -624,22 +625,25 @@
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
+                        
                     </dxdo:AutoHideGroup>
-                    <dxdo:AutoHideGroup DockType="Right">
+                    
+                    <!--<dxdo:AutoHideGroup DockType="Right">
                         <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="RIght Stuff">
                             <StackPanel>
                                 <Label Content="lp_RightStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                             </StackPanel>
                         </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>
+                    </dxdo:AutoHideGroup>-->
+                    
                 </dxdo:DockLayoutManager.AutoHideGroups>
             </dxdo:DockLayoutManager>
             <!--  Use this if you have simple Content -->
         </dxlc:LayoutGroup>
         
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
+        <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
             <Label Content="lg_Footer Stuff Goes Here" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
+        
     </dxlc:LayoutControl>
 </UserControl>

@@ -48,24 +48,31 @@
         Background="Transparent"
         Name="lc_Root"
         Orientation="Vertical">
+        
         <dxlc:LayoutControl.AvailableItems>
+            
             <!-- Add things that are optionally displayable-->
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
         </dxlc:LayoutControl.AvailableItems>
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+        
+        <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <Label Content="lg_Header Stuff Goes Here" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
+        
         <dxlc:LayoutGroup Name="lg_Body">
             <!-- Use this if you want a LayoutManager -->
             <dxdo:DockLayoutManager
@@ -101,17 +108,18 @@
 
                                 <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
 
+                                <dxlc:LayoutGroup Header="VNC LiveLogViewer">
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
+                                
                                 <dxlc:LayoutGroup Header="EASE LiveLogViewer">
                                     <Grid>
                                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
                                     </Grid>
                                 </dxlc:LayoutGroup>
 
-                                <dxlc:LayoutGroup Header="VNC LiveLogViewer">
-                                    <Grid>
-                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
-                                    </Grid>
-                                </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
                     </dxdo:LayoutPanel>
@@ -119,27 +127,27 @@
 
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
-                    <dxdo:AutoHideGroup DockType="Left">
+                    <!--<dxdo:AutoHideGroup DockType="Left">
                         <dxdo:LayoutPanel
                             x:Name="lp_LeftStuff"
                             Caption="Left Stuff"
                             ItemWidth="150">
                             <StackPanel>
                                 <Label Content="lp_LeftStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                             </StackPanel>
                         </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>
+                    </dxdo:AutoHideGroup>-->
 
-                    <dxdo:AutoHideGroup DockType="Right">
+                    <!--<dxdo:AutoHideGroup DockType="Right">
                         <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="Right Stuff">
                             <StackPanel>
                                 <Label Content="lp_RightStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                             </StackPanel>
                         </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>
+                    </dxdo:AutoHideGroup>-->
+                    
                 </dxdo:DockLayoutManager.AutoHideGroups>
+                
             </dxdo:DockLayoutManager>
             <!--  Use this if you have simple Content -->
         </dxlc:LayoutGroup>

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Windows;
 
+using DevExpress.Xpf.Core;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -236,7 +238,8 @@ namespace VNCLogViewer
             try
             {
                 VerifyApplicationPrerequisites();
-
+                var defaultThemes = Theme.Themes;
+                ApplicationThemeHelper.ApplicationThemeName = "MetropolisDark";
             }
             catch (Exception ex)
             {
@@ -267,18 +270,18 @@ namespace VNCLogViewer
 
         private void Application_Activated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            //long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Deactivated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+            //long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)

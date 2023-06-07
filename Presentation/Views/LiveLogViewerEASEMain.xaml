@@ -1,0 +1,518 @@
+﻿<UserControl
+    x:Class="VNCLogViewer.Presentation.Views.LiveLogViewerEASEMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:local="clr-namespace:VNCLogViewer.Presentation.Views"
+  
+    xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding"
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+  
+    xmlns:drec="clr-namespace:DevExpress.XtraRichEdit;assembly=DevExpress.RichEdit.v21.2.Core"
+    
+    xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
+    xmlns:infra="clr-namespace:VNCLogViewer.Core"
+  
+      xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"  
+  
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800"
+  >
+
+    <!--xmlns:views="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.Views"
+    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.ViewModels"-->
+    <!--<Grid>
+        <ListView
+            ItemsSource="{Binding LiveLogViewerEASEs}"
+            SelectedItem="{Binding SelectedLiveLogViewerEASE, Mode=TwoWay}"
+            DisplayMemberPath="DisplayMember" />
+    </Grid>-->
+
+    <UserControl.Resources>
+        <!--These are implicit DataTemplates-->
+        <!--<DataTemplate DataType="{x:Type viewModels:LiveLogViewerEASEDetailViewModel}">
+            <views:LiveLogViewerEASEDetail />
+        </DataTemplate>-->
+        <!--<DataTemplate DataType="{x:Type viewModels:MeetingDetailViewModel}">
+            <views:MeetingDetail />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ProgrammingLanguageDetailViewModel}">
+            <views:ProgrammingLanguageDetail />
+        </DataTemplate>-->
+    </UserControl.Resources>
+
+  <dxlc:LayoutControl VerticalAlignment="Stretch"
+        Background="Transparent"
+        DataContext=""
+        Name="lc_Root"
+        Orientation="Vertical">
+    <dxlc:LayoutControl.AvailableItems>
+      <!-- Add things that are optionally displayable-->
+      <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+        <StackPanel>
+          <Label Content="lp_OptStuff1 Goes Here" />
+          <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+        </StackPanel>
+      </dxdo:LayoutPanel>
+      <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
+        <StackPanel>
+          <Label Content="lp_OptStuff2 Goes Here" />
+          <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+        </StackPanel>
+      </dxdo:LayoutPanel>
+    </dxlc:LayoutControl.AvailableItems>
+    <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+      <Label Content="lg_Header Stuff Goes Here" />
+    </dxlc:LayoutGroup>
+    <dxlc:LayoutGroup Name="lg_Body">
+      <!-- Use this if you want a LayoutManager -->
+      <dxdo:DockLayoutManager dx:StyleManager.ApplyApplicationTheme="True"
+                FontSize="12"
+                Name="lg_Body_dlm">
+        <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
+          <dxdo:LayoutPanel AllowClose="False"
+                        AllowDock="False"
+                        AllowFloat="False"
+                        AllowHide="False"
+                        Name="lg_Body_dlm_lg_lpRoot">
+            <dxlc:LayoutControl Grid.Row="1"
+                            Grid.Column="0"
+                            Background="Transparent"
+                            Orientation="Vertical"
+                            StretchContentVertically="True">
+              <dxlc:LayoutGroup Name="groupContainer"
+                                Orientation="Vertical"
+                                View="Group">
+                <!--<dxlc:LayoutGroup.GroupBoxStyle>
+                  <Style TargetType="dxlc:GroupBox">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                  </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>-->
+                <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
+                <dxlc:LayoutGroup Header="LiveLogView" Name="lg_X">
+                  <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem Label="ServerURI: ">
+                      <TextBox x:Name="ServerURI"
+                                                Height="20"
+                                                Margin="0,0,80,0"
+                                                Text="http://localhost:58195/signalr"
+                                                TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup VerticalAlignment="Top">
+                      <StackPanel x:Name="SignInPanel" Margin="10,0">
+                        <Label Content="Enter user name:" />
+                        <Grid>
+                          <TextBox x:Name="UserNameTextBox"
+                                                        Height="20"
+                                                        Margin="0,0,80,0" />
+                          <Button x:Name="SignInButton"
+                                                        Width="75"
+                                                        HorizontalAlignment="Right"
+                                                        Click="btnSignIn_Click"
+                                                        Content="Sign In" />
+                        </Grid>
+                        <Label x:Name="StatusText"
+                                                    Margin="0,10"
+                                                    HorizontalAlignment="Center"
+                                                    Visibility="Collapsed" />
+                      </StackPanel>
+                      <dxlc:LayoutGroup x:Name="ChatPanel"
+                                                Orientation="Vertical"
+                                                Visibility="Hidden">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                          <dxlc:LayoutItem HorizontalAlignment="Left"
+                                                        Label="Message"
+                                                        LabelPosition="Top">
+                            <TextBox x:Name="tbMessage"
+                                                            Width="300"
+                                                            TextWrapping="Wrap" />
+                          </dxlc:LayoutItem>
+                          <dxlc:LayoutItem HorizontalAlignment="Left"
+                                                        Label="Priority"
+                                                        LabelPosition="Top">
+                            <TextBox x:Name="tbMessagePriority" Width="100" />
+                          </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                          <Button x:Name="btnSend"
+                                                        Width="75"
+                                                        Height="20"
+                                                        Click="btnSend_Click"
+                                                        Content="Send"
+                                                        IsDefault="True"
+                                                        IsEnabled="False" />
+                          <Button x:Name="btnSendPriority"
+                                                        Height="20"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnSendPriority_Click"
+                                                        Content="Send Priority"
+                                                        IsEnabled="False" />
+                        </dxlc:LayoutGroup>
+                      </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxre:RichEditControl x:Name="recLogStream"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Background="Black"
+                                            FontSize="{Binding ElementName=sbFontSize, Path=Value}"
+                                            TextChanged="recLogStream_TextChanged" />
+                    <dxlc:LayoutGroup VerticalAlignment="Bottom"
+                                            Header="Capture Filter"
+                                            IsCollapsible="True"
+                                            Orientation="Horizontal"
+                                            View="GroupBox"
+                                            Visibility="Visible">
+                      <dxlc:LayoutGroup Orientation="Vertical"
+                                                >
+                        <Button x:Name="btnToggle"
+                                                    HorizontalAlignment="Left"
+                                                    Click="btnToggle_Click"
+                                                    Content="All Off" />
+                      </dxlc:LayoutGroup>
+                      <dxlc:LayoutGroup Orientation="Vertical"
+                                                >
+                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
+                          <Button x:Name="btnInfoToggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnInfoToggle_Click"
+                                                        Content="All Off" />
+                          <dxe:CheckEdit x:Name="ceInfo00"
+                                                        Content="100"
+                                                        IsChecked="True"
+                                                        ToolTip="APPLICATION_START / APPLICATION_END / LOADEASE / Info00" />
+                          <dxe:CheckEdit x:Name="ceInfo01"
+                                                        Content="101"
+                                                        IsChecked="True"
+                                                        ToolTip="Info01" />
+                          <dxe:CheckEdit x:Name="ceInfo02"
+                                                        Content="102"
+                                                        IsChecked="True"
+                                                        ToolTip="Info02" />
+                          <dxe:CheckEdit x:Name="ceInfo03"
+                                                        Content="103"
+                                                        IsChecked="True"
+                                                        ToolTip="Info03" />
+                          <dxe:CheckEdit x:Name="ceInfo04"
+                                                        Content="104"
+                                                        IsChecked="True"
+                                                        ToolTip="Info04" />
+                          <dxe:CheckEdit x:Name="ceInfo05"
+                                                        Content="105"
+                                                        IsChecked="True"
+                                                        ToolTip="Info05" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
+                          <Button x:Name="btnDebugToggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnDebugToggle_Click"
+                                                        Content="All Off" />
+                          <dxe:CheckEdit x:Name="ceDebug00"
+                                                        Content="1000"
+                                                        IsChecked="True"
+                                                        ToolTip="Debug00" />
+                          <dxe:CheckEdit x:Name="ceDebug01"
+                                                        Content="1001"
+                                                        IsChecked="True"
+                                                        ToolTip="Debug01" />
+                          <dxe:CheckEdit x:Name="ceDebug02Enter"
+                                                        Content="1002 Enter"
+                                                        Foreground="Red"
+                                                        IsChecked="True"
+                                                        ToolTip="SQL_CALL / Debug02" />
+                          <dxe:CheckEdit x:Name="ceDebug02Exit"
+                                                        Content="1002 Exit"
+                                                        Foreground="Red"
+                                                        IsChecked="True"
+                                                        ToolTip="SQL_CALL / Debug02" />
+                          <dxe:CheckEdit x:Name="ceDebug03"
+                                                        Content="1003"
+                                                        IsChecked="True"
+                                                        ToolTip="Debug03" />
+                          <dxe:CheckEdit x:Name="ceDebug04"
+                                                        Content="1004"
+                                                        IsChecked="True"
+                                                        ToolTip="Debug04" />
+                          <dxe:CheckEdit x:Name="ceDebug05"
+                                                        Content="1005"
+                                                        IsChecked="True"
+                                                        ToolTip="Debug05" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
+                          <Button x:Name="btnTrace00_09Toggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnTrace00_09Toggle_Click"
+                                                        Content="All Off" />
+                          <dxe:CheckEdit x:Name="ceTrace00"
+                                                        Content="10000"
+                                                        IsChecked="True"
+                                                        Foreground="Lime"
+                                                        ToolTip="PAGE_LOAD / FORM_LOAD / Trace00" />
+                          <dxe:CheckEdit x:Name="ceTrace01"
+                                                        Content="10001"
+                                                        IsChecked="True"
+                                                        Foreground="Cyan"                                                        
+                                                        ToolTip="EVENTHANDLER / Trace01" />
+                          <dxe:CheckEdit x:Name="ceTrace02"
+                                                        Content="10002"
+                                                        IsChecked="True"
+                                                        ToolTip="STATUS / Trace02" />
+                          <dxe:CheckEdit x:Name="ceTrace03"
+                                                        Content="10003"
+                                                        Foreground="GreenYellow"
+                                                        IsChecked="True"
+                                                        ToolTip="REDIRECT_TRANSFER / Trace03" />
+                          <dxe:CheckEdit x:Name="ceTrace04"
+                                                        Content="10004"
+                                                        IsChecked="True"
+                                                        Foreground="BurlyWood"
+                                                        ToolTip="POLLING / Trace04" />
+                          <dxe:CheckEdit x:Name="ceTrace05"
+                                                        Content="10005"
+                                                        Foreground="Yellow"
+                                                        IsChecked="True"
+                                                        ToolTip="ERROR_TRACE / Trace05" />
+                          <dxe:CheckEdit x:Name="ceTrace06"
+                                                        Content="10006"
+                                                        IsChecked="True"
+                                                        Foreground="DarkCyan"
+                                                        ToolTip="EASESYS_IO / Trace06" />
+                          <dxe:CheckEdit x:Name="ceTrace07"
+                                                        Content="10007"
+                                                        IsChecked="True"
+                                                        Foreground="LightPink"
+                                                        ToolTip="UI_CONTROL / Trace07" />
+                          <dxe:CheckEdit x:Name="ceTrace08"
+                                                        Content="10008"
+                                                        IsChecked="True"
+                                                        Foreground="SlateGray"
+                                                        ToolTip="UTILITY / Trace08" />
+                          <dxe:CheckEdit x:Name="ceTrace09"
+                                                        Content="10009"
+                                                        IsChecked="True"
+                                                        ToolTip="OPERATION / Trace09" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
+                          <Button x:Name="btnTrace10_19Toggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnTrace10_19Toggle_Click"
+                                                        Content="All Off" />
+                          <dxe:CheckEdit x:Name="ceTrace10"
+                                                        Content="10010"
+                                                        Foreground="Plum"
+                                                        IsChecked="True"
+                                                        ToolTip="APPLICATION_SESSION" />
+                          <dxe:CheckEdit x:Name="ceTrace11"
+                                                        Content="10011"
+                                                        Foreground="Orange"
+                                                        IsChecked="True"
+                                                        ToolTip="SYSTEM_CONFIG" />
+                          <dxe:CheckEdit x:Name="ceTrace12"
+                                                        Content="10012"
+                                                        Foreground="Chocolate"
+                                                        IsChecked="True"
+                                                        ToolTip="FILE_DIR_IO" />
+                          <dxe:CheckEdit x:Name="ceTrace13"
+                                                        Content="10013"
+                                                        Foreground="Olive"
+                                                        IsChecked="True"
+                                                        ToolTip="DATABASE_IO" />
+                          <dxe:CheckEdit x:Name="ceTrace14"
+                                                        Content="10014"
+                                                        IsChecked="True"
+                                                        Foreground="Fuchsia"                                                           
+                                                        ToolTip="SECURITY" />
+                          <dxe:CheckEdit x:Name="ceTrace15"
+                                                        Content="10015"
+                                                        Foreground="Yellow"
+                                                        IsChecked="True"
+                                                        ToolTip="ERROR_TRACE_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace16"
+                                                        Content="10016"
+                                                        IsChecked="True"
+                                                        Foreground="DarkCyan"
+                                                        ToolTip="EASESYS_IO_MED" />
+                          <dxe:CheckEdit x:Name="ceTrace17"
+                                                        Content="10017"
+                                                        IsChecked="True"
+                                                        Foreground="LightPink"
+                                                        ToolTip="UI_CONTROL_MED" />
+                          <dxe:CheckEdit x:Name="ceTrace18"
+                                                        Content="10018"
+                                                        IsChecked="True"
+                                                        Foreground="SlateGray"
+                                                        ToolTip="UTILITY_MED" />
+                          <dxe:CheckEdit x:Name="ceTrace19"
+                                                        Content="10019"
+                                                        IsChecked="True"
+                                                        ToolTip="OPERATION_LOW / DEFAULT" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Horizontal">
+                          <Button x:Name="btnTrace20_29Toggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnTrace20_29Toggle_Click"
+                                                        Content="All Off" />
+                          <dxe:CheckEdit x:Name="ceTrace20"
+                                                        Content="10020"
+                                                        Foreground="Plum"
+                                                        IsChecked="True"
+                                                        ToolTip="APPLICATIONSESSION_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace21"
+                                                        Content="10021"
+                                                        Foreground="Orange"
+                                                        IsChecked="True"
+                                                        ToolTip="SYSTEMCONFIG_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace22"
+                                                        Content="10022"
+                                                        Foreground="Chocolate"
+                                                        IsChecked="True"
+                                                        ToolTip="FILE_DIR_IO_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace23"
+                                                        Content="10023"
+                                                        Foreground="Olive"
+                                                        IsChecked="True"
+                                                        ToolTip="DATABASE_IO_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace24"
+                                                        Content="10024"
+                                                        IsChecked="True"
+                                                        Foreground="Fuchsia"                                                           
+                                                        ToolTip="SECURITY_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace25"
+                                                        Content="10025"
+                                                        IsChecked="True"
+                                                        ToolTip="CLEAR_INITIALIZE" />
+                          <dxe:CheckEdit x:Name="ceTrace26"
+                                                        Content="10026"
+                                                        IsChecked="True"
+                                                        Foreground="DarkCyan"
+                                                        ToolTip="EASESYS_IO_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace27"
+                                                        Content="10027"
+                                                        IsChecked="True"
+                                                        Foreground="LightPink"
+                                                        ToolTip="UI_CONTROL_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace28"
+                                                        Content="10028"
+                                                        IsChecked="True"
+                                                        Foreground="SlateGray"
+                                                        ToolTip="UTILITY_LOW" />
+                          <dxe:CheckEdit x:Name="ceTrace29"
+                                                        Content="10029"
+                                                        IsChecked="True"
+                                                        ToolTip="" />
+                        </dxlc:LayoutGroup>
+                      </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup VerticalAlignment="Bottom"
+                                            Orientation="Vertical">
+                      <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                          <dxe:CheckEdit x:Name="ceAutoUpdate"
+                                                        Content="Auto Update"
+                                                        IsEnabled="False"
+                                                        ToolTip="Not available with RichEditControl-yet"
+                                                        IsChecked="False" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                          <Button x:Name="btnUpdateScreen"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnUpdateScreen_Click"
+                                                        IsEnabled="{cb:Binding ElementName=ceAutoUpdate, Path=!IsChecked, Mode=OneWay}"
+                                                        ToolTip="Update Screen">
+                            <StackPanel Orientation="Horizontal">
+                              <Label x:Name="lbLastEntry"
+                                                                Width="80"
+                                                                Content="HH:MM:SS.xxx" />
+                              <Label HorizontalAlignment="Right"
+                                                                Content="Update Screen"
+                                                                Foreground="Red" />
+                            </StackPanel>
+                          </Button>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Center" Label="Display Layout">
+                          <dxe:ComboBoxEdit x:Name="cbeRichEditViewType"
+                                                        EditValueChanged="CbeRichEditViewType_EditValueChanged"
+                                                        ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
+                                                        SelectedIndex="0" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Right"
+                                                    >
+                          <Button x:Name="btnClear"
+                                                        Click="btnClear_Click"
+                                                        Content="Clear Screen"
+                                                        Foreground="Red"
+                                                        ToolTip="Clear Screen" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Right"
+                                                    >
+                          <Button x:Name="btnCopy"
+                                                        Click="btnCopy_Click"
+                                                        Content="Copy Contents"
+                                                        ToolTip="Copy contents to clipboard" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Right"
+                                                    Label="FontSize"
+                                                    LabelPosition="Left">
+                          <dxe:SpinEdit x:Name="sbFontSize"
+                                                        HorizontalAlignment="Right"
+                                                        Value="10"
+                                                        MinValue="8" />
+                        </dxlc:LayoutItem>
+                      </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                  </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <!--<dxlc:LayoutGroup Header="Y Stuff" Name="lg_Y">
+                  <dxlc:LayoutItem MaxHeight="1200"
+                                        VerticalAlignment="Top"
+                                        Name="li_Y" />
+                </dxlc:LayoutGroup>-->
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+          </dxdo:LayoutPanel>
+        </dxdo:LayoutGroup>
+        <dxdo:DockLayoutManager.AutoHideGroups>
+          <dxdo:AutoHideGroup DockType="Left">
+            <dxdo:LayoutPanel x:Name="lp_LeftStuff"
+                            Caption="Left Stuff"
+                            ItemWidth="150">
+              <StackPanel>
+                <Label Content="lp_LeftStuff Goes Here" />
+                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+              </StackPanel>
+            </dxdo:LayoutPanel>
+          </dxdo:AutoHideGroup>
+          <dxdo:AutoHideGroup DockType="Right">
+            <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="RIght Stuff">
+              <StackPanel>
+                <Label Content="lp_RightStuff Goes Here" />
+                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+              </StackPanel>
+            </dxdo:LayoutPanel>
+          </dxdo:AutoHideGroup>
+        </dxdo:DockLayoutManager.AutoHideGroups>
+      </dxdo:DockLayoutManager>
+      <!--  Use this if you have simple Content -->
+    </dxlc:LayoutGroup>
+    <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
+      <Label Content="lg_Footer Stuff Goes Here" />
+    </dxlc:LayoutGroup>
+  </dxlc:LayoutControl>
+</UserControl>

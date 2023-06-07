@@ -1,0 +1,60 @@
+﻿<Window
+    x:Class="VNCLogViewer.Presentation.Views.RibbonShell"
+    x:Name="thisRibbonShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
+
+    xmlns:core="clr-namespace:VNCLogViewer.Core"
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Title="{Binding Title}"
+    Background="{StaticResource ShellBackground}"
+
+    d:DesignWidth="1200" d:DesignHeight="800" 
+    d:DesignStyle="{StaticResource vncDesignStyleW}"
+ >
+     <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="Window"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+    
+    <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
+
+    <!--xmlns:core="clr-namespace:VNCLogViewer.Core;assembly=VNCLogViewer.Core"-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.RibbonRegion}" />
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+
+        <!-- This is useful for debugging V VM constructor issues -->
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisMain, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+
+</Window>

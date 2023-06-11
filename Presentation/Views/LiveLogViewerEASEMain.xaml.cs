@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,7 +9,7 @@ using DevExpress.Xpf.Editors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
 
-using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Client;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -50,31 +51,13 @@ namespace VNCLogViewer.Presentation.Views
         #region Enums, Fields, Properties
 
         public String UserName { get; set; }
-        public IHubProxy HubProxy { get; set; }
+        //public IHubProxy HubProxy { get; set; }
         //private string ServerURI = "http://localhost:58195/signalr";
         public HubConnection Connection { get; set; }
 
         #endregion
 
         #region Constructors
-
-        //public wucLiveLogEditor()
-        //{
-        //    try
-        //    {
-        //        InitializeComponent();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-
-        //    //int primaryScreenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
-        //    //int primaryScreenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-
-        //    //this.Width = (primaryScreenWidth * 9) / 10;
-        //    //this.Height = (primaryScreenHeight * 9) / 10;
-        //}
 
         #endregion
 
@@ -159,20 +142,28 @@ namespace VNCLogViewer.Presentation.Views
 
         private async void ConnectAsync()
         {
-            Connection = new HubConnection(ServerURI.Text);
+            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+
+            Connection = new HubConnectionBuilder()
+                .WithUrl(ServerURI.Text)
+                .Build();
+
             Connection.Closed += Connection_Closed;
-            Connection.Error += Connection_Error;
-            Connection.Received += Connection_Received;
-            Connection.Reconnected += Connection_Reconnected;
             Connection.Reconnecting += Connection_Reconnecting;
-            Connection.StateChanged += Connection_StateChanged;
-            HubProxy = Connection.CreateHubProxy("MyHub");
+            Connection.Reconnected += Connection_Reconnected;
+            //Connection.Error += Connection_Error;
+            //Connection.Received += Connection_Received;
+            //Connection.Reconnected += Connection_Reconnected;
+            //Connection.Reconnecting += Connection_Reconnecting;
+            //Connection.StateChanged += Connection_StateChanged;
+
+            //HubProxy = Connection.CreateHubProxy("SignalRHub");
 
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
 
             string formattedMessage = "";
 
-            HubProxy.On<string, string>("AddUserMessage", (name, message) =>
+            Connection.On<string, string>("AddUserMessage", (name, message) =>
                 this.Dispatcher.Invoke(() =>
                 {
                     formattedMessage = String.Format("{0}: {1}\n", name, message);
@@ -182,7 +173,7 @@ namespace VNCLogViewer.Presentation.Views
                 )
             );
 
-            HubProxy.On<string>("AddMessage", (message) =>
+            Connection.On<string>("AddMessage", (message) =>
                 this.Dispatcher.Invoke(() =>
                 {
                     formattedMessage = String.Format("{0}\r", message);
@@ -190,7 +181,7 @@ namespace VNCLogViewer.Presentation.Views
                 })
             );
 
-            HubProxy.On<string, int>("AddPriorityMessage", (message, priority) =>
+            Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
                 this.Dispatcher.Invoke(() =>
                 {
                     Boolean displayMessage = false;
@@ -537,11 +528,17 @@ namespace VNCLogViewer.Presentation.Views
 
             try
             {
-                await Connection.Start();
+                await Connection.StartAsync();
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException hre)
             {
-                StatusText.Content = "Unable to connect to server: Start server before connecting clients.";
+                StatusText.Content = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
+                //No connection: Don't enable Send button or show chat UI
+                return;
+            }
+            catch (Exception ex)
+            {
+                StatusText.Content = $"Unable to connect to server, ex: {ex.Message}";
                 //No connection: Don't enable Send button or show chat UI
                 return;
             }
@@ -602,43 +599,61 @@ namespace VNCLogViewer.Presentation.Views
             dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
         }
 
-        void Connection_StateChanged(StateChange obj)
+        //void Connection_StateChanged(StateChange obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
+
+        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        //private void Connection_Received(string obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    string formattedMessage = "Connection_Received\n";
+
+        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        //private void Connection_Error(Exception obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
+
+        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        private Task Connection_Reconnecting(Exception? arg)
         {
             var dispatcher = Application.Current.Dispatcher;
-            var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
+            dispatcher.Invoke(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
 
-            dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+            return null;
         }
 
-        private void Connection_Received(string obj)
-        {
-            //var dispatcher = Application.Current.Dispatcher;
-            //string formattedMessage = "Connection_Received\n";
-
-            //dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        }
-
-        private void Connection_Error(Exception obj)
+        private Task Connection_Reconnected(string? arg)
         {
             var dispatcher = Application.Current.Dispatcher;
-            var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
+            dispatcher.Invoke(() => recLogStream.Text = $"Reconnected {arg}");
 
-            dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+            return null;
         }
-
         /// <summary>
         /// If the server is stopped, the connection will time out after 30 seconds (default), and the 
         /// Closed event will fire.
         /// </summary>
-        void Connection_Closed()
+        Task Connection_Closed(Exception? arg)
         {
             //Hide chat UI; show login UI
             var dispatcher = Application.Current.Dispatcher;
+
             dispatcher.Invoke(() => ChatPanel.Visibility = Visibility.Collapsed);
             dispatcher.Invoke(() => btnSendPriority.IsEnabled = false);
             dispatcher.Invoke(() => btnSend.IsEnabled = false);
-            dispatcher.Invoke(() => recLogStream.Text += "You have been disconnected.\n");
+            dispatcher.Invoke(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
             dispatcher.Invoke(() => SignInPanel.Visibility = Visibility.Visible);
+
+            return null;
         }
 
         #endregion
@@ -659,17 +674,17 @@ namespace VNCLogViewer.Presentation.Views
             }
         }
 
-        private void btnSend_Click(object sender, RoutedEventArgs e)
+        private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            HubProxy.Invoke("Send", UserName, tbMessage.Text);
+            await Connection.InvokeAsync("Send", UserName, tbMessage.Text);
             tbMessage.Text = String.Empty;
 
             tbMessage.Focus();
         }
 
-        private void btnSendPriority_Click(object sender, RoutedEventArgs e)
+        private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
         {
-            HubProxy.Invoke("SendPriority", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+            await Connection.InvokeAsync("SendPriority", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
             tbMessage.Text = String.Empty;
             tbMessage.Focus();
         }

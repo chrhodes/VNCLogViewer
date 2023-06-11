@@ -168,7 +168,7 @@ namespace VNCLogViewer.Presentation.Views
 
 
             Connection.On<string>("AddMessage", (message) =>
-                this.Dispatcher.Invoke(
+                this.Dispatcher.InvokeAsync(
                 () =>
                 {
                     formattedMessage = String.Format("{0}\r", message);
@@ -177,7 +177,7 @@ namespace VNCLogViewer.Presentation.Views
             );
 
             Connection.On<string, string>("AddUserMessage", (name, message) =>
-                this.Dispatcher.Invoke(
+                this.Dispatcher.InvokeAsync(
                 () =>
                 {
                     formattedMessage = String.Format("{0}: {1}\n", name, message);
@@ -187,7 +187,7 @@ namespace VNCLogViewer.Presentation.Views
             );
 
             Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
-                this.Dispatcher.Invoke(
+                this.Dispatcher.InvokeAsync(
                 () =>
                 {
                     Boolean displayMessage = false;
@@ -639,7 +639,7 @@ namespace VNCLogViewer.Presentation.Views
         private Task Connection_Reconnecting(Exception? arg)
         {
             var dispatcher = Application.Current.Dispatcher;
-            dispatcher.Invoke(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
+            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
 
             return null;
         }
@@ -647,7 +647,7 @@ namespace VNCLogViewer.Presentation.Views
         private Task Connection_Reconnected(string? arg)
         {
             var dispatcher = Application.Current.Dispatcher;
-            dispatcher.Invoke(() => recLogStream.Text = $"Reconnected {arg}");
+            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
 
             return null;
         }
@@ -657,7 +657,7 @@ namespace VNCLogViewer.Presentation.Views
         //    var dispatcher = Application.Current.Dispatcher;
         //    var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
 
-        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
         //}
 
         //private void Connection_Received(string obj)
@@ -665,7 +665,7 @@ namespace VNCLogViewer.Presentation.Views
         //    var dispatcher = Application.Current.Dispatcher;
         //    string formattedMessage = "Connection_Received\n";
 
-        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
         //}
 
         //private void Connection_Error(Exception obj)
@@ -673,7 +673,7 @@ namespace VNCLogViewer.Presentation.Views
         //    var dispatcher = Application.Current.Dispatcher;
         //    var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
 
-        //    dispatcher.Invoke(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
         //}
 
         /// <summary>
@@ -685,11 +685,11 @@ namespace VNCLogViewer.Presentation.Views
             //Hide chat UI; show login UI
             var dispatcher = Application.Current.Dispatcher;
 
-            dispatcher.Invoke(() => ChatPanel.Visibility = Visibility.Collapsed);
-            dispatcher.Invoke(() => btnSendPriority.IsEnabled = false);
-            dispatcher.Invoke(() => btnSend.IsEnabled = false);
-            dispatcher.Invoke(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
-            dispatcher.Invoke(() => SignInPanel.Visibility = Visibility.Visible);
+            dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
+            dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
+            dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
+            dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
+            dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
 
             return null;
         }

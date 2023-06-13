@@ -5,13 +5,9 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer", "VNCLogViewer.csproj", "{4D54A580-3BE7-4AAD-8301-C2BB9AE7745D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRClient", "..\VNC\VNC.Logging\SignalR\AspNet\SignalRClient\SignalRClient.csproj", "{0705F37D-7A63-4B1E-A5EA-EAB11582189D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRServerHub", "..\VNC\VNC.Logging\SignalR\AspNet\SignalRServerHub\SignalRServerHub.csproj", "{8A74E6D2-C3FA-459D-A070-0B4C3CF42F1B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Logging", "..\VNC\VNC.Logging\VNC.Logging\VNC.Logging.csproj", "{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Logging.TraceListeners.SignalRListener", "..\VNC\VNC.Logging\VNC.Logging.TraceListeners\SignalRListener\VNC.Logging.TraceListeners.SignalRListener.csproj", "{E680BB45-910A-40AD-9455-1884EC0B2309}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONConsoleApp", "JSONConsoleApp\JSONConsoleApp.csproj", "{D96D00D0-CC03-40E5-95F1-8CED2A1F8A40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,22 +19,14 @@ Global
 		{4D54A580-3BE7-4AAD-8301-C2BB9AE7745D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D54A580-3BE7-4AAD-8301-C2BB9AE7745D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D54A580-3BE7-4AAD-8301-C2BB9AE7745D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0705F37D-7A63-4B1E-A5EA-EAB11582189D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0705F37D-7A63-4B1E-A5EA-EAB11582189D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0705F37D-7A63-4B1E-A5EA-EAB11582189D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0705F37D-7A63-4B1E-A5EA-EAB11582189D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A74E6D2-C3FA-459D-A070-0B4C3CF42F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A74E6D2-C3FA-459D-A070-0B4C3CF42F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A74E6D2-C3FA-459D-A070-0B4C3CF42F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A74E6D2-C3FA-459D-A070-0B4C3CF42F1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E680BB45-910A-40AD-9455-1884EC0B2309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E680BB45-910A-40AD-9455-1884EC0B2309}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E680BB45-910A-40AD-9455-1884EC0B2309}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E680BB45-910A-40AD-9455-1884EC0B2309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96D00D0-CC03-40E5-95F1-8CED2A1F8A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96D00D0-CC03-40E5-95F1-8CED2A1F8A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96D00D0-CC03-40E5-95F1-8CED2A1F8A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96D00D0-CC03-40E5-95F1-8CED2A1F8A40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("VNC")]
 [assembly: AssemblyProduct("VNCLogViewer")]
-[assembly: AssemblyCopyright("Copyright © 2020-2021")]
+[assembly: AssemblyCopyright("Copyright © 2020-2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -86,4 +86,4 @@ using System.Windows;
 //  1.0.0.0   yyyy/mm/dd    Developer
 //      Initial Version
 
-[assembly: AssemblyInformationalVersion("1.0.0.0-2021.07.07A")]
+[assembly: AssemblyInformationalVersion("2023.06.11A")]

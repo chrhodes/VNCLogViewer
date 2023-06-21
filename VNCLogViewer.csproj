@@ -6,6 +6,7 @@
     <!--<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>-->
     <UseWPF>true</UseWPF>
     <!--<UseWindowForms>true</UseWindowForms>-->
+    <!--<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>-->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ApplicationIcon>Resources\Icons\application.ico</ApplicationIcon>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

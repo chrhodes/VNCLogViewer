@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer", "VNCLogViewer.csproj", "{4D54A580-3BE7-4AAD-8301-C2BB9AE7745D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Logging", "..\VNC\VNC.Logging\VNC.Logging\VNC.Logging.csproj", "{63EFFADA-34E7-478A-AB44-A9E660FA0AE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

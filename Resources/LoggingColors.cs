@@ -9,8 +9,9 @@ namespace VNCLogViewer.Resources
     {
         // This should make it obvious if we need to pick a color.
         private static Color defaultColor = Color.FromArgb(30, 150, 255);
-        private static Color APPLICATION_START = Color.FromArgb(30, 150, 255);
-        private static Color APPLICATION_END = Color.FromArgb(20, 90, 150);
+
+        public Color APPLICATION_START { get; set; } = Color.FromArgb(30, 150, 255);
+        public  Color APPLICATION_END { get; set; } = Color.FromArgb(20, 90, 150);
 
         public Color Info00 { get; set; } = defaultColor;
         public Color Info01 { get; set; } = defaultColor;

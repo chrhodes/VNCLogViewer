@@ -59,6 +59,20 @@ namespace VNCLogViewer.Presentation.ViewModels
             }
         }
 
+        private LoggingUIConfig _loggingUIConfig = new LoggingUIConfig();
+
+        public LoggingUIConfig LoggingUIConfig
+        {
+            get => _loggingUIConfig;
+            set
+            {
+                if (_loggingUIConfig == value)
+                    return;
+                _loggingUIConfig = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Task LoadAsync()
         {
             throw new NotImplementedException();

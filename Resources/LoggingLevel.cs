@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace VNCLogViewer.Resources
 {
@@ -6,6 +7,7 @@ namespace VNCLogViewer.Resources
     {
         public string Label { get; set; }
         public Color Color { get; set; }
+        public Boolean IsChecked { get; set; }
         public string ToolTip { get; set; }
     }
 }

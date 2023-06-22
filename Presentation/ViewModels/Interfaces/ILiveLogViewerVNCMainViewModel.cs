@@ -10,5 +10,6 @@ namespace VNCLogViewer.Presentation.ViewModels
     {
         Task LoadAsync();
         LoggingColors LoggingColors { get; set; }
+        LoggingUIConfig LoggingUIConfig { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         }
 
         private LoggingColors _loggingColors = new LoggingColors();
-       
+
         public LoggingColors LoggingColors
         {
             get
@@ -55,6 +55,20 @@ namespace VNCLogViewer.Presentation.ViewModels
             set
             {
                 _loggingColors = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LoggingUIConfig _loggingUIConfig = new LoggingUIConfig();
+
+        public LoggingUIConfig LoggingUIConfig
+        {
+            get => _loggingUIConfig;
+            set
+            {
+                if (_loggingUIConfig == value)
+                    return;
+                _loggingUIConfig = value;
                 OnPropertyChanged();
             }
         }

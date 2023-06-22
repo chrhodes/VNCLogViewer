@@ -207,7 +207,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info00);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info00.Color);
                             }
                             break;
 
@@ -215,7 +215,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo01.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info01);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info01.Color);
                             }
                             break;
 
@@ -223,7 +223,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo02.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info02);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info02.Color);
                             }
                             break;
 
@@ -231,7 +231,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info03);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info03.Color);
                             }
                             break;
 
@@ -239,7 +239,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info04);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info04.Color);
                             }
                             break;
 
@@ -247,7 +247,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceInfo05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Info05);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info05.Color);
                             }
                             break;
 
@@ -259,7 +259,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceDebug00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug00);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug00.Color);
                             }
                             break;
 
@@ -267,7 +267,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceDebug01.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug01);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug01.Color);
                             }
                             break;
 
@@ -277,13 +277,13 @@ namespace VNCLogViewer.Presentation.Views
                                 if (ceDebug02Enter.IsChecked == true)
                                 {
                                     displayMessage = ColorFormatMessage(formattedMessage, 
-                                        ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug02);
+                                        ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
                                 }
                             }
                             else if (ceDebug02Exit.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug02);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
                             }
                             break;
 
@@ -291,7 +291,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceDebug03.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug03);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug03.Color);
                             }
                             break;
 
@@ -299,7 +299,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceDebug04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug04);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug04.Color);
                             }
                             break;
 
@@ -307,7 +307,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceDebug05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Debug05);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug05.Color);
                             }
                             break;
 
@@ -319,7 +319,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace00.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace00);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace00.Color);
                             }
                             break;
 
@@ -327,7 +327,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace01.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace01);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace01.Color);
                             }
                             break;
 
@@ -335,7 +335,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace02.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace02);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace02.Color);
                             }
                             break;
 
@@ -343,7 +343,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace03.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace03);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace03.Color);
                             }
                             break;
 
@@ -351,7 +351,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace04.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace04);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace04.Color);
                             }
                             break;
 
@@ -359,7 +359,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace05.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace05);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace05.Color);
                             }
                             break;
 
@@ -367,7 +367,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace06.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace06);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace06.Color);
                             }
                             break;
 
@@ -375,7 +375,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace07.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace07);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace07.Color);
                             }
                             break;
 
@@ -383,7 +383,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace08.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace08);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace08.Color);
                             }
                             break;
 
@@ -391,7 +391,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace09.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace09);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace09.Color);
                             }
                             break;
 
@@ -403,7 +403,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace10.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace10);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace10.Color);
                             }
                             break;
 
@@ -411,7 +411,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace11.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace11);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace11.Color);
                             }
                             break;
 
@@ -419,7 +419,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace12.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace12);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace12.Color);
                             }
                             break;
 
@@ -427,7 +427,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace13.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace13);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace13.Color);
                             }
                             break;
 
@@ -435,7 +435,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace14.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace14);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace14.Color);
                             }
                             break;
 
@@ -444,7 +444,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace15.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace15);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace15.Color);
                             }
                             break;
 
@@ -452,7 +452,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace16.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace16);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace16.Color);
                             }
                             break;
 
@@ -460,7 +460,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace17.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace17);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace17.Color);
                             }
                             break;
 
@@ -468,7 +468,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace18.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace18);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace18.Color);
                             }
                             break;
 
@@ -476,7 +476,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace19.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace19);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace19.Color);
                             }
                             break;
 
@@ -488,7 +488,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace20.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace20);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace20.Color);
                             }
                             break;
 
@@ -496,7 +496,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace21.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace21);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace21.Color);
                             }
                             break;
 
@@ -504,7 +504,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace22.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace22);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace22.Color);
                             }
                             break;
 
@@ -512,7 +512,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace23.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace23);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace23.Color);
                             }
                             break;
 
@@ -520,7 +520,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace24.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace24);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace24.Color);
                             }
                             break;
 
@@ -528,7 +528,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace25.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace25);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace25.Color);
                             }
                             break;
 
@@ -536,7 +536,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace26.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace26);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace26.Color);
                             }
                             break;
 
@@ -544,7 +544,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace27.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace27);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace27.Color);
                             }
                             break;
 
@@ -552,7 +552,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace28.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace28);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace28.Color);
                             }
                             break;
 
@@ -560,7 +560,7 @@ namespace VNCLogViewer.Presentation.Views
                             if (ceTrace29.IsChecked == true)
                             {
                                 displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingColors.Trace29);
+                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Trace29.Color);
                             }
                             break;
 

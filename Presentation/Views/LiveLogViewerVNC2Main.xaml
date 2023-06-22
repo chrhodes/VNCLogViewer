@@ -128,12 +128,14 @@
                                             TextChanged="recLogStream_TextChanged" />
                                          
                                         <!--Capture filter-->
-                                        <dxlc:LayoutGroup VerticalAlignment="Bottom"
+                                        <dxlc:LayoutGroup  x:Name="lgCaptureFilter" 
+                                            VerticalAlignment="Bottom"
                                             Header="Capture Filter"
                                             IsCollapsible="True"
                                             Orientation="Horizontal"
                                             View="GroupBox"
                                             Visibility="Visible">
+                                            
                                             <dxlc:LayoutGroup Orientation="Vertical"
                                                 >
                                                 <Button x:Name="btnToggle"

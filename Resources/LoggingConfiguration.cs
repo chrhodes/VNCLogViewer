@@ -1,47 +1,8 @@
 ﻿using System.Drawing;
 using System.Reflection.Emit;
 
-namespace JSONConsoleApp
+namespace VNCLogViewer.Resources
 {
-
-    public struct LoggingLevel
-    {
-
-/* Unmerged change from project 'VNCLogViewer (net6.0-windows)'
-Before:
-        public string Label { get => label; set => label = value; }
-        public Color Color { get => color; set => color = value; }
-        public string ToolTip { get => toolTip; set => toolTip = value; }
-After:
-        public string Label { get => Label; set => Label = value; }
-        public Color Color { get => Color; set => Color = value; }
-        public string ToolTip { get => ToolTip; set => ToolTip = value; }
-*/
-        public string Label { get; set; }
-        public Color Color { get; set; }
-        public string ToolTip { get; set; }
-    }
-
-    public class LoggingUIConfig
-    {
-
-        public LoggingLevel Info01 { get; set; } = new LoggingLevel { Label = "Info01", Color = Color.FromArgb(30, 150, 255), ToolTip = "" };
-
-
-/* Unmerged change from project 'VNCLogViewer (net6.0-windows)'
-Before:
-        public LoggingLevel Info011 { get => Info01; set => Info01 = value; }
-After:
-        public LoggingLevel Info011 { get => Info011; set => Info011 = value; }
-*/
-        /* Unmerged change from project 'VNCLogViewer (net6.0-windows)'
-        Before:
-                public LoggingLevel Info021 { get => Info02; set => Info02 = value; }
-        After:
-                public LoggingLevel Info021 { get => Info021; set => Info021 = value; }
-        */
-        public LoggingLevel Info02 { get; set; }
-    }
 
     // NOTE(crhodes)
     // This controls the UI Checkbox Colors and the Log message colors.

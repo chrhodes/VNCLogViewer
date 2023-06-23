@@ -243,13 +243,13 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 105: // Not Used
-                            if (ceInfo05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info05.Color);
-                            }
-                            break;
+                        //case 105: // Not Used
+                        //    if (ceInfo05.IsChecked == true)
+                        //    {
+                        //        displayMessage = ColorFormatMessage(formattedMessage, 
+                        //            ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info05.Color);
+                        //    }
+                        //    break;
 
                         #endregion
 

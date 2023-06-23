@@ -52,7 +52,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                 return
                     _loggingColors;
             }
-            private set
+            set
             {
                 _loggingColors = value;
                 OnPropertyChanged();

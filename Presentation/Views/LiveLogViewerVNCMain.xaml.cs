@@ -100,8 +100,8 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Private Methods
 
-
         //AppendFormattedText(recLogStream, Color color)
+
         #region Connection Events
 
         void AppendFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage)

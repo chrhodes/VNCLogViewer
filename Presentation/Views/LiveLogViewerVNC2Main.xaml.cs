@@ -303,13 +303,14 @@ namespace VNCLogViewer.Presentation.Views
                             }
                             break;
 
-                        case 1005: // Not Used
-                            if (ceDebug05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Debug05.Color);
-                            }
-                            break;
+
+                        #endregion
+
+                        #region Arch00 - Arch09
+
+                        #endregion
+
+                        #region Arch10 - Arch19
 
                         #endregion
 

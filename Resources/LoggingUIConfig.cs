@@ -12,14 +12,33 @@ namespace VNCLogViewer.Resources
         public LoggingLevel Info02 { get; set; } = new LoggingLevel { Label = "Info02", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Info02" };
         public LoggingLevel Info03 { get; set; } = new LoggingLevel { Label = "Info03", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Info03" };
         public LoggingLevel Info04 { get; set; } = new LoggingLevel { Label = "Info04", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Info04" };
-        public LoggingLevel Info05 { get; set; } = new LoggingLevel { Label = "Info05", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Info05" };
-
+ 
         public LoggingLevel Debug00 { get; set; } = new LoggingLevel { Label = "Debug00", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug00" };
         public LoggingLevel Debug01 { get; set; } = new LoggingLevel { Label = "Debug01", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug01" };
         public LoggingLevel Debug02 { get; set; } = new LoggingLevel { Label = "Debug02", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug02" };
         public LoggingLevel Debug03 { get; set; } = new LoggingLevel { Label = "Debug03", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug03" };
         public LoggingLevel Debug04 { get; set; } = new LoggingLevel { Label = "Debug04", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug04" };
-        public LoggingLevel Debug05 { get; set; } = new LoggingLevel { Label = "Debug05", Color = Color.FromArgb(30, 150, 255), IsChecked = false, ToolTip = "Debug05" };
+
+        public LoggingLevel Arch00 { get; set; } = new LoggingLevel { Label = "COMPILER", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "COMPILER/Arch00" };
+        public LoggingLevel Arch01 { get; set; } = new LoggingLevel { Label = "DIAGNOSTIC", Color = Color.FromArgb(255, 0, 0), IsChecked = true, ToolTip = "DIAGNOSTIC/Arch01" };
+        public LoggingLevel Arch02 { get; set; } = new LoggingLevel { Label = "Arch02", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch02" };
+        public LoggingLevel Arch03 { get; set; } = new LoggingLevel { Label = "Arch03", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch03" };
+        public LoggingLevel Arch04 { get; set; } = new LoggingLevel { Label = "Arch04", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch04" };
+        public LoggingLevel Arch05 { get; set; } = new LoggingLevel { Label = "Arch05", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch05" };
+        public LoggingLevel Arch06 { get; set; } = new LoggingLevel { Label = "Arch06", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch06" };
+        public LoggingLevel Arch07 { get; set; } = new LoggingLevel { Label = "Arch07", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch07" };
+        public LoggingLevel Arch08 { get; set; } = new LoggingLevel { Label = "Arch08", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch08" };
+        public LoggingLevel Arch09 { get; set; } = new LoggingLevel { Label = "Arch09", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch09" };
+        public LoggingLevel Arch10 { get; set; } = new LoggingLevel { Label = "SYNTAX", Color = Color.FromArgb(0, 255, 255), IsChecked = true, ToolTip = "SYNTAX/Arch10" };
+        public LoggingLevel Arch11 { get; set; } = new LoggingLevel { Label = "LEXER", Color = Color.FromArgb(100, 240, 100), IsChecked = true, ToolTip = "LEXER/Arch11" };
+        public LoggingLevel Arch12 { get; set; } = new LoggingLevel { Label = "PARSER", Color = Color.FromArgb(255, 180, 0), IsChecked = true, ToolTip = "PARSER/Arch12" };
+        public LoggingLevel Arch13 { get; set; } = new LoggingLevel { Label = "BINDER", Color = Color.FromArgb(186, 85, 211), IsChecked = true, ToolTip = "BINDER/Arch13" };
+        public LoggingLevel Arch14 { get; set; } = new LoggingLevel { Label = "EVALUATOR", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "EVALUATOR/Arch14" };
+        public LoggingLevel Arch15 { get; set; } = new LoggingLevel { Label = "TEXT", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "TEXT/Arch15" };
+        public LoggingLevel Arch16 { get; set; } = new LoggingLevel { Label = "Arch16", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch16" };
+        public LoggingLevel Arch17 { get; set; } = new LoggingLevel { Label = "Arch17", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch17" };
+        public LoggingLevel Arch18 { get; set; } = new LoggingLevel { Label = "Arch18", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch18" };
+        public LoggingLevel Arch19 { get; set; } = new LoggingLevel { Label = "Arch19", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "Arch19" };
 
         public LoggingLevel Trace00 { get; set; } = new LoggingLevel { Label = "COMPILER", Color = Color.FromArgb(30, 150, 255), IsChecked = true, ToolTip = "COMPILER/Trace00" };
         public LoggingLevel Trace01 { get; set; } = new LoggingLevel { Label = "DIAGNOSTIC", Color = Color.FromArgb(255, 0, 0), IsChecked = true, ToolTip = "DIAGNOSTIC/Trace01" };

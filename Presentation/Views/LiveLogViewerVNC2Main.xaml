@@ -33,27 +33,7 @@
     d:DesignHeight="650" d:DesignWidth="800"
 >
 
-    <!--xmlns:views="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.Views"
-    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.ViewModels"-->
-    <!--<Grid>
-        <ListView
-            ItemsSource="{Binding LiveLogViewerEASEs}"
-            SelectedItem="{Binding SelectedLiveLogViewerEASE, Mode=TwoWay}"
-            DisplayMemberPath="DisplayMember" />
-    </Grid>-->
-
     <UserControl.Resources>
-        <!--These are implicit DataTemplates-->
-        <!--<DataTemplate DataType="{x:Type viewModels:LiveLogViewerEASEDetailViewModel}">
-            <views:LiveLogViewerEASEDetail />
-        </DataTemplate>-->
-        <!--<DataTemplate DataType="{x:Type viewModels:MeetingDetailViewModel}">
-            <views:MeetingDetail />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:ProgrammingLanguageDetailViewModel}">
-            <views:ProgrammingLanguageDetail />
-        </DataTemplate>-->
-
         <converters:SystemColorToSolidColorBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
 
@@ -561,6 +541,7 @@
                     </dxdo:AutoHideGroup>-->
                     
                 </dxdo:DockLayoutManager.AutoHideGroups>
+            
             </dxdo:DockLayoutManager>
             <!--  Use this if you have simple Content -->
         </dxlc:LayoutGroup>
@@ -570,4 +551,5 @@
         </dxlc:LayoutGroup>-->
         
     </dxlc:LayoutControl>
+
 </UserControl>

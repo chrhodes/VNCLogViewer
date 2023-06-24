@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
     xmlns:local="clr-namespace:VNCLogViewer.Presentation.Views"
-      xmlns:colors="clr-namespace:VNCLogViewer.Resources"
+    xmlns:colors="clr-namespace:VNCLogViewer.Resources"
 
     xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding"
 
@@ -33,27 +33,7 @@
     d:DesignHeight="650" d:DesignWidth="800"
 >
 
-    <!--xmlns:views="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.Views"
-    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.LiveLogViewerEASE.ViewModels"-->
-    <!--<Grid>
-        <ListView
-            ItemsSource="{Binding LiveLogViewerEASEs}"
-            SelectedItem="{Binding SelectedLiveLogViewerEASE, Mode=TwoWay}"
-            DisplayMemberPath="DisplayMember" />
-    </Grid>-->
-
     <UserControl.Resources>
-        <!--These are implicit DataTemplates-->
-        <!--<DataTemplate DataType="{x:Type viewModels:LiveLogViewerEASEDetailViewModel}">
-            <views:LiveLogViewerEASEDetail />
-        </DataTemplate>-->
-        <!--<DataTemplate DataType="{x:Type viewModels:MeetingDetailViewModel}">
-            <views:MeetingDetail />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:ProgrammingLanguageDetailViewModel}">
-            <views:ProgrammingLanguageDetail />
-        </DataTemplate>-->
-
         <converters:SystemColorToSolidColorBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
 
@@ -126,8 +106,11 @@
                                             Background="Black"
                                             FontSize="{Binding ElementName=sbFontSize, Path=Value}"
                                             TextChanged="recLogStream_TextChanged" />
+
+                                        <!--Capture filter-->
                                         
-                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" VerticalAlignment="Bottom"
+                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" 
+                                            VerticalAlignment="Bottom"
                                             Header="Capture Filter"
                                             IsCollapsible="True"
                                             Orientation="Horizontal"
@@ -481,6 +464,8 @@
                                             </dxlc:LayoutGroup>
                                             
                                         </dxlc:LayoutGroup>
+
+                                        <!--End Capture filter-->
                                         
                                         <dxlc:LayoutGroup VerticalAlignment="Bottom"
                                             Orientation="Vertical">
@@ -637,6 +622,7 @@
                     </dxdo:AutoHideGroup>-->
                     
                 </dxdo:DockLayoutManager.AutoHideGroups>
+            
             </dxdo:DockLayoutManager>
             <!--  Use this if you have simple Content -->
         </dxlc:LayoutGroup>
@@ -646,4 +632,5 @@
         </dxlc:LayoutGroup>-->
         
     </dxlc:LayoutControl>
+    
 </UserControl>

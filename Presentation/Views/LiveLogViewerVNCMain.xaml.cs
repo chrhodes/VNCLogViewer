@@ -154,18 +154,10 @@ namespace VNCLogViewer.Presentation.Views
             Connection.Closed += Connection_Closed;
             Connection.Reconnecting += Connection_Reconnecting;
             Connection.Reconnected += Connection_Reconnected;
-            //Connection.Error += Connection_Error;
-            //Connection.Received += Connection_Received;
-            //Connection.Reconnected += Connection_Reconnected;
-            //Connection.Reconnecting += Connection_Reconnecting;
-            //Connection.StateChanged += Connection_StateChanged;
-
-            //HubProxy = Connection.CreateHubProxy("SignalRHub");
 
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
 
             string formattedMessage = "";
-
 
             Connection.On<string>("AddMessage", (message) =>
                 this.Dispatcher.InvokeAsync(

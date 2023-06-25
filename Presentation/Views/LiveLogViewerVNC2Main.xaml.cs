@@ -31,6 +31,8 @@ namespace VNCLogViewer.Presentation.Views
             //Loaded += UserControl_Loaded;
             lgCaptureFilter.IsCollapsed = true;
 
+            Doc = recLogStream.Document;
+
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -57,6 +59,8 @@ namespace VNCLogViewer.Presentation.Views
         //public IHubProxy HubProxy { get; set; }
         //private string ServerURI = "http://localhost:58195/signalr";
         public HubConnection Connection { get; set; }
+
+        public Document Doc { get; set; }
 
         #endregion
 
@@ -86,9 +90,11 @@ namespace VNCLogViewer.Presentation.Views
             recLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
             recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
 
-            Document doc = recLogStream.Document;
+            //Document doc = recLogStream.Document;
 
-            DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+            //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+
+            DevExpress.XtraRichEdit.API.Native.Section section = Doc.Sections[0];
 
             section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
             section.Page.Landscape = true;
@@ -108,20 +114,24 @@ namespace VNCLogViewer.Presentation.Views
         {
             try
             {
+                //Document doc = richEditControl.Document;
 
-                Document doc = richEditControl.Document;
+                //doc.BeginUpdate();
 
-                doc.BeginUpdate();
+                //doc.AppendText(formattedMessage);
 
-                doc.AppendText(formattedMessage);
+                //doc.EndUpdate();
 
-                doc.EndUpdate();
+                Doc.BeginUpdate();
+
+                Doc.AppendText(formattedMessage);
+
+                Doc.EndUpdate();
             }
             catch (Exception ex)
             {
                 string exception = ex.ToString();
                 string innerException = ex.InnerException.ToString();
-                int x = 3;
             }
         }
 
@@ -129,12 +139,17 @@ namespace VNCLogViewer.Presentation.Views
         {
             try
             {
-                Document doc = richEditControl.Document;
+                //Document doc = richEditControl.Document;
 
-                DocumentRange newRange = doc.AppendText(formattedMessage);
-                CharacterProperties charProp = doc.BeginUpdateCharacters(newRange);
+                //DocumentRange newRange = doc.AppendText(formattedMessage);
+                //CharacterProperties charProp = doc.BeginUpdateCharacters(newRange);
+                //charProp.ForeColor = color;
+                //doc.EndUpdateCharacters(charProp);
+
+                DocumentRange newRange = Doc.AppendText(formattedMessage);
+                CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
                 charProp.ForeColor = color;
-                doc.EndUpdateCharacters(charProp);
+                Doc.EndUpdateCharacters(charProp);
             }
             catch (Exception ex)
             {

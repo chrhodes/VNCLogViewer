@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using DevExpress.XtraRichEdit.API.Native;
+
 using Prism.Events;
 using Prism.Services.Dialogs;
 
@@ -12,7 +14,7 @@ using VNCLogViewer.Resources;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
-    public class LiveLogViewerVNCMainViewModel : EventViewModelBase, ILiveLogViewerVNCMainViewModel, IInstanceCountVM
+    public class LiveLogViewerVNCMainViewModel : EventViewModelBase, ILiveLogViewerViewModel, IInstanceCountVM
     {
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
@@ -42,6 +44,8 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        public Document Doc { get; set; }
 
         private LoggingColors _loggingColors = new LoggingColors();
        

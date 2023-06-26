@@ -82,6 +82,21 @@ namespace VNCLogViewer.Presentation.ViewModels
             throw new NotImplementedException();
         }
 
+        public void ConnectAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Send()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendPriority()
+        {
+            throw new NotImplementedException();
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountVM;

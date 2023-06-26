@@ -19,7 +19,7 @@ namespace VNCLogViewer.Presentation.Views
     public partial class LiveLogViewerEASEMain : UserControl, ILiveLogViewerEASEMain
     {
 
-        public LiveLogViewerEASEMain(ViewModels.ILiveLogViewerEASEMainViewModel viewModel)
+        public LiveLogViewerEASEMain(ViewModels.ILiveLogViewerViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

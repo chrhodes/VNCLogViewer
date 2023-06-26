@@ -40,7 +40,7 @@ namespace VNCLogViewer
             //containerRegistry.Register<ILiveLogViewerEASEDetailViewModel, LiveLogViewerEASEDetailViewModel>();
             //containerRegistry.Register<ILiveLogViewerEASEDetail, LiveLogViewerEASEDetail>();
 
-            containerRegistry.Register<ILiveLogViewerEASEMainViewModel, LiveLogViewerEASEMainViewModel>();
+            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerEASEMainViewModel>();
             containerRegistry.Register<ILiveLogViewerEASEMain, LiveLogViewerEASEMain>();
 
             //containerRegistry.RegisterSingleton<ILiveLogViewerEASENavigationViewModel, LiveLogViewerEASENavigationViewModel>();

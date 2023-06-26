@@ -20,20 +20,26 @@ namespace VNCLogViewer.Presentation.Views
 {
     public partial class LiveLogViewerVNC2Main : UserControl, ILiveLogViewerVNCMain
     {
+        #region Constructors, Initialization, and Load
 
-        public LiveLogViewerVNC2Main(ViewModels.ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerVNC2Main(ILiveLogViewerViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeComponent();
 
             ViewModel = viewModel;
-            //Loaded += UserControl_Loaded;
-            lgCaptureFilter.IsCollapsed = true;
 
-           ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
+            InitializeView();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializeView()
+        {
+            lgCaptureFilter.IsCollapsed = true;
+
+            ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
         }
 
         //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -45,45 +51,20 @@ namespace VNCLogViewer.Presentation.Views
         //    Log.VIEW("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
-        public IViewModel ViewModel
-        {
-            get { return (IViewModel)DataContext; }
-            set { DataContext = value; }
-        }
+        //private void OnLoaded(object sender, RoutedEventArgs e)
+        //{
+        //    //System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversInstancesViewSource"];
+        //    //// Things work if this line is present.  Testing to see if it works without 6/13/2012
+        //    //// Yup, still works.  Don't need this line as it is done in the XAML.
+        //    //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Instances;
 
-        //-------------------------------------
+        //    System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversViewSource"];
+        //    // Things work if this line is present.  Testing to see if it works without 6/13/2012
+        //    // Yup, still works.  Don't need this line as it is done in the XAML.
+        //    //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Servers;
 
-        #region Enums, Fields, Properties
-
-        public String UserName { get; set; }
-        //public IHubProxy HubProxy { get; set; }
-        //private string ServerURI = "http://localhost:58195/signalr";
-        public HubConnection Connection { get; set; }
-
-        //public Document Doc { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        #endregion
-
-        #region Initialization
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            //System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversInstancesViewSource"];
-            //// Things work if this line is present.  Testing to see if it works without 6/13/2012
-            //// Yup, still works.  Don't need this line as it is done in the XAML.
-            //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Instances;
-
-            System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversViewSource"];
-            // Things work if this line is present.  Testing to see if it works without 6/13/2012
-            // Yup, still works.  Don't need this line as it is done in the XAML.
-            //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Servers;
-
-            InitializeLogStream();
-        }
+        //    InitializeLogStream();
+        //}
 
         private void InitializeLogStream()
         {
@@ -94,7 +75,7 @@ namespace VNCLogViewer.Presentation.Views
 
             //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
 
-            DevExpress.XtraRichEdit.API.Native.Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
+            Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
 
             section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
             section.Page.Landscape = true;
@@ -104,608 +85,33 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Private Methods
+        #region Enums, Fields, Properties
 
-        //AppendFormattedText(recLogStream, Color color)
-        #region Connection Events
-
-        void AppendFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage)
+        public ILiveLogViewerViewModel ViewModel
         {
-            try
-            {
-                //Document doc = richEditControl.Document;
-
-                //doc.BeginUpdate();
-
-                //doc.AppendText(formattedMessage);
-
-                //doc.EndUpdate();
-
-                ((ILiveLogViewerViewModel)ViewModel).Doc.BeginUpdate();
-
-                ((ILiveLogViewerViewModel)ViewModel).Doc.AppendText(formattedMessage);
-
-                ((ILiveLogViewerViewModel)ViewModel).Doc.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
-            }
+            get { return (ILiveLogViewerViewModel)DataContext; }
+            set { DataContext = value; }
         }
 
-        void AppendColorFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage, Color color)
-        {
-            try
-            {
-                //Document doc = richEditControl.Document;
+        public String UserName { get; set; }
+        //public IHubProxy HubProxy { get; set; }
+        //private string ServerURI = "http://localhost:58195/signalr";
+        //public HubConnection Connection { get; set; }
 
-                //DocumentRange newRange = doc.AppendText(formattedMessage);
-                //CharacterProperties charProp = doc.BeginUpdateCharacters(newRange);
-                //charProp.ForeColor = color;
-                //doc.EndUpdateCharacters(charProp);
+        IViewModel IView.ViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-                DocumentRange newRange = ((ILiveLogViewerViewModel)ViewModel).Doc.AppendText(formattedMessage);
-                CharacterProperties charProp = ((ILiveLogViewerViewModel)ViewModel).Doc.BeginUpdateCharacters(newRange);
-                charProp.ForeColor = color;
-                ((ILiveLogViewerViewModel)ViewModel).Doc.EndUpdateCharacters(charProp);
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
-            }
-        }
-
-        private async void ConnectAsync()
-        {
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-
-            Connection = new HubConnectionBuilder()
-                .WithUrl(ServerURI.Text)
-                .Build();
-
-            Connection.Closed += Connection_Closed;
-            Connection.Reconnecting += Connection_Reconnecting;
-            Connection.Reconnected += Connection_Reconnected;
-
-            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-
-            string formattedMessage = "";
-
-            Connection.On<string>("AddMessage", (message) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    formattedMessage = String.Format("{0}\r", message);
-                    AppendFormattedMessage(recLogStream, formattedMessage);
-                })
-            );
-
-            Connection.On<string, string>("AddUserMessage", (name, message) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    formattedMessage = String.Format("{0}: {1}\n", name, message);
-
-                    AppendFormattedMessage(recLogStream, formattedMessage);
-                })
-            );
-
-            Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    Boolean displayMessage = false;
-
-                    // For now treat the whole message the same.
-                    formattedMessage = String.Format("{0}\r", message);
-
-                    // TODO(crhodes)
-                    // Make this more clever, perhaps a bit field
-                    // But this may be plenty fast enough just long :(
-
-                    switch (priority)
-                    {
-                        #region Info
-
-                        case 100:
-                            if (ceInfo00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info00.Color);
-                            }
-                            break;
-
-                        case 101: // Not Used
-                            if (ceInfo01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info01.Color);
-                            }
-                            break;
-
-                        case 102: // Not Used
-                            if (ceInfo02.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info02.Color);
-                            }
-                            break;
-
-                        case 103: // Not Used
-                            if (ceInfo00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info03.Color);
-                            }
-                            break;
-
-                        case 104: // Not Used
-                            if (ceInfo04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info04.Color);
-                            }
-                            break;
-
-                        //case 105: // Not Used
-                        //    if (ceInfo05.IsChecked == true)
-                        //    {
-                        //        displayMessage = ColorFormatMessage(formattedMessage, 
-                        //            ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info05.Color);
-                        //    }
-                        //    break;
-
-                        #endregion
-
-                        #region Debug
-
-                        case 1000: // Not Used
-                            if (ceDebug00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug00.Color);
-                            }
-                            break;
-
-                        case 1001: // Not Used
-                            if (ceDebug01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug01.Color);
-                            }
-                            break;
-
-                        case 1002: // Not Used
-                            if (formattedMessage.Contains("Enter"))
-                            {
-                                if (ceDebug02Enter.IsChecked == true)
-                                {
-                                    displayMessage = ColorFormatMessage(formattedMessage, 
-                                        ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
-                                }
-                            }
-                            else if (ceDebug02Exit.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
-                            }
-                            break;
-
-                        case 1003: // Not Used
-                            if (ceDebug03.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug03.Color);
-                            }
-                            break;
-
-                        case 1004: // Not Used
-                            if (ceDebug04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug04.Color);
-                            }
-                            break;
-
-
-                        #endregion
-
-                        #region Arch00 - Arch09
-
-                        #endregion
-
-                        #region Arch10 - Arch19
-
-                        #endregion
-
-                        #region Trace00 - Trace09
-
-                        case 10000: // Not Used
-                            if (ceTrace00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace00.Color);
-                            }
-                            break;
-
-                        case 10001: // EVENT_HANDLER
-                            if (ceTrace01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace01.Color);
-                            }
-                            break;
-
-                        case 10002: // APPLICATION_INITIALIZE
-                            if (ceTrace02.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace02.Color);
-                            }
-                            break;
-
-                        case 10003: // Not Used
-                            if (ceTrace03.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace03.Color);
-                            }
-                            break;
-
-                        case 10004: // Not Used
-                            if (ceTrace04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace04.Color);
-                            }
-                            break;
-
-                        case 10005: // Not Used
-                            if (ceTrace05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace05.Color);
-                            }
-                            break;
-
-                        case 10006: // Not Used
-                            if (ceTrace06.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace06.Color);
-                            }
-                            break;
-
-                        case 10007: // PRESENTATION
-                            if (ceTrace07.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace07.Color);
-                            }
-                            break;
-
-                        case 10008: // Not Used
-                            if (ceTrace08.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace08.Color);
-                            }
-                            break;
-
-                        case 10009: // CORE
-                            if (ceTrace09.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace09.Color);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Trace10 - Trace19
-
-                        case 10010: // APPLICATION
-                            if (ceTrace10.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace10.Color);
-                            }
-                            break;
-
-                        case 10011: // Not Used
-                            if (ceTrace11.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace11.Color);
-                            }
-                            break;
-
-                        case 10012: // FILE_DIR_IO
-                            if (ceTrace12.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace12.Color);
-                            }
-                            break;
-
-                        case 10013: // PERSISTENCE
-                            if (ceTrace13.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace13.Color);
-                            }
-                            break;
-
-                        case 10014: // Not Used
-                            if (ceTrace14.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace14.Color);
-                            }
-                            break;
-
-                        case 10015: // Not Used
-
-                            if (ceTrace15.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace15.Color);
-                            }
-                            break;
-
-                        case 10016: // Not Used
-                            if (ceTrace16.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace16.Color);
-                            }
-                            break;
-
-                        case 10017: // VIEW
-                            if (ceTrace17.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace17.Color);
-                            }
-                            break;
-
-                        case 10018: // VIEWMODEL
-                            if (ceTrace18.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace18.Color);
-                            }
-                            break;
-
-                        case 10019: // MODULE
-                            if (ceTrace19.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace19.Color);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Trace20 - Trace29
-
-                        case 10020: // APPLICATION_SERVICES
-                            if (ceTrace20.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace20.Color);
-                            }
-                            break;
-
-                        case 10021: // EVENT
-                            if (ceTrace21.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace21.Color);
-                            }
-                            break;
-
-                        case 10022: // DOMAIN SERVICES
-                            if (ceTrace22.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace22.Color);
-                            }
-                            break;
-
-                        case 10023: // PERSISTENCE_LOW
-                            if (ceTrace23.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace23.Color);
-                            }
-                            break;
-
-                        case 10024: // Not Used
-                            if (ceTrace24.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace24.Color);
-                            }
-                            break;
-
-                        case 10025: // CONSTRUCTOR
-                            if (ceTrace25.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace25.Color);
-                            }
-                            break;
-
-                        case 10026: // Not Used
-                            if (ceTrace26.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace26.Color);
-                            }
-                            break;
-
-                        case 10027: // VIEW_LOW
-                            if (ceTrace27.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace27.Color);
-                            }
-                            break;
-
-                        case 10028: // VIEWMODEL_LOW
-                            if (ceTrace28.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace28.Color);
-                            }
-                            break;
-
-                        case 10029: // MODULE_INITIALIZE
-                            if (ceTrace29.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace29.Color);
-                            }
-                            break;
-
-                        #endregion
-
-                        default:
-                            displayMessage = true;
-                            break;
-                    }
-
-                    if (displayMessage)
-                    {
-                        formattedMessage = String.Format("{0}\r", message);
-                        AppendFormattedMessage(recLogStream, formattedMessage);
-                    }
-                })
-            );
-
-            try
-            {
-                await Connection.StartAsync();
-            }
-            catch (HttpRequestException hre)
-            {
-                StatusText.Content = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                return;
-            }
-            catch (Exception ex)
-            {
-                StatusText.Content = $"Unable to connect to server, ex: {ex.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                return;
-            }
-
-            //Show chat UI; hide login UI
-            SignInPanel.Visibility = Visibility.Collapsed;
-            ChatPanel.Visibility = Visibility.Visible;
-            btnSend.IsEnabled = true;
-            btnSendPriority.IsEnabled = true;
-            tbMessage.Focus();
-            formattedMessage = "Connected to server at " + ServerURI + "\n";
-
-            AppendFormattedMessage(recLogStream, formattedMessage);
-        }
-
-        private bool ColorFormatMessage(string formattedMessage, Color color)
-        {
-            bool displayMessage = false;
-            int messageIndex = 0;
-
-            messageIndex = GetNthIndex(formattedMessage, '|', 6);
-            try
-            {
-                if (messageIndex++ > 0)
-                {
-                    string prefixMessage = formattedMessage.Substring(0, messageIndex);
-                    AppendFormattedMessage(recLogStream, prefixMessage);
-
-                    string colorMessage = formattedMessage.Substring(messageIndex);
-                    AppendColorFormattedMessage(recLogStream, colorMessage, color);
-                }
-                else
-                {
-                    AppendColorFormattedMessage(recLogStream, formattedMessage, color);
-                }
-            }
-            catch (Exception ex)
-            {
-                AppendColorFormattedMessage(recLogStream, ex.ToString(), Color.Red);
-            }
-
-            return displayMessage;
-        }
-
-        private Task Connection_Reconnecting(Exception? arg)
-        {
-            var dispatcher = Application.Current.Dispatcher;
-            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
-
-            return null;
-        }
-
-        private Task Connection_Reconnected(string? arg)
-        {
-            var dispatcher = Application.Current.Dispatcher;
-            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
-
-            return null;
-        }
-
-        //void Connection_StateChanged(StateChange obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        //private void Connection_Received(string obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    string formattedMessage = "Connection_Received\n";
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        //private void Connection_Error(Exception obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        /// <summary>
-        /// If the server is stopped, the connection will time out after 30 seconds (default), and the 
-        /// Closed event will fire.
-        /// </summary>
-        Task Connection_Closed(Exception? arg)
-        {
-            //Hide chat UI; show login UI
-            var dispatcher = Application.Current.Dispatcher;
-
-            dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
-            dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
-            dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
-            dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
-            dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
-
-            return null;
-        }
-
-        #endregion
+        //public Document Doc { get; set; }
 
         #endregion
 
         #region Event Handlers
+
+        // NOTE(crhodes)
+        // Why would this get called
+        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            InitializeLogStream();
+        }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
@@ -715,13 +121,24 @@ namespace VNCLogViewer.Presentation.Views
             {
                 StatusText.Visibility = Visibility.Visible;
                 StatusText.Content = "Connecting to server...";
-                ConnectAsync();
+
+                ViewModel.ConnectAsync();
+                //ConnectAsync();
+
+                //Show chat UI; hide login UI
+                SignInPanel.Visibility = Visibility.Collapsed;
+                ChatPanel.Visibility = Visibility.Visible;
+                btnSend.IsEnabled = true;
+                btnSendPriority.IsEnabled = true;
+                tbMessage.Focus();
             }
         }
 
         private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
+            //await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
+            ViewModel.Send();
+
             tbMessage.Text = String.Empty;
 
             tbMessage.Focus();
@@ -729,7 +146,9 @@ namespace VNCLogViewer.Presentation.Views
 
         private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
         {
-            await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+            //await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+            ViewModel.SendPriority();
+
             tbMessage.Text = String.Empty;
             tbMessage.Focus();
         }
@@ -1045,10 +464,603 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
-        {
-            InitializeLogStream();
-        }
+        #region Private Methods
+
+        #region Connection Events
+
+        //private void AppendFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage)
+        //{
+        //    try
+        //    {
+        //        //Document doc = richEditControl.Document;
+
+        //        //doc.BeginUpdate();
+
+        //        //doc.AppendText(formattedMessage);
+
+        //        //doc.EndUpdate();
+
+        //        ((ILiveLogViewerViewModel)ViewModel).Doc.BeginUpdate();
+
+        //        ((ILiveLogViewerViewModel)ViewModel).Doc.AppendText(formattedMessage);
+
+        //        ((ILiveLogViewerViewModel)ViewModel).Doc.EndUpdate();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string exception = ex.ToString();
+        //        string innerException = ex.InnerException.ToString();
+        //    }
+        //}
+
+        //void AppendColorFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage, Color color)
+        //{
+        //    try
+        //    {
+        //        //Document doc = richEditControl.Document;
+
+        //        //DocumentRange newRange = doc.AppendText(formattedMessage);
+        //        //CharacterProperties charProp = doc.BeginUpdateCharacters(newRange);
+        //        //charProp.ForeColor = color;
+        //        //doc.EndUpdateCharacters(charProp);
+
+        //        DocumentRange newRange = ((ILiveLogViewerViewModel)ViewModel).Doc.AppendText(formattedMessage);
+        //        CharacterProperties charProp = ((ILiveLogViewerViewModel)ViewModel).Doc.BeginUpdateCharacters(newRange);
+        //        charProp.ForeColor = color;
+        //        ((ILiveLogViewerViewModel)ViewModel).Doc.EndUpdateCharacters(charProp);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string exception = ex.ToString();
+        //        string innerException = ex.InnerException.ToString();
+        //    }
+        //}
+
+        //private async void ConnectAsync()
+        //{
+        //    var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+
+        //    Connection = new HubConnectionBuilder()
+        //        .WithUrl(ServerURI.Text)
+        //        .Build();
+
+        //    Connection.Closed += Connection_Closed;
+        //    Connection.Reconnecting += Connection_Reconnecting;
+        //    Connection.Reconnected += Connection_Reconnected;
+
+        //    //Handle incoming event from server: use Invoke to write to console from SignalR's thread
+
+        //    string formattedMessage = "";
+
+        //    Connection.On<string>("AddMessage", (message) =>
+        //        this.Dispatcher.InvokeAsync(
+        //        () =>
+        //        {
+        //            formattedMessage = String.Format("{0}\r", message);
+        //            AppendFormattedMessage(recLogStream, formattedMessage);
+        //        })
+        //    );
+
+        //    Connection.On<string, string>("AddUserMessage", (name, message) =>
+        //        this.Dispatcher.InvokeAsync(
+        //        () =>
+        //        {
+        //            formattedMessage = String.Format("{0}: {1}\n", name, message);
+
+        //            AppendFormattedMessage(recLogStream, formattedMessage);
+        //        })
+        //    );
+
+        //    Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
+        //        this.Dispatcher.InvokeAsync(
+        //        () =>
+        //        {
+        //            Boolean displayMessage = false;
+
+        //            // For now treat the whole message the same.
+        //            formattedMessage = String.Format("{0}\r", message);
+
+        //            // TODO(crhodes)
+        //            // Make this more clever, perhaps a bit field
+        //            // But this may be plenty fast enough just long :(
+
+        //            switch (priority)
+        //            {
+        //                #region Info
+
+        //                case 100:
+        //                    if (ceInfo00.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info00.Color);
+        //                    }
+        //                    break;
+
+        //                case 101: // Not Used
+        //                    if (ceInfo01.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info01.Color);
+        //                    }
+        //                    break;
+
+        //                case 102: // Not Used
+        //                    if (ceInfo02.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info02.Color);
+        //                    }
+        //                    break;
+
+        //                case 103: // Not Used
+        //                    if (ceInfo00.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info03.Color);
+        //                    }
+        //                    break;
+
+        //                case 104: // Not Used
+        //                    if (ceInfo04.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Info04.Color);
+        //                    }
+        //                    break;
+
+        //                //case 105: // Not Used
+        //                //    if (ceInfo05.IsChecked == true)
+        //                //    {
+        //                //        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                //            ((ILiveLogViewerVNCMainViewModel)ViewModel).LoggingUIConfig.Info05.Color);
+        //                //    }
+        //                //    break;
+
+        //                #endregion
+
+        //                #region Debug
+
+        //                case 1000: // Not Used
+        //                    if (ceDebug00.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug00.Color);
+        //                    }
+        //                    break;
+
+        //                case 1001: // Not Used
+        //                    if (ceDebug01.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug01.Color);
+        //                    }
+        //                    break;
+
+        //                case 1002: // Not Used
+        //                    if (formattedMessage.Contains("Enter"))
+        //                    {
+        //                        if (ceDebug02Enter.IsChecked == true)
+        //                        {
+        //                            displayMessage = ColorFormatMessage(formattedMessage, 
+        //                                ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
+        //                        }
+        //                    }
+        //                    else if (ceDebug02Exit.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug02.Color);
+        //                    }
+        //                    break;
+
+        //                case 1003: // Not Used
+        //                    if (ceDebug03.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug03.Color);
+        //                    }
+        //                    break;
+
+        //                case 1004: // Not Used
+        //                    if (ceDebug04.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Debug04.Color);
+        //                    }
+        //                    break;
+
+
+        //                #endregion
+
+        //                #region Arch00 - Arch09
+
+        //                #endregion
+
+        //                #region Arch10 - Arch19
+
+        //                #endregion
+
+        //                #region Trace00 - Trace09
+
+        //                case 10000: // Not Used
+        //                    if (ceTrace00.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace00.Color);
+        //                    }
+        //                    break;
+
+        //                case 10001: // EVENT_HANDLER
+        //                    if (ceTrace01.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace01.Color);
+        //                    }
+        //                    break;
+
+        //                case 10002: // APPLICATION_INITIALIZE
+        //                    if (ceTrace02.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace02.Color);
+        //                    }
+        //                    break;
+
+        //                case 10003: // Not Used
+        //                    if (ceTrace03.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace03.Color);
+        //                    }
+        //                    break;
+
+        //                case 10004: // Not Used
+        //                    if (ceTrace04.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage,
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace04.Color);
+        //                    }
+        //                    break;
+
+        //                case 10005: // Not Used
+        //                    if (ceTrace05.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace05.Color);
+        //                    }
+        //                    break;
+
+        //                case 10006: // Not Used
+        //                    if (ceTrace06.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage,
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace06.Color);
+        //                    }
+        //                    break;
+
+        //                case 10007: // PRESENTATION
+        //                    if (ceTrace07.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace07.Color);
+        //                    }
+        //                    break;
+
+        //                case 10008: // Not Used
+        //                    if (ceTrace08.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace08.Color);
+        //                    }
+        //                    break;
+
+        //                case 10009: // CORE
+        //                    if (ceTrace09.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace09.Color);
+        //                    }
+        //                    break;
+
+        //                #endregion
+
+        //                #region Trace10 - Trace19
+
+        //                case 10010: // APPLICATION
+        //                    if (ceTrace10.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace10.Color);
+        //                    }
+        //                    break;
+
+        //                case 10011: // Not Used
+        //                    if (ceTrace11.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace11.Color);
+        //                    }
+        //                    break;
+
+        //                case 10012: // FILE_DIR_IO
+        //                    if (ceTrace12.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace12.Color);
+        //                    }
+        //                    break;
+
+        //                case 10013: // PERSISTENCE
+        //                    if (ceTrace13.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace13.Color);
+        //                    }
+        //                    break;
+
+        //                case 10014: // Not Used
+        //                    if (ceTrace14.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace14.Color);
+        //                    }
+        //                    break;
+
+        //                case 10015: // Not Used
+
+        //                    if (ceTrace15.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace15.Color);
+        //                    }
+        //                    break;
+
+        //                case 10016: // Not Used
+        //                    if (ceTrace16.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace16.Color);
+        //                    }
+        //                    break;
+
+        //                case 10017: // VIEW
+        //                    if (ceTrace17.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace17.Color);
+        //                    }
+        //                    break;
+
+        //                case 10018: // VIEWMODEL
+        //                    if (ceTrace18.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace18.Color);
+        //                    }
+        //                    break;
+
+        //                case 10019: // MODULE
+        //                    if (ceTrace19.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace19.Color);
+        //                    }
+        //                    break;
+
+        //                #endregion
+
+        //                #region Trace20 - Trace29
+
+        //                case 10020: // APPLICATION_SERVICES
+        //                    if (ceTrace20.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace20.Color);
+        //                    }
+        //                    break;
+
+        //                case 10021: // EVENT
+        //                    if (ceTrace21.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace21.Color);
+        //                    }
+        //                    break;
+
+        //                case 10022: // DOMAIN SERVICES
+        //                    if (ceTrace22.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace22.Color);
+        //                    }
+        //                    break;
+
+        //                case 10023: // PERSISTENCE_LOW
+        //                    if (ceTrace23.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace23.Color);
+        //                    }
+        //                    break;
+
+        //                case 10024: // Not Used
+        //                    if (ceTrace24.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace24.Color);
+        //                    }
+        //                    break;
+
+        //                case 10025: // CONSTRUCTOR
+        //                    if (ceTrace25.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace25.Color);
+        //                    }
+        //                    break;
+
+        //                case 10026: // Not Used
+        //                    if (ceTrace26.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace26.Color);
+        //                    }
+        //                    break;
+
+        //                case 10027: // VIEW_LOW
+        //                    if (ceTrace27.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage,
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace27.Color);
+        //                    }
+        //                    break;
+
+        //                case 10028: // VIEWMODEL_LOW
+        //                    if (ceTrace28.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace28.Color);
+        //                    }
+        //                    break;
+
+        //                case 10029: // MODULE_INITIALIZE
+        //                    if (ceTrace29.IsChecked == true)
+        //                    {
+        //                        displayMessage = ColorFormatMessage(formattedMessage, 
+        //                            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig.Trace29.Color);
+        //                    }
+        //                    break;
+
+        //                #endregion
+
+        //                default:
+        //                    displayMessage = true;
+        //                    break;
+        //            }
+
+        //            if (displayMessage)
+        //            {
+        //                formattedMessage = String.Format("{0}\r", message);
+        //                AppendFormattedMessage(recLogStream, formattedMessage);
+        //            }
+        //        })
+        //    );
+
+        //    try
+        //    {
+        //        await Connection.StartAsync();
+        //    }
+        //    catch (HttpRequestException hre)
+        //    {
+        //        StatusText.Content = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
+        //        //No connection: Don't enable Send button or show chat UI
+        //        return;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        StatusText.Content = $"Unable to connect to server, ex: {ex.Message}";
+        //        //No connection: Don't enable Send button or show chat UI
+        //        return;
+        //    }
+
+        //    ////Show chat UI; hide login UI
+        //    //SignInPanel.Visibility = Visibility.Collapsed;
+        //    //ChatPanel.Visibility = Visibility.Visible;
+        //    //btnSend.IsEnabled = true;
+        //    //btnSendPriority.IsEnabled = true;
+        //    //tbMessage.Focus();
+        //    formattedMessage = "Connected to server at " + ServerURI + "\n";
+
+        //    AppendFormattedMessage(recLogStream, formattedMessage);
+        //}
+
+        //private bool ColorFormatMessage(string formattedMessage, Color color)
+        //{
+        //    bool displayMessage = false;
+        //    int messageIndex = 0;
+
+        //    messageIndex = GetNthIndex(formattedMessage, '|', 6);
+        //    try
+        //    {
+        //        if (messageIndex++ > 0)
+        //        {
+        //            string prefixMessage = formattedMessage.Substring(0, messageIndex);
+        //            AppendFormattedMessage(recLogStream, prefixMessage);
+
+        //            string colorMessage = formattedMessage.Substring(messageIndex);
+        //            AppendColorFormattedMessage(recLogStream, colorMessage, color);
+        //        }
+        //        else
+        //        {
+        //            AppendColorFormattedMessage(recLogStream, formattedMessage, color);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        AppendColorFormattedMessage(recLogStream, ex.ToString(), Color.Red);
+        //    }
+
+        //    return displayMessage;
+        //}
+
+        //private Task Connection_Reconnecting(Exception? arg)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
+
+        //    return null;
+        //}
+
+        //private Task Connection_Reconnected(string? arg)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
+
+        //    return null;
+        //}
+
+        //void Connection_StateChanged(StateChange obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
+
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        //private void Connection_Received(string obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    string formattedMessage = "Connection_Received\n";
+
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        //private void Connection_Error(Exception obj)
+        //{
+        //    var dispatcher = Application.Current.Dispatcher;
+        //    var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
+
+        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
+        //}
+
+        /// <summary>
+        /// If the server is stopped, the connection will time out after 30 seconds (default), and the 
+        /// Closed event will fire.
+        /// </summary>
+        //Task Connection_Closed(Exception? arg)
+        //{
+        //    //Hide chat UI; show login UI
+        //    var dispatcher = Application.Current.Dispatcher;
+
+        //    dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
+        //    dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
+        //    dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
+        //    dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
+        //    dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
+
+        //    return null;
+        //}
+
+        #endregion
 
         int GetNthIndex(string s, char c, int n)
         {
@@ -1068,5 +1080,8 @@ namespace VNCLogViewer.Presentation.Views
             return -1;
             // = s.TakeWhile(c => n -= (c == t ? 1 : 0)) > 0).Count();
         }
+
+        #endregion
+
     }
 }

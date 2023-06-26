@@ -447,67 +447,88 @@
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>
                                 <!--<dxlc:LayoutGroup Header="Y Stuff" Name="lg_Y">
-                  <dxlc:LayoutItem MaxHeight="1200"
+                                    <dxlc:LayoutItem MaxHeight="1200"
                                         VerticalAlignment="Top"
                                         Name="li_Y" />
-                </dxlc:LayoutGroup>-->
+                                    </dxlc:LayoutGroup>-->
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
                     </dxdo:LayoutPanel>
                 </dxdo:LayoutGroup>
                 
                 <dxdo:DockLayoutManager.AutoHideGroups>
-                    
-                    <dxdo:AutoHideGroup DockType="Top">
 
+                    <dxdo:AutoHideGroup DockType="Top" >
                         <dxdo:LayoutPanel x:Name="lp_TopStuff"
                             Caption="SignalR Connection"
                             ItemWidth="150" MaxHeight="130">
+                            
                             <dxlc:LayoutGroup
                         	    View="Group" Orientation="Vertical" >
+                                
                                 <dxlc:LayoutItem Label="ServerURI: ">
                                     <TextBox x:Name="ServerURI"
                                                 Height="20"
                                                 Margin="0,0,80,0"
-                                                Text="http://localhost:58195/signalr"
+                                                Text="{Binding ServerURI}"
                                                 TextWrapping="Wrap" />
                                 </dxlc:LayoutItem>
 
                                 <dxlc:LayoutGroup VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <StackPanel x:Name="SignInPanel" Margin="10,0">
-                                        <Label Content="Enter user name:" />
-                                        <Grid>
+                                    
+                                    <dxlc:LayoutGroup x:Name="SignInPanel" Margin="10,0">
+                                        
+                                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                                            <Label Content="Enter user name:" />
+                                        </dxlc:LayoutItem>
+                                        
+                                        <dxlc:LayoutItem HorizontalAlignment="Left">
                                             <TextBox x:Name="UserNameTextBox"
-                                                        Height="20"
+                                                     Height="20"
                                                      MinWidth="100"
-                                                        Margin="0,0,80,0" />
+                                                     Margin="0,0,80,0" />
+                                        </dxlc:LayoutItem>                                                                             
+
+                                        <!--<dxlc:LayoutItem>
+                                            <Button 
+                                            	Command="{Binding SignInCommand }"
+                                            	Content="{Binding SignInContent, FallbackValue='SignIn' }"
+                                            	ToolTip="{Binding SignInToolTip, FallbackValue='SignIn ToolTip' }" />
+                                        </dxlc:LayoutItem>-->
+
+                                        <dxlc:LayoutItem HorizontalAlignment="Left">
                                             <Button x:Name="SignInButton"
                                                         Width="75"
                                                         HorizontalAlignment="Right"
                                                         Click="btnSignIn_Click"
                                                         Content="Sign In" />
-                                        </Grid>
-                                        <Label x:Name="StatusText"
+                                        </dxlc:LayoutItem>                                              
+
+                                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                                            <Label x:Name="StatusText"
                                                     Margin="0,10"
                                                     HorizontalAlignment="Center"
                                                     Visibility="Collapsed" />
-                                    </StackPanel>
+                                        </dxlc:LayoutItem>                                        
+
+                                    </dxlc:LayoutGroup>
                                     
                                     <dxlc:LayoutGroup x:Name="ChatPanel"
                                                 Orientation="Vertical"
-                                                Visibility="Hidden">
+                                                Visibility="Visible">
                                         <dxlc:LayoutGroup Orientation="Horizontal">
                                             <dxlc:LayoutItem HorizontalAlignment="Left"
                                                         Label="Message"
                                                         LabelPosition="Top">
                                                 <TextBox x:Name="tbMessage"
                                                             Width="300"
-                                                            TextWrapping="Wrap" />
+                                                            TextWrapping="Wrap" 
+                                                         Text="{Binding Message}"/>
                                             </dxlc:LayoutItem>
                                             <dxlc:LayoutItem HorizontalAlignment="Left"
                                                         Label="Priority"
                                                         LabelPosition="Top">
-                                                <TextBox x:Name="tbMessagePriority" Width="100" />
+                                                <TextBox x:Name="tbMessagePriority" Text="{Binding Priority}" Width="100" />
                                             </dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup Orientation="Horizontal">
@@ -524,10 +545,28 @@
                                                         Click="btnSendPriority_Click"
                                                         Content="Send Priority"
                                                         IsEnabled="False" />
+                                            <!--<dxlc:LayoutItem>
+                                                <Button 
+                                            		Command="{Binding SendCommand }"
+                                            		Content="{Binding SendContent, FallbackValue='Send' }"
+                                            		ToolTip="{Binding SendToolTip, FallbackValue='Send ToolTip' }" />
+                                            </dxlc:LayoutItem>
+                                            
+                                            <dxlc:LayoutItem>
+                                                <Button 
+                                            		Command="{Binding SendPriorityCommand }"
+                                            		Content="{Binding SendPriorityContent, FallbackValue='SendPriority' }"
+                                            		ToolTip="{Binding SendPriorityToolTip, FallbackValue='SendPriority ToolTip' }" />
+                                            </dxlc:LayoutItem>-->                                                                                       
+                                         
                                         </dxlc:LayoutGroup>
+                                        
                                     </dxlc:LayoutGroup>
+                                    
                                 </dxlc:LayoutGroup>
+                                
                             </dxlc:LayoutGroup>
+                                        
                         </dxdo:LayoutPanel>
                         
                     </dxdo:AutoHideGroup>

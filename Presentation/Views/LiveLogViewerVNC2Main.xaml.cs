@@ -198,7 +198,7 @@ namespace VNCLogViewer.Presentation.Views
                 ceInfo02.IsChecked = false;
                 ceInfo03.IsChecked = false;
                 ceInfo04.IsChecked = false;
-                ceInfo05.IsChecked = false;
+                //ceInfo05.IsChecked = false;
 
                 btnInfoToggle.Content = "All On";
             }
@@ -209,7 +209,7 @@ namespace VNCLogViewer.Presentation.Views
                 ceInfo02.IsChecked = true;
                 ceInfo03.IsChecked = true;
                 ceInfo04.IsChecked = true;
-                ceInfo05.IsChecked = true;
+                //ceInfo05.IsChecked = true;
 
                 btnInfoToggle.Content = "All Off";
             }
@@ -225,7 +225,7 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug02Exit.IsChecked = false;
                 ceDebug03.IsChecked = false;
                 ceDebug04.IsChecked = false;
-                ceDebug05.IsChecked = false;
+                //ceDebug05.IsChecked = false;
 
                 btnDebugToggle.Content = "All On";
             }
@@ -237,7 +237,7 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug02Exit.IsChecked = true;
                 ceDebug03.IsChecked = true;
                 ceDebug04.IsChecked = true;
-                ceDebug05.IsChecked = true;
+                //ceDebug05.IsChecked = true;
 
                 btnDebugToggle.Content = "All Off";
             }
@@ -1083,5 +1083,14 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
+        private void btnArch00_09Toggle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnArch10_19Toggle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

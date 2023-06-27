@@ -139,7 +139,7 @@
                                                         IsChecked="{Binding LoggingUIConfig.Info00.IsChecked}"
                                                         ToolTip="{Binding LoggingUIConfig.Info00.ToolTip}" />
                                                     <dxe:CheckEdit x:Name="ceInfo01"
-                                                        Visibility="{Binding LoggingUIConfig.Info00.Visibility}"                                                                   
+                                                        Visibility="{Binding LoggingUIConfig.Info01.Visibility}"                                                                   
                                                         Content="{Binding LoggingUIConfig.Info01.Label}"
                                                         Foreground="{Binding LoggingUIConfig.Info01.Color, Converter={StaticResource ColorToBrushConverter}}"
                                                         IsChecked="{Binding LoggingUIConfig.Info01.IsChecked}"
@@ -182,7 +182,7 @@
                                                         IsChecked="{Binding LoggingUIConfig.Debug00.IsChecked}"
                                                         ToolTip="{Binding LoggingUIConfig.Debug00.ToolTip}" />
                                                     <dxe:CheckEdit x:Name="ceDebug01"
-                                                        Visibility="{Binding LoggingUIConfig.Debug00.Visibility}"                                                                       
+                                                        Visibility="{Binding LoggingUIConfig.Debug01.Visibility}"                                                                       
                                                         Content="{Binding LoggingUIConfig.Debug01.Label}"
                                                         Foreground="{Binding LoggingUIConfig.Debug01.Color, Converter={StaticResource ColorToBrushConverter}}"
                                                         IsChecked="{Binding LoggingUIConfig.Debug01.IsChecked}"

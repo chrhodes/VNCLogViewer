@@ -97,6 +97,11 @@ namespace VNCLogViewer.Presentation.ViewModels
             throw new NotImplementedException();
         }
 
+        public void UpdateLoggingUIConfig()
+        {
+            throw new NotImplementedException();
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountVM;

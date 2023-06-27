@@ -15,6 +15,7 @@ using VNC;
 using VNC.Core.Mvvm;
 
 using VNCLogViewer.Presentation.ViewModels;
+using VNCLogViewer.Resources;
 
 namespace VNCLogViewer.Presentation.Views
 {
@@ -213,6 +214,13 @@ namespace VNCLogViewer.Presentation.Views
 
                 btnInfoToggle.Content = "All Off";
             }
+
+            // Force a PropertyChange event so UI updates
+
+            LoggingUIConfig luic = new LoggingUIConfig();
+            luic = ViewModel.LoggingUIConfig;
+            ViewModel.LoggingUIConfig = luic;
+
         }
 
         private void btnDebugToggle_Click(object sender, RoutedEventArgs e)
@@ -243,6 +251,73 @@ namespace VNCLogViewer.Presentation.Views
             }
         }
 
+        private void btnArch00_09Toggle_Click(object sender, RoutedEventArgs e)
+        {
+            if ((String)btnArch00_09Toggle.Content == "All Off")
+            {
+                ceArch00.IsChecked = false;
+                ceArch01.IsChecked = false;
+                ceArch02.IsChecked = false;
+                ceArch03.IsChecked = false;
+                ceArch04.IsChecked = false;
+                ceArch05.IsChecked = false;
+                ceArch06.IsChecked = false;
+                ceArch07.IsChecked = false;
+                ceArch08.IsChecked = false;
+                ceArch09.IsChecked = false;
+
+                btnArch00_09Toggle.Content = "All On";
+            }
+            else
+            {
+                ceArch00.IsChecked = true;
+                ceArch01.IsChecked = true;
+                ceArch02.IsChecked = true;
+                ceArch03.IsChecked = true;
+                ceArch04.IsChecked = true;
+                ceArch05.IsChecked = true;
+                ceArch06.IsChecked = true;
+                ceArch07.IsChecked = true;
+                ceArch08.IsChecked = true;
+                ceArch09.IsChecked = true;
+
+                btnArch00_09Toggle.Content = "All Off";
+            }
+        }
+
+        private void btnArch10_19Toggle_Click(object sender, RoutedEventArgs e)
+        {
+            if ((String)btnArch10_19Toggle.Content == "All Off")
+            {
+                ceArch10.IsChecked = false;
+                ceArch11.IsChecked = false;
+                ceArch12.IsChecked = false;
+                ceArch13.IsChecked = false;
+                ceArch14.IsChecked = false;
+                ceArch15.IsChecked = false;
+                ceArch16.IsChecked = false;
+                ceArch17.IsChecked = false;
+                ceArch18.IsChecked = false;
+                ceArch19.IsChecked = false;
+
+                btnArch10_19Toggle.Content = "All On";
+            }
+            else
+            {
+                ceArch10.IsChecked = true;
+                ceArch11.IsChecked = true;
+                ceArch12.IsChecked = true;
+                ceArch13.IsChecked = true;
+                ceArch14.IsChecked = true;
+                ceArch15.IsChecked = true;
+                ceArch16.IsChecked = true;
+                ceArch17.IsChecked = true;
+                ceArch18.IsChecked = true;
+                ceArch19.IsChecked = true;
+
+                btnArch10_19Toggle.Content = "All Off";
+            }
+        }
         private void btnTrace00_09Toggle_Click(object sender, RoutedEventArgs e)
         {
             if ((String)btnTrace00_09Toggle.Content == "All Off")
@@ -365,6 +440,28 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug03.IsChecked = false;
                 ceDebug04.IsChecked = false;
 
+                ceArch00.IsChecked = false;
+                ceArch01.IsChecked = false;
+                ceArch02.IsChecked = false;
+                ceArch03.IsChecked = false;
+                ceArch04.IsChecked = false;
+                ceArch05.IsChecked = false;
+                ceArch06.IsChecked = false;
+                ceArch07.IsChecked = false;
+                ceArch08.IsChecked = false;
+                ceArch09.IsChecked = false;
+
+                ceArch10.IsChecked = false;
+                ceArch11.IsChecked = false;
+                ceArch12.IsChecked = false;
+                ceArch13.IsChecked = false;
+                ceArch14.IsChecked = false;
+                ceArch15.IsChecked = false;
+                ceArch16.IsChecked = false;
+                ceArch17.IsChecked = false;
+                ceArch18.IsChecked = false;
+                ceArch19.IsChecked = false;
+
                 ceTrace00.IsChecked = false;
                 ceTrace01.IsChecked = false;
                 ceTrace02.IsChecked = false;
@@ -419,6 +516,28 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug02Exit.IsChecked = true;
                 ceDebug03.IsChecked = true;
                 ceDebug04.IsChecked = true;
+
+                ceArch00.IsChecked = true;
+                ceArch01.IsChecked = true;
+                ceArch02.IsChecked = true;
+                ceArch03.IsChecked = true;
+                ceArch04.IsChecked = true;
+                ceArch05.IsChecked = true;
+                ceArch06.IsChecked = true;
+                ceArch07.IsChecked = true;
+                ceArch08.IsChecked = true;
+                ceArch09.IsChecked = true;
+
+                ceArch10.IsChecked = true;
+                ceArch11.IsChecked = true;
+                ceArch12.IsChecked = true;
+                ceArch13.IsChecked = true;
+                ceArch14.IsChecked = true;
+                ceArch15.IsChecked = true;
+                ceArch16.IsChecked = true;
+                ceArch17.IsChecked = true;
+                ceArch18.IsChecked = true;
+                ceArch19.IsChecked = true;
 
                 ceTrace00.IsChecked = true;
                 ceTrace01.IsChecked = true;
@@ -1083,14 +1202,6 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        private void btnArch00_09Toggle_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void btnArch10_19Toggle_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

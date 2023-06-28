@@ -852,6 +852,9 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private void AppendFormattedMessage(string formattedMessage)
         {
+            // TODO(crhodes)
+            // Doc maybe null
+
             try
             {
                 Doc.BeginUpdate();

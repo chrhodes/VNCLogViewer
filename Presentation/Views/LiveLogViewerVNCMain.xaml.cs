@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Drawing;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 using DevExpress.Xpf.Editors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
-
-using Microsoft.AspNetCore.SignalR.Client;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -18,67 +13,30 @@ using VNCLogViewer.Presentation.ViewModels;
 
 namespace VNCLogViewer.Presentation.Views
 {
-    public partial class LiveLogViewerVNCMain : UserControl, ILiveLogViewerVNCMain
+    public partial class LiveLogViewerVNCMain : UserControl, ILiveLogViewerVNCMain, IInstanceCountV
     {
+        #region Constructors, Initialization, and Load
 
-        public LiveLogViewerVNCMain(ViewModels.ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerVNCMain(ILiveLogViewerViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountV++;
             InitializeComponent();
 
             ViewModel = viewModel;
-            //Loaded += UserControl_Loaded;
-            lgCaptureFilter.IsCollapsed = true;
+            DataContext = ViewModel;
+
+            InitializeView();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    Int64 startTicks = Log.VIEW("Enter", Common.LOG_CATEGORY);
-
-        //    await ((ViewModels.ILiveLogViewerVNCMainViewModel)ViewModel).LoadAsync();
-
-        //    Log.VIEW("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        public IViewModel ViewModel
+        private void InitializeView()
         {
-            get { return (IViewModel)DataContext; }
-            set { DataContext = value; }
-        }
+            lgCaptureFilter.IsCollapsed = true;
 
-        //-------------------------------------
-
-        #region Enums, Fields, Properties
-
-        public String UserName { get; set; }
-        //public IHubProxy HubProxy { get; set; }
-        //private string ServerURI = "http://localhost:58195/signalr";
-        public HubConnection Connection { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        #endregion
-
-        #region Initialization
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            //System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversInstancesViewSource"];
-            //// Things work if this line is present.  Testing to see if it works without 6/13/2012
-            //// Yup, still works.  Don't need this line as it is done in the XAML.
-            //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Instances;
-
-            System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversViewSource"];
-            // Things work if this line is present.  Testing to see if it works without 6/13/2012
-            // Yup, still works.  Don't need this line as it is done in the XAML.
-            //myCollectionViewSource.Source = EyeOnLife.Common.ApplicationDataSet.Servers;
-
-            InitializeLogStream();
+            ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
         }
 
         private void InitializeLogStream()
@@ -86,9 +44,11 @@ namespace VNCLogViewer.Presentation.Views
             recLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
             recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
 
-            Document doc = recLogStream.Document;
+            //Document doc = recLogStream.Document;
 
-            DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+            //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+
+            Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
 
             section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
             section.Page.Landscape = true;
@@ -98,599 +58,26 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Private Methods
+        #region Enums, Fields, Properties
 
-        //AppendFormattedText(recLogStream, Color color)
-
-        #region Connection Events
-
-        void AppendFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage)
+        public ILiveLogViewerViewModel ViewModel
         {
-            try
-            {
-
-                Document doc = richEditControl.Document;
-
-                doc.BeginUpdate();
-
-                doc.AppendText(formattedMessage);
-
-                doc.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
-                int x = 3;
-            }
+            get { return (ILiveLogViewerViewModel)DataContext; }
+            set { DataContext = value; }
         }
 
-        void AppendColorFormattedMessage(DevExpress.Xpf.RichEdit.RichEditControl richEditControl, string formattedMessage, Color color)
-        {
-            try
-            {
-                Document doc = richEditControl.Document;
-
-                DocumentRange newRange = doc.AppendText(formattedMessage);
-                CharacterProperties charProp = doc.BeginUpdateCharacters(newRange);
-                charProp.ForeColor = color;
-                doc.EndUpdateCharacters(charProp);
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
-            }
-        }
-
-        private async void ConnectAsync()
-        {
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-
-            Connection = new HubConnectionBuilder()
-                .WithUrl(ServerURI.Text)
-                .Build();
-
-            Connection.Closed += Connection_Closed;
-            Connection.Reconnecting += Connection_Reconnecting;
-            Connection.Reconnected += Connection_Reconnected;
-
-            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-
-            string formattedMessage = "";
-
-            Connection.On<string>("AddMessage", (message) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    formattedMessage = String.Format("{0}\r", message);
-                    AppendFormattedMessage(recLogStream, formattedMessage);
-                })
-            );
-
-            Connection.On<string, string>("AddUserMessage", (name, message) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    formattedMessage = String.Format("{0}: {1}\n", name, message);
-
-                    AppendFormattedMessage(recLogStream, formattedMessage);
-                })
-            );
-
-            Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
-                this.Dispatcher.InvokeAsync(
-                () =>
-                {
-                    Boolean displayMessage = false;
-
-                    // For now treat the whole message the same.
-                    formattedMessage = String.Format("{0}\r", message);
-
-                    // TODO(crhodes)
-                    // Make this more clever, perhaps a bit field
-                    // But this may be plenty fast enough just long :(
-
-                    switch (priority)
-                    {
-                        #region Info
-
-                        case 100:
-                            if (ceInfo00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info00);
-                            }
-                            break;
-
-                        case 101: // Not Used
-                            if (ceInfo01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info01);
-                            }
-                            break;
-
-                        case 102: // Not Used
-                            if (ceInfo02.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info02);
-                            }
-                            break;
-
-                        case 103: // Not Used
-                            if (ceInfo00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info03);
-                            }
-                            break;
-
-                        case 104: // Not Used
-                            if (ceInfo04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info04);
-                            }
-                            break;
-
-                        case 105: // Not Used
-                            if (ceInfo05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Info05);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Debug
-
-                        case 1000: // Not Used
-                            if (ceDebug00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug00);
-                            }
-                            break;
-
-                        case 1001: // Not Used
-                            if (ceDebug01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug01);
-                            }
-                            break;
-
-                        case 1002: // Not Used
-                            if (formattedMessage.Contains("Enter"))
-                            {
-                                if (ceDebug02Enter.IsChecked == true)
-                                {
-                                    displayMessage = ColorFormatMessage(formattedMessage, 
-                                        ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug02);
-                                }
-                            }
-                            else if (ceDebug02Exit.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug02);
-                            }
-                            break;
-
-                        case 1003: // Not Used
-                            if (ceDebug03.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug03);
-                            }
-                            break;
-
-                        case 1004: // Not Used
-                            if (ceDebug04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug04);
-                            }
-                            break;
-
-                        case 1005: // Not Used
-                            if (ceDebug05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Debug05);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Trace00 - Trace09
-
-                        case 10000: // Not Used
-                            if (ceTrace00.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace00);
-                            }
-                            break;
-
-                        case 10001: // EVENT_HANDLER
-                            if (ceTrace01.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace01);
-                            }
-                            break;
-
-                        case 10002: // APPLICATION_INITIALIZE
-                            if (ceTrace02.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace02);
-                            }
-                            break;
-
-                        case 10003: // Not Used
-                            if (ceTrace03.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace03);
-                            }
-                            break;
-
-                        case 10004: // Not Used
-                            if (ceTrace04.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace04);
-                            }
-                            break;
-
-                        case 10005: // Not Used
-                            if (ceTrace05.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace05);
-                            }
-                            break;
-
-                        case 10006: // Not Used
-                            if (ceTrace06.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace06);
-                            }
-                            break;
-
-                        case 10007: // PRESENTATION
-                            if (ceTrace07.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace07);
-                            }
-                            break;
-
-                        case 10008: // Not Used
-                            if (ceTrace08.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace08);
-                            }
-                            break;
-
-                        case 10009: // CORE
-                            if (ceTrace09.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace09);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Trace10 - Trace19
-
-                        case 10010: // APPLICATION
-                            if (ceTrace10.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace10);
-                            }
-                            break;
-
-                        case 10011: // Not Used
-                            if (ceTrace11.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace11);
-                            }
-                            break;
-
-                        case 10012: // FILE_DIR_IO
-                            if (ceTrace12.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace12);
-                            }
-                            break;
-
-                        case 10013: // PERSISTENCE
-                            if (ceTrace13.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace13);
-                            }
-                            break;
-
-                        case 10014: // Not Used
-                            if (ceTrace14.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace14);
-                            }
-                            break;
-
-                        case 10015: // Not Used
-
-                            if (ceTrace15.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace15);
-                            }
-                            break;
-
-                        case 10016: // Not Used
-                            if (ceTrace16.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace16);
-                            }
-                            break;
-
-                        case 10017: // VIEW
-                            if (ceTrace17.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace17);
-                            }
-                            break;
-
-                        case 10018: // VIEWMODEL
-                            if (ceTrace18.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace18);
-                            }
-                            break;
-
-                        case 10019: // MODULE
-                            if (ceTrace19.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace19);
-                            }
-                            break;
-
-                        #endregion
-
-                        #region Trace20 - Trace29
-
-                        case 10020: // APPLICATION_SERVICES
-                            if (ceTrace20.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace20);
-                            }
-                            break;
-
-                        case 10021: // EVENT
-                            if (ceTrace21.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace21);
-                            }
-                            break;
-
-                        case 10022: // DOMAIN SERVICES
-                            if (ceTrace22.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace22);
-                            }
-                            break;
-
-                        case 10023: // PERSISTENCE_LOW
-                            if (ceTrace23.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace23);
-                            }
-                            break;
-
-                        case 10024: // Not Used
-                            if (ceTrace24.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace24);
-                            }
-                            break;
-
-                        case 10025: // CONSTRUCTOR
-                            if (ceTrace25.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace25);
-                            }
-                            break;
-
-                        case 10026: // Not Used
-                            if (ceTrace26.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace26);
-                            }
-                            break;
-
-                        case 10027: // VIEW_LOW
-                            if (ceTrace27.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage,
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace27);
-                            }
-                            break;
-
-                        case 10028: // VIEWMODEL_LOW
-                            if (ceTrace28.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace28);
-                            }
-                            break;
-
-                        case 10029: // MODULE_INITIALIZE
-                            if (ceTrace29.IsChecked == true)
-                            {
-                                displayMessage = ColorFormatMessage(formattedMessage, 
-                                    ((ILiveLogViewerViewModel)ViewModel).LoggingColors.Trace29);
-                            }
-                            break;
-
-                        #endregion
-
-                        default:
-                            displayMessage = true;
-                            break;
-                    }
-
-                    if (displayMessage)
-                    {
-                        formattedMessage = String.Format("{0}\r", message);
-                        AppendFormattedMessage(recLogStream, formattedMessage);
-                    }
-                })
-            );
-
-            try
-            {
-                await Connection.StartAsync();
-            }
-            catch (HttpRequestException hre)
-            {
-                StatusText.Content = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                return;
-            }
-            catch (Exception ex)
-            {
-                StatusText.Content = $"Unable to connect to server, ex: {ex.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                return;
-            }
-
-            //Show chat UI; hide login UI
-            SignInPanel.Visibility = Visibility.Collapsed;
-            ChatPanel.Visibility = Visibility.Visible;
-            btnSend.IsEnabled = true;
-            btnSendPriority.IsEnabled = true;
-            tbMessage.Focus();
-            formattedMessage = "Connected to server at " + ServerURI + "\n";
-
-            AppendFormattedMessage(recLogStream, formattedMessage);
-        }
-
-        private bool ColorFormatMessage(string formattedMessage, Color color)
-        {
-            bool displayMessage = false;
-            int messageIndex = 0;
-
-            messageIndex = GetNthIndex(formattedMessage, '|', 6);
-            try
-            {
-                if (messageIndex++ > 0)
-                {
-                    string prefixMessage = formattedMessage.Substring(0, messageIndex);
-                    AppendFormattedMessage(recLogStream, prefixMessage);
-
-                    string colorMessage = formattedMessage.Substring(messageIndex);
-                    AppendColorFormattedMessage(recLogStream, colorMessage, color);
-                }
-                else
-                {
-                    AppendColorFormattedMessage(recLogStream, formattedMessage, color);
-                }
-            }
-            catch (Exception ex)
-            {
-                AppendColorFormattedMessage(recLogStream, ex.ToString(), Color.Red);
-            }
-
-            return displayMessage;
-        }
-
-        private Task Connection_Reconnecting(Exception? arg)
-        {
-            var dispatcher = Application.Current.Dispatcher;
-            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
-
-            return null;
-        }
-
-        private Task Connection_Reconnected(string? arg)
-        {
-            var dispatcher = Application.Current.Dispatcher;
-            dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
-
-            return null;
-        }
-
-        //void Connection_StateChanged(StateChange obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    var formattedMessage = string.Format("Connection_StateChanged {0,15} -> {1,-15}\n", obj.OldState, obj.NewState);
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        //private void Connection_Received(string obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    string formattedMessage = "Connection_Received\n";
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        //private void Connection_Error(Exception obj)
-        //{
-        //    var dispatcher = Application.Current.Dispatcher;
-        //    var formattedMessage = string.Format("Connection_Error >{0}<\n", obj.GetBaseException().ToString());
-
-        //    dispatcher.InvokeAsync(() => AppendFormattedMessage(recLogStream, formattedMessage));
-        //}
-
-        /// <summary>
-        /// If the server is stopped, the connection will time out after 30 seconds (default), and the 
-        /// Closed event will fire.
-        /// </summary>
-        Task Connection_Closed(Exception? arg)
-        {
-            //Hide chat UI; show login UI
-            var dispatcher = Application.Current.Dispatcher;
-
-            dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
-            dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
-            dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
-            dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
-            dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
-
-            return null;
-        }
-
-        #endregion
+        public String UserName { get; set; }
 
         #endregion
 
         #region Event Handlers
+
+        // NOTE(crhodes)
+        // Why would this get called
+        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            InitializeLogStream();
+        }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
@@ -700,13 +87,24 @@ namespace VNCLogViewer.Presentation.Views
             {
                 StatusText.Visibility = Visibility.Visible;
                 StatusText.Content = "Connecting to server...";
-                ConnectAsync();
+
+                ViewModel.ConnectAsync();
+                //ConnectAsync();
+
+                //Show chat UI; hide login UI
+                SignInPanel.Visibility = Visibility.Collapsed;
+                ChatPanel.Visibility = Visibility.Visible;
+                btnSend.IsEnabled = true;
+                btnSendPriority.IsEnabled = true;
+                tbMessage.Focus();
             }
         }
 
         private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
+            //await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
+            ViewModel.Send();
+
             tbMessage.Text = String.Empty;
 
             tbMessage.Focus();
@@ -714,7 +112,9 @@ namespace VNCLogViewer.Presentation.Views
 
         private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
         {
-            await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+            //await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+            ViewModel.SendPriority();
+
             tbMessage.Text = String.Empty;
             tbMessage.Focus();
         }
@@ -764,7 +164,6 @@ namespace VNCLogViewer.Presentation.Views
                 ceInfo02.IsChecked = false;
                 ceInfo03.IsChecked = false;
                 ceInfo04.IsChecked = false;
-                ceInfo05.IsChecked = false;
 
                 btnInfoToggle.Content = "All On";
             }
@@ -775,7 +174,6 @@ namespace VNCLogViewer.Presentation.Views
                 ceInfo02.IsChecked = true;
                 ceInfo03.IsChecked = true;
                 ceInfo04.IsChecked = true;
-                ceInfo05.IsChecked = true;
 
                 btnInfoToggle.Content = "All Off";
             }
@@ -791,7 +189,6 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug02Exit.IsChecked = false;
                 ceDebug03.IsChecked = false;
                 ceDebug04.IsChecked = false;
-                ceDebug05.IsChecked = false;
 
                 btnDebugToggle.Content = "All On";
             }
@@ -803,9 +200,76 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug02Exit.IsChecked = true;
                 ceDebug03.IsChecked = true;
                 ceDebug04.IsChecked = true;
-                ceDebug05.IsChecked = true;
 
                 btnDebugToggle.Content = "All Off";
+            }
+        }
+
+        private void btnArch00_09Toggle_Click(object sender, RoutedEventArgs e)
+        {
+            if ((String)btnArch00_09Toggle.Content == "All Off")
+            {
+                ceArch00.IsChecked = false;
+                ceArch01.IsChecked = false;
+                ceArch02.IsChecked = false;
+                ceArch03.IsChecked = false;
+                ceArch04.IsChecked = false;
+                ceArch05.IsChecked = false;
+                ceArch06.IsChecked = false;
+                ceArch07.IsChecked = false;
+                ceArch08.IsChecked = false;
+                ceArch09.IsChecked = false;
+
+                btnArch00_09Toggle.Content = "All On";
+            }
+            else
+            {
+                ceArch00.IsChecked = true;
+                ceArch01.IsChecked = true;
+                ceArch02.IsChecked = true;
+                ceArch03.IsChecked = true;
+                ceArch04.IsChecked = true;
+                ceArch05.IsChecked = true;
+                ceArch06.IsChecked = true;
+                ceArch07.IsChecked = true;
+                ceArch08.IsChecked = true;
+                ceArch09.IsChecked = true;
+
+                btnArch00_09Toggle.Content = "All Off";
+            }
+        }
+
+        private void btnArch10_19Toggle_Click(object sender, RoutedEventArgs e)
+        {
+            if ((String)btnArch10_19Toggle.Content == "All Off")
+            {
+                ceArch10.IsChecked = false;
+                ceArch11.IsChecked = false;
+                ceArch12.IsChecked = false;
+                ceArch13.IsChecked = false;
+                ceArch14.IsChecked = false;
+                ceArch15.IsChecked = false;
+                ceArch16.IsChecked = false;
+                ceArch17.IsChecked = false;
+                ceArch18.IsChecked = false;
+                ceArch19.IsChecked = false;
+
+                btnArch10_19Toggle.Content = "All On";
+            }
+            else
+            {
+                ceArch10.IsChecked = true;
+                ceArch11.IsChecked = true;
+                ceArch12.IsChecked = true;
+                ceArch13.IsChecked = true;
+                ceArch14.IsChecked = true;
+                ceArch15.IsChecked = true;
+                ceArch16.IsChecked = true;
+                ceArch17.IsChecked = true;
+                ceArch18.IsChecked = true;
+                ceArch19.IsChecked = true;
+
+                btnArch10_19Toggle.Content = "All Off";
             }
         }
 
@@ -931,6 +395,28 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug03.IsChecked = false;
                 ceDebug04.IsChecked = false;
 
+                ceArch00.IsChecked = false;
+                ceArch01.IsChecked = false;
+                ceArch02.IsChecked = false;
+                ceArch03.IsChecked = false;
+                ceArch04.IsChecked = false;
+                ceArch05.IsChecked = false;
+                ceArch06.IsChecked = false;
+                ceArch07.IsChecked = false;
+                ceArch08.IsChecked = false;
+                ceArch09.IsChecked = false;
+
+                ceArch10.IsChecked = false;
+                ceArch11.IsChecked = false;
+                ceArch12.IsChecked = false;
+                ceArch13.IsChecked = false;
+                ceArch14.IsChecked = false;
+                ceArch15.IsChecked = false;
+                ceArch16.IsChecked = false;
+                ceArch17.IsChecked = false;
+                ceArch18.IsChecked = false;
+                ceArch19.IsChecked = false;
+
                 ceTrace00.IsChecked = false;
                 ceTrace01.IsChecked = false;
                 ceTrace02.IsChecked = false;
@@ -986,6 +472,28 @@ namespace VNCLogViewer.Presentation.Views
                 ceDebug03.IsChecked = true;
                 ceDebug04.IsChecked = true;
 
+                ceArch00.IsChecked = true;
+                ceArch01.IsChecked = true;
+                ceArch02.IsChecked = true;
+                ceArch03.IsChecked = true;
+                ceArch04.IsChecked = true;
+                ceArch05.IsChecked = true;
+                ceArch06.IsChecked = true;
+                ceArch07.IsChecked = true;
+                ceArch08.IsChecked = true;
+                ceArch09.IsChecked = true;
+
+                ceArch10.IsChecked = true;
+                ceArch11.IsChecked = true;
+                ceArch12.IsChecked = true;
+                ceArch13.IsChecked = true;
+                ceArch14.IsChecked = true;
+                ceArch15.IsChecked = true;
+                ceArch16.IsChecked = true;
+                ceArch17.IsChecked = true;
+                ceArch18.IsChecked = true;
+                ceArch19.IsChecked = true;
+
                 ceTrace00.IsChecked = true;
                 ceTrace01.IsChecked = true;
                 ceTrace02.IsChecked = true;
@@ -1030,28 +538,20 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        #region Private Methods
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
         {
-            InitializeLogStream();
+            get => _instanceCountV;
+            set => _instanceCountV = value;
         }
 
-        int GetNthIndex(string s, char c, int n)
-        {
-            int count = 0;
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == c)
-                {
-                    count++;
-                    if (count == n)
-                    {
-                        return i;
-                    }
-                }
-            }
-            return -1;
-            // = s.TakeWhile(c => n -= (c == t ? 1 : 0)) > 0).Count();
-        }
+        #endregion
     }
 }

@@ -7,13 +7,13 @@ namespace VNCLogViewer.Presentation.ViewModels
 {
     public class MainViewModel : ViewModelBase, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public MainViewModel()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountVM++;
             InitializeViewModel();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
@@ -23,7 +23,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            InstanceCountVM++;
+
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

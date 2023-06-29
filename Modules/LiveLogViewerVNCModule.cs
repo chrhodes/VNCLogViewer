@@ -50,10 +50,10 @@ namespace VNCLogViewer
             //containerRegistry.Register<IMain, MainDxLayout>();
             //containerRegistry.Register<IMain, MainDxDockLayoutManager>();  
 
-            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerVNCMainViewModel>();
+            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNCMain>();
 
-            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerVNC2MainViewModel>();
+            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNC2Main>();
 
             //containerRegistry.Register<ILiveLogViewerEASEMainViewModel, LiveLogViewerEASEMainViewModel>();

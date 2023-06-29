@@ -23,18 +23,20 @@ using CharacterProperties = DevExpress.XtraRichEdit.API.Native.CharacterProperti
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
-    public class LiveLogViewerVNC2MainViewModel : EventViewModelBase, ILiveLogViewerViewModel, IInstanceCountVM
+    public class LiveLogViewerViewModel : EventViewModelBase, ILiveLogViewerViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
 
-        public LiveLogViewerVNC2MainViewModel(
+        public LiveLogViewerViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             // TODO(crhodes)
             // Save constructor parameters here
@@ -47,8 +49,6 @@ namespace VNCLogViewer.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            InstanceCountVM++;
 
             // TODO(crhodes)
             //
@@ -120,8 +120,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                 _message = value;
                 OnPropertyChanged();
             }
-        }
-        
+        }        
 
         public Document Doc { get; set; }
 
@@ -853,20 +852,23 @@ namespace VNCLogViewer.Presentation.ViewModels
         private void AppendFormattedMessage(string formattedMessage)
         {
             // TODO(crhodes)
-            // Doc maybe null
+            // Doc maybe null when program exits.
 
-            try
+            if (Doc is not null)
             {
-                Doc.BeginUpdate();
+                try
+                {
+                    Doc.BeginUpdate();
 
-                Doc.AppendText(formattedMessage);
+                    Doc.AppendText(formattedMessage);
 
-                Doc.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
+                    Doc.EndUpdate();
+                }
+                catch (Exception ex)
+                {
+                    string exception = ex.ToString();
+                    string innerException = ex.InnerException.ToString();
+                }
             }
         }
 
@@ -882,7 +884,7 @@ namespace VNCLogViewer.Presentation.ViewModels
             catch (Exception ex)
             {
                 string exception = ex.ToString();
-                string innerException = ex.InnerException.ToString();
+                string innerException = ex.InnerException?.ToString();
             }
         }
 

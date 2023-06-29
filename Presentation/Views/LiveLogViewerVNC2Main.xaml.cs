@@ -214,13 +214,6 @@ namespace VNCLogViewer.Presentation.Views
 
                 btnInfoToggle.Content = "All Off";
             }
-
-            // Force a PropertyChange event so UI updates
-
-            LoggingUIConfig luic = new LoggingUIConfig();
-            luic = ViewModel.LoggingUIConfig;
-            ViewModel.LoggingUIConfig = luic;
-
         }
 
         private void btnDebugToggle_Click(object sender, RoutedEventArgs e)

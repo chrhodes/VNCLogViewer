@@ -1,0 +1,13 @@
+﻿using System.Threading.Tasks;
+
+using VNC.Core.Mvvm;
+
+namespace VNCLogViewer.Presentation.ViewModels
+{
+    public interface ILiveLogViewerEASEMainViewModel : IViewModel
+    {
+        Task LoadAsync();
+        //LoggingColors LoggingColors { get; set; }
+        //LoggingUIConfig LoggingUIConfig { get; set; }
+    }
+}

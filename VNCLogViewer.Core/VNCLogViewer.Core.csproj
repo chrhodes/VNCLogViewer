@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DevExpress.RichEdit.Core" Version="21.2.7" />
+        <PackageReference Include="Prism.Core" Version="8.1.97" />
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+    </ItemGroup>
+  
+    <ItemGroup>
+        <!--<ProjectReference Include="..\VNCLogViewer.Domain\VNCLogViewer.Domain.csproj" />-->
+    </ItemGroup>  
+  
+</Project>

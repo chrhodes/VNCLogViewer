@@ -35,6 +35,7 @@ namespace VNCLogViewer.Presentation.Views
         private void InitializeView()
         {
             lgCaptureFilter.IsCollapsed = true;
+            signalRInteraction.ViewModel = ViewModel;
 
             ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
         }
@@ -66,7 +67,7 @@ namespace VNCLogViewer.Presentation.Views
             set { DataContext = value; }
         }
 
-        public String UserName { get; set; }
+        //public String UserName { get; set; }
 
         #endregion
 
@@ -79,45 +80,45 @@ namespace VNCLogViewer.Presentation.Views
             InitializeLogStream();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
-        {
-            UserName = UserNameTextBox.Text;
-            //Connect to server (use async method to avoid blocking UI thread)
-            if (!String.IsNullOrEmpty(UserName))
-            {
-                StatusText.Visibility = Visibility.Visible;
-                StatusText.Content = "Connecting to server...";
+        //private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    UserName = UserNameTextBox.Text;
+        //    //Connect to server (use async method to avoid blocking UI thread)
+        //    if (!String.IsNullOrEmpty(UserName))
+        //    {
+        //        StatusText.Visibility = Visibility.Visible;
+        //        StatusText.Content = "Connecting to server...";
 
-                ViewModel.ConnectAsync();
-                //ConnectAsync();
+        //        ViewModel.ConnectAsync();
+        //        //ConnectAsync();
 
-                //Show chat UI; hide login UI
-                SignInPanel.Visibility = Visibility.Collapsed;
-                ChatPanel.Visibility = Visibility.Visible;
-                btnSend.IsEnabled = true;
-                btnSendPriority.IsEnabled = true;
-                tbMessage.Focus();
-            }
-        }
+        //        //Show chat UI; hide login UI
+        //        SignInPanel.Visibility = Visibility.Collapsed;
+        //        ChatPanel.Visibility = Visibility.Visible;
+        //        btnSend.IsEnabled = true;
+        //        btnSendPriority.IsEnabled = true;
+        //        tbMessage.Focus();
+        //    }
+        //}
 
-        private async void btnSend_Click(object sender, RoutedEventArgs e)
-        {
-            //await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
-            ViewModel.Send();
+        //private async void btnSend_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //await Connection.InvokeAsync("SendUserMessage", UserName, tbMessage.Text);
+        //    ViewModel.Send();
 
-            tbMessage.Text = String.Empty;
+        //    tbMessage.Text = String.Empty;
 
-            tbMessage.Focus();
-        }
+        //    tbMessage.Focus();
+        //}
 
-        private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
-        {
-            //await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
-            ViewModel.SendPriority();
+        //private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //await Connection.InvokeAsync("SendPriorityMessage", tbMessage.Text, Int32.Parse(tbMessagePriority.Text));
+        //    ViewModel.SendPriority();
 
-            tbMessage.Text = String.Empty;
-            tbMessage.Focus();
-        }
+        //    tbMessage.Text = String.Empty;
+        //    tbMessage.Focus();
+        //}
 
         private void recLogStream_TextChanged(object sender, EventArgs e)
         {

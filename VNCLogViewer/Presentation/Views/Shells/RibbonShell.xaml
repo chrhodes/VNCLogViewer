@@ -30,8 +30,6 @@
     
     <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
 
-    <!--xmlns:core="clr-namespace:VNCLogViewer.Core;assembly=VNCLogViewer.Core"-->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -47,7 +45,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" >
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisMain, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisRibbonShell, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />

@@ -39,8 +39,6 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
 
     <!-- d:DesignWidth="400" d:DesignHeight="400" -->
-    
-    <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
     <dxlc:LayoutControl
         HorizontalAlignment="Stretch"

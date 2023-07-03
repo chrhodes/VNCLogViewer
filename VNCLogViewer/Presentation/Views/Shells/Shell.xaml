@@ -43,12 +43,7 @@
         <!-- This is useful for debugging V VM constructor issues -->
 
         <DockPanel Grid.Row="1" >
-            
-            <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
-                <Label Content=".NET Runtime: " />
-                <Label Content="{Binding RuntimeVersion}" />
-            </StackPanel>
-            
+                 
             <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="V:" />
@@ -59,6 +54,11 @@
 
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
+                <Label Content=".NET Runtime: " />
+                <Label Content="{Binding RuntimeVersion}" />
             </StackPanel>
 
         </DockPanel>

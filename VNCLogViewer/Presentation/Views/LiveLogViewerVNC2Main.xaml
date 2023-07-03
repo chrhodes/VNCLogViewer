@@ -706,8 +706,10 @@
                         <dxdo:LayoutPanel x:Name="lp_TopStuff"
                             Caption="SignalR Connection"
                             ItemWidth="150" MaxHeight="130">
-                            
-                            <dxlc:LayoutGroup
+
+                            <views:SignalRInteraction x:Name="signalRInteraction" />
+
+                            <!--<dxlc:LayoutGroup
                         	    View="Group" Orientation="Vertical" >
                                 
                                 <dxlc:LayoutItem Label="ServerURI:">
@@ -722,9 +724,9 @@
                                     
                                     <dxlc:LayoutGroup x:Name="SignInPanel" Margin="10,0">
                                         
-                                        <!--<dxlc:LayoutItem HorizontalAlignment="Left">
+                                        --><!--<dxlc:LayoutItem HorizontalAlignment="Left">
                                             <Label Content="Enter user name:" />
-                                        </dxlc:LayoutItem>-->
+                                        </dxlc:LayoutItem>--><!--
                                         
                                         <dxlc:LayoutItem Label="Enter User name:" LabelPosition="Left"
                                                          HorizontalAlignment="Left">
@@ -795,7 +797,7 @@
                                     
                                 </dxlc:LayoutGroup>
                                 
-                            </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>-->
                                         
                         </dxdo:LayoutPanel>
                         

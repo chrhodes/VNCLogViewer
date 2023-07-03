@@ -393,7 +393,7 @@ namespace VNCLogViewer.Presentation.ViewModels
             //);
 
             Connection.On<string, string>("AddUserMessage", (name, message) =>
-                AppendFormattedMessage($"{name}: {message}")
+                AppendFormattedMessage($"{name}: {message}\r")
             );
 
             Connection.On<string, int>("AddPriorityMessage", (message, priority) =>

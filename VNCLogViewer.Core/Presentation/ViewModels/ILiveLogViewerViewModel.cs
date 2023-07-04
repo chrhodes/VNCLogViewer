@@ -22,6 +22,8 @@ namespace VNCLogViewer.Presentation.ViewModels
         //LoggingColors LoggingColors { get; set; }
         //LoggingUIConfig LoggingUIConfig { get; set; }
 
+        //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
+
         Document Doc { get; set; }
     }
 }

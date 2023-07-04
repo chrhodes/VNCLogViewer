@@ -2,9 +2,9 @@
 
 namespace VNCLogViewer.Resources
 {
-    public class LoggingUIConfig
+    public class LoggingUIConfigVNCARCH
     {
-        public string Name { get; set; } = "Default";
+        public string Name { get; set; } = "VNCARCH";
 
         // TODO(crhodes)
         // Add Error, Warning
@@ -14,32 +14,32 @@ namespace VNCLogViewer.Resources
         public LoggingLevel Info02 { get; set; } = new LoggingLevel { Label = "Info02", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info02" };
         public LoggingLevel Info03 { get; set; } = new LoggingLevel { Label = "Info03", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info03" };
         public LoggingLevel Info04 { get; set; } = new LoggingLevel { Label = "Info04", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info04" };
-
+ 
         public LoggingLevel Debug00 { get; set; } = new LoggingLevel { Label = "Debug00", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug00" };
         public LoggingLevel Debug01 { get; set; } = new LoggingLevel { Label = "Debug01", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug01" };
         public LoggingLevel Debug02 { get; set; } = new LoggingLevel { Label = "Debug02", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug02" };
         public LoggingLevel Debug03 { get; set; } = new LoggingLevel { Label = "Debug03", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug03" };
         public LoggingLevel Debug04 { get; set; } = new LoggingLevel { Label = "Debug04", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug04" };
 
-        public LoggingLevel Arch00 { get; set; } = new LoggingLevel { Label = "Arch00", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch00" };
-        public LoggingLevel Arch01 { get; set; } = new LoggingLevel { Label = "Arch01", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch01" };
-        public LoggingLevel Arch02 { get; set; } = new LoggingLevel { Label = "Arch02", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch02" };
-        public LoggingLevel Arch03 { get; set; } = new LoggingLevel { Label = "Arch03", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch03" };
-        public LoggingLevel Arch04 { get; set; } = new LoggingLevel { Label = "Arch04", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch04" };
-        public LoggingLevel Arch05 { get; set; } = new LoggingLevel { Label = "Arch05", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch05" };
-        public LoggingLevel Arch06 { get; set; } = new LoggingLevel { Label = "Arch06", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch06" };
-        public LoggingLevel Arch07 { get; set; } = new LoggingLevel { Label = "Arch07", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch07" };
-        public LoggingLevel Arch08 { get; set; } = new LoggingLevel { Label = "Arch08", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch08" };
-        public LoggingLevel Arch09 { get; set; } = new LoggingLevel { Label = "Arch09", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch09" };
-        public LoggingLevel Arch10 { get; set; } = new LoggingLevel { Label = "Arch10", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch10" };
-        public LoggingLevel Arch11 { get; set; } = new LoggingLevel { Label = "Arch11", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch11" };
-        public LoggingLevel Arch12 { get; set; } = new LoggingLevel { Label = "Arch12", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch12" };
-        public LoggingLevel Arch13 { get; set; } = new LoggingLevel { Label = "Arch13", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch13" };
-        public LoggingLevel Arch14 { get; set; } = new LoggingLevel { Label = "Arch14", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch14" };
-        public LoggingLevel Arch15 { get; set; } = new LoggingLevel { Label = "Arch15", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch15" };
-        public LoggingLevel Arch16 { get; set; } = new LoggingLevel { Label = "Arch16", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch16" };
-        public LoggingLevel Arch17 { get; set; } = new LoggingLevel { Label = "Arch17", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch17" };
-        public LoggingLevel Arch18 { get; set; } = new LoggingLevel { Label = "Arch18", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch18" };
+        public LoggingLevel Arch00 { get; set; } = new LoggingLevel { Label = "CONSTRUCTOR", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "CONSTRUCTOR / Arch00" };
+        public LoggingLevel Arch01 { get; set; } = new LoggingLevel { Label = "EVENT", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(255, 0, 0), IsChecked = true, ToolTip = "EVENT / Arch01" };
+        public LoggingLevel Arch02 { get; set; } = new LoggingLevel { Label = "EVENT_HANDLER", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "EVENT_HANDLER / Arch02" };
+        public LoggingLevel Arch03 { get; set; } = new LoggingLevel { Label = "APPLICATION_INITIALIZE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "APPLICATION_INITIALIZE / Arch03" };
+        public LoggingLevel Arch04 { get; set; } = new LoggingLevel { Label = "CORE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "CORE / Arch04" };
+        public LoggingLevel Arch05 { get; set; } = new LoggingLevel { Label = "MODULE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "MODULE / Arch05" };
+        public LoggingLevel Arch06 { get; set; } = new LoggingLevel { Label = "MODULE_INITIALIZE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "MODULE_INITIALIZE / Arch06" };
+        public LoggingLevel Arch07 { get; set; } = new LoggingLevel { Label = "APPLICATION", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "APPLICATION / Arch07" };
+        public LoggingLevel Arch08 { get; set; } = new LoggingLevel { Label = "APPLICATIONSERVICES", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "APPLICATIONSERVICES / Arch08" };
+        public LoggingLevel Arch09 { get; set; } = new LoggingLevel { Label = "DOMAIN", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "DOMAIN / Arch09" };
+        public LoggingLevel Arch10 { get; set; } = new LoggingLevel { Label = "DOMAINSERVICES", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(0, 255, 255), IsChecked = true, ToolTip = "DOMAINSERVICES / Arch10" };
+        public LoggingLevel Arch11 { get; set; } = new LoggingLevel { Label = "PERSISTENCE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(100, 240, 100), IsChecked = true, ToolTip = "PERSISTENCE / Arch11" };
+        public LoggingLevel Arch12 { get; set; } = new LoggingLevel { Label = "PERSISTENCE_LOW", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(255, 180, 0), IsChecked = true, ToolTip = "PERSISTENCE_LOW / Arch12" };
+        public LoggingLevel Arch13 { get; set; } = new LoggingLevel { Label = "INFRASTRUCTURE", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(186, 85, 211), IsChecked = true, ToolTip = "INFRASTRUCTURE / Arch13" };
+        public LoggingLevel Arch14 { get; set; } = new LoggingLevel { Label = "PRESENTATION", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "PRESENTATION / Arch14" };
+        public LoggingLevel Arch15 { get; set; } = new LoggingLevel { Label = "VIEW", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "VIEW / Arch15" };
+        public LoggingLevel Arch16 { get; set; } = new LoggingLevel { Label = "VIEW_LOW", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "VIEW_LOW / Arch16" };
+        public LoggingLevel Arch17 { get; set; } = new LoggingLevel { Label = "VIEWMODEL", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "VIEWMODEL / Arch17" };
+        public LoggingLevel Arch18 { get; set; } = new LoggingLevel { Label = "VIEWMODEL_LOW", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "VIEWMODEL_LOW / Arch18" };
         public LoggingLevel Arch19 { get; set; } = new LoggingLevel { Label = "Arch19", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Arch19" };
 
         public LoggingLevel Trace00 { get; set; } = new LoggingLevel { Label = "Trace00", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace00" };
@@ -72,6 +72,5 @@ namespace VNCLogViewer.Resources
         public LoggingLevel Trace27 { get; set; } = new LoggingLevel { Label = "Trace27", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace27" };
         public LoggingLevel Trace28 { get; set; } = new LoggingLevel { Label = "Trace28", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace28" };
         public LoggingLevel Trace29 { get; set; } = new LoggingLevel { Label = "Trace29", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace29" };
-
     }
 }

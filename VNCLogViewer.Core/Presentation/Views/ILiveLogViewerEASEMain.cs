@@ -2,7 +2,7 @@
 
 namespace VNCLogViewer.Presentation.Views
 {
-    public interface ILiveLogViewerEASEMain : IView
+    public interface ILiveLogViewerEASEMain
     {
     }
 }

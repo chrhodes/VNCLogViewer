@@ -409,6 +409,14 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                     switch (priority)
                     {
+                        #region Error
+
+                        #endregion
+
+                        #region Warning
+
+                        #endregion
+
                         #region Info
 
                         case 100:
@@ -511,9 +519,169 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                         #region Arch00 - Arch09
 
+                        case 9000:
+                            if (LoggingUIConfig.Arch00.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch00.Color);
+                            }
+                            break;
+
+                        case 9001:
+                            if (LoggingUIConfig.Arch01.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch01.Color);
+                            }
+                            break;
+
+                        case 9002:
+                            if (LoggingUIConfig.Arch02.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch02.Color);
+                            }
+                            break;
+
+                        case 9003:
+                            if (LoggingUIConfig.Arch03.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch03.Color);
+                            }
+                            break;
+
+                        case 9004:
+                            if (LoggingUIConfig.Arch04.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch04.Color);
+                            }
+                            break;
+
+                        case 9005:
+                            if (LoggingUIConfig.Arch05.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch05.Color);
+                            }
+                            break;
+
+                        case 9006:
+                            if (LoggingUIConfig.Arch06.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch06.Color);
+                            }
+                            break;
+
+                        case 9007:
+                            if (LoggingUIConfig.Arch07.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch07.Color);
+                            }
+                            break;
+
+                        case 9008:
+                            if (LoggingUIConfig.Arch08.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch08.Color);
+                            }
+                            break;
+
+                        case 9009:
+                            if (LoggingUIConfig.Arch09.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch09.Color);
+                            }
+                            break;
+
                         #endregion
 
                         #region Arch10 - Arch19
+
+                        case 9010:
+                            if (LoggingUIConfig.Arch10.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch10.Color);
+                            }
+                            break;
+
+                        case 9011:
+                            if (LoggingUIConfig.Arch11.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch11.Color);
+                            }
+                            break;
+
+                        case 9012:
+                            if (LoggingUIConfig.Arch12.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch12.Color);
+                            }
+                            break;
+
+                        case 9013:
+                            if (LoggingUIConfig.Arch13.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch13.Color);
+                            }
+                            break;
+
+                        case 9014:
+                            if (LoggingUIConfig.Arch14.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch14.Color);
+                            }
+                            break;
+
+                        case 9015:
+                            if (LoggingUIConfig.Arch15.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch15.Color);
+                            }
+                            break;
+
+                        case 9016:
+                            if (LoggingUIConfig.Arch16.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch16.Color);
+                            }
+                            break;
+
+                        case 9017:
+                            if (LoggingUIConfig.Arch17.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch17.Color);
+                            }
+                            break;
+
+                        case 9018:
+                            if (LoggingUIConfig.Arch18.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch18.Color);
+                            }
+                            break;
+
+                        case 9019:
+                            if (LoggingUIConfig.Arch19.IsChecked == true)
+                            {
+                                displayMessage = ColorFormatMessage(formattedMessage,
+                                    LoggingUIConfig.Arch19.Color);
+                            }
+                            break;
 
                         #endregion
 
@@ -777,7 +945,6 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                     if (displayMessage)
                     {
-                        //formattedMessage = String.Format("{0}\r", message);
                         AppendFormattedMessage(formattedMessage);
                     }
                 }

@@ -4,6 +4,7 @@ using DevExpress.XtraRichEdit.API.Native;
 
 
 using VNC.Core.Mvvm;
+using luic = VNCLogViewer.LoggingUIConfig;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -20,7 +21,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         // How does one handle this without ugly circular references to projects
 
         //LoggingColors LoggingColors { get; set; }
-        //LoggingUIConfig LoggingUIConfig { get; set; }
+        luic.LoggingUIConfig LoggingUIConfig { get; set; }
 
         //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
 

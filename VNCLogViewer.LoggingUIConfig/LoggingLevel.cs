@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using VNC.Core.Mvvm;
 
-namespace VNCLogViewer.Resources
+namespace VNCLogViewer.LoggingUIConfig
 {
     public class LoggingLevel : INPCBase
     {

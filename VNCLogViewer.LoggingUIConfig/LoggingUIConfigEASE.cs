@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VNCLogViewer.Resources
+namespace VNCLogViewer.LoggingUIConfig
 {
     public class LoggingUIConfigEASE
     {

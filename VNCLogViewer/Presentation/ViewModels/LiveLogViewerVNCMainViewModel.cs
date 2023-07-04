@@ -10,7 +10,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-using VNCLogViewer.Resources;
+using luic = VNCLogViewer.LoggingUIConfig;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -47,9 +47,9 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         public Document Doc { get; set; }
 
-        private LoggingColors _loggingColors = new LoggingColors();
+        private luic.LoggingColors _loggingColors = new luic.LoggingColors();
        
-        public LoggingColors LoggingColors
+        public luic.LoggingColors LoggingColors
         {
             get
             {
@@ -63,9 +63,9 @@ namespace VNCLogViewer.Presentation.ViewModels
             }
         }
 
-        private LoggingUIConfig _loggingUIConfig = new LoggingUIConfig();
+        private luic.LoggingUIConfig _loggingUIConfig = new luic.LoggingUIConfig();
 
-        public LoggingUIConfig LoggingUIConfig
+        public luic.LoggingUIConfig LoggingUIConfig
         {
             get => _loggingUIConfig;
             set

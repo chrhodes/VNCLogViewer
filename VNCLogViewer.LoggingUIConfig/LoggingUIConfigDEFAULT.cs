@@ -1,10 +1,13 @@
 ﻿using System.Drawing;
 
-namespace VNCLogViewer.Resources
+using VNCLogViewer.LoggingUIConfig;
+
+namespace VNCLogViewer.ResoLoggingUIConfigurces
 {
-    public class LoggingUIConfig
+    public class LoggingUIConfigDEFAULT
     {
-        public string Name { get; set; } = "Default";
+
+        public string Name { get; set; } = "DEFAULT";
 
         // TODO(crhodes)
         // Add Error, Warning
@@ -14,7 +17,7 @@ namespace VNCLogViewer.Resources
         public LoggingLevel Info02 { get; set; } = new LoggingLevel { Label = "Info02", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info02" };
         public LoggingLevel Info03 { get; set; } = new LoggingLevel { Label = "Info03", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info03" };
         public LoggingLevel Info04 { get; set; } = new LoggingLevel { Label = "Info04", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Info04" };
-
+ 
         public LoggingLevel Debug00 { get; set; } = new LoggingLevel { Label = "Debug00", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug00" };
         public LoggingLevel Debug01 { get; set; } = new LoggingLevel { Label = "Debug01", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug01" };
         public LoggingLevel Debug02 { get; set; } = new LoggingLevel { Label = "Debug02", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Debug02" };
@@ -72,6 +75,5 @@ namespace VNCLogViewer.Resources
         public LoggingLevel Trace27 { get; set; } = new LoggingLevel { Label = "Trace27", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace27" };
         public LoggingLevel Trace28 { get; set; } = new LoggingLevel { Label = "Trace28", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace28" };
         public LoggingLevel Trace29 { get; set; } = new LoggingLevel { Label = "Trace29", Visibility = System.Windows.Visibility.Visible, Color = Color.FromArgb(200, 200, 200), IsChecked = true, ToolTip = "Trace29" };
-
     }
 }

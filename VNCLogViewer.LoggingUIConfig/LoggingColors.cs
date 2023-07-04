@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VNCLogViewer.Resources
+namespace VNCLogViewer.LoggingUIConfig
 {
     // NOTE(crhodes)
     // This controls the UI Checkbox Colors and the Log message colors.

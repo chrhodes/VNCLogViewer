@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Reflection.Emit;
 
-namespace VNCLogViewer.Resources
+namespace VNCLogViewer.LoggingUIConfig
 
 {
 

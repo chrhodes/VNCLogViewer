@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
@@ -13,7 +13,7 @@
     </ItemGroup>
   
     <ItemGroup>
-        <!--<ProjectReference Include="..\VNCLogViewer.Domain\VNCLogViewer.Domain.csproj" />-->
+        <ProjectReference Include="..\VNCLogViewer.LoggingUIConfig\VNCLogViewer.LoggingUIConfig.csproj" />
     </ItemGroup>  
   
 </Project>

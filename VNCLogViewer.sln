@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Logging", "..\VNC\VNC.L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\VNC\VNC.Core\VNC.Core.csproj", "{BA69945D-6A0A-4E27-9A4E-2DA48E31626D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCLogViewer.Core", "VNCLogViewer.Core\VNCLogViewer.Core.csproj", "{FFECE81D-9F7E-400C-8100-47E3935EA93D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer.Core", "VNCLogViewer.Core\VNCLogViewer.Core.csproj", "{FFECE81D-9F7E-400C-8100-47E3935EA93D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer.LoggingUIConfig", "VNCLogViewer.LoggingUIConfig\VNCLogViewer.LoggingUIConfig.csproj", "{C53F9023-6AE0-48E6-8A82-A1DFD1321092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FFECE81D-9F7E-400C-8100-47E3935EA93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFECE81D-9F7E-400C-8100-47E3935EA93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFECE81D-9F7E-400C-8100-47E3935EA93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

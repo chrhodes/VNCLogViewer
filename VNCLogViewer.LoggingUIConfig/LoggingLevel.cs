@@ -87,21 +87,21 @@ namespace VNCLogViewer.LoggingUIConfig
 
         #region INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        // This is the traditional approach - requires string name to be passed in
+        //// This is the traditional approach - requires string name to be passed in
 
-        //private void OnPropertyChanged(string propertyName)
+        ////private void OnPropertyChanged(string propertyName)
+        ////{
+        ////    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        ////}
+
+        //// This is the new CompilerServices attribute!
+
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         //{
         //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //}
-
-        // This is the new CompilerServices attribute!
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
     }

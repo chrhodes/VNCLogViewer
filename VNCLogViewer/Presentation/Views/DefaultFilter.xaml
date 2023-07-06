@@ -1,0 +1,580 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCLogViewer.Presentation.Views.DefaultFilter"
+    x:Name="thisDefaultFilter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+        xmlns:converters="clr-namespace:VNCLogViewer.Presentation.Converters"
+    mc:Ignorable="d"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource DefaultFilterBackground}"
+
+    d:DesignWidth="800" d:DesignHeight="450"
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
+>
+
+    <UserControl.Resources>
+        <converters:SystemColorToSolidColorBrushConverter x:Key="ColorToBrushConverter" />
+    </UserControl.Resources>
+    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+
+    <!-- <d:DesignerProperties.DesignStyle> -->
+    <!-- <Style TargetType="UserControl"> -->
+    <!-- <Setter Property="Background" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <!-- <UserControl.Resources> -->
+    <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+    <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+    <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToDefaultFilterWrapperConverter" /> -->
+    <!-- <DataTemplate x:Key="dataTemplateDefaultFilter"> -->
+    <!-- <StackPanel> -->
+    <!-- <Label Content="{Binding XPath=@Name}" /> -->
+    <!-- </StackPanel> -->
+    <!-- </DataTemplate> -->
+
+    <!-- <DataTemplate x:Key="dataTemplateDefaultFilterX"> -->
+    <!-- <StackPanel> -->
+    <!-- <Label Content="{Binding Name}" /> -->
+    <!-- </StackPanel> -->
+    <!-- </DataTemplate> -->
+    <!-- </UserControl.Resources> -->
+
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+    <!-- <localvm:DefaultFilterViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <dxlc:LayoutGroup x:Name="lgDefaultFilterLayout" Header="Default Filter" Visibility="Visible"
+                                                              Orientation="Horizontal"
+                                                              HorizontalAlignment="Stretch"
+                                                              IsCollapsible="True"
+                                                              View="GroupBox">
+
+        <dxlc:LayoutGroup Orientation="Horizontal">
+
+            <Button x:Name="btnToggle"
+                                                        HorizontalAlignment="Left"
+                                                        Click="btnToggle_Click"
+                                                        Content="All Off" />
+
+            <dxlc:LayoutGroup Orientation="Vertical">
+
+                <!--Info Level-->
+
+                <dxlc:LayoutGroup x:Name="lgInfo" Orientation="Horizontal"
+                                                                          HorizontalAlignment="Stretch">
+
+                    <Button x:Name="btnInfoToggle"
+                                                                      HorizontalAlignment="Left"
+                                                                      Click="btnInfoToggle_Click"
+                                                                      Content="All Off" />
+
+                    <dxe:CheckEdit x:Name="ceInfo00"
+                                                                Visibility="{Binding LoggingUIConfig.Info00.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Info00.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Info00.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Info00.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Info00.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceInfo01"
+                                                                Visibility="{Binding LoggingUIConfig.Info01.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Info01.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Info01.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Info01.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Info01.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceInfo02"
+                                                                Visibility="{Binding LoggingUIConfig.Info02.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Info02.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Info02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Info02.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Info02.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceInfo03"
+                                                                Visibility="{Binding LoggingUIConfig.Info03.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Info03.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Info03.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Info03.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Info03.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceInfo04"
+                                                                Visibility="{Binding LoggingUIConfig.Info04.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Info04.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Info04.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Info04.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Info04.ToolTip}" />
+                </dxlc:LayoutGroup>
+
+                <!--Debug Level-->
+
+                <dxlc:LayoutGroup x:Name="lgDegbug" Orientation="Horizontal"
+                                                                          HorizontalAlignment="Stretch">
+
+                    <Button x:Name="btnDebugToggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnDebugToggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit x:Name="ceDebug00"
+                                                                Visibility="{Binding LoggingUIConfig.Debug00.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Debug00.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug00.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug00.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug00.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceDebug01"
+                                                                Visibility="{Binding LoggingUIConfig.Debug01.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Debug01.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug01.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug01.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug01.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceDebug02Enter"
+                                                                Content="{Binding LoggingUIConfig.Debug02.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug02.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug02.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceDebug02Exit"
+                                                                Content="{Binding LoggingUIConfig.Debug02.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug02.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug02.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceDebug03"
+                                                                Visibility="{Binding LoggingUIConfig.Debug03.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Debug03.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug03.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug03.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug03.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceDebug04"
+                                                                Visibility="{Binding LoggingUIConfig.Debug04.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Debug04.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Debug04.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Debug04.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Debug04.ToolTip}" />
+                </dxlc:LayoutGroup>
+
+                <!--Arch00-09 Level-->
+
+                <dxlc:LayoutGroup x:Name="lgArch00_09" Orientation="Horizontal"
+                                                                          HorizontalAlignment="Stretch">
+
+                    <Button x:Name="btnArch00_09Toggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnArch00_09Toggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit x:Name="ceArch00"
+                                                                Visibility="{Binding LoggingUIConfig.Arch00.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch00.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch00.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch00.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch00.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch01"
+                                                                Visibility="{Binding LoggingUIConfig.Arch01.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch01.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch01.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch01.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch01.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch02"
+                                                                Visibility="{Binding LoggingUIConfig.Arch02.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch02.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch02.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch02.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch03"
+                                                                Visibility="{Binding LoggingUIConfig.Arch03.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch03.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch03.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch03.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch03.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch04"
+                                                                Visibility="{Binding LoggingUIConfig.Arch04.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch04.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch04.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch04.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch04.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch05"
+                                                                Visibility="{Binding LoggingUIConfig.Arch05.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch05.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch05.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch05.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch05.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch06"
+                                                                Visibility="{Binding LoggingUIConfig.Arch06.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch06.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch06.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch06.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch06.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch07"
+                                                                Visibility="{Binding LoggingUIConfig.Arch07.Visibility}"
+                                                                 Content="{Binding LoggingUIConfig.Arch07.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch07.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch07.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch07.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch08"
+                                                                Visibility="{Binding LoggingUIConfig.Arch08.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch08.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch08.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch08.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch08.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch09"
+                                                                Visibility="{Binding LoggingUIConfig.Arch09.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch09.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch09.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch09.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch09.ToolTip}" />
+                </dxlc:LayoutGroup>
+
+                <!--Arch10-19 Level-->
+
+                <dxlc:LayoutGroup x:Name="lgArch10_19" Orientation="Horizontal"
+                                                                          HorizontalAlignment="Stretch">
+
+                    <Button x:Name="btnArch10_19Toggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnArch10_19Toggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit x:Name="ceArch10"
+                                                                Visibility="{Binding LoggingUIConfig.Arch10.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch10.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch10.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch10.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch10.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch11"
+                                                                Visibility="{Binding LoggingUIConfig.Arch11.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch11.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch11.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch11.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch11.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch12"
+                                                                Visibility="{Binding LoggingUIConfig.Arch12.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch12.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch12.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch12.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch12.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch13"
+                                                                Visibility="{Binding LoggingUIConfig.Arch13.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch13.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch13.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch13.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch13.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch14"
+                                                                Visibility="{Binding LoggingUIConfig.Arch14.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch14.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch14.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch14.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch14.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch15"
+                                                                Visibility="{Binding LoggingUIConfig.Arch15.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch15.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch15.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch15.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch15.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch16"
+                                                                Visibility="{Binding LoggingUIConfig.Arch16.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch16.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch16.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch16.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch16.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch17"
+                                                                Visibility="{Binding LoggingUIConfig.Arch17.Visibility}"
+                                                                 Content="{Binding LoggingUIConfig.Arch17.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch17.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch17.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch17.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch18"
+                                                                Visibility="{Binding LoggingUIConfig.Arch18.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch18.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch18.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch18.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch18.ToolTip}" />
+                    <dxe:CheckEdit x:Name="ceArch19"
+                                                                Visibility="{Binding LoggingUIConfig.Arch19.Visibility}"
+                                                                Content="{Binding LoggingUIConfig.Arch19.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Arch19.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Arch19.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Arch19.ToolTip}" />
+                </dxlc:LayoutGroup>
+
+                <!-- Trace00-09 Level -->
+
+                <dxlc:LayoutGroup
+                                                            x:Name="lgTrace00_09"
+                                                            HorizontalAlignment="Stretch"
+                                                            Orientation="Horizontal">
+
+                    <Button
+                                                                x:Name="btnTrace00_09Toggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnTrace00_09Toggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace00"
+                                                                Content="{Binding LoggingUIConfig.Trace00.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace00.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace00.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace00.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace00.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace01"
+                                                                Content="{Binding LoggingUIConfig.Trace01.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace01.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace01.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace01.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace01.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace02"
+                                                                Content="{Binding LoggingUIConfig.Trace02.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace02.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace02.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace02.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace03"
+                                                                Content="{Binding LoggingUIConfig.Trace03.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace03.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace03.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace03.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace03.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace04"
+                                                                Content="{Binding LoggingUIConfig.Trace04.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace04.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace04.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace04.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace04.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace05"
+                                                                Content="{Binding LoggingUIConfig.Trace05.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace05.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace05.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace05.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace05.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace06"
+                                                                Content="{Binding LoggingUIConfig.Trace06.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace06.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace06.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace06.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace06.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace07"
+                                                                Content="{Binding LoggingUIConfig.Trace07.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace07.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace07.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace07.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace07.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace08"
+                                                                Content="{Binding LoggingUIConfig.Trace08.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace08.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace08.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace08.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace08.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace09"
+                                                                Content="{Binding LoggingUIConfig.Trace09.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace09.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace09.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace09.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace00.Visibility}" />
+                </dxlc:LayoutGroup>
+
+                <!-- Trace10-19 Level -->
+
+                <dxlc:LayoutGroup
+                                                            x:Name="lgTrace10_19"
+                                                            HorizontalAlignment="Stretch"
+                                                            Orientation="Horizontal">
+
+                    <Button
+                                                                x:Name="btnTrace10_19Toggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnTrace10_19Toggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace10"
+                                                                Content="{Binding LoggingUIConfig.Trace10.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace10.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace10.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace10.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace10.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace11"
+                                                                Content="{Binding LoggingUIConfig.Trace11.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace11.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace11.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace11.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace11.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace12"
+                                                                Content="{Binding LoggingUIConfig.Trace12.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace12.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace12.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace12.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace12.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace13"
+                                                                Content="{Binding LoggingUIConfig.Trace13.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace13.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace13.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace13.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace13.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace14"
+                                                                Content="{Binding LoggingUIConfig.Trace14.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace14.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace14.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace14.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace14.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace15"
+                                                                Content="{Binding LoggingUIConfig.Trace15.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace15.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace15.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace15.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace15.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace16"
+                                                                Content="{Binding LoggingUIConfig.Trace16.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace16.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace16.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace16.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace16.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace17"
+                                                                Content="{Binding LoggingUIConfig.Trace17.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace17.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace17.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace17.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace17.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace18"
+                                                                Content="{Binding LoggingUIConfig.Trace18.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace18.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace18.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace18.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace18.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace19"
+                                                                Content="{Binding LoggingUIConfig.Trace19.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace19.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace19.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace19.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace19.Visibility}" />
+                </dxlc:LayoutGroup>
+
+                <!-- Trace20-29 Level -->
+
+                <dxlc:LayoutGroup
+                                                            x:Name="lgTrace20_29"
+                                                            HorizontalAlignment="Stretch"
+                                                            Orientation="Horizontal">
+
+                    <Button
+                                                                x:Name="btnTrace20_29Toggle"
+                                                                HorizontalAlignment="Left"
+                                                                Click="btnTrace20_29Toggle_Click"
+                                                                Content="All Off" />
+
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace20"
+                                                                Content="{Binding LoggingUIConfig.Trace20.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace20.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace20.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace20.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace20.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace21"
+                                                                Content="{Binding LoggingUIConfig.Trace21.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace21.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace21.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace21.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace21.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace22"
+                                                                Content="{Binding LoggingUIConfig.Trace22.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace22.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace22.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace22.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace22.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace23"
+                                                                Content="{Binding LoggingUIConfig.Trace23.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace23.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace23.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace23.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace23.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace24"
+                                                                Content="{Binding LoggingUIConfig.Trace24.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace24.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace24.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace24.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace24.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace25"
+                                                                Content="{Binding LoggingUIConfig.Trace25.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace25.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace25.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace25.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace25.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace26"
+                                                                Content="{Binding LoggingUIConfig.Trace26.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace26.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace26.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace26.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace26.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace27"
+                                                                Content="{Binding LoggingUIConfig.Trace27.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace27.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace27.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace27.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace27.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace28"
+                                                                Content="{Binding LoggingUIConfig.Trace28.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace28.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace28.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace28.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace28.Visibility}" />
+                    <dxe:CheckEdit
+                                                                x:Name="ceTrace29"
+                                                                Content="{Binding LoggingUIConfig.Trace29.Label}"
+                                                                Foreground="{Binding LoggingUIConfig.Trace29.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                                                IsChecked="{Binding LoggingUIConfig.Trace29.IsChecked}"
+                                                                ToolTip="{Binding LoggingUIConfig.Trace29.ToolTip}"
+                                                                Visibility="{Binding LoggingUIConfig.Trace29.Visibility}" />
+                </dxlc:LayoutGroup>
+                
+            </dxlc:LayoutGroup>
+            
+        </dxlc:LayoutGroup>
+
+
+        
+    </dxlc:LayoutGroup>
+
+    <!-- This is useful for debugging V VM constructor issues --><!--
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Label Content="V:" />
+            <Label Content="{Binding ElementName=thisDefaultFilter, Path=InstanceCountV}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Label Content="VM:" />
+            <Label Content="{Binding InstanceCountVM}" />
+        </StackPanel>
+    </StackPanel>-->
+
+
+</vncmvvm:ViewBase>

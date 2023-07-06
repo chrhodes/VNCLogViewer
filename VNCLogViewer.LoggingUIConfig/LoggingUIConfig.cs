@@ -4,7 +4,7 @@ namespace VNCLogViewer.LoggingUIConfig
 {
     public class LoggingUIConfig
     {
-        public string Name { get; set; } = "Default";
+        public string Name { get; set; }
 
         // TODO(crhodes)
         // Add Error, Warning

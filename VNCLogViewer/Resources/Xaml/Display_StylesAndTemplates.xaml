@@ -31,6 +31,7 @@
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
     <SolidColorBrush x:Key="SignalRInteractionBackground" Color="#909090" />
+    <SolidColorBrush x:Key="DefaultFilterBackground" Color="#A0A0A0" /> 
 
     <Style TargetType="TextBox">
         <Setter Property="Validation.ErrorTemplate"> 

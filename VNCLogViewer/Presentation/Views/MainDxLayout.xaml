@@ -112,9 +112,15 @@
                                     </Grid>
                                 </dxlc:LayoutGroup>
 
-                                <dxlc:LayoutGroup Header="VNC2 LiveLogViewer">
+                                <dxlc:LayoutGroup Header="VNCARCH LiveLogViewer">
                                     <Grid>
-                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNC2MainRegion}" />
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="MINSK LiveLogViewer">
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
                                     </Grid>
                                 </dxlc:LayoutGroup>
 

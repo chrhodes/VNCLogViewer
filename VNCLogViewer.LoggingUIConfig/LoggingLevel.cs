@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.CompilerServices;
+﻿using System.Drawing;
+using System.Windows;
 
 using VNC.Core.Mvvm;
 
@@ -23,7 +22,24 @@ namespace VNCLogViewer.LoggingUIConfig
                 OnPropertyChanged();
             }
         }
-        private Color _color;
+
+        private Color _labelColor = Color.Black;
+        public Color LabelColor
+        {
+            get => _labelColor;
+            set
+            {
+                if (_labelColor == value)
+                {
+                    return;
+                }
+
+                _labelColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Color _color = Color.FromArgb(200, 200, 200);
         public Color Color
         {
             get => _color;
@@ -38,7 +54,8 @@ namespace VNCLogViewer.LoggingUIConfig
                 OnPropertyChanged();
             }
         }
-        private bool _isChecked;
+
+        private bool _isChecked = true;
         public bool IsChecked
         {
             get => _isChecked;
@@ -53,6 +70,7 @@ namespace VNCLogViewer.LoggingUIConfig
                 OnPropertyChanged();
             }
         }
+
         private string _toolTip;
         public string ToolTip
         {
@@ -69,7 +87,7 @@ namespace VNCLogViewer.LoggingUIConfig
             }
         }
 
-        private System.Windows.Visibility _visibility;
+        private Visibility _visibility = Visibility.Visible;
         public System.Windows.Visibility Visibility
         {
             get => _visibility;

@@ -22,10 +22,14 @@ namespace VNCLogViewer.Core
 
         public static string LiveLogViewerVNCMainRegion = "LiveLogViewerVNCMainRegion";
         public static string LiveLogViewerVNCNavigationRegion = "LiveLogViewerVNCNavigationRegion";
-        public static string LiveLogViewerVNCDetailRegion = "LiveLogViewerVNC2DetailRegion";
+        public static string LiveLogViewerVNCDetailRegion = "LiveLogViewerVNCARCHDetailRegion";
 
-        public static string LiveLogViewerVNC2MainRegion = "LiveLogViewerVNC2MainRegion";
-        public static string LiveLogViewerVNC2NavigationRegion = "LiveLogViewerVNC2NavigationRegion";
-        public static string LiveLogViewerVNC2DetailRegion = "LiveLogViewerVNC2DetailRegion";
+        public static string LiveLogViewerVNCARCHMainRegion = "LiveLogViewerVNCARCHMainRegion";
+        public static string LiveLogViewerVNCARCHNavigationRegion = "LiveLogViewerVNCARCHNavigationRegion";
+        public static string LiveLogViewerVNCARCHDetailRegion = "LiveLogViewerVNCARCHDetailRegion";
+
+        public static string LiveLogViewerMINSKMainRegion = "LiveLogViewerMINSKMainRegion";
+        public static string LiveLogViewerMINSKNavigationRegion = "LiveLogViewerMINSKNavigationRegion";
+        public static string LiveLogViewerMINSKDetailRegion = "LiveLogViewerMINSKDetailRegion";
     }
 }

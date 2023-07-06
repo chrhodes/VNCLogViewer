@@ -54,7 +54,8 @@ namespace VNCLogViewer
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNCMain>();
 
             //containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
-            containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNC2Main>();
+            containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNCARCHMain>();
+            containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerMINSKMain>();
 
             //containerRegistry.Register<ILiveLogViewerEASEMainViewModel, LiveLogViewerEASEMainViewModel>();
             //containerRegistry.Register<ILiveLogViewerEASEMain, LiveLogViewerEASEMain>();
@@ -80,7 +81,9 @@ namespace VNCLogViewer
             //this loads LiveLogViewerVNCMain into the Shell loaded in App.Xaml.cs
 
             _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCMainRegion, typeof(LiveLogViewerVNCMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNC2MainRegion, typeof(LiveLogViewerVNC2Main));
+            _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerVNCARCHMainRegion, typeof(LiveLogViewerVNCARCHMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerMINSKMainRegion, typeof(LiveLogViewerMINSKMain));
+
             //_regionManager.RegisterViewWithRegion(RegionNames.LiveLogViewerEASEMainRegion, typeof(LiveLogViewerEASEMain));
 
             // These load into LiveLogViewerVNCMain.xaml

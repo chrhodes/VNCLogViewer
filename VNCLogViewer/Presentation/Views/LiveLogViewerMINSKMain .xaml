@@ -1,6 +1,6 @@
 ﻿<UserControl
-    x:Class="VNCLogViewer.Presentation.Views.LiveLogViewerVNC2Main"
-    x:Name="thisLiveLogViewerVNC2Main"
+    x:Class="VNCLogViewer.Presentation.Views.LiveLogViewerMINSKMain"
+    x:Name="thisLiveLogViewerMINSKMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cb="clr-namespace:CalcBinding;assembly=CalcBinding"
@@ -111,16 +111,12 @@
                                             TextChanged="recLogStream_TextChanged" />
 
                                         <!-- Capture filter -->
-
-                                        <dxlc:LayoutGroup
-                                            x:Name="lgCaptureFilter"
-                                            HorizontalAlignment="Stretch"
+                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
+                                            Visibility="Visible"
                                             VerticalAlignment="Bottom"
-                                            Header="Capture Filter"
-                                            IsCollapsible="True"
-                                            Orientation="Vertical"
-                                            View="GroupBox"
-                                            Visibility="Visible">
+                                            HorizontalAlignment="Stretch"                                            
+                                            IsCollapsible="True"                                            
+                                            View="GroupBox" >
 
                                             <!-- Start Custom Layout -->
 
@@ -368,7 +364,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <Label Content="V:" />
-                    <Label Content="{Binding ElementName=thisLiveLogViewerVNC2Main, Path=InstanceCountV}" />
+                    <Label Content="{Binding ElementName=thisLiveLogViewerMINSKMain, Path=InstanceCountV}" />
                 </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <Label Content="VM:" />

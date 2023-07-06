@@ -9,7 +9,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-        xmlns:converters="clr-namespace:VNCLogViewer.Presentation.Converters"
+    xmlns:converters="clr-namespace:VNCLogViewer.Presentation.Converters"
     mc:Ignorable="d"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
@@ -22,7 +22,7 @@
     <UserControl.Resources>
         <converters:SystemColorToSolidColorBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
-    
+
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
 
     <!-- <d:DesignerProperties.DesignStyle> -->
@@ -53,61 +53,65 @@
     <!-- <localvm:DefaultFilterViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgDefaultFilterLayout" Header="Default Filter" Visibility="Visible"
-                                                              Orientation="Horizontal"
-                                                              HorizontalAlignment="Stretch"
-                                                              IsCollapsible="True"
-                                                              View="GroupBox">
+    <dxlc:LayoutGroup x:Name="lgDefaultFilterLayout" Header="Default Filter" Orientation="Horizontal"
+        Visibility="Visible"
+        HorizontalAlignment="Stretch"
+        IsCollapsible="True"
+        View="GroupBox">
 
         <dxlc:LayoutGroup Orientation="Horizontal">
 
             <Button x:Name="btnToggle"
-                                                        HorizontalAlignment="Left"
-                                                        Click="btnToggle_Click"
-                                                        Content="All Off" />
+                HorizontalAlignment="Left"
+                Click="btnToggle_Click"
+                Content="All Off" />
 
+            <!-- NOTE(crhodes)
+             All Foreground CheckEdit properties are bound to Color.
+             This will hopefully standout against background color.
+            -->
             <dxlc:LayoutGroup Orientation="Vertical">
 
                 <!--Info Level-->
 
                 <dxlc:LayoutGroup x:Name="lgInfo" Orientation="Horizontal"
-                                                                          HorizontalAlignment="Stretch">
+                    HorizontalAlignment="Stretch">
 
                     <Button x:Name="btnInfoToggle"
-                                                                      HorizontalAlignment="Left"
-                                                                      Click="btnInfoToggle_Click"
-                                                                      Content="All Off" />
+                            HorizontalAlignment="Left"
+                            Click="btnInfoToggle_Click"
+                            Content="All Off" />
 
                     <dxe:CheckEdit x:Name="ceInfo00"
-                                                                Visibility="{Binding LoggingUIConfig.Info00.Visibility}"
-                                                                Content="{Binding LoggingUIConfig.Info00.Label}"
-                                                                Foreground="{Binding LoggingUIConfig.Info00.Color, Converter={StaticResource ColorToBrushConverter}}"
-                                                                IsChecked="{Binding LoggingUIConfig.Info00.IsChecked}"
-                                                                ToolTip="{Binding LoggingUIConfig.Info00.ToolTip}" />
+                                    Visibility="{Binding LoggingUIConfig.Info00.Visibility}"
+                                    Content="{Binding LoggingUIConfig.Info00.Label}"
+                                    Foreground="{Binding LoggingUIConfig.Info00.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                    IsChecked="{Binding LoggingUIConfig.Info00.IsChecked}"
+                                    ToolTip="{Binding LoggingUIConfig.Info00.ToolTip}" />
                     <dxe:CheckEdit x:Name="ceInfo01"
-                                                                Visibility="{Binding LoggingUIConfig.Info01.Visibility}"
-                                                                Content="{Binding LoggingUIConfig.Info01.Label}"
-                                                                Foreground="{Binding LoggingUIConfig.Info01.Color, Converter={StaticResource ColorToBrushConverter}}"
-                                                                IsChecked="{Binding LoggingUIConfig.Info01.IsChecked}"
-                                                                ToolTip="{Binding LoggingUIConfig.Info01.ToolTip}" />
+                                    Visibility="{Binding LoggingUIConfig.Info01.Visibility}"
+                                    Content="{Binding LoggingUIConfig.Info01.Label}"
+                                    Foreground="{Binding LoggingUIConfig.Info01.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                    IsChecked="{Binding LoggingUIConfig.Info01.IsChecked}"
+                                    ToolTip="{Binding LoggingUIConfig.Info01.ToolTip}" />
                     <dxe:CheckEdit x:Name="ceInfo02"
-                                                                Visibility="{Binding LoggingUIConfig.Info02.Visibility}"
-                                                                Content="{Binding LoggingUIConfig.Info02.Label}"
-                                                                Foreground="{Binding LoggingUIConfig.Info02.Color, Converter={StaticResource ColorToBrushConverter}}"
-                                                                IsChecked="{Binding LoggingUIConfig.Info02.IsChecked}"
-                                                                ToolTip="{Binding LoggingUIConfig.Info02.ToolTip}" />
+                                    Visibility="{Binding LoggingUIConfig.Info02.Visibility}"
+                                    Content="{Binding LoggingUIConfig.Info02.Label}"
+                                    Foreground="{Binding LoggingUIConfig.Info02.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                    IsChecked="{Binding LoggingUIConfig.Info02.IsChecked}"
+                                    ToolTip="{Binding LoggingUIConfig.Info02.ToolTip}" />
                     <dxe:CheckEdit x:Name="ceInfo03"
-                                                                Visibility="{Binding LoggingUIConfig.Info03.Visibility}"
-                                                                Content="{Binding LoggingUIConfig.Info03.Label}"
-                                                                Foreground="{Binding LoggingUIConfig.Info03.Color, Converter={StaticResource ColorToBrushConverter}}"
-                                                                IsChecked="{Binding LoggingUIConfig.Info03.IsChecked}"
-                                                                ToolTip="{Binding LoggingUIConfig.Info03.ToolTip}" />
+                                    Visibility="{Binding LoggingUIConfig.Info03.Visibility}"
+                                    Content="{Binding LoggingUIConfig.Info03.Label}"
+                                    Foreground="{Binding LoggingUIConfig.Info03.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                    IsChecked="{Binding LoggingUIConfig.Info03.IsChecked}"
+                                    ToolTip="{Binding LoggingUIConfig.Info03.ToolTip}" />
                     <dxe:CheckEdit x:Name="ceInfo04"
-                                                                Visibility="{Binding LoggingUIConfig.Info04.Visibility}"
-                                                                Content="{Binding LoggingUIConfig.Info04.Label}"
-                                                                Foreground="{Binding LoggingUIConfig.Info04.Color, Converter={StaticResource ColorToBrushConverter}}"
-                                                                IsChecked="{Binding LoggingUIConfig.Info04.IsChecked}"
-                                                                ToolTip="{Binding LoggingUIConfig.Info04.ToolTip}" />
+                                    Visibility="{Binding LoggingUIConfig.Info04.Visibility}"
+                                    Content="{Binding LoggingUIConfig.Info04.Label}"
+                                    Foreground="{Binding LoggingUIConfig.Info04.Color, Converter={StaticResource ColorToBrushConverter}}"
+                                    IsChecked="{Binding LoggingUIConfig.Info04.IsChecked}"
+                                    ToolTip="{Binding LoggingUIConfig.Info04.ToolTip}" />
                 </dxlc:LayoutGroup>
 
                 <!--Debug Level-->
@@ -554,16 +558,12 @@
                                                                 ToolTip="{Binding LoggingUIConfig.Trace29.ToolTip}"
                                                                 Visibility="{Binding LoggingUIConfig.Trace29.Visibility}" />
                 </dxlc:LayoutGroup>
-                
             </dxlc:LayoutGroup>
-            
         </dxlc:LayoutGroup>
-
-
-        
     </dxlc:LayoutGroup>
 
-    <!-- This is useful for debugging V VM constructor issues --><!--
+    <!-- This is useful for debugging V VM constructor issues -->
+    <!--
 
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Horizontal" Margin="5">
@@ -575,6 +575,4 @@
             <Label Content="{Binding InstanceCountVM}" />
         </StackPanel>
     </StackPanel>-->
-
-
 </vncmvvm:ViewBase>

@@ -99,14 +99,27 @@
 
                                         <!--Capture filter-->
 
-                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="Capture Filter"
-                                            Orientation="Vertical" Visibility="Visible"
+                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
+                                            Visibility="Visible"
                                             VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Stretch"
-                                            IsCollapsible="True"
-                                            View="GroupBox">
+                                            HorizontalAlignment="Stretch"                                            
+                                            IsCollapsible="True"                                            
+                                            View="GroupBox" >
 
                                             <!--Start Custom Layout-->
+
+                                            <dxlc:LayoutGroup
+                                                x:Name="lgCustomFilterLayout"
+                                                HorizontalAlignment="Stretch"
+                                                Header="Custom Filter"
+                                                IsCollapsible="True"
+                                                Orientation="Vertical"
+                                                View="GroupBox"
+                                                Visibility="Visible">
+
+                                                <Label Content="lgCustomFilterLayout Stuff Goes Here" />
+
+                                            </dxlc:LayoutGroup>
 
                                             <!-- End Custom Layout -->
 
@@ -182,7 +195,9 @@
                                                 </dxlc:LayoutItem>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutGroup>
+                                        
                                     </dxlc:LayoutGroup>
+                                    
                                 </dxlc:LayoutGroup>
 
                                 <!--<dxlc:LayoutGroup Header="Y Stuff" Name="lg_Y">

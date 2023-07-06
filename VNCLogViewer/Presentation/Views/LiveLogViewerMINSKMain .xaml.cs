@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Drawing;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 using DevExpress.Xpf.Editors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
-
-using Microsoft.AspNetCore.SignalR.Client;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -18,11 +13,11 @@ using VNCLogViewer.Presentation.ViewModels;
 
 namespace VNCLogViewer.Presentation.Views
 {
-    public partial class LiveLogViewerEASEMain : UserControl, ILiveLogViewerEASEMain, IInstanceCountV
+    public partial class LiveLogViewerMINSKMain : UserControl, ILiveLogViewerVNCMain, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
-        public LiveLogViewerEASEMain(ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerMINSKMain(ILiveLogViewerViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -30,7 +25,6 @@ namespace VNCLogViewer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            //DataContext = ViewModel;
 
             InitializeView();
 
@@ -41,10 +35,9 @@ namespace VNCLogViewer.Presentation.Views
         {
             lgCaptureFilter.IsCollapsed = true;
             signalRInteraction.ViewModel = ViewModel;
-            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = 
 
             ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
-            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigEASE();
+            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigMINSK();
         }
 
         private void InitializeLogStream()
@@ -80,11 +73,12 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Event Handlers
 
+        // NOTE(crhodes)
+        // Why would this get called
         private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
             InitializeLogStream();
         }
-
 
         private void recLogStream_TextChanged(object sender, EventArgs e)
         {
@@ -122,12 +116,13 @@ namespace VNCLogViewer.Presentation.Views
             recLogStream.Copy();
         }
 
-        #endregion
-
-        #region Private Methods
 
         #endregion
 
+        #region Private Methods (none)
+
+
+        #endregion
 
         #region IInstanceCount
 

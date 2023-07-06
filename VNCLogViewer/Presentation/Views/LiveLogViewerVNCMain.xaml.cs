@@ -38,6 +38,7 @@ namespace VNCLogViewer.Presentation.Views
             signalRInteraction.ViewModel = ViewModel;
 
             ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
+            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = LoggingUIConfig;
         }
 
         private void InitializeLogStream()

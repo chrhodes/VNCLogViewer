@@ -53,7 +53,7 @@ namespace VNCLogViewer
             containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNCMain>();
 
-            containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
+            //containerRegistry.Register<ILiveLogViewerViewModel, LiveLogViewerViewModel>();
             containerRegistry.Register<ILiveLogViewerVNCMain, LiveLogViewerVNC2Main>();
 
             //containerRegistry.Register<ILiveLogViewerEASEMainViewModel, LiveLogViewerEASEMainViewModel>();

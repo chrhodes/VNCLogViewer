@@ -1,0 +1,115 @@
+{
+  "Name": "TEST Capture Filter",
+  "Info00": {
+    "Label": "Info00XX",
+    "LabelColor": {
+      "R": 100,
+      "G": 200,
+      "B": 50,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": true,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "0"
+    },
+    "Color": {
+      "R": 101,
+      "G": 201,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": true,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "0"
+    },
+    "IsChecked": true,
+    "ToolTip": "Info00XX",
+    "Visibility": 0
+  },
+  "Arch00": {
+    "Label": "CONSTRUCTOR",
+    "LabelColor": {
+      "R": 221,
+      "G": 160,
+      "B": 221,
+      "A": 255,
+      "IsKnownColor": true,
+      "IsEmpty": false,
+      "IsNamedColor": true,
+      "IsSystemColor": false,
+      "Name": "Plum"
+    },
+    "Color": {
+      "R": 222,
+      "G": 162,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": true,
+      "IsEmpty": false,
+      "IsNamedColor": true,
+      "IsSystemColor": false,
+      "Name": "Plum"
+    },
+    "IsChecked": true,
+    "ToolTip": "CONSTRUCTOR / Arch00",
+    "Visibility": 0
+  },
+  "Arch01": {
+    "Label": "EVENT",
+    "LabelColor": {
+      "R": 255,
+      "G": 255,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffffff00"
+    },
+    "Color": {
+      "R": 155,
+      "G": 155,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffffff00"
+    },
+    "IsChecked": true,
+    "ToolTip": "EVENT / Arch01",
+    "Visibility": 0
+  },
+  "Trace29": {
+    "Label": "Trace29XX",
+    "LabelColor": {
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": true,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "0"
+    },
+    "Color": {
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": true,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "0"
+    },
+    "IsChecked": true,
+    "ToolTip": "Trace29XX",
+    "Visibility": 0
+  }
+}

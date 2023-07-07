@@ -23,6 +23,8 @@ namespace VNCLogViewer.Presentation.ViewModels
         //LoggingColors LoggingColors { get; set; }
         luic.LoggingUIConfig LoggingUIConfig { get; set; }
 
+        string LoggingUIConfigFileName { get; set; }
+
         //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
 
         Document Doc { get; set; }

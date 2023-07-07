@@ -86,4 +86,4 @@ using System.Windows;
 //  1.0.0.0   yyyy/mm/dd    Developer
 //      Initial Version
 
-[assembly: AssemblyInformationalVersion("2023.07.05A")]
+[assembly: AssemblyInformationalVersion("2023.07.07A")]

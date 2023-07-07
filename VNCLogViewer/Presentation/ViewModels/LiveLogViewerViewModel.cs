@@ -120,7 +120,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                 _message = value;
                 OnPropertyChanged();
             }
-        }        
+        }
 
         public Document Doc { get; set; }
 
@@ -153,6 +153,20 @@ namespace VNCLogViewer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _loggingUIConfigFileName;
+
+        public string LoggingUIConfigFileName
+        {
+            get => _loggingUIConfigFileName;
+            set
+            {
+                if (_loggingUIConfigFileName == value)
+                    return;
+                _loggingUIConfigFileName = value;
+                OnPropertyChanged();
+            }
+        }        
 
         public Task LoadAsync()
         {

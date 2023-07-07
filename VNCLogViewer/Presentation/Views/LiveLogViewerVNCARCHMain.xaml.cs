@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
 using DevExpress.Xpf.Editors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
+
+using JSONConsoleApp.jsonDeserializeClass;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -36,8 +40,17 @@ namespace VNCLogViewer.Presentation.Views
             lgCaptureFilter.IsCollapsed = true;
             signalRInteraction.ViewModel = ViewModel;
 
-            ((ILiveLogViewerViewModel)ViewModel).Doc = recLogStream.Document;
-            ((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigVNCARCH();
+            ViewModel.Doc = recLogStream.Document;
+            ViewModel.LoggingUIConfigFileName = "loggingUIConfigVNCARCH.json";
+
+            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigVNCARCH();
+
+            Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");
+
+            string jsonString = File.ReadAllText(ViewModel.LoggingUIConfigFileName);
+            LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
+
+            ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
         }
 
         private void InitializeLogStream()

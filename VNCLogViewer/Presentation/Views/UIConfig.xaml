@@ -1,0 +1,160 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCLogViewer.Presentation.Views.UIConfig"
+    x:Name="thisUIConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:local="clr-namespace:VNCLogViewer.Presentation.Views"
+    
+    xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
+    
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"	
+    xmlns:core="clr-namespace:VNCLogViewer.Core;assembly=VNCLogViewer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/" 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource UIConfigBackground}"
+    
+    d:DesignWidth="800" d:DesignHeight="50"
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>  
+    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+    
+    <!-- <UserControl.Resources> -->
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToUIConfigWrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateUIConfig"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding XPath=@Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplateUIConfigX"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+    <!-- </UserControl.Resources> -->
+    
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:UIConfigViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <dxlc:LayoutGroup
+        View="Group" Orientation="Horizontal" >
+
+        <dxlc:LayoutItem Label="LoggingUIConfigFileName:">
+            <TextBox x:Name="tbUIConfigJSONPth"
+                Margin="10,0,80,0"
+                Text="{Binding LoggingUIConfigFileName}" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem HorizontalAlignment="Left">
+            <Button x:Name="btnReloadConfig"
+                        Width="100"
+                        HorizontalAlignment="Right"
+                        Click="btnReloadConfig_Click"
+                        Content="Reload Config" />
+        </dxlc:LayoutItem>
+
+        <!--<dxlc:LayoutGroup VerticalAlignment="Top" HorizontalAlignment="Left">
+
+            <dxlc:LayoutGroup x:Name="SignInPanel" Margin="10,0">
+
+                --><!--<dxlc:LayoutItem HorizontalAlignment="Left">
+                                            <Label Content="Enter user name:" />
+                                        </dxlc:LayoutItem>--><!--
+
+                <dxlc:LayoutItem Label="Enter User name:" LabelPosition="Left"
+                                                         HorizontalAlignment="Left">
+                    <TextBox x:Name="UserNameTextBox"
+                        Text="{Binding UserName}"
+                        Height="20"
+                        MinWidth="100"
+                        Margin="0,0,80,0" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <Button x:Name="SignInButton"
+                        Width="75"
+                        HorizontalAlignment="Right"
+                        Click="btnSignIn_Click"
+                        Content="Sign In" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <Label x:Name="StatusText"
+                        Margin="0,10"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="ChatPanel" Orientation="Vertical"
+                                                Visibility="Visible">
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <dxlc:LayoutItem 
+                        Label="Message:"
+                        LabelPosition="Top"
+                        HorizontalAlignment="Left">
+                        <TextBox x:Name="tbMessage" 
+                            Text="{Binding Message}"
+                            Width="300"
+                            TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem
+                        Label="Priority:"
+                        LabelPosition="Top"
+                         HorizontalAlignment="Left">
+                        <TextBox x:Name="tbMessagePriority" 
+                            Text="{Binding Priority}" 
+                            Width="100" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <Button x:Name="btnSend"
+                        Width="75"
+                        Height="20"
+                        Click="btnSend_Click"
+                        Content="Send"
+                        IsDefault="True"
+                        IsEnabled="False" />
+
+                    <Button x:Name="btnSendPriority"
+                        Height="20"
+                        HorizontalAlignment="Left"
+                        Click="btnSendPriority_Click"
+                        Content="Send Priority"
+                        IsEnabled="False" />
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>-->
+
+    </dxlc:LayoutGroup>
+
+</vncmvvm:ViewBase>

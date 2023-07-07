@@ -128,7 +128,9 @@
                                             <views:DefaultFilter x:Name="defaultFilter" />
 
                                             <!-- End Default Layout -->
-                                            
+
+                                            <views:UIConfig x:Name="uiConfig" />
+
                                         </dxlc:LayoutGroup>
 
                                         <!-- End Capture filter -->

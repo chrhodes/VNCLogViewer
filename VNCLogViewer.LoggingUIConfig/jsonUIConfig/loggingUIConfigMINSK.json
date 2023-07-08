@@ -1,6 +1,568 @@
 {
     "Name": "MINSK Capture Filter",
 
+
+    "Arch00": {
+        "Label": "CONSTRUCTOR",
+        "LabelColor": {
+            "R": 221,
+            "G": 160,
+            "B": 221,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Plum"
+        },
+        "Color": {
+            "R": 221,
+            "G": 160,
+            "B": 221,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Plum"
+        },
+        "IsChecked": true,
+        "ToolTip": "CONSTRUCTOR / Arch00",
+        "Visibility": 0
+    },
+    "Arch01": {
+        "Label": "EVENT",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffffff00"
+        },
+        "Color": {
+            "R": 255,
+            "G": 255,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffffff00"
+        },
+        "IsChecked": true,
+        "ToolTip": "EVENT / Arch01",
+        "Visibility": 0
+    },
+    "Arch02": {
+        "Label": "EVENT_HANDLER",
+        "LabelColor": {
+            "R": 255,
+            "G": 0,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Red"
+        },
+        "Color": {
+            "R": 255,
+            "G": 0,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Red"
+        },
+        "IsChecked": true,
+        "ToolTip": "EVENT_HANDLER / Arch02",
+        "Visibility": 0
+    },
+    "Arch03": {
+        "Label": "APPLICATION_INITIALIZE",
+        "LabelColor": {
+            "R": 211,
+            "G": 211,
+            "B": 211,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "LightGray"
+        },
+        "Color": {
+            "R": 211,
+            "G": 211,
+            "B": 211,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "LightGray"
+        },
+        "IsChecked": true,
+        "ToolTip": "APPLICATION_INITIALIZE / Arch03",
+        "Visibility": 0
+    },
+    "Arch04": {
+        "Label": "CORE",
+        "LabelColor": {
+            "R": 190,
+            "G": 190,
+            "B": 190,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffbebebe"
+        },
+        "Color": {
+            "R": 190,
+            "G": 190,
+            "B": 190,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffbebebe"
+        },
+        "IsChecked": true,
+        "ToolTip": "CORE / Arch04",
+        "Visibility": 0
+    },
+    "Arch05": {
+        "Label": "MODULE",
+        "LabelColor": {
+            "R": 255,
+            "G": 0,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Fuchsia"
+        },
+        "Color": {
+            "R": 255,
+            "G": 0,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Fuchsia"
+        },
+        "IsChecked": true,
+        "ToolTip": "MODULE / Arch05",
+        "Visibility": 0
+    },
+    "Arch06": {
+        "Label": "MODULE_INITIALIZE",
+        "LabelColor": {
+            "R": 211,
+            "G": 211,
+            "B": 211,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "LightGray"
+        },
+        "Color": {
+            "R": 211,
+            "G": 211,
+            "B": 211,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "LightGray"
+        },
+        "IsChecked": true,
+        "ToolTip": "MODULE_INITIALIZE / Arch06",
+        "Visibility": 0
+    },
+    "Arch07": {
+        "Label": "APPLICATION",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 100,
+            "G": 240,
+            "B": 100,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff64f064"
+        },
+        "IsChecked": true,
+        "ToolTip": "APPLICATION / Arch07",
+        "Visibility": 0
+    },
+    "Arch08": {
+        "Label": "APPLICATIONSERVICES",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 100,
+            "G": 240,
+            "B": 100,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff64f064"
+        },
+        "IsChecked": true,
+        "ToolTip": "APPLICATIONSERVICES / Arch08",
+        "Visibility": 0
+    },
+    "Arch09": {
+        "Label": "DOMAIN",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 255,
+            "G": 165,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffffb400"
+        },
+        "IsChecked": true,
+        "ToolTip": "DOMAIN / Arch09",
+        "Visibility": 0
+    },
+    "Arch10": {
+        "Label": "DOMAINSERVICES",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 255,
+            "G": 165,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffffb400"
+        },
+        "IsChecked": true,
+        "ToolTip": "DOMAINSERVICES / Arch10",
+        "Visibility": 0
+    },
+    "Arch11": {
+        "Label": "PERSISTENCE",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 160,
+            "G": 115,
+            "B": 225,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffa073e1"
+        },
+        "IsChecked": true,
+        "ToolTip": "PERSISTENCE / Arch11",
+        "Visibility": 0
+    },
+    "Arch12": {
+        "Label": "PERSISTENCE_LOW",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 160,
+            "G": 115,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffa073ff"
+        },
+        "IsChecked": true,
+        "ToolTip": "PERSISTENCE_LOW / Arch12",
+        "Visibility": 0
+    },
+    "Arch13": {
+        "Label": "INFRASTRUCTURE",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "White"
+        },
+        "IsChecked": true,
+        "ToolTip": "INFRASTRUCTURE / Arch13",
+        "Visibility": 0
+    },
+    "Arch14": {
+        "Label": "PRESENTATION",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 220,
+            "B": 220,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff00dcdc"
+        },
+        "IsChecked": true,
+        "ToolTip": "PRESENTATION / Arch14",
+        "Visibility": 0
+    },
+    "Arch15": {
+        "Label": "VIEW",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 220,
+            "B": 220,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff00dcdc"
+        },
+        "IsChecked": true,
+        "ToolTip": "VIEW / Arch15",
+        "Visibility": 0
+    },
+    "Arch16": {
+        "Label": "VIEW_LOW",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 220,
+            "B": 220,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff00dcdc"
+        },
+        "IsChecked": true,
+        "ToolTip": "VIEW_LOW / Arch16",
+        "Visibility": 0
+    },
+    "Arch17": {
+        "Label": "VIEWMODEL",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 90,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ff5affff"
+        },
+        "IsChecked": true,
+        "ToolTip": "VIEWMODEL / Arch17",
+        "Visibility": 0
+    },
+    "Arch18": {
+        "Label": "VIEWMODEL_LOW",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 90,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": true,
+            "IsEmpty": false,
+            "IsNamedColor": true,
+            "IsSystemColor": false,
+            "Name": "Aqua"
+        },
+        "IsChecked": true,
+        "ToolTip": "VIEWMODEL_LOW / Arch18",
+        "Visibility": 0
+    },
+    "Arch19": {
+        "Label": "Arch19",
+        "LabelColor": {
+            "R": 200,
+            "G": 200,
+            "B": 200,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "Color": {
+            "R": 200,
+            "G": 200,
+            "B": 200,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "Arch19",
+        "Visibility": 0
+    },
+
     "Trace00": {
         "Label": "COMPILER",
         "LabelColor": {

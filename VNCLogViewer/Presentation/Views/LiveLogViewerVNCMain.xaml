@@ -59,9 +59,9 @@
             </dxdo:LayoutPanel>
         </dxlc:LayoutControl.AvailableItems>
         
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+        <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <Label Content="lg_Header Stuff Goes Here" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
         
         <dxlc:LayoutGroup Name="lg_Body">
 

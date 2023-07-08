@@ -31,7 +31,7 @@ namespace VNCLogViewer.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         //public UIConfig(IUIConfigViewModel viewModel)
         //{
         //    Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
@@ -43,7 +43,7 @@ namespace VNCLogViewer.Presentation.Views
 
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
-       
+
         #endregion
 
         #region Enums (None)
@@ -56,8 +56,13 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties
 
+        public new ILiveLogViewerViewModel ViewModel
+        {
+            get { return (ILiveLogViewerViewModel)DataContext; }
+            set { DataContext = value; }
+        }
 
         #endregion
 
@@ -67,7 +72,7 @@ namespace VNCLogViewer.Presentation.Views
         #endregion
 
         #region Commands (None)
-         
+
         #endregion
 
         #region Public Methods (None)
@@ -83,8 +88,8 @@ namespace VNCLogViewer.Presentation.Views
         #region Private Methods (None)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -99,7 +104,11 @@ namespace VNCLogViewer.Presentation.Views
 
         private void btnReloadConfig_Click(object sender, RoutedEventArgs e)
         {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            ViewModel.ReloadUIConfig();
+
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

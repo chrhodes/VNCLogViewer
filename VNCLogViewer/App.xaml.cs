@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
@@ -34,6 +35,8 @@ namespace VNCLogViewer
             Thread.Sleep(150);
 
             Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
+
+            Directory.SetCurrentDirectory("jsonUIConfig");
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }

@@ -3,10 +3,10 @@
   "Info00": {
     "Label": "100",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -14,10 +14,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -31,10 +31,10 @@
   "Info01": {
     "Label": "Info01",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -42,10 +42,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -59,10 +59,10 @@
   "Info02": {
     "Label": "Info02",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -70,10 +70,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -87,10 +87,10 @@
   "Info03": {
     "Label": "Info03",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -98,10 +98,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -115,10 +115,10 @@
   "Info04": {
     "Label": "Info04",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -126,10 +126,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -143,10 +143,10 @@
   "Debug00": {
     "Label": "Debug00",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -154,10 +154,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -171,10 +171,10 @@
   "Debug01": {
     "Label": "Debug01",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -182,10 +182,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -227,10 +227,10 @@
   "Debug03": {
     "Label": "Debug03",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -238,10 +238,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -255,10 +255,10 @@
   "Debug04": {
     "Label": "Debug04",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -266,10 +266,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -283,10 +283,10 @@
   "Arch00": {
     "Label": "Arch00",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -294,10 +294,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -311,10 +311,10 @@
   "Arch01": {
     "Label": "Arch01",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -322,10 +322,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -339,10 +339,10 @@
   "Arch02": {
     "Label": "Arch02",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -350,10 +350,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -367,10 +367,10 @@
   "Arch03": {
     "Label": "Arch03",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -378,10 +378,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -395,10 +395,10 @@
   "Arch04": {
     "Label": "Arch04",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -406,10 +406,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -423,10 +423,10 @@
   "Arch05": {
     "Label": "Arch05",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -434,10 +434,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -451,10 +451,10 @@
   "Arch06": {
     "Label": "Arch06",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -462,10 +462,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -479,10 +479,10 @@
   "Arch07": {
     "Label": "Arch07",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -490,10 +490,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -507,10 +507,10 @@
   "Arch08": {
     "Label": "Arch08",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -518,10 +518,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -535,10 +535,10 @@
   "Arch09": {
     "Label": "Arch09",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -546,10 +546,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -563,10 +563,10 @@
   "Arch10": {
     "Label": "Arch10",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -574,10 +574,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -591,10 +591,10 @@
   "Arch11": {
     "Label": "Arch11",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -602,10 +602,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -619,10 +619,10 @@
   "Arch12": {
     "Label": "Arch12",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -630,10 +630,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -647,10 +647,10 @@
   "Arch13": {
     "Label": "Arch13",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -658,10 +658,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -675,10 +675,10 @@
   "Arch14": {
     "Label": "Arch14",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -686,10 +686,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -703,10 +703,10 @@
   "Arch15": {
     "Label": "Arch15",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -714,10 +714,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -731,10 +731,10 @@
   "Arch16": {
     "Label": "Arch16",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -742,10 +742,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -759,10 +759,10 @@
   "Arch17": {
     "Label": "Arch17",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -770,10 +770,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -787,10 +787,10 @@
   "Arch18": {
     "Label": "Arch18",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -798,10 +798,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -815,10 +815,10 @@
   "Arch19": {
     "Label": "Arch19",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -826,10 +826,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -899,10 +899,10 @@
   "Trace02": {
     "Label": "10002",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -910,10 +910,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1095,10 +1095,10 @@
   "Trace09": {
     "Label": "10009",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1106,10 +1106,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1375,10 +1375,10 @@
   "Trace19": {
     "Label": "10019",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1386,10 +1386,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1543,10 +1543,10 @@
   "Trace25": {
     "Label": "10025",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1554,10 +1554,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1655,10 +1655,10 @@
   "Trace29": {
     "Label": "Trace29",
     "LabelColor": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,
@@ -1666,10 +1666,10 @@
       "Name": "0"
     },
     "Color": {
-      "R": 0,
-      "G": 0,
-      "B": 0,
-      "A": 0,
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
       "IsKnownColor": false,
       "IsEmpty": true,
       "IsNamedColor": false,

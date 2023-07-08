@@ -1,0 +1,372 @@
+{
+    "Name": "MINSK Capture Filter",
+
+    "Trace00": {
+        "Label": "COMPILER",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 200,
+            "G": 200,
+            "B": 200,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "COMPILER / Trace00",
+        "Visibility": 0
+    },
+
+    "Trace02": {
+        "Label": "TEST",
+        "LabelColor": {
+            "R": 255,
+            "G": 255,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 200,
+            "G": 200,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "TEST / Trace02",
+        "Visibility": 0
+    },
+
+    "Trace10": {
+        "Label": "SYNTAX",
+        "LabelColor": {
+            "R": 0,
+            "G": 191,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 191,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "SYNTAX / Trace10",
+        "Visibility": 0
+    },
+    "Trace11": {
+        "Label": "LEXER",
+        "LabelColor": {
+            "R": 255,
+            "G": 140,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 255,
+            "G": 140,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "LEXER / Trace11",
+        "Visibility": 0
+    },
+    "Trace12": {
+        "Label": "PARSER",
+        "LabelColor": {
+            "R": 107,
+            "G": 142,
+            "B": 35,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 107,
+            "G": 142,
+            "B": 35,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "PARSER / Trace12",
+        "Visibility": 0
+    },
+    "Trace13": {
+        "Label": "BINDER",
+        "LabelColor": {
+            "R": 0,
+            "G": 167,
+            "B": 167,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 167,
+            "B": 167,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "BINDER / Trace13",
+        "Visibility": 0
+    },
+    "Trace14": {
+        "Label": "EVALUATOR",
+        "LabelColor": {
+            "R": 147,
+            "G": 112,
+            "B": 219,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 147,
+            "G": 112,
+            "B": 219,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "EVALUATOR / Trace14",
+        "Visibility": 0
+    },
+    "Trace15": {
+        "Label": "TEXT",
+        "LabelColor": {
+            "R": 218,
+            "G": 112,
+            "B": 214,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 218,
+            "G": 112,
+            "B": 214,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "TEXT / Trace15",
+        "Visibility": 0
+    },
+
+    "Trace20": {
+        "Label": "SYNTAX_LOW",
+        "LabelColor": {
+            "R": 0,
+            "G": 191,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 191,
+            "B": 255,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "SYNTAX_LOW / Trace20",
+        "Visibility": 0
+    },
+    "Trace21": {
+        "Label": "LEXER_LOW",
+        "LabelColor": {
+            "R": 255,
+            "G": 140,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 255,
+            "G": 140,
+            "B": 0,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "LEXER_LOW / Trace21",
+        "Visibility": 0
+    },
+    "Trace22": {
+        "Label": "PARSER_LOW",
+        "LabelColor": {
+            "R": 107,
+            "G": 142,
+            "B": 35,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 107,
+            "G": 142,
+            "B": 35,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "PARSER_LOW / Trace22",
+        "Visibility": 0
+    },
+    "Trace23": {
+        "Label": "BINDER_LOW",
+        "LabelColor": {
+            "R": 0,
+            "G": 167,
+            "B": 167,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 0,
+            "G": 167,
+            "B": 167,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "BINDER_LOW / Trace23",
+        "Visibility": 0
+    },
+
+    "Trace25": {
+        "Label": "TEXT_LOW",
+        "LabelColor": {
+            "R": 218,
+            "G": 112,
+            "B": 214,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": true,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "0"
+        },
+        "Color": {
+            "R": 218,
+            "G": 112,
+            "B": 214,
+            "A": 255,
+            "IsKnownColor": false,
+            "IsEmpty": false,
+            "IsNamedColor": false,
+            "IsSystemColor": false,
+            "Name": "ffc8c8c8"
+        },
+        "IsChecked": true,
+        "ToolTip": "TEXT_LOW / Trace25",
+        "Visibility": 0
+    }
+}

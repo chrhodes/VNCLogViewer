@@ -25,6 +25,8 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         string LoggingUIConfigFileName { get; set; }
 
+        void ReloadUIConfig();
+
         //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
 
         Document Doc { get; set; }

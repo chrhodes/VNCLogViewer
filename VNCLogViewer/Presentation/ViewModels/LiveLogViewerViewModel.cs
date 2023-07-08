@@ -20,6 +20,9 @@ using VNC.Core.Services;
 using luic = VNCLogViewer.LoggingUIConfig;
 
 using CharacterProperties = DevExpress.XtraRichEdit.API.Native.CharacterProperties;
+using JSONConsoleApp.jsonDeserializeClass;
+using System.IO;
+using System.Text.Json;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -48,7 +51,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             //
@@ -57,7 +60,7 @@ namespace VNCLogViewer.Presentation.ViewModels
             SendCommand = new DelegateCommand(Send, SendCanExecute);
             SendPriorityCommand = new DelegateCommand(SendPriority, SendPriorityCanExecute);
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -360,6 +363,18 @@ namespace VNCLogViewer.Presentation.ViewModels
         #endregion
 
         #region Public methods
+
+        public void ReloadUIConfig()
+        {
+            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            string jsonString = File.ReadAllText(LoggingUIConfigFileName);
+            LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
+
+            LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
+
+            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #endregion
 
@@ -1116,6 +1131,8 @@ namespace VNCLogViewer.Presentation.ViewModels
             return -1;
             // = s.TakeWhile(c => n -= (c == t ? 1 : 0)) > 0).Count();
         }
+
+
 
         #region IInstanceCount
 

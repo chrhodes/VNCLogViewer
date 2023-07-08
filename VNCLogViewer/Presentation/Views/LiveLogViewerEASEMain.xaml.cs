@@ -43,25 +43,17 @@ namespace VNCLogViewer.Presentation.Views
 
         private void InitializeView()
         {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
             lgCaptureFilter.IsCollapsed = true;
             signalRInteraction.ViewModel = ViewModel;
+            uiConfig.ViewModel = ViewModel;
 
             ViewModel.Doc = recLogStream.Document;
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigEASE.json";
-
-            // NOTE(crhodes)
-            // This works.
-            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigMINSK();
-
-            // NOTE(crhodes)
-            // Now let's try loading from .json
-
-            Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");
-
-            string jsonString = File.ReadAllText(ViewModel.LoggingUIConfigFileName);
-            LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
-
-            ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
+            ViewModel.ReloadUIConfig();
+            
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeLogStream()

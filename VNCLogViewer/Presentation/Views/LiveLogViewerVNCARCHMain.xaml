@@ -136,9 +136,10 @@
                                                                           HorizontalAlignment="Stretch" 
                                                                           View="GroupBox" 
                                                                           Width="200" 
-                                                                          Background="#FF969696">
+                                                                          Background="#FF808080">
 
                                                             <dxe:CheckEdit x:Name="ceArch01C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch01.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch01.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch01.IsChecked}"
@@ -146,6 +147,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch01.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch02C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch02.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch02.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch02.IsChecked}"
@@ -153,6 +155,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch02.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch03C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch03.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch03.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch03.IsChecked}"
@@ -160,6 +163,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch03.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch04C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch04.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch04.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch04.IsChecked}"
@@ -167,6 +171,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch04.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch05C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch05.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch05.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch05.IsChecked}"
@@ -174,6 +179,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch05.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch06C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch06.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch06.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch06.IsChecked}"
@@ -181,6 +187,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch06.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceArch00C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Arch00.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Arch00.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Arch00.IsChecked}"
@@ -188,6 +195,7 @@
                                                                 Visibility="{Binding LoggingUIConfig.Arch00.Visibility}"/>
 
                                                             <dxe:CheckEdit x:Name="ceInfo00C"
+                                                                           Style="{StaticResource uiFilterCheckEdit}"
                                                                 Content="{Binding LoggingUIConfig.Info00.Label}"
                                                                 Foreground="{Binding LoggingUIConfig.Info00.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                 IsChecked="{Binding LoggingUIConfig.Info00.IsChecked}"
@@ -209,6 +217,7 @@
                                                                     	View="Group"  >
 
                                                                         <dxe:CheckEdit x:Name="ceArch15C"
+                                                                                       Style="{StaticResource uiFilterCheckEdit}"
                                                                             Content="{Binding LoggingUIConfig.Arch15.Label}"
                                                                             Foreground="{Binding LoggingUIConfig.Arch15.LabelColor, Converter={StaticResource ColorToBrushConverter}}"                                                                        
                                                                             IsChecked="{Binding LoggingUIConfig.Arch15.IsChecked}"
@@ -216,6 +225,7 @@
                                                                             Visibility="{Binding LoggingUIConfig.Arch15.Visibility}"/>
 
                                                                         <dxe:CheckEdit x:Name="ceArch16C"
+                                                                                       Style="{StaticResource uiFilterCheckEdit}"
                                                                             Content="{Binding LoggingUIConfig.Arch16.Label}"
                                                                             Foreground="{Binding LoggingUIConfig.Arch16.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                             IsChecked="{Binding LoggingUIConfig.Arch16.IsChecked}"
@@ -228,6 +238,7 @@
                                                                     	View="Group" Orientation="Horizontal" >
 
                                                                         <dxe:CheckEdit x:Name="ceArch17C"
+                                                                                       Style="{StaticResource uiFilterCheckEdit}"
                                                                             Content="{Binding LoggingUIConfig.Arch17.Label}"
                                                                             Foreground="{Binding LoggingUIConfig.Arch17.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                             IsChecked="{Binding LoggingUIConfig.Arch17.IsChecked}"
@@ -235,6 +246,7 @@
                                                                             Visibility="{Binding LoggingUIConfig.Arch17.Visibility}"/>
 
                                                                         <dxe:CheckEdit x:Name="ceArch18C"
+                                                                                       Style="{StaticResource uiFilterCheckEdit}"
                                                                             Content="{Binding LoggingUIConfig.Arch18.Label}"
                                                                             Foreground="{Binding LoggingUIConfig.Arch18.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                             IsChecked="{Binding LoggingUIConfig.Arch18.IsChecked}"
@@ -244,6 +256,7 @@
                                                                     </dxlc:LayoutGroup>
 
                                                                     <dxe:CheckEdit x:Name="ceArch14C"
+                                                                        Style="{StaticResource uiFilterCheckEdit}"
                                                                         Content="{Binding LoggingUIConfig.Arch14.Label}"
                                                                         Foreground="{Binding LoggingUIConfig.Arch14.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="{Binding LoggingUIConfig.Arch14.IsChecked}"
@@ -257,7 +270,8 @@
                                                                                   View="GroupBox"
                                                                                   Background="#FFA073E1">
 
-                                                                    <dxe:CheckEdit x:Name="ceArch11C"
+                                                                    <dxe:CheckEdit x:Name="ceArch11C" 
+                                                                        Style="{StaticResource uiFilterCheckEdit}"
                                                                         Content="{Binding LoggingUIConfig.Arch11.Label}"
                                                                         Foreground="{Binding LoggingUIConfig.Arch11.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="{Binding LoggingUIConfig.Arch11.IsChecked}"
@@ -265,6 +279,7 @@
                                                                         Visibility="{Binding LoggingUIConfig.Arch11.Visibility}"/>
 
                                                                     <dxe:CheckEdit x:Name="ceArch12C"
+                                                                        Style="{StaticResource uiFilterCheckEdit}"
                                                                         Content="{Binding LoggingUIConfig.Arch12.Label}"
                                                                         Foreground="{Binding LoggingUIConfig.Arch12.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="{Binding LoggingUIConfig.Arch12.IsChecked}"
@@ -276,9 +291,10 @@
                                                                 <dxlc:LayoutGroup Header="INFRASTRUCTURE" Orientation="Vertical"
                                                                         HorizontalAlignment="Stretch"   
                                                                         View="GroupBox"
-                                                                        Background="WhiteSmoke">
+                                                                        Background="#FFD0D0D0">
 
-                                                                    <dxe:CheckEdit x:Name="ceArch13C"
+                                                                    <dxe:CheckEdit x:Name="ceArch13C" 
+                                                                        Style="{StaticResource uiFilterCheckEdit}"
                                                                         Content="{Binding LoggingUIConfig.Arch13.Label}"
                                                                         Foreground="{Binding LoggingUIConfig.Arch13.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                         IsChecked="{Binding LoggingUIConfig.Arch13.IsChecked}"
@@ -295,6 +311,7 @@
                                                                 Background="#FF64F064">
 
                                                                 <dxe:CheckEdit x:Name="ceArch08C"
+                                                                               Style="{StaticResource uiFilterCheckEdit}"
                                                                     Content="{Binding LoggingUIConfig.Arch08.Label}"
                                                                     Foreground="{Binding LoggingUIConfig.Arch08.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                     IsChecked="{Binding LoggingUIConfig.Arch08.IsChecked}"
@@ -302,6 +319,7 @@
                                                                     Visibility="{Binding LoggingUIConfig.Arch08.Visibility}"/>
 
                                                                 <dxe:CheckEdit x:Name="ceArch07C"
+                                                                               Style="{StaticResource uiFilterCheckEdit}"
                                                                     Content="{Binding LoggingUIConfig.Arch07.Label}"
                                                                     Foreground="{Binding LoggingUIConfig.Arch07.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                     IsChecked="{Binding LoggingUIConfig.Arch07.IsChecked}"
@@ -316,6 +334,7 @@
                                                                 Background="#FFFFB400">
 
                                                                 <dxe:CheckEdit x:Name="ceArch09C"
+                                                                               Style="{StaticResource uiFilterCheckEdit}"
                                                                     Content="{Binding LoggingUIConfig.Arch09.Label}"
                                                                     Foreground="{Binding LoggingUIConfig.Arch09.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                     IsChecked="{Binding LoggingUIConfig.Arch09.IsChecked}"
@@ -323,6 +342,7 @@
                                                                     Visibility="{Binding LoggingUIConfig.Arch09.Visibility}"/>
                                                                 
                                                                 <dxe:CheckEdit x:Name="ceArch10C"
+                                                                               Style="{StaticResource uiFilterCheckEdit}"
                                                                     Content="{Binding LoggingUIConfig.Arch10.Label}"
                                                                     Foreground="{Binding LoggingUIConfig.Arch10.LabelColor, Converter={StaticResource ColorToBrushConverter}}"
                                                                     IsChecked="{Binding LoggingUIConfig.Arch10.IsChecked}"

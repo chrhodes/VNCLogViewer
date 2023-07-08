@@ -37,20 +37,26 @@ namespace VNCLogViewer.Presentation.Views
 
         private void InitializeView()
         {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
             lgCaptureFilter.IsCollapsed = true;
             signalRInteraction.ViewModel = ViewModel;
+            uiConfig.ViewModel = ViewModel;
 
             ViewModel.Doc = recLogStream.Document;
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigVNCARCH.json";
+            ViewModel.ReloadUIConfig();
 
-            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigVNCARCH();
+            ////((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigVNCARCH();
 
-            Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");
+            //Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");
 
-            string jsonString = File.ReadAllText(ViewModel.LoggingUIConfigFileName);
-            LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
+            //string jsonString = File.ReadAllText(ViewModel.LoggingUIConfigFileName);
+            //LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
 
-            ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
+            //ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
+
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeLogStream()

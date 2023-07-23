@@ -29,7 +29,7 @@ namespace VNCLogViewer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            DataContext = ViewModel;
+            //DataContext = ViewModel;
 
             InitializeView();
 
@@ -38,6 +38,8 @@ namespace VNCLogViewer.Presentation.Views
 
         private void InitializeView()
         {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
             lgCaptureFilter.IsCollapsed = true;
             signalRInteraction.ViewModel = ViewModel;
 
@@ -58,6 +60,8 @@ namespace VNCLogViewer.Presentation.Views
             //LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
 
             //ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
+
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeLogStream()
@@ -178,7 +182,7 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods (none)
 
         #endregion
 

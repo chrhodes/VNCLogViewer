@@ -133,10 +133,9 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods (none)
 
         #endregion
-
 
         #region IInstanceCount
 

@@ -37,8 +37,9 @@ namespace VNCLogViewer
             Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
 
             Directory.SetCurrentDirectory("jsonUIConfig");
+            Common.SetAppVersionInfo();
 
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
         // 01
 

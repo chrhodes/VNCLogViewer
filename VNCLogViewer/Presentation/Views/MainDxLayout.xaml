@@ -27,6 +27,7 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
+    Title="{Binding Title}"
     Background="{StaticResource MainBackground}"
 
     d:DesignWidth="600" d:DesignHeight="400" 
@@ -167,24 +168,39 @@
             <!--<Label Content="lg_Footer Stuff Goes Here" />-->
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup
-            View="Group" Orientation="Vertical" VerticalAlignment="Bottom">
+        <dxlc:LayoutGroup VerticalAlignment="Bottom">
+            <DockPanel>
 
-            <!-- This is useful for debugging V VM constructor issues -->
+                <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
+                    <!--<Label Content="ProductName: " />
+                    <Label Content="{Binding ProductName}" />-->
+                    <Label Content="FileVersion: " />
+                    <Label Content="{Binding FileVersion}" />
+                    <Label Content=" ProductVersion: " />
+                    <Label Content="{Binding ProductVersion}" />
+                    <Label Content=" .NET Runtime: " />
+                    <Label Content="{Binding RuntimeVersion}" />
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="V:" />
-                    <Label Content="{Binding ElementName=thisMainDxLayout, Path=InstanceCountV}" />
+                <!-- This is useful for debugging V VM constructor issues -->
+
+                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="V:" />
+                        <Label Content="{Binding ElementName=thisMainWindow, Path=InstanceCountV}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="VM:" />
+                        <Label Content="{Binding InstanceCountVM}" />
+                    </StackPanel>
+
+                    <Button Content="Save Layout" Click="SaveLayout_Click" />
+                    <Button Content="Restore Layout" Click="RestoreLayout_Click" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="VM:" />
-                    <Label Content="{Binding InstanceCountVM}" />
-                </StackPanel>
-            </StackPanel>
-            
+
+            </DockPanel>
         </dxlc:LayoutGroup>
-        
+
     </dxlc:LayoutControl>
     
 </Window>

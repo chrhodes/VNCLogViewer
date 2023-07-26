@@ -1,19 +1,45 @@
-﻿using System;
+﻿
+
+using System;
+using System.Reflection;
 
 namespace VNCLogViewer
 {
-    public class Common
+    public static class Common
     {
+        private static string _fileVersion;
+        private static string _productName;
+        private static string _productVersion;
+        private static string _runtimeVersion;
+
         public const string PROJECT_NAME = "VNCLogViewer";
         public const string LOG_CATEGORY = "VNCLogViewer";
 
         public const string cCONFIG_FILE = @"C:\temp\VNCLogViewer_Config.xml";
 
-        private static string _runtimeVersion;
+
         public static string RuntimeVersion
         {
             get => _runtimeVersion;
             set => _runtimeVersion = value;
+        }
+
+        public static string FileVersion
+        {
+            get => _fileVersion;
+            set => _fileVersion = value;
+        }
+
+        public static string ProductName
+        {
+            get => _productName;
+            set => _productName = value;
+        }
+
+        public static string ProductVersion
+        {
+            get => _productVersion;
+            set => _productVersion = value;
         }
 
         public static event EventHandler AutoHideGroupSpeedChanged;
@@ -71,6 +97,38 @@ namespace VNCLogViewer
 
         internal const int WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD = 30;
         internal const int WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD = 75;
+        public static void SetAppVersionInfo()
+        { 
+            var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+
+            Common.RuntimeVersion = runtimeVersion.FileVersion;
+
+            //var rv = runtimeVersion.Comments;
+            //var rv1 = runtimeVersion.CompanyName;
+            //var rv2 = runtimeVersion.FileDescription;
+            //var rv3 = runtimeVersion.FileName;
+            //var rv4 = runtimeVersion.FileVersion;
+            //var rv5 = runtimeVersion.ProductVersion;
+            //var rv6 = runtimeVersion.ProductName;
+
+
+            //var assyb = Assembly.GetExecutingAssembly();
+            //var a3 = assyb.Location;
+            var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+
+            var av = appVersion.Comments;
+            var av1 = appVersion.CompanyName;
+            var av2 = appVersion.FileDescription;
+            var av3 = appVersion.FileName;
+            var av4 = appVersion.FileVersion;
+            var av5 = appVersion.ProductVersion;
+            var av6 = appVersion.ProductName;
+
+            Common.FileVersion = appVersion.FileVersion;
+            Common.ProductName = appVersion.ProductName;
+            Common.ProductVersion = appVersion.ProductVersion;
+
+        }
 
         // This controls the behavior of the overall application.
         // It is initialized from app.config and is updated when the user changes the mode.

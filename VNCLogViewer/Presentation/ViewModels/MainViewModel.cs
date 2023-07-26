@@ -42,7 +42,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainWindow";
+        private string _title = "VNCLogViewer - Main";
 
         public string Title
         {

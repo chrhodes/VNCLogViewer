@@ -42,7 +42,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainDxDockLayoutManager";
+        private string _title = "VNCLogViewer - MainDxDockLayoutManager - " + Common.ProductVersion;
 
         public string Title
         {

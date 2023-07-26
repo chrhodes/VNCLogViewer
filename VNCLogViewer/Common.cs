@@ -97,6 +97,7 @@ namespace VNCLogViewer
 
         internal const int WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD = 30;
         internal const int WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD = 75;
+
         public static void SetAppVersionInfo()
         { 
             var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);

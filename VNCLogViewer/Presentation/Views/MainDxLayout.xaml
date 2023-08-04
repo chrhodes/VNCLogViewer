@@ -132,8 +132,11 @@
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
+                            
                         </dxlc:LayoutControl>
+                        
                     </dxdo:LayoutPanel>
+                    
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.AutoHideGroups>

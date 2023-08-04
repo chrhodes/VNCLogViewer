@@ -49,17 +49,17 @@
             <Label Content="lg_Header Stuff Goes Here" />
         </dxlc:LayoutGroup>-->
 
-        <dxlc:LayoutGroup Name="lg_Body">
-
+        <dxlc:LayoutGroup Name="lg_Body" Orientation="Vertical">
+           
             <dxdo:DockLayoutManager dx:StyleManager.ApplyApplicationTheme="True"
                 FontSize="12"
                 Name="lg_Body_dlm">
-
+            
                 <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
 
                     <dxdo:LayoutPanel AllowClose="False"
                         AllowDock="False"
-                        AllowFloat="False"
+                        AllowFloat="True"
                         AllowHide="False"
                         Name="lg_Body_dlm_lg_lpRoot">
 
@@ -195,7 +195,9 @@
                                                         Value="10"
                                                         MinValue="8" />
                                                 </dxlc:LayoutItem>
+                                                
                                             </dxlc:LayoutGroup>
+                                            
                                         </dxlc:LayoutGroup>
                                         
                                     </dxlc:LayoutGroup>
@@ -208,8 +210,11 @@
                                                         Name="li_Y" />
                                 </dxlc:LayoutGroup>-->
                             </dxlc:LayoutGroup>
+                            
                         </dxlc:LayoutControl>
+                        
                     </dxdo:LayoutPanel>
+                    
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.AutoHideGroups>
@@ -221,7 +226,9 @@
                             ItemWidth="150" MaxHeight="130">
 
                             <views:SignalRInteraction x:Name="signalRInteraction" />
+                            
                         </dxdo:LayoutPanel>
+                        
                     </dxdo:AutoHideGroup>
 
                     <!--<dxdo:AutoHideGroup DockType="Right">
@@ -231,8 +238,11 @@
                             </StackPanel>
                         </dxdo:LayoutPanel>
                     </dxdo:AutoHideGroup>-->
+                    
                 </dxdo:DockLayoutManager.AutoHideGroups>
+                
             </dxdo:DockLayoutManager>
+            
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">

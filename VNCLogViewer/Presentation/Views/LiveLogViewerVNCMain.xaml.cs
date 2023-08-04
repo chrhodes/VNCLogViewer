@@ -21,7 +21,7 @@ namespace VNCLogViewer.Presentation.Views
     {
         #region Constructors, Initialization, and Load
 
-        public LiveLogViewerVNCMain(ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerVNCMain(ILiveLogViewerViewModelREC viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -46,6 +46,8 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.Doc = recLogStream.Document;
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigDefault.json";
             ViewModel.ReloadUIConfig();
+
+            //ViewModel.RichTextBox = rtbConsoleStream;
 
             // NOTE(crhodes)
             // This works.
@@ -73,7 +75,7 @@ namespace VNCLogViewer.Presentation.Views
 
             //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
 
-            Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
+            Section section = ((ILiveLogViewerViewModelREC)ViewModel).Doc.Sections[0];
 
             section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
             section.Page.Landscape = true;
@@ -85,9 +87,9 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Enums, Fields, Properties
 
-        public ILiveLogViewerViewModel ViewModel
+        public ILiveLogViewerViewModelREC ViewModel
         {
-            get { return (ILiveLogViewerViewModel)DataContext; }
+            get { return (ILiveLogViewerViewModelREC)DataContext; }
             set { DataContext = value; }
         }
 

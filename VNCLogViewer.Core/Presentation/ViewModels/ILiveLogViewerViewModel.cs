@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Controls;
 
 using DevExpress.XtraRichEdit.API.Native;
 
@@ -30,5 +31,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
 
         Document Doc { get; set; }
+
+        RichTextBox RichTextBox { get; set; }
     }
 }

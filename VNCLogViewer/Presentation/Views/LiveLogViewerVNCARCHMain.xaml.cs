@@ -21,7 +21,7 @@ namespace VNCLogViewer.Presentation.Views
     {
         #region Constructors, Initialization, and Load
 
-        public LiveLogViewerVNCARCHMain(ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerVNCARCHMain(ILiveLogViewerViewModelREC viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -80,9 +80,9 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Enums, Fields, Properties
 
-        public ILiveLogViewerViewModel ViewModel
+        public ILiveLogViewerViewModelREC ViewModel
         {
-            get { return (ILiveLogViewerViewModel)DataContext; }
+            get { return (ILiveLogViewerViewModelREC)DataContext; }
             set { DataContext = value; }
         }
 

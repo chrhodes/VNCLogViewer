@@ -21,7 +21,7 @@ namespace VNCLogViewer.Presentation.Views
     {
         #region Constructors, Initialization, and Load
 
-        public LiveLogViewerMINSKMain(ILiveLogViewerViewModel viewModel)
+        public LiveLogViewerMINSKMain(ILiveLogViewerViewModelRTB viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -40,10 +40,10 @@ namespace VNCLogViewer.Presentation.Views
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             lgCaptureFilter.IsCollapsed = true;
-            signalRInteraction.ViewModel = ViewModel;
-            uiConfig.ViewModel = ViewModel;
+            signalRInteraction.ViewModel = (ILiveLogViewerViewModel)ViewModel;
+            uiConfig.ViewModel = (ILiveLogViewerViewModel)ViewModel;
 
-            ViewModel.Doc = recLogStream.Document;
+            ViewModel.RichTextBox = rtbLogStream;
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigMINSK.json";
             ViewModel.ReloadUIConfig();
 
@@ -64,30 +64,30 @@ namespace VNCLogViewer.Presentation.Views
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void InitializeLogStream()
-        {
-            recLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
-            recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
+        //private void InitializeLogStream()
+        //{
+        //    rtbLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
+        //    recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
 
-            //Document doc = recLogStream.Document;
+        //    //Document doc = recLogStream.Document;
 
-            //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+        //    //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
 
-            Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
+        //    Section section = ((ILiveLogViewerViewModel)ViewModel).Doc.Sections[0];
 
-            section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
-            section.Page.Landscape = true;
-            section.Margins.Left = 0.1f;
-            section.Margins.Right = 0.1f;
-        }
+        //    section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
+        //    section.Page.Landscape = true;
+        //    section.Margins.Left = 0.1f;
+        //    section.Margins.Right = 0.1f;
+        //}
 
         #endregion
 
         #region Enums, Fields, Properties
 
-        public ILiveLogViewerViewModel ViewModel
+        public ILiveLogViewerViewModelRTB ViewModel
         {
-            get { return (ILiveLogViewerViewModel)DataContext; }
+            get { return (ILiveLogViewerViewModelRTB)DataContext; }
             set { DataContext = value; }
         }
 
@@ -99,10 +99,10 @@ namespace VNCLogViewer.Presentation.Views
 
         // NOTE(crhodes)
         // Why would this get called
-        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
-        {
-            InitializeLogStream();
-        }
+        //private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        //{
+        //    InitializeLogStream();
+        //}
 
         private void recLogStream_TextChanged(object sender, EventArgs e)
         {
@@ -130,14 +130,15 @@ namespace VNCLogViewer.Presentation.Views
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             //recLogStream.Clear();
-            recLogStream.Text = "";
-            InitializeLogStream();
+            rtbLogStream.SelectAll();
+            rtbLogStream.Cut();
+            //InitializeLogStream();
         }
 
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
-            recLogStream.SelectAll();
-            recLogStream.Copy();
+            rtbLogStream.SelectAll();
+            rtbLogStream.Copy();
         }
 
 

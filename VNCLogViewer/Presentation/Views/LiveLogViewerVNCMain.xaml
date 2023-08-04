@@ -111,6 +111,14 @@
                                             FontSize="{Binding ElementName=sbFontSize, Path=Value}"
                                             TextChanged="recLogStream_TextChanged" />
 
+                                        <RichTextBox x:Name="rtbConsoleStream" 
+                                            VerticalScrollBarVisibility="Visible" >
+                                            <FlowDocument>
+                                                <Paragraph>
+                                                </Paragraph>
+                                            </FlowDocument>
+                                        </RichTextBox>
+
                                         <!--Capture filter-->
 
                                         <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"

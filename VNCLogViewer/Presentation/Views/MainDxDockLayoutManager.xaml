@@ -27,7 +27,6 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Title="{Binding Title}"
     Background="{StaticResource MainBackground}"
 
     d:DesignWidth="600" d:DesignHeight="400" 
@@ -47,24 +46,31 @@
         Background="Transparent"
         Name="lc_Root"
         Orientation="Vertical">
+        
         <dxlc:LayoutControl.AvailableItems>
+            
             <!-- Add things that are optionally displayable-->
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
         </dxlc:LayoutControl.AvailableItems>
+        
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <Label Content="lg_Header Stuff Goes Here" />
         </dxlc:LayoutGroup>
+        
         <dxlc:LayoutGroup Name="lg_Body">
             <!-- Use this if you want a LayoutManager -->
             <dxdo:DockLayoutManager
@@ -99,7 +105,7 @@
                                 </dxlc:LayoutGroup.GroupBoxStyle>
 
                                 <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
-                                <!--Need to figure out how to handle Heade attribute -->
+                                <!--Need to figure out how to handle Header attribute -->
 
                                 <dxlc:LayoutGroup Header="" >
                                     <Grid>
@@ -108,8 +114,11 @@
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
+                            
                         </dxlc:LayoutControl>
+                        
                     </dxdo:LayoutPanel>
+                    
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.AutoHideGroups>

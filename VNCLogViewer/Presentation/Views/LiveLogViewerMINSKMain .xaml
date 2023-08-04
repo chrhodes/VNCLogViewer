@@ -100,7 +100,7 @@
 
                                     <dxlc:LayoutGroup Orientation="Vertical">
 
-                                        <dxre:RichEditControl
+                                        <!--<dxre:RichEditControl
                                             x:Name="recLogStream"
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Stretch"
@@ -108,7 +108,15 @@
                                             VerticalContentAlignment="Stretch"
                                             Background="Black"
                                             FontSize="{Binding ElementName=sbFontSize, Path=Value}"
-                                            TextChanged="recLogStream_TextChanged" />
+                                            TextChanged="recLogStream_TextChanged" />-->
+
+                                        <RichTextBox x:Name="rtbLogStream" 
+                                            VerticalScrollBarVisibility="Visible" >
+                                            <FlowDocument>
+                                                <Paragraph>
+                                                </Paragraph>
+                                            </FlowDocument>
+                                        </RichTextBox>
 
                                         <!-- Capture filter -->
                                         <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
@@ -179,13 +187,13 @@
                                                         </StackPanel>
                                                     </Button>
                                                 </dxlc:LayoutItem>
-                                                <dxlc:LayoutItem HorizontalAlignment="Center" Label="Display Layout">
+                                                <!--<dxlc:LayoutItem HorizontalAlignment="Center" Label="Display Layout">
                                                     <dxe:ComboBoxEdit
                                                         x:Name="cbeRichEditViewType"
                                                         EditValueChanged="CbeRichEditViewType_EditValueChanged"
                                                         ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
                                                         SelectedIndex="0" />
-                                                </dxlc:LayoutItem>
+                                                </dxlc:LayoutItem>-->
                                                 <dxlc:LayoutItem HorizontalAlignment="Right">
                                                     <Button
                                                         x:Name="btnClear"

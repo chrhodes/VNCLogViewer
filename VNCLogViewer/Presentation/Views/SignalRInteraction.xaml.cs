@@ -20,6 +20,8 @@ namespace VNCLogViewer.Presentation.Views
             InstanceCountV++;
             InitializeComponent();
 
+            InitializeView();
+
             // Expose ViewModel
 
             // If View First with ViewModel in Xaml
@@ -39,10 +41,22 @@ namespace VNCLogViewer.Presentation.Views
         //    InstanceCountV++;
         //    InitializeComponent();
 
+        //InitializeView();
+
         //    ViewModel = viewModel;
 
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
+
+        private void InitializeView()
+        {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            lgChatPanel.Visibility = Visibility.Hidden;
+            btnSignOut.IsEnabled = false;
+
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #endregion
 
@@ -74,22 +88,33 @@ namespace VNCLogViewer.Presentation.Views
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             UserName = UserNameTextBox.Text;
-            //Connect to server (use async method to avoid blocking UI thread)
+
             if (!String.IsNullOrEmpty(UserName))
             {
-                StatusText.Visibility = Visibility.Visible;
-                StatusText.Content = "Connecting to server...";
-
+                //Connect to server (use async method to avoid blocking UI thread)
                 ViewModel.ConnectAsync();
                 //ConnectAsync();
 
                 //Show chat UI; hide login UI
                 //SignInPanel.Visibility = Visibility.Collapsed;
-                ChatPanel.Visibility = Visibility.Visible;
+                lgChatPanel.Visibility = Visibility.Visible;
                 btnSend.IsEnabled = true;
                 btnSendPriority.IsEnabled = true;
                 tbMessage.Focus();
+
+                btnSignIn.IsEnabled = false;
+                btnSignOut.IsEnabled = true;
             }
+        }
+
+        private void btnSignOut_Click(object sender, RoutedEventArgs e)
+        {
+            lgChatPanel.Visibility = Visibility.Hidden;
+            btnSend.IsEnabled = false;
+            btnSendPriority.IsEnabled = false;
+
+            btnSignIn.IsEnabled = true;
+            btnSignOut.IsEnabled = false;
         }
 
         // TODO(crhodes)
@@ -146,6 +171,7 @@ namespace VNCLogViewer.Presentation.Views
         }
 
         #endregion
+
 
     }
 }

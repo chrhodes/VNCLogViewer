@@ -23,17 +23,20 @@ using CharacterProperties = DevExpress.XtraRichEdit.API.Native.CharacterProperti
 using JSONConsoleApp.jsonDeserializeClass;
 using System.IO;
 using System.Text.Json;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
-    public class LiveLogViewerViewModel : EventViewModelBase, ILiveLogViewerViewModel, IInstanceCountVM
+    public class LiveLogViewerViewModelRTB : EventViewModelBase, ILiveLogViewerViewModelRTB, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
 
-        public LiveLogViewerViewModel(
+        public LiveLogViewerViewModelRTB(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -126,6 +129,9 @@ namespace VNCLogViewer.Presentation.ViewModels
         }
 
         public Document Doc { get; set; }
+
+        private RichTextBox _richTextBox;
+        public RichTextBox RichTextBox { get => _richTextBox; set => _richTextBox = value; }
 
         private luic.LoggingColors _loggingColors = new luic.LoggingColors();
 
@@ -319,35 +325,6 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             await Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
 
-            // TODO(crhodes)
-            // Do something amazing.
-            // Message = "Cool, you called SendPriority";
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<SendPriorityEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<SendPriorityEvent>().Publish(
-            //      new SendPriorityEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class SendPriorityEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<SendPriorityEvent>().Subscribe(SendPriority);
-
-            // End Cut Four
-
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -378,7 +355,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #endregion
 
-        #region Private methods
+        #region Private methods (none)
 
         #endregion
 
@@ -407,7 +384,7 @@ namespace VNCLogViewer.Presentation.ViewModels
             //    })
             //);
 
-            Connection.On<string>("AddMessage", (message) =>
+          Connection.On<string>("AddMessage", (message) =>
                 AppendFormattedMessage($"{message}\r")
             );
 
@@ -451,15 +428,17 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 100:
                             if (LoggingUIConfig.Info00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Info00.Color);
+                                //displayMessage = ColorFormatMessage(formattedMessage,
+                                //    LoggingUIConfig.Info00.Color);
                             }
                             break;
 
                         case 101: // Not Used
                             if (LoggingUIConfig.Info01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Info01.Color);
                             }
                             break;
@@ -467,7 +446,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 102: // Not Used
                             if (LoggingUIConfig.Info02.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Info02.Color);
                             }
                             break;
@@ -475,7 +454,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 103: // Not Used
                             if (LoggingUIConfig.Info00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Info03.Color);
                             }
                             break;
@@ -483,7 +462,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 104: // Not Used
                             if (LoggingUIConfig.Info04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Info04.Color);
                             }
                             break;
@@ -495,7 +474,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 1000: // Not Used
                             if (LoggingUIConfig.Debug00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Debug00.Color);
                             }
                             break;
@@ -503,7 +482,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 1001: // Not Used
                             if (LoggingUIConfig.Debug01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Debug01.Color);
                             }
                             break;
@@ -516,13 +495,13 @@ namespace VNCLogViewer.Presentation.ViewModels
                             {
                                 if (LoggingUIConfig.Debug02.IsChecked == true)
                                 {
-                                    displayMessage = ColorFormatMessage(formattedMessage,
+                                    ColorFormatMessageAndAppend(formattedMessage,
                                         LoggingUIConfig.Debug02.Color);
                                 }
                             }
                             else if (LoggingUIConfig.Debug02.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Debug02.Color);
                             }
                             break;
@@ -530,7 +509,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 1003: // Not Used
                             if (LoggingUIConfig.Debug03.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Debug03.Color);
                             }
                             break;
@@ -538,7 +517,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 1004: // Not Used
                             if (LoggingUIConfig.Debug04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Debug04.Color);
                             }
                             break;
@@ -551,7 +530,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9000:
                             if (LoggingUIConfig.Arch00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch00.Color);
                             }
                             break;
@@ -559,7 +538,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9001:
                             if (LoggingUIConfig.Arch01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch01.Color);
                             }
                             break;
@@ -567,7 +546,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9002:
                             if (LoggingUIConfig.Arch02.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch02.Color);
                             }
                             break;
@@ -575,7 +554,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9003:
                             if (LoggingUIConfig.Arch03.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch03.Color);
                             }
                             break;
@@ -583,7 +562,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9004:
                             if (LoggingUIConfig.Arch04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch04.Color);
                             }
                             break;
@@ -591,7 +570,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9005:
                             if (LoggingUIConfig.Arch05.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch05.Color);
                             }
                             break;
@@ -599,7 +578,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9006:
                             if (LoggingUIConfig.Arch06.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch06.Color);
                             }
                             break;
@@ -607,7 +586,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9007:
                             if (LoggingUIConfig.Arch07.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch07.Color);
                             }
                             break;
@@ -615,7 +594,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9008:
                             if (LoggingUIConfig.Arch08.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch08.Color);
                             }
                             break;
@@ -623,7 +602,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9009:
                             if (LoggingUIConfig.Arch09.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch09.Color);
                             }
                             break;
@@ -635,7 +614,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9010:
                             if (LoggingUIConfig.Arch10.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch10.Color);
                             }
                             break;
@@ -643,7 +622,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9011:
                             if (LoggingUIConfig.Arch11.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch11.Color);
                             }
                             break;
@@ -651,7 +630,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9012:
                             if (LoggingUIConfig.Arch12.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch12.Color);
                             }
                             break;
@@ -659,7 +638,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9013:
                             if (LoggingUIConfig.Arch13.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch13.Color);
                             }
                             break;
@@ -667,7 +646,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9014:
                             if (LoggingUIConfig.Arch14.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch14.Color);
                             }
                             break;
@@ -675,7 +654,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9015:
                             if (LoggingUIConfig.Arch15.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch15.Color);
                             }
                             break;
@@ -683,7 +662,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9016:
                             if (LoggingUIConfig.Arch16.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch16.Color);
                             }
                             break;
@@ -691,7 +670,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9017:
                             if (LoggingUIConfig.Arch17.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch17.Color);
                             }
                             break;
@@ -699,7 +678,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9018:
                             if (LoggingUIConfig.Arch18.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch18.Color);
                             }
                             break;
@@ -707,7 +686,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 9019:
                             if (LoggingUIConfig.Arch19.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Arch19.Color);
                             }
                             break;
@@ -719,7 +698,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10000: // Not Used
                             if (LoggingUIConfig.Trace00.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace00.Color);
                             }
                             break;
@@ -727,7 +706,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10001: // EVENT_HANDLER
                             if (LoggingUIConfig.Trace01.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace01.Color);
                             }
                             break;
@@ -735,7 +714,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10002: // APPLICATION_INITIALIZE
                             if (LoggingUIConfig.Trace02.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace02.Color);
                             }
                             break;
@@ -743,7 +722,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10003: // Not Used
                             if (LoggingUIConfig.Trace03.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace03.Color);
                             }
                             break;
@@ -751,7 +730,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10004: // Not Used
                             if (LoggingUIConfig.Trace04.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace04.Color);
                             }
                             break;
@@ -759,7 +738,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10005: // Not Used
                             if (LoggingUIConfig.Trace05.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace05.Color);
                             }
                             break;
@@ -767,7 +746,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10006: // Not Used
                             if (LoggingUIConfig.Trace06.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace06.Color);
                             }
                             break;
@@ -775,7 +754,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10007: // PRESENTATION
                             if (LoggingUIConfig.Trace07.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace07.Color);
                             }
                             break;
@@ -783,7 +762,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10008: // Not Used
                             if (LoggingUIConfig.Trace08.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace08.Color);
                             }
                             break;
@@ -791,7 +770,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10009: // CORE
                             if (LoggingUIConfig.Trace09.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace09.Color);
                             }
                             break;
@@ -803,7 +782,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10010: // APPLICATION
                             if (LoggingUIConfig.Trace10.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace10.Color);
                             }
                             break;
@@ -811,7 +790,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10011: // Not Used
                             if (LoggingUIConfig.Trace11.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace11.Color);
                             }
                             break;
@@ -819,7 +798,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10012: // FILE_DIR_IO
                             if (LoggingUIConfig.Trace12.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace12.Color);
                             }
                             break;
@@ -827,7 +806,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10013: // PERSISTENCE
                             if (LoggingUIConfig.Trace13.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace13.Color);
                             }
                             break;
@@ -835,7 +814,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10014: // Not Used
                             if (LoggingUIConfig.Trace14.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace14.Color);
                             }
                             break;
@@ -844,7 +823,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                             if (LoggingUIConfig.Trace15.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace15.Color);
                             }
                             break;
@@ -852,7 +831,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10016: // Not Used
                             if (LoggingUIConfig.Trace16.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace16.Color);
                             }
                             break;
@@ -860,7 +839,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10017: // VIEW
                             if (LoggingUIConfig.Trace17.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace17.Color);
                             }
                             break;
@@ -868,7 +847,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10018: // VIEWMODEL
                             if (LoggingUIConfig.Trace18.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace18.Color);
                             }
                             break;
@@ -876,7 +855,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10019: // MODULE
                             if (LoggingUIConfig.Trace19.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace19.Color);
                             }
                             break;
@@ -888,7 +867,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10020: // APPLICATION_SERVICES
                             if (LoggingUIConfig.Trace20.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace20.Color);
                             }
                             break;
@@ -896,7 +875,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10021: // EVENT
                             if (LoggingUIConfig.Trace21.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace21.Color);
                             }
                             break;
@@ -904,7 +883,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10022: // DOMAIN SERVICES
                             if (LoggingUIConfig.Trace22.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace22.Color);
                             }
                             break;
@@ -912,7 +891,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10023: // PERSISTENCE_LOW
                             if (LoggingUIConfig.Trace23.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace23.Color);
                             }
                             break;
@@ -920,7 +899,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10024: // Not Used
                             if (LoggingUIConfig.Trace24.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace24.Color);
                             }
                             break;
@@ -928,7 +907,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10025: // CONSTRUCTOR
                             if (LoggingUIConfig.Trace25.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace25.Color);
                             }
                             break;
@@ -936,7 +915,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10026: // Not Used
                             if (LoggingUIConfig.Trace26.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace26.Color);
                             }
                             break;
@@ -944,7 +923,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10027: // VIEW_LOW
                             if (LoggingUIConfig.Trace27.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace27.Color);
                             }
                             break;
@@ -952,7 +931,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10028: // VIEWMODEL_LOW
                             if (LoggingUIConfig.Trace28.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace28.Color);
                             }
                             break;
@@ -960,7 +939,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         case 10029: // MODULE_INITIALIZE
                             if (LoggingUIConfig.Trace29.IsChecked == true)
                             {
-                                displayMessage = ColorFormatMessage(formattedMessage,
+                                ColorFormatMessageAndAppend(formattedMessage,
                                     LoggingUIConfig.Trace29.Color);
                             }
                             break;
@@ -1011,7 +990,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         Task Connection_Closed(Exception? arg)
         {
-            AppendColorFormattedMessage($"Connection Closed {(arg is null ? "" : arg.Message)}.", Color.Red);
+            ColorFormatMessageAndAppend($"Connection Closed {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
 
             ////Hide chat UI; show login UI
             //var dispatcher = Application.Current.Dispatcher;
@@ -1027,7 +1006,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private Task Connection_Reconnecting(Exception? arg)
         {
-            AppendColorFormattedMessage($"Reconnecting {(arg is null ? "" : arg.Message)}.", Color.Red);
+            ColorFormatMessageAndAppend($"Reconnecting {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
 
             //var dispatcher = Application.Current.Dispatcher;
             //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
@@ -1037,7 +1016,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private Task Connection_Reconnected(string? arg)
         {
-            AppendColorFormattedMessage($"Reconnected {(arg is null ? "" : arg)}", Color.Red);
+            ColorFormatMessageAndAppend($"Reconnected {(arg is null ? "" : arg)}", System.Drawing.Color.Red);
 
             //var dispatcher = Application.Current.Dispatcher;
             //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
@@ -1047,73 +1026,134 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private void AppendFormattedMessage(string formattedMessage)
         {
+            _richTextBox.AppendText(formattedMessage);
+            return;
+
             // TODO(crhodes)
             // Doc maybe null when program exits.
 
-            if (Doc is not null)
-            {
-                try
-                {
-                    Doc.BeginUpdate();
+            //if (Doc is not null)
+            //{
+            //    try
+            //    {
+            //        Doc.BeginUpdate();
 
-                    Doc.AppendText(formattedMessage);
+            //        Doc.AppendText(formattedMessage);
 
-                    Doc.EndUpdate();
-                }
-                catch (Exception ex)
-                {
-                    string exception = ex.ToString();
-                    string innerException = ex.InnerException.ToString();
-                }
-            }
+            //        Doc.EndUpdate();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        string exception = ex.ToString();
+            //        string innerException = ex.InnerException.ToString();
+            //    }
+            //}
         }
 
-        void AppendColorFormattedMessage(string formattedMessage, Color color)
-        {
-            try
-            {
-                DocumentRange newRange = Doc.AppendText(formattedMessage);
-                CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
-                charProp.ForeColor = color;
-                Doc.EndUpdateCharacters(charProp);
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException?.ToString();
-            }
-        }
+        //void AppendColorFormattedMessage(string formattedMessage, Color color)
+        //{
+        //    try
+        //    {
+        //        Doc.BeginUpdate();
 
-        private bool ColorFormatMessage(string formattedMessage, Color color)
+        //        //Doc.AppendText(formattedMessage);
+
+        //        DocumentRange newRange = Doc.AppendText(formattedMessage);
+
+        //        CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
+        //        charProp.ForeColor = color;
+        //        Doc.EndUpdateCharacters(charProp);
+
+        //        Doc.EndUpdate();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string exception = ex.ToString();
+        //        string innerException = ex.InnerException?.ToString();
+        //    }
+        //}
+
+        //// TODO(crhodes)
+        //// Try to remember what this was all about.
+        //// I think it might have had to do with SQL calls for EASE
+        //private void ColorFormatMessageAndAppend(string formattedMessage, Color color)
+        //{
+        //    //AppendColorFormattedMessage(formattedMessage, color);
+        //    AppendFormattedMessage(formattedMessage);
+
+        //    return;
+        //    //bool displayMessage = false;
+        //    int messageIndex = 0;
+
+        //    messageIndex = GetNthIndex(formattedMessage, '|', 3);
+        //    try
+        //    {
+        //        if (messageIndex++ > 0)
+        //        {
+        //            string prefixMessage = formattedMessage.Substring(0, messageIndex);
+        //            AppendFormattedMessage(prefixMessage);
+
+        //            string colorMessage = formattedMessage.Substring(messageIndex);
+        //            AppendColorFormattedMessage(colorMessage, color);
+        //        }
+        //        else
+        //        {
+        //            AppendColorFormattedMessage(formattedMessage, color);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        AppendColorFormattedMessage(ex.ToString(), Color.Red);
+        //    }
+
+        //    //return displayMessage;
+        //}
+
+        private void ColorFormatMessageAndAppend(string formattedMessage, System.Drawing.Color color)
         {
-            bool displayMessage = false;
             int messageIndex = 0;
 
-            messageIndex = GetNthIndex(formattedMessage, '|', 6);
+            messageIndex = GetNthIndex2(formattedMessage, '|', 3);
             try
             {
                 if (messageIndex++ > 0)
                 {
                     string prefixMessage = formattedMessage.Substring(0, messageIndex);
-                    AppendFormattedMessage(prefixMessage);
+                    AppendColorText(prefixMessage, System.Drawing.Color.Black);
 
                     string colorMessage = formattedMessage.Substring(messageIndex);
-                    AppendColorFormattedMessage(colorMessage, color);
+                    AppendColorText(colorMessage, color);
                 }
                 else
                 {
-                    AppendColorFormattedMessage(formattedMessage, color);
+                    AppendColorText(formattedMessage, color);
                 }
             }
             catch (Exception ex)
             {
-                AppendColorFormattedMessage(ex.ToString(), Color.Red);
+                AppendColorText(ex.ToString(), System.Drawing.Color.Red);
             }
 
-            return displayMessage;
+            //return displayMessage;
         }
 
-        int GetNthIndex(string s, char c, int n)
+        private void AppendColorText(string message, System.Drawing.Color color)
+        {
+            //_richTextBox.AppendText(message);
+            //return;
+
+            //BrushConverter bc = new BrushConverter();
+            //Brush newBrush = (Brush)bc.ConvertFrom(color);
+            SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+
+            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+            tr.Text = message;
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+
+            //rtbConsole.AppendText(message);   
+        }
+
+        private int GetNthIndex(string s, char c, int n)
         {
             int count = 0;
 
@@ -1132,7 +1172,17 @@ namespace VNCLogViewer.Presentation.ViewModels
             // = s.TakeWhile(c => n -= (c == t ? 1 : 0)) > 0).Count();
         }
 
+        private int GetNthIndex2(string s, char c, int n)
+        {
+            var idx = s.IndexOf(c, 0);
 
+            while (idx >= 0 && --n > 0)
+            {
+                idx = s.IndexOf(c, idx + 1);
+            }
+
+            return idx;
+        }
 
         #region IInstanceCount
 

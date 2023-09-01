@@ -47,6 +47,9 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigDefault.json";
             ViewModel.ReloadUIConfig();
 
+            lg_Body_dlm.Activate(lp_RightStuff);
+            lp_RightStuff.Visibility = Visibility.Visible;
+
             //ViewModel.RichTextBox = rtbConsoleStream;
 
             // NOTE(crhodes)

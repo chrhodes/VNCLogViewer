@@ -53,6 +53,8 @@
             </StackPanel>
         </StackPanel>
 
+        <views:AppVersionInfo HorizontalAlignment="Right" />
+
     </Grid>
 
 </Window>

@@ -1,12 +1,14 @@
 ﻿<Window
     x:Class="VNCLogViewer.Presentation.Views.Shell"
-    x:Name="thisShell"
+    x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"
 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
@@ -32,32 +34,31 @@
 
     <!--xmlns:core="clr-namespace:VNCLogViewer.Core;assembly=VNCLogViewer.Core"-->
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}"  />
 
-        <!-- This is useful for debugging V VM constructor issues -->
+        <dxlc:LayoutGroup Name="lg_Footer"
+                          Grid.Row="1" 
+            View="Group" Orientation="Horizontal" Padding="3,0,0,0" >
 
-        <DockPanel Grid.Row="1" >
-                 
-            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="V:" />
-                    <Label Content="{Binding ElementName=thisShell, Path=InstanceCountV}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="VM:" />
-                    <Label Content="{Binding InstanceCountVM}" />
-                </StackPanel>
-            </StackPanel>
+            <!-- This is useful for debugging V VM constructor issues -->
+
+            <dxlc:LayoutItem Label="V:" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="VM:" VerticalAlignment="Center" >
+                <TextBlock Text="{Binding InstanceCountVM}" />
+            </dxlc:LayoutItem>
 
             <views:AppVersionInfo HorizontalAlignment="Right" />
-
-        </DockPanel>
+            
+        </dxlc:LayoutGroup>
 
     </Grid>
 

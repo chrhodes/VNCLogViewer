@@ -47,6 +47,9 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigVNCARCH.json";
             ViewModel.ReloadUIConfig();
 
+            lg_Body_dlm.Activate(lp_RightStuff);
+            lp_RightStuff.Visibility = Visibility.Visible;
+
             ////((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigVNCARCH();
 
             //Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");

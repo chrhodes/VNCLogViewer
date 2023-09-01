@@ -60,7 +60,6 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="VM:" />
-
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
         </StackPanel>

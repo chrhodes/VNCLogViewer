@@ -52,6 +52,9 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.Doc = recLogStream.Document;
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigEASE.json";
             ViewModel.ReloadUIConfig();
+
+            lg_Body_dlm.Activate(lp_RightStuff);
+            lp_RightStuff.Visibility = Visibility.Visible;
             
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

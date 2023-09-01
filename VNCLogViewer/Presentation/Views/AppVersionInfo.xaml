@@ -26,15 +26,15 @@
     
     <Grid>
         
-        <StackPanel Orientation="Horizontal" Margin="5" >
+        <StackPanel Orientation="Horizontal" >
             <Label Content="Product Name: " />
-            <Label Content="{Binding ProductName}" Foreground="Red" />
+            <Label Content="{Binding ProductName}" Foreground="{StaticResource RedText}" />
             <Label Content="Product Version: " Margin="10,0,0,0" />
-            <Label Content="{Binding ProductVersion}" Foreground="Red" />
+            <Label Content="{Binding ProductVersion}" Foreground="{StaticResource RedText}" />
             <Label Content="File Version: " Margin="10,0,0,0"/>
-            <Label Content="{Binding FileVersion}" Foreground="Red" />
+            <Label Content="{Binding FileVersion}" Foreground="{StaticResource RedText}" />
             <Label Content=".NET Runtime: " Margin="10,0,0,0" />
-            <Label Content="{Binding RuntimeVersion}" Foreground="Red"/>
+            <Label Content="{Binding RuntimeVersion}" Foreground="{StaticResource RedText}"/>
         </StackPanel>
 
     </Grid>

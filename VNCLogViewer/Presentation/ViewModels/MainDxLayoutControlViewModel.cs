@@ -5,12 +5,12 @@ using VNC.Core.Mvvm;
 
 namespace VNCLogViewer.ViewModels
 {
-    public class MainDxLayoutViewModel : ViewModelBase, IInstanceCountVM
+    public class MainDxLayoutControlViewModel : ViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public MainDxLayoutViewModel()
+        public MainDxLayoutControlViewModel()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -42,7 +42,7 @@ namespace VNCLogViewer.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainDxLayout - " + Common.ProductVersion;
+        private string _title = "VNCLogViewer - MainDxLayoutControl - " + Common.ProductVersion;
 
         public string Title
         {
@@ -57,7 +57,6 @@ namespace VNCLogViewer.ViewModels
         }
 
         public string RuntimeVersion { get => Common.RuntimeVersion; }
-
         public string FileVersion { get => Common.FileVersion; }
         public string ProductVersion { get => Common.ProductVersion; }
         public string ProductName { get => Common.ProductName; }

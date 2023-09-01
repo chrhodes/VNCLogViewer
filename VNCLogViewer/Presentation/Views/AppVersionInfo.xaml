@@ -1,0 +1,42 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCLogViewer.Presentation.Views.AppVersionInfo"
+    x:Name="thisAppVersionInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:local="clr-namespace:VNCLogViewer.Presentation.Views"
+    
+    xmlns:views="clr-namespace:VNCLogViewer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCLogViewer.Presentation.ViewModels"
+    
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"	
+    xmlns:core="clr-namespace:VNCLogViewer.Core;assembly=VNCLogViewer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource AppVersionInfoBackground}"
+    
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+    
+    <Grid>
+        
+        <StackPanel Orientation="Horizontal" Margin="5" >
+            <Label Content="Product Name: " />
+            <Label Content="{Binding ProductName}" Foreground="Red" />
+            <Label Content="Product Version: " Margin="10,0,0,0" />
+            <Label Content="{Binding ProductVersion}" Foreground="Red" />
+            <Label Content="File Version: " Margin="10,0,0,0"/>
+            <Label Content="{Binding FileVersion}" Foreground="Red" />
+            <Label Content=".NET Runtime: " Margin="10,0,0,0" />
+            <Label Content="{Binding RuntimeVersion}" Foreground="Red"/>
+        </StackPanel>
+
+    </Grid>
+
+</vncmvvm:ViewBase>

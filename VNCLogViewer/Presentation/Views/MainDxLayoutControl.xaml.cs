@@ -8,11 +8,11 @@ using VNCLogViewer.ViewModels;
 
 namespace VNCLogViewer.Presentation.Views
 {
-    public partial class MainDxLayout : Window, IInstanceCountV
+    public partial class MainDxLayoutControl : ViewBase, IMain, IInstanceCountV
     {
-        public MainDxLayoutViewModel _viewModel;
+        public MainDxLayoutControlViewModel _viewModel;
 
-        public MainDxLayout(MainDxLayoutViewModel viewModel)
+        public MainDxLayoutControl(MainDxLayoutControlViewModel viewModel)
         {
             Int64 startTicks = Log.Trace(String.Format("Enter"), Common.LOG_CATEGORY);
 
@@ -25,15 +25,15 @@ namespace VNCLogViewer.Presentation.Views
             Log.Trace(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
-        private void SaveLayout_Click(object sender, RoutedEventArgs e)
-        {
-            lg_Body_dlm.SaveLayoutToXml(@"C:\temp\VNCLogViewerLayout.xml");
-        }
+        //private void SaveLayout_Click(object sender, RoutedEventArgs e)
+        //{
+        //    lg_Body_dlm.SaveLayoutToXml(Common.cCONFIG_FILE);
+        //}
 
-        private void RestoreLayout_Click(object sender, RoutedEventArgs e)
-        {
-            lg_Body_dlm.RestoreLayoutFromXml(@"C:\temp\VNCLogViewerLayout.xml");
-        }
+        //private void RestoreLayout_Click(object sender, RoutedEventArgs e)
+        //{
+        //    lg_Body_dlm.RestoreLayoutFromXml(Common.cCONFIG_FILE);
+        //}
 
         #region IInstanceCount
 

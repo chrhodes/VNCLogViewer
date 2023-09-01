@@ -80,6 +80,7 @@
                             Background="Transparent"
                             Orientation="Vertical"
                             StretchContentVertically="True">
+                            
                             <dxlc:LayoutGroup
                                 Name="groupContainer"
                                 Orientation="Vertical"
@@ -444,6 +445,7 @@
                                     </dxlc:LayoutGroup>
 
                                 </dxlc:LayoutGroup>
+                                
                                 <!--<dxlc:LayoutGroup Header="Y Stuff" Name="lg_Y">
                                     <dxlc:LayoutItem MaxHeight="1200"
                                         VerticalAlignment="Top"
@@ -470,96 +472,6 @@
 
                             <views:SignalRInteraction x:Name="signalRInteraction" />
 
-                            <!--<dxlc:LayoutGroup
-                        	    View="Group" Orientation="Vertical" >
-                                
-                                <dxlc:LayoutItem Label="ServerURI:">
-                                    <TextBox x:Name="ServerURI"
-                                                Height="20"
-                                                Margin="0,0,80,0"
-                                                Text="{Binding ServerURI}"
-                                                TextWrapping="Wrap" />
-                                </dxlc:LayoutItem>
-
-                                <dxlc:LayoutGroup VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    
-                                    <dxlc:LayoutGroup x:Name="SignInPanel" Margin="10,0">
-                                        
-                                        -->                            <!--<dxlc:LayoutItem HorizontalAlignment="Left">
-                                            <Label Content="Enter user name:" />
-                                        </dxlc:LayoutItem>-->                            <!--
-                                        
-                                        <dxlc:LayoutItem Label="Enter User name:" LabelPosition="Left"
-                                                         HorizontalAlignment="Left">
-                                            <TextBox x:Name="UserNameTextBox"
-                                                     Text="{Binding UserName}"
-                                                     Height="20"
-                                                     MinWidth="100"
-                                                     Margin="0,0,80,0" />
-                                        </dxlc:LayoutItem>                                                                             
-
-                                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                                            <Button x:Name="SignInButton"
-                                                        Width="75"
-                                                        HorizontalAlignment="Right"
-                                                        Click="btnSignIn_Click"
-                                                        Content="Sign In" />
-                                        </dxlc:LayoutItem>                                              
-
-                                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                                            <Label x:Name="StatusText"
-                                                    Margin="0,10"
-                                                    HorizontalAlignment="Center"
-                                                    Visibility="Collapsed" />
-                                        </dxlc:LayoutItem>                                        
-
-                                    </dxlc:LayoutGroup>
-                                    
-                                    <dxlc:LayoutGroup x:Name="ChatPanel" Orientation="Vertical"
-                                                Visibility="Visible">
-                                        <dxlc:LayoutGroup Orientation="Horizontal">
-                                            <dxlc:LayoutItem HorizontalAlignment="Left"
-                                                        Label="Message:"
-                                                        LabelPosition="Top">
-                                                <TextBox x:Name="tbMessage" 
-                                                         Text="{Binding Message}"
-                                                            Width="300"
-                                                            TextWrapping="Wrap" />
-                                            </dxlc:LayoutItem>
-                                            <dxlc:LayoutItem HorizontalAlignment="Left"
-                                                        Label="Priority:"
-                                                        LabelPosition="Top">
-                                                <TextBox x:Name="tbMessagePriority" 
-                                                         Text="{Binding Priority}" 
-                                                         Width="100" />
-                                            </dxlc:LayoutItem>
-                                        </dxlc:LayoutGroup>
-                                        
-                                        <dxlc:LayoutGroup Orientation="Horizontal">
-                                            
-                                            <Button x:Name="btnSend"
-                                                        Width="75"
-                                                        Height="20"
-                                                        Click="btnSend_Click"
-                                                        Content="Send"
-                                                        IsDefault="True"
-                                                        IsEnabled="False" />
-                                            
-                                            <Button x:Name="btnSendPriority"
-                                                        Height="20"
-                                                        HorizontalAlignment="Left"
-                                                        Click="btnSendPriority_Click"
-                                                        Content="Send Priority"
-                                                        IsEnabled="False" />
-
-                                        </dxlc:LayoutGroup>
-                                        
-                                    </dxlc:LayoutGroup>
-                                    
-                                </dxlc:LayoutGroup>
-                                
-                            </dxlc:LayoutGroup>-->
-
                         </dxdo:LayoutPanel>
 
                     </dxdo:AutoHideGroup>
@@ -575,7 +487,7 @@
                 </dxdo:DockLayoutManager.AutoHideGroups>
 
             </dxdo:DockLayoutManager>
-            <!--  Use this if you have simple Content -->
+
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">

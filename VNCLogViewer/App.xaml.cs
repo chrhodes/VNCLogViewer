@@ -187,8 +187,8 @@ namespace VNCLogViewer
             // TODO(crhodes)
             // Pick the shell to start with.
 
-            //return Container.Resolve<Shell>();
-            return Container.Resolve<MainDxLayout>();
+            return Container.Resolve<Shell>();
+            //return Container.Resolve<MainDxLayoutControl>();
             // return Container.Resolve<RibbonShell>();
 
             // NOTE(crhodes)

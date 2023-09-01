@@ -26,6 +26,16 @@ namespace VNCLogViewer.Presentation.Views
             Log.Trace(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
+        private void SaveLayout_Click(object sender, RoutedEventArgs e)
+        {
+            dlm.SaveLayoutToXml(Common.cCONFIG_FILE);
+        }
+
+        private void RestoreLayout_Click(object sender, RoutedEventArgs e)
+        {
+            dlm.RestoreLayoutFromXml(Common.cCONFIG_FILE);
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountV;

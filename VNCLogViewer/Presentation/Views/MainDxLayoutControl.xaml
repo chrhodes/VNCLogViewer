@@ -1,6 +1,6 @@
-﻿<Window
-    x:Class="VNCLogViewer.Presentation.Views.MainDxLayout"
-    x:Name="thisMainDxLayout"
+﻿<vncmvvm:ViewBase
+    x:Class="VNCLogViewer.Presentation.Views.MainDxLayoutControl"
+    x:Name="thisMainDxLayoutControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,11 +27,10 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Title="{Binding Title}"
     Background="{StaticResource MainBackground}"
 
     d:DesignWidth="600" d:DesignHeight="400" 
-    d:DesignStyle="{StaticResource vncDesignStyleW}"
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
 >
     <!-- <d:DesignerProperties.DesignStyle> -->
     <!-- <Style TargetType="UserControl"> -->
@@ -73,11 +72,11 @@
         </dxlc:LayoutGroup>-->
         
         <dxlc:LayoutGroup Name="lg_Body">
-            <!-- Use this if you want a LayoutManager -->
+            <!-- Use this if you want a LayoutManager --><!--
             <dxdo:DockLayoutManager
                 dx:StyleManager.ApplyApplicationTheme="True"
                 FontSize="12"
-                Name="lg_Body_dlm">
+                Name="lg_Body_dlm">-->
                 <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
                     <dxdo:LayoutPanel
                         MaxHeight="1200"
@@ -139,9 +138,10 @@
                     
                 </dxdo:LayoutGroup>
 
-                <dxdo:DockLayoutManager.AutoHideGroups>
 
-                    <!--<dxdo:AutoHideGroup DockType="Left">
+                <!--<dxdo:DockLayoutManager.AutoHideGroups>
+
+                    --><!--<dxdo:AutoHideGroup DockType="Left">
                         <dxdo:LayoutPanel
                             x:Name="lp_LeftStuff"
                             Caption="Left Stuff"
@@ -158,12 +158,12 @@
                                 <Label Content="lp_RightStuff Goes Here" />
                             </StackPanel>
                         </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>-->
+                    </dxdo:AutoHideGroup>--><!--
                     
-                </dxdo:DockLayoutManager.AutoHideGroups>
+                </dxdo:DockLayoutManager.AutoHideGroups>-->
                 
-            </dxdo:DockLayoutManager>
-            <!--  Use this if you have simple Content -->
+            <!--</dxdo:DockLayoutManager>-->
+
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
@@ -171,39 +171,29 @@
             <!--<Label Content="lg_Footer Stuff Goes Here" />-->
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup VerticalAlignment="Bottom">
-            <DockPanel>
+        <dxlc:LayoutGroup
+            View="Group" Orientation="Horizontal" VerticalAlignment="Bottom">
 
-                <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
-                    <!--<Label Content="ProductName: " />
-                    <Label Content="{Binding ProductName}" />-->
-                    <Label Content="FileVersion: " />
-                    <Label Content="{Binding FileVersion}" />
-                    <!--<Label Content=" ProductVersion: " />
-                    <Label Content="{Binding ProductVersion}" />-->
-                    <Label Content=" .NET Runtime: " />
-                    <Label Content="{Binding RuntimeVersion}" />
+            <!-- This is useful for debugging V VM constructor issues -->
+
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisMainWindow, Path=InstanceCountV}" />
                 </StackPanel>
-
-                <!-- This is useful for debugging V VM constructor issues -->
-
-                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Content="V:" />
-                        <Label Content="{Binding ElementName=thisMainWindow, Path=InstanceCountV}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Content="VM:" />
-                        <Label Content="{Binding InstanceCountVM}" />
-                    </StackPanel>
-
-                    <Button Content="Save Layout" Click="SaveLayout_Click" />
-                    <Button Content="Restore Layout" Click="RestoreLayout_Click" />
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+                    <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
+            </StackPanel>
 
-            </DockPanel>
+            <!--<StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Save Layout" Click="SaveLayout_Click" />
+                <Button Content="Restore Layout" Click="RestoreLayout_Click" />
+            </StackPanel>-->
+
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutControl>
     
-</Window>
+</vncmvvm:ViewBase>

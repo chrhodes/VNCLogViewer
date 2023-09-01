@@ -65,19 +65,22 @@
         
         <dxlc:LayoutGroup Name="lg_Body">
 
-            <dxdo:DockLayoutManager dx:StyleManager.ApplyApplicationTheme="True"
+            <dxdo:DockLayoutManager 
+                dx:StyleManager.ApplyApplicationTheme="True"
                 FontSize="12"
                 Name="lg_Body_dlm">
                 
                 <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
-                    
-                    <dxdo:LayoutPanel AllowClose="False"
+
+                    <dxdo:LayoutPanel
+                        AllowClose="False"
                         AllowDock="False"
                         AllowFloat="False"
                         AllowHide="False"
                         Name="lg_Body_dlm_lg_lpRoot">
-                        
-                        <dxlc:LayoutControl Grid.Row="1"
+
+                        <dxlc:LayoutControl 
+                            Grid.Row="1"
                             Grid.Column="0"
                             Background="Transparent"
                             Orientation="Vertical"
@@ -111,13 +114,13 @@
                                             FontSize="{Binding ElementName=sbFontSize, Path=Value}"
                                             TextChanged="recLogStream_TextChanged" />
 
-                                        <RichTextBox x:Name="rtbConsoleStream" 
+                                        <!--<RichTextBox x:Name="rtbConsoleStream" 
                                             VerticalScrollBarVisibility="Visible" >
                                             <FlowDocument>
                                                 <Paragraph>
                                                 </Paragraph>
                                             </FlowDocument>
-                                        </RichTextBox>
+                                        </RichTextBox>-->
 
                                         <!--Capture filter-->
 

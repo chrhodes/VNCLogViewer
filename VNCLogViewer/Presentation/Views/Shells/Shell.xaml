@@ -51,15 +51,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="VM:" />
-
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
-                <Label Content=".NET Runtime: " />
-                <Label Content="{Binding RuntimeVersion}" />
-            </StackPanel>
+            <views:AppVersionInfo HorizontalAlignment="Right" />
 
         </DockPanel>
 

@@ -7,7 +7,7 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"    
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
-    xmlns:local="clr-namespace:VNCCodeCommandConsole"
+    xmlns:local="clr-namespace:VNCLogViewer"
 
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -37,7 +37,8 @@
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
     <SolidColorBrush x:Key="SignalRInteractionBackground" Color="#909090" />
     <SolidColorBrush x:Key="DefaultFilterBackground" Color="#404040" />
-    <SolidColorBrush x:Key="UIConfigBackground" Color="#606060" /> 
+    <SolidColorBrush x:Key="UIConfigBackground" Color="#606060" />
+    <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#A0A0A0" /> 
 
     <Style TargetType="TextBox">
         <Setter Property="Validation.ErrorTemplate"> 

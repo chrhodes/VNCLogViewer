@@ -1,16 +1,14 @@
-﻿
-
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace VNCLogViewer
 {
     public static class Common
     {
-        private static string _fileVersion;
-        private static string _productName;
-        private static string _productVersion;
-        private static string _runtimeVersion;
+        private static string _fileVersion = "<fileVersion>";
+        private static string _productName = "<productName>";
+        private static string _productVersion = "<productVersion>";
+        private static string _runtimeVersion = "<RuntimeVersion>";
 
         public const string PROJECT_NAME = "VNCLogViewer";
         public const string LOG_CATEGORY = "VNCLogViewer";

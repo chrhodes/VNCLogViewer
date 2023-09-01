@@ -40,45 +40,47 @@
 
     <!-- d:DesignWidth="400" d:DesignHeight="400" -->
 
-    <dxlc:LayoutControl
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Background="Transparent"
-        Name="lc_Root"
-        Orientation="Vertical">
         
-        <dxlc:LayoutControl.AvailableItems>
+        <!--<dxlc:LayoutControl.AvailableItems>
             
-            <!-- Add things that are optionally displayable-->
+            --><!-- Add things that are optionally displayable--><!--
             
             <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
-                    <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                    --><!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />--><!--
                 </StackPanel>
             </dxdo:LayoutPanel>
             
             <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
-                    <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                    --><!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />--><!--
                 </StackPanel>
             </dxdo:LayoutPanel>
             
-        </dxlc:LayoutControl.AvailableItems>
-        
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-            <Label Content="lg_Header Stuff Goes Here" />
-        </dxlc:LayoutGroup>
-        
-        <dxlc:LayoutGroup Name="lg_Body">
-            <!-- Use this if you want a LayoutManager -->
+        </dxlc:LayoutControl.AvailableItems>-->
+    <Grid>
             <dxdo:DockLayoutManager
                 dx:StyleManager.ApplyApplicationTheme="True"
                 FontSize="12"
-                Name="lg_Body_dlm">
-                <dxdo:LayoutGroup Name="lg_Body_dlm_lg">
-                    <dxdo:LayoutPanel
+                Name="dlm"
+                FloatingMode="Desktop">
+                
+                <!--<dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+                    <dxdo:LayoutPanel>
+                        <Label Content="lg_Header Stuff Goes Here" />
+                    </dxdo:LayoutPanel>
+
+                </dxdo:LayoutGroup>-->
+                
+                <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical">
+
+                <dxdo:LayoutPanel>
+                    <Label Content="lg_Header Stuff Goes Here" />
+                </dxdo:LayoutPanel>
+                    
+                <dxdo:LayoutPanel
                         MaxHeight="1200"
                         FontSize="12"
                         ItemHeight="400"
@@ -107,9 +109,9 @@
                                 <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
                                 <!--Need to figure out how to handle Header attribute -->
 
-                                <dxlc:LayoutGroup Header="" >
+                                <dxlc:LayoutGroup Header="hh" >
                                     <Grid>
-                                        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+                                        <!--<ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />-->
                                     </Grid>
                                 </dxlc:LayoutGroup>
 
@@ -118,7 +120,9 @@
                         </dxlc:LayoutControl>
                         
                     </dxdo:LayoutPanel>
-                    
+
+                    <dxdo:LayoutPanel />
+
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.AutoHideGroups>
@@ -146,19 +150,46 @@
 
                 </dxdo:DockLayoutManager.AutoHideGroups>
 
-            </dxdo:DockLayoutManager>
-            <!--  Use this if you have simple Content -->
-        </dxlc:LayoutGroup>
+            <dxdo:DockLayoutManager.FloatGroups>
 
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
+                <dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,1200">
+                    <dxdo:LayoutPanel Caption="VNC">
+                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
+                    </dxdo:LayoutPanel>
+                </dxdo:FloatGroup>
+
+                <dxdo:FloatGroup FloatLocation="800,100" FloatSize="600,1200" >
+                    <dxdo:LayoutPanel Caption="VNCArch">
+                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
+                    </dxdo:LayoutPanel>
+                </dxdo:FloatGroup>
+
+                <dxdo:FloatGroup FloatLocation="1500,100" FloatSize="600,1200">
+                    <dxdo:LayoutPanel Caption="MINSK">
+                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
+                    </dxdo:LayoutPanel>
+                </dxdo:FloatGroup>
+
+                <dxdo:FloatGroup FloatLocation="2200,100" FloatSize="600,1200">
+                    <dxdo:LayoutPanel Caption="EASE">
+                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
+                    </dxdo:LayoutPanel>
+                </dxdo:FloatGroup>
+
+            </dxdo:DockLayoutManager.FloatGroups>
+
+            </dxdo:DockLayoutManager>
+    </Grid>
+
+    <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
-            <!--<Label Content="lg_Footer Stuff Goes Here" />-->
+            --><!--<Label Content="lg_Footer Stuff Goes Here" />--><!--
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup
-            View="Group" Orientation="Vertical" VerticalAlignment="Bottom">
+            View="Group" Orientation="Horizontal" VerticalAlignment="Bottom">
 
-            <!-- This is useful for debugging V VM constructor issues -->
+            --><!-- This is useful for debugging V VM constructor issues --><!--
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -171,9 +202,13 @@
                 </StackPanel>
             </StackPanel>
 
-        </dxlc:LayoutGroup>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Save Layout" Click="SaveLayout_Click" />
+                <Button Content="Restore Layout" Click="RestoreLayout_Click" />
+            </StackPanel>
 
-    </dxlc:LayoutControl>
+        </dxlc:LayoutGroup>-->
+
 
 </vncmvvm:ViewBase>
 

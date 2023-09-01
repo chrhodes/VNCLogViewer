@@ -119,6 +119,7 @@
                                         </RichTextBox>
 
                                         <!-- Capture filter -->
+                                        
                                         <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
                                             Visibility="Visible"
                                             VerticalAlignment="Bottom"

@@ -47,8 +47,8 @@ namespace VNCLogViewer
             // Use Main to see the AutoWireViewModel in action.
 
             //containerRegistry.Register<IMain, Main>();            
-            containerRegistry.Register<IMain, MainDxLayoutControl>();
-            //containerRegistry.Register<IMain, MainDxDockLayoutManager>();
+            //containerRegistry.Register<IMain, MainDxLayoutControl>();
+            containerRegistry.Register<IMain, MainDxDockLayoutManager>();
 
             containerRegistry.Register<ILiveLogViewerViewModelREC, LiveLogViewerViewModelREC>();
             containerRegistry.Register<ILiveLogViewerViewModelRTB, LiveLogViewerViewModelRTB>();

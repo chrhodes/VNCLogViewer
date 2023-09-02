@@ -1,6 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCLogViewer.Presentation.Views.MainDxDockLayoutManager"
-    x:Name="thisMainDxDockLayout"
+    x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -61,71 +61,86 @@
             
         </dxlc:LayoutControl.AvailableItems>-->
     <Grid>
-            <dxdo:DockLayoutManager
-                dx:StyleManager.ApplyApplicationTheme="True"
-                FontSize="12"
-                Name="dlm"
-                FloatingMode="Desktop">
+        
+    <dxdo:DockLayoutManager
+        dx:StyleManager.ApplyApplicationTheme="True"
+        FontSize="12"
+        Name="dlm"       
+        FloatingMode="Desktop">
                 
-                <!--<dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-                    <dxdo:LayoutPanel>
-                        <Label Content="lg_Header Stuff Goes Here" />
-                    </dxdo:LayoutPanel>
+        <!--<dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+        
+            <dxdo:LayoutPanel>
+                <Label Content="lg_Header Stuff Goes Here" />
+            </dxdo:LayoutPanel>
 
-                </dxdo:LayoutGroup>-->
-                
-                <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical">
+        </dxdo:LayoutGroup>-->
 
+            <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
+
+            <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+        
                 <dxdo:LayoutPanel>
                     <Label Content="lg_Header Stuff Goes Here" />
                 </dxdo:LayoutPanel>
+
+            </dxdo:LayoutGroup>
+            
+            <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
+
+                <dxdo:LayoutPanel Caption="VNC" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
+                </dxdo:LayoutPanel>
+
+                <dxdo:LayoutPanel Caption="VNCArch">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
+                </dxdo:LayoutPanel>
+
+                <dxdo:LayoutPanel Caption="MINSK">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
+                </dxdo:LayoutPanel>
+
+                <dxdo:LayoutPanel Caption="EASE">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
+                </dxdo:LayoutPanel>
+
+            </dxdo:LayoutGroup>
+
+            <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
+
+                <dxdo:LayoutPanel>
                     
-                <dxdo:LayoutPanel
-                        MaxHeight="1200"
-                        FontSize="12"
-                        ItemHeight="400"
-                        Name="lg_Body_dlm_lg_lpRoot">
-                        <dxlc:LayoutControl
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Background="Transparent"
-                            Orientation="Vertical"
-                            StretchContentVertically="True">
-                            <!-- This makes content stretch to bottom -->
-                            <dxlc:LayoutGroup
-                                Name="groupContainer"
-                                Orientation="Vertical"
-                                View="Tabs">
-                                <dxlc:LayoutGroup.GroupBoxStyle>
-                                    <Style TargetType="dxlc:GroupBox">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                        <Setter Property="Padding" Value="0" />
-                                        <Setter Property="TitleVisibility" Value="Collapsed" />
-                                    </Style>
-                                </dxlc:LayoutGroup.GroupBoxStyle>
-
-                                <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
-                                <!--Need to figure out how to handle Header attribute -->
-
-                                <dxlc:LayoutGroup Header="hh" >
-                                    <Grid>
-                                        <!--<ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />-->
-                                    </Grid>
-                                </dxlc:LayoutGroup>
-
-                            </dxlc:LayoutGroup>
+                        <dxdo:LayoutGroup>
                             
-                        </dxlc:LayoutControl>
-                        
-                    </dxdo:LayoutPanel>
+                            <!-- This is useful for debugging V VM constructor issues -->
+                            
+                            <dxdo:LayoutControlItem>
+                                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                            </dxdo:LayoutControlItem>
 
-                    <dxdo:LayoutPanel />
+                            <dxdo:LayoutControlItem>
+                                <TextBlock Text="{Binding InstanceCountVM}" />
+                            </dxdo:LayoutControlItem>
+
+                            <dxdo:LayoutControlItem>
+                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Content="Save Layout" Click="SaveLayout_Click" />
+                                    <Button Content="Restore Layout" Click="RestoreLayout_Click" />
+                                </StackPanel>
+                            </dxdo:LayoutControlItem>
+                            
+                        </dxdo:LayoutGroup>
+
+                    </dxdo:LayoutPanel>
 
                 </dxdo:LayoutGroup>
 
-                <dxdo:DockLayoutManager.AutoHideGroups>
+        </dxdo:LayoutGroup>
+
+
+
+
+            <dxdo:DockLayoutManager.AutoHideGroups>
 
                     <dxdo:AutoHideGroup DockType="Left">
                         <dxdo:LayoutPanel
@@ -152,7 +167,7 @@
 
             <dxdo:DockLayoutManager.FloatGroups>
 
-                <dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,1200">
+                <!--<dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,1200">
                     <dxdo:LayoutPanel Caption="VNC">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
                     </dxdo:LayoutPanel>
@@ -162,9 +177,9 @@
                     <dxdo:LayoutPanel Caption="VNCArch">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
                     </dxdo:LayoutPanel>
-                </dxdo:FloatGroup>
+                </dxdo:FloatGroup>-->
 
-                <dxdo:FloatGroup FloatLocation="1500,100" FloatSize="600,1200">
+                <!--<dxdo:FloatGroup FloatLocation="1500,100" FloatSize="600,1200">
                     <dxdo:LayoutPanel Caption="MINSK">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
                     </dxdo:LayoutPanel>
@@ -174,11 +189,12 @@
                     <dxdo:LayoutPanel Caption="EASE">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
                     </dxdo:LayoutPanel>
-                </dxdo:FloatGroup>
+                </dxdo:FloatGroup>-->
 
             </dxdo:DockLayoutManager.FloatGroups>
 
             </dxdo:DockLayoutManager>
+        
     </Grid>
 
     <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">

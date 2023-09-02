@@ -452,7 +452,7 @@
                         <dxdo:LayoutPanel
                             x:Name="lp_RightStuff"
                             Caption="SignalR Connection" 
-                            MinWidth="250" ItemWidth="300" 
+                            MinWidth="250" ItemWidth="250"
                             AutoHideExpandState="Visible" >
 
                             <views:SignalRInteraction x:Name="signalRInteraction" />

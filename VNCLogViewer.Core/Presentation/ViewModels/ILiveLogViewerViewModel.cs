@@ -14,6 +14,8 @@ namespace VNCLogViewer.Presentation.ViewModels
         Task LoadAsync();
 
         void ConnectAsync();
+        void StopAsync();
+        void DisposeAsync();
 
         void Send();
         void SendPriority();

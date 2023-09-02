@@ -5,6 +5,8 @@ using VNCLogViewer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
+using DevExpress.XtraRichEdit.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VNCLogViewer.Presentation.Views
 {
@@ -109,6 +111,9 @@ namespace VNCLogViewer.Presentation.Views
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.StopAsync();
+            ViewModel.DisposeAsync();
+
             lgChatPanel.Visibility = Visibility.Hidden;
             btnSend.IsEnabled = false;
             btnSendPriority.IsEnabled = false;

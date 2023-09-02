@@ -1172,6 +1172,8 @@ namespace VNCLogViewer.Presentation.ViewModels
             //return displayMessage;
         }
 
+        SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+
         SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
         SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
 
@@ -1184,11 +1186,12 @@ namespace VNCLogViewer.Presentation.ViewModels
             //BrushConverter bc = new BrushConverter();
             //Brush newBrush = (Brush)bc.ConvertFrom(color);
             SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
-            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+            //messageBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
 
             TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
             tr.Text = message;
             tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+            //tr.ApplyPropertyValue(TextElement.ForegroundProperty, messageBrush);
 
             //rtbConsole.AppendText(message);   
         }

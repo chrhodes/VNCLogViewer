@@ -1129,15 +1129,20 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             // HACK(crhodes)
             // See if this is fast.  Skip all color formatting
+            // Not bad, just a tad slower than Client App  Wonder why.
 
-            _richTextBox.AppendText(formattedMessage);
-            return;
+            //_richTextBox.AppendText(formattedMessage);
+            //return;
 
             // HACK(crhodes)
             // Ok, let's make the whole line colored
+            // Still not bad, maybe a tad slower
 
             //AppendColorText(formattedMessage, color);
             //return;
+
+            // HACK(crhodes)
+            // Ok, this is definitely slower.
 
             int messageIndex = 0;
 
@@ -1147,10 +1152,12 @@ namespace VNCLogViewer.Presentation.ViewModels
                 if (messageIndex++ > 0)
                 {
                     string prefixMessage = formattedMessage.Substring(0, messageIndex);
-                    AppendColorText(prefixMessage, System.Drawing.Color.Black);
+                    AppendColorText(prefixMessage, System.Drawing.Color.White);
+                    //AppendWhiteText(prefixMessage, System.Windows.Media.Colors.White);
 
                     string colorMessage = formattedMessage.Substring(messageIndex);
                     AppendColorText(colorMessage, color);
+                    //AppendBlueText(colorMessage, System.Windows.Media.Colors.Blue);
                 }
                 else
                 {
@@ -1165,6 +1172,10 @@ namespace VNCLogViewer.Presentation.ViewModels
             //return displayMessage;
         }
 
+        SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+        SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
+
+
         private void AppendColorText(string message, System.Drawing.Color color)
         {
             //_richTextBox.AppendText(message);
@@ -1173,10 +1184,48 @@ namespace VNCLogViewer.Presentation.ViewModels
             //BrushConverter bc = new BrushConverter();
             //Brush newBrush = (Brush)bc.ConvertFrom(color);
             SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
 
             TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
             tr.Text = message;
             tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+
+            //rtbConsole.AppendText(message);   
+        }
+
+        // NOTE(crhodes)
+        // Ignoring color for now
+
+        private void AppendWhiteText(string message, System.Windows.Media.Color color)
+        {
+            //_richTextBox.AppendText(message);
+            //return;
+
+            //BrushConverter bc = new BrushConverter();
+            //Brush newBrush = (Brush)bc.ConvertFrom(color);
+            //SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+
+            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+            tr.Text = message;
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, whiteBrush);
+
+            //rtbConsole.AppendText(message);   
+        }
+
+        private void AppendBlueText(string message, System.Windows.Media.Color color)
+        {
+            //_richTextBox.AppendText(message);
+            //return;
+
+            //BrushConverter bc = new BrushConverter();
+            //Brush newBrush = (Brush)bc.ConvertFrom(color);
+            //SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+
+            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+            tr.Text = message;
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, blueBrush);
 
             //rtbConsole.AppendText(message);   
         }

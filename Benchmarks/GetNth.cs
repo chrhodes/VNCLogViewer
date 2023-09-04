@@ -40,9 +40,18 @@ namespace Benchmarks
             return idx;
         }
 
-        public int GetNthIndex3(string s, char c, int n)
+        public int GetNthIndex3(ReadOnlySpan<char> sSpan, char c, int n)
         {
-            return -1;
+            var idx = sSpan.IndexOf(c);
+ 
+            while (idx >= 0 && --n > 0)
+            {
+                ReadOnlySpan<char> remainingSpan = sSpan.Slice(idx, sSpan.Length - idx);
+
+                idx += remainingSpan.IndexOf(c);
+            }
+
+            return idx;
         }
     }
 }

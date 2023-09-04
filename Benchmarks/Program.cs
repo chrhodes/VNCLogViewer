@@ -10,8 +10,8 @@ namespace Benchmarks
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            //BenchmarkRunner.Run<DateParserBenchmarks>();
-            BenchmarkRunner.Run<GetNthBenchmarks>();
+            BenchmarkRunner.Run<DateParserBenchmarks>();
+            //BenchmarkRunner.Run<GetNthBenchmarks>();
         }
     }
 }

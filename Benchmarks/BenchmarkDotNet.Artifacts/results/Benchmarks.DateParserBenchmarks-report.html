@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Benchmarks.DateParserBenchmarks-20230904-124058</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.7, Windows 11 (10.0.22000.2360/21H2/SunValley) (Hyper-V)
+Intel Xeon CPU E5-2687W v4 3.00GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 7.0.400
+  [Host]     : .NET 7.0.10 (7.0.1023.36312), X64 RyuJIT AVX2
+  DefaultJob : .NET 7.0.10 (7.0.1023.36312), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th><th>Gen0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>GetYearFromSubstring</td><td>90.69 ns</td><td>1.003 ns</td><td>0.837 ns</td><td>1</td><td>0.0101</td><td>160 B</td>
+</tr><tr><td>GetYearFromSpan</td><td>92.78 ns</td><td>1.176 ns</td><td>1.100 ns</td><td>2</td><td>0.0101</td><td>160 B</td>
+</tr><tr><td>GetYearFromSplit</td><td>94.33 ns</td><td>1.413 ns</td><td>1.252 ns</td><td>2</td><td>0.0101</td><td>160 B</td>
+</tr><tr><td>GetYearFromDateTime</td><td>396.48 ns</td><td>7.433 ns</td><td>6.589 ns</td><td>3</td><td>-</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

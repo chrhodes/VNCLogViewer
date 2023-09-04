@@ -257,11 +257,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendContent">Send</system:String>
         //    <system:String x:Key="ViewName_SendContentToolTip">Send ToolTip</system:String>  
 
-        public async void Send()
+        public void Send()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendUserMessage", UserName, Message);
+            Connection.InvokeAsync("SendUserMessage", UserName, Message);
 
             // TODO(crhodes)
             // Do something amazing.
@@ -318,11 +318,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendPriorityContent">SendPriority</system:String>
         //    <system:String x:Key="ViewName_SendPriorityContentToolTip">SendPriority ToolTip</system:String>  
 
-        public async void SendPriority()
+        public void SendPriority()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
+            Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

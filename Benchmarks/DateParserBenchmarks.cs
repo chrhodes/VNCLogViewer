@@ -42,5 +42,15 @@ namespace Benchmarks
             Parser.GetYearFromSpan(DateTimeString);
         }
 
+        [Benchmark]
+        public void GetYearFromSpanWithManualConversion()
+        {
+            // NOTE(crhodes)
+            // Try multiple tests of same method to get a feel for deviations
+            //Parser.GetYearFromSplit(DateTimeString);
+
+            Parser.GetYearFromSpanWithManualConversion(DateTimeString);
+        }
+
     }
 }

@@ -33,5 +33,20 @@ namespace Benchmarks
             var indexofHyphen = dateTimeAsSpan.IndexOf('-');
             return int.Parse(dateTimeAsSpan.Slice(0, indexofHyphen));
         }
+
+        public int GetYearFromSpanWithManualConversion(ReadOnlySpan<char> dateTimeAsSpan)
+        {
+            var indexofHyphen = dateTimeAsSpan.IndexOf('-');
+            var yearAsASpan = dateTimeAsSpan.Slice(0,indexofHyphen);
+            
+            var year = 0;
+
+            for (int i = 0; i < yearAsASpan.Length; i++)
+            {
+                year = year * 10 + (yearAsASpan[i] - '0');
+            }
+
+            return year;
+        }
     }
 }

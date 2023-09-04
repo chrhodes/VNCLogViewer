@@ -57,7 +57,7 @@ namespace Benchmarks
 
         public int GetNthIndex4(ReadOnlySpan<char> sSpan, char c, int n)
         {
-            ReadOnlySpan<char> remainingSpan = new ReadOnlySpan<char>();
+            ReadOnlySpan<char> remainingSpan;// = new ReadOnlySpan<char>();
 
             var idx = sSpan.IndexOf(c);
 

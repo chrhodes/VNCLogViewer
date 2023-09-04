@@ -24,6 +24,8 @@ using JSONConsoleApp.jsonDeserializeClass;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Controls;
+using VNCLogViewer.Domain;
+using System.Diagnostics;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -255,11 +257,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendContent">Send</system:String>
         //    <system:String x:Key="ViewName_SendContentToolTip">Send ToolTip</system:String>  
 
-        public async void Send()
+        public void Send()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendUserMessage", UserName, Message);
+            Connection.InvokeAsync("SendUserMessage", UserName, Message);
 
             // TODO(crhodes)
             // Do something amazing.
@@ -316,11 +318,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendPriorityContent">SendPriority</system:String>
         //    <system:String x:Key="ViewName_SendPriorityContentToolTip">SendPriority ToolTip</system:String>  
 
-        public async void SendPriority()
+        public void SendPriority()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
+            Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -957,6 +959,31 @@ namespace VNCLogViewer.Presentation.ViewModels
                 {
                     AppendFormattedMessage(formattedMessage);
                 }
+            });
+
+            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+            {
+                signalrtime.ClientReceivedTime = DateTime.Now;
+                signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+                //this.Dispatcher.InvokeAsync(() =>
+                //    rtbConsole.AppendText($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
+                //);
+
+                AppendFormattedMessage($"{message}\r");
+
+                signalrtime.ClientMessageTime = DateTime.Now;
+                signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+                AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+
+                AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
             });
 
             try

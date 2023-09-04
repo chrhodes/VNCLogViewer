@@ -79,8 +79,8 @@
             <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 
             <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-        
-                <dxdo:LayoutPanel>
+
+                <dxdo:LayoutPanel AutoHidden="True">
                     <Label Content="lg_Header Stuff Goes Here" />
                 </dxdo:LayoutPanel>
 
@@ -88,11 +88,11 @@
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
 
-                <dxdo:LayoutPanel Caption="VNC" >
+                <dxdo:LayoutPanel Caption="VNC" AutoHidden="True">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="VNCArch">
+                <dxdo:LayoutPanel Caption="VNCArch" AutoHidden="True" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
                 </dxdo:LayoutPanel>
 
@@ -100,7 +100,7 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="EASE">
+                <dxdo:LayoutPanel Caption="EASE" AutoHidden="True">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
                 </dxdo:LayoutPanel>
 
@@ -108,7 +108,7 @@
 
             <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
 
-                <dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel AutoHidden="True">
                     
                         <dxdo:LayoutGroup>
                             

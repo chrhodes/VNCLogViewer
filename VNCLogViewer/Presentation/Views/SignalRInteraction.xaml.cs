@@ -131,7 +131,6 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.Send();
 
             tbMessage.Text = String.Empty;
-
             tbMessage.Focus();
         }
 

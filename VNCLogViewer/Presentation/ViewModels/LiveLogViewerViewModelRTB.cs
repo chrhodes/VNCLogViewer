@@ -26,6 +26,8 @@ using System.Text.Json;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Diagnostics;
+using VNCLogViewer.Domain;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -258,11 +260,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendContent">Send</system:String>
         //    <system:String x:Key="ViewName_SendContentToolTip">Send ToolTip</system:String>  
 
-        public async void Send()
+        public void Send()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendUserMessage", UserName, Message);
+            Connection.InvokeAsync("SendUserMessage", UserName, Message);
 
             // TODO(crhodes)
             // Do something amazing.
@@ -319,11 +321,11 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendPriorityContent">SendPriority</system:String>
         //    <system:String x:Key="ViewName_SendPriorityContentToolTip">SendPriority ToolTip</system:String>  
 
-        public async void SendPriority()
+        public void SendPriority()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            await Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
+            Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -961,6 +963,31 @@ namespace VNCLogViewer.Presentation.ViewModels
                 }
             });
 
+            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+            {
+                signalrtime.ClientReceivedTime = DateTime.Now;
+                signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+                //this.Dispatcher.InvokeAsync(() =>
+                //    rtbConsole.AppendText($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
+                //);
+
+                AppendFormattedMessage($"{message}\r");
+
+                signalrtime.ClientMessageTime = DateTime.Now;
+                signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+                AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+
+                AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+            });
+
             try
             {
                 await Connection.StartAsync();
@@ -1172,6 +1199,8 @@ namespace VNCLogViewer.Presentation.ViewModels
             //return displayMessage;
         }
 
+        SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+
         SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
         SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
 
@@ -1184,11 +1213,12 @@ namespace VNCLogViewer.Presentation.ViewModels
             //BrushConverter bc = new BrushConverter();
             //Brush newBrush = (Brush)bc.ConvertFrom(color);
             SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
-            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+            //messageBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
 
             TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
             tr.Text = message;
             tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+            //tr.ApplyPropertyValue(TextElement.ForegroundProperty, messageBrush);
 
             //rtbConsole.AppendText(message);   
         }

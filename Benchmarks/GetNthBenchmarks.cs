@@ -21,5 +21,11 @@ namespace Benchmarks
         {
             Finder.GetNthIndex2(logMessage, '|', 4);
         }
+
+        [Benchmark]
+        public void GetNthIndex3()
+        {
+            Finder.GetNthIndex3(logMessage, '|', 4);
+        }
     }
 }

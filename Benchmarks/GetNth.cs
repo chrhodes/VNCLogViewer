@@ -46,7 +46,25 @@ namespace Benchmarks
  
             while (idx >= 0 && --n > 0)
             {
+                idx++;  // Go past c
                 ReadOnlySpan<char> remainingSpan = sSpan.Slice(idx, sSpan.Length - idx);
+
+                idx += remainingSpan.IndexOf(c);
+            }
+
+            return idx;
+        }
+
+        public int GetNthIndex4(ReadOnlySpan<char> sSpan, char c, int n)
+        {
+            ReadOnlySpan<char> remainingSpan = new ReadOnlySpan<char>();
+
+            var idx = sSpan.IndexOf(c);
+
+            while (idx >= 0 && --n > 0)
+            {
+                idx++;  // Go past c
+                remainingSpan = sSpan.Slice(idx, sSpan.Length - idx);
 
                 idx += remainingSpan.IndexOf(c);
             }

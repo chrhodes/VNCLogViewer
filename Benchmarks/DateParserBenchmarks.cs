@@ -25,15 +25,21 @@ namespace Benchmarks
         [Benchmark]
         public void GetYearFromSubstring()
         {
-            Parser.GetYearFromSplit(DateTimeString);
-            //Parser.GetYearFromSubstring(DateTimeString);
+            // NOTE(crhodes)
+            // Try multiple tests of same method to get a feel for deviations
+            //Parser.GetYearFromSplit(DateTimeString);
+
+            Parser.GetYearFromSubstring(DateTimeString);
         }
 
         [Benchmark]
         public void GetYearFromSpan()
         {
-            Parser.GetYearFromSplit(DateTimeString);
-            //Parser.GetYearFromSpan(DateTimeString);
+            // NOTE(crhodes)
+            // Try multiple tests of same method to get a feel for deviations
+            //Parser.GetYearFromSplit(DateTimeString);
+
+            Parser.GetYearFromSpan(DateTimeString);
         }
 
     }

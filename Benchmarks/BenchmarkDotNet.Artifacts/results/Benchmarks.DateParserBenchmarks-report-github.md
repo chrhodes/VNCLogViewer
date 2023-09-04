@@ -10,7 +10,7 @@ Intel Xeon CPU E5-2687W v4 3.00GHz, 1 CPU, 16 logical and 8 physical cores
 ```
 |               Method |      Mean |    Error |   StdDev | Rank |   Gen0 | Allocated |
 |--------------------- |----------:|---------:|---------:|-----:|-------:|----------:|
-| GetYearFromSubstring |  90.69 ns | 1.003 ns | 0.837 ns |    1 | 0.0101 |     160 B |
-|      GetYearFromSpan |  92.78 ns | 1.176 ns | 1.100 ns |    2 | 0.0101 |     160 B |
-|     GetYearFromSplit |  94.33 ns | 1.413 ns | 1.252 ns |    2 | 0.0101 |     160 B |
-|  GetYearFromDateTime | 396.48 ns | 7.433 ns | 6.589 ns |    3 |      - |         - |
+|     GetYearFromSplit |  97.33 ns | 0.557 ns | 0.494 ns |    1 | 0.0101 |     160 B |
+| GetYearFromSubstring | 100.84 ns | 1.705 ns | 1.512 ns |    2 | 0.0101 |     160 B |
+|      GetYearFromSpan | 101.67 ns | 2.037 ns | 1.806 ns |    2 | 0.0101 |     160 B |
+|  GetYearFromDateTime | 395.39 ns | 2.109 ns | 1.761 ns |    3 |      - |         - |

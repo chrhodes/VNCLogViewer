@@ -105,7 +105,9 @@
                                             TextChanged="recLogStream_TextChanged" />-->
 
                                         <RichTextBox x:Name="rtbLogStream" 
-                                            VerticalScrollBarVisibility="Visible" Background="Black" >
+                                            VerticalScrollBarVisibility="Visible" 
+                                            FontFamily="Consolas"
+                                            Background="Black" >
                                             <FlowDocument>
                                                 <Paragraph>
                                                 </Paragraph>

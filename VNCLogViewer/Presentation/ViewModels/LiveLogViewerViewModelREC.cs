@@ -24,6 +24,8 @@ using JSONConsoleApp.jsonDeserializeClass;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Controls;
+using VNCLogViewer.Domain;
+using System.Diagnostics;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -957,6 +959,31 @@ namespace VNCLogViewer.Presentation.ViewModels
                 {
                     AppendFormattedMessage(formattedMessage);
                 }
+            });
+
+            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+            {
+                signalrtime.ClientReceivedTime = DateTime.Now;
+                signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+                //this.Dispatcher.InvokeAsync(() =>
+                //    rtbConsole.AppendText($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
+                //);
+
+                AppendFormattedMessage($"{message}\r");
+
+                signalrtime.ClientMessageTime = DateTime.Now;
+                signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+                AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+
+                AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+                AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
             });
 
             try

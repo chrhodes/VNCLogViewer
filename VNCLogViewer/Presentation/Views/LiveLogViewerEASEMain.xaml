@@ -42,13 +42,13 @@
 
         <dxlc:LayoutControl.AvailableItems>
             <!-- Add things that are optionally displayable-->
-            <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+            <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1" ShowCloseButton="False">
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
-            <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
+            <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2" ShowCloseButton="False">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
@@ -229,7 +229,7 @@
                             x:Name="lp_RightStuff"
                             Caption="SignalR Connection" 
                             MinWidth="250" ItemWidth="250" 
-                            AutoHideExpandState="Visible" >
+                            AutoHideExpandState="Visible" ShowCloseButton="False">
 
                             <views:SignalRInteraction x:Name="signalRInteraction" />
 

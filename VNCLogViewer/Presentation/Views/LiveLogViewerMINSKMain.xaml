@@ -243,7 +243,7 @@
                             x:Name="lp_RightStuff"
                             Caption="SignalR Connection" 
                             MinWidth="250" ItemWidth="250" 
-                            AutoHideExpandState="Visible" >
+                            AutoHideExpandState="Visible" ShowCloseButton="False">
 
                             <views:SignalRInteraction x:Name="signalRInteraction" />
 

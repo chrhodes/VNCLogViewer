@@ -80,7 +80,7 @@
 
             <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
 
-                <dxdo:LayoutPanel AutoHidden="True">
+                <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False">
                     <Label Content="lg_Header Stuff Goes Here" />
                 </dxdo:LayoutPanel>
 
@@ -88,19 +88,19 @@
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
 
-                <dxdo:LayoutPanel Caption="VNC" AutoHidden="True">
+                <dxdo:LayoutPanel Caption="VNC" AutoHidden="True" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="VNCArch" AutoHidden="True" >
+                <dxdo:LayoutPanel Caption="VNCArch" AutoHidden="True" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="MINSK">
+                <dxdo:LayoutPanel Caption="MINSK" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="EASE" AutoHidden="True">
+                    <dxdo:LayoutPanel Caption="EASE" AutoHidden="True" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
                 </dxdo:LayoutPanel>
 
@@ -108,7 +108,7 @@
 
             <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
 
-                    <dxdo:LayoutPanel AutoHidden="True">
+                    <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False">
                     
                         <dxdo:LayoutGroup>
                             
@@ -135,10 +135,7 @@
 
                 </dxdo:LayoutGroup>
 
-        </dxdo:LayoutGroup>
-
-
-
+            </dxdo:LayoutGroup>
 
             <dxdo:DockLayoutManager.AutoHideGroups>
 
@@ -196,35 +193,6 @@
             </dxdo:DockLayoutManager>
         
     </Grid>
-
-    <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
-            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
-            --><!--<Label Content="lg_Footer Stuff Goes Here" />--><!--
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup
-            View="Group" Orientation="Horizontal" VerticalAlignment="Bottom">
-
-            --><!-- This is useful for debugging V VM constructor issues --><!--
-
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="V:" />
-                    <Label Content="{Binding ElementName=thisMainDxDockLayout, Path=InstanceCountV}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="VM:" />
-                    <Label Content="{Binding InstanceCountVM}" />
-                </StackPanel>
-            </StackPanel>
-
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Save Layout" Click="SaveLayout_Click" />
-                <Button Content="Restore Layout" Click="RestoreLayout_Click" />
-            </StackPanel>
-
-        </dxlc:LayoutGroup>-->
-
 
 </vncmvvm:ViewBase>
 

@@ -4,6 +4,6 @@ namespace VNCLogViewer.Presentation.ViewModels
 {
     public interface ILiveLogViewerViewModelREC : ILiveLogViewerViewModel
     {
-        Document Doc { get; set; }
+        //Document Doc { get; set; }
     }
 }

@@ -176,6 +176,5 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-
     }
 }

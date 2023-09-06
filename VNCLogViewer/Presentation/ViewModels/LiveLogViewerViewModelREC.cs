@@ -132,6 +132,21 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         public RichTextBox RichTextBox { get; set; }
 
+        private int _hilightOffset = 3;
+        public int HilightOffset
+        {
+            get => _hilightOffset;
+            set
+            {
+                if (_hilightOffset == value)
+                {
+                    return;
+                }
+
+                _hilightOffset = value;
+                OnPropertyChanged();
+            }
+        }
         private luic.LoggingColors _loggingColors = new luic.LoggingColors();
 
         public luic.LoggingColors LoggingColors
@@ -362,8 +377,6 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-
             Connection = new HubConnectionBuilder()
                 .WithUrl(ServerURI)
                 .Build();
@@ -384,7 +397,6 @@ namespace VNCLogViewer.Presentation.ViewModels
             //        AppendFormattedMessage(recLogStream, formattedMessage);
             //    })
             //);
-
            
             Connection.On<string>("AddMessage", (message) =>
                 AppendFormattedMessage($"{message}\r")
@@ -419,11 +431,19 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                 switch (priority)
                 {
-                    #region Error
+                    #region Critical / Error / Warning
 
-                    #endregion
+                    case -10:
+                        AppendColorFormattedMessage(formattedMessage, Color.Red);
+                        break;
 
-                    #region Warning
+                    case -1:
+                        AppendColorFormattedMessage(formattedMessage, Color.Red);
+                        break;
+
+                    case 1:
+                        AppendColorFormattedMessage(formattedMessage, Color.Red);
+                        break;
 
                     #endregion
 
@@ -965,9 +985,6 @@ namespace VNCLogViewer.Presentation.ViewModels
             {
                 signalrtime.ClientReceivedTime = DateTime.Now;
                 signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
-                //this.Dispatcher.InvokeAsync(() =>
-                //    rtbConsole.AppendText($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
-                //);
 
                 AppendFormattedMessage($"{message}\r");
 
@@ -1111,16 +1128,13 @@ namespace VNCLogViewer.Presentation.ViewModels
             }
         }
 
-        // TODO(crhodes)
-        // Try to remember what this was all about.
-        // I think it might have had to do with SQL calls for EASE
         private void ColorFormatMessageAndAppend(string formattedMessage, Color color)
         {
             // HACK(crhodes)
             // See if this is fast, Skip all color formatting
 
-            AppendFormattedMessage(formattedMessage);
-            return;
+            //AppendFormattedMessage(formattedMessage);
+            //return;
 
             // HACK(crhodes)
             // Ok, let's make the whole line colored
@@ -1130,7 +1144,9 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             int messageIndex = 0;
 
-            messageIndex = GetNthIndex(formattedMessage, '|', 3);
+            //messageIndex = GetNthIndex2(formattedMessage, '|', 3);
+            messageIndex = GetNthIndex2(formattedMessage, '|', HilightOffset);
+
             try
             {
                 if (messageIndex++ > 0)
@@ -1173,7 +1189,17 @@ namespace VNCLogViewer.Presentation.ViewModels
             // = s.TakeWhile(c => n -= (c == t ? 1 : 0)) > 0).Count();
         }
 
+        private int GetNthIndex2(string s, char c, int n)
+        {
+            var idx = s.IndexOf(c, 0);
 
+            while (idx >= 0 && --n > 0)
+            {
+                idx = s.IndexOf(c, idx + 1);
+            }
+
+            return idx;
+        }
 
         #region IInstanceCount
 

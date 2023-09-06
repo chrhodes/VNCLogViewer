@@ -106,8 +106,9 @@
 
                                         <RichTextBox x:Name="rtbLogStream" 
                                             VerticalScrollBarVisibility="Visible" 
+                                            Background="Black"
                                             FontFamily="Consolas"
-                                            Background="Black" >
+                                            FontSize="{Binding ElementName=sbFontSize, Path=Value}" >
                                             <FlowDocument>
                                                 <Paragraph>
                                                 </Paragraph>
@@ -199,6 +200,7 @@
                                                         Foreground="Red"
                                                         ToolTip="Clear Screen" />
                                                 </dxlc:LayoutItem>
+                                                
                                                 <dxlc:LayoutItem HorizontalAlignment="Right">
                                                     <Button
                                                         x:Name="btnCopy"
@@ -206,6 +208,7 @@
                                                         Content="Copy Contents"
                                                         ToolTip="Copy contents to clipboard" />
                                                 </dxlc:LayoutItem>
+                                                
                                                 <dxlc:LayoutItem
                                                     HorizontalAlignment="Right"
                                                     Label="FontSize"
@@ -216,7 +219,17 @@
                                                         Value="10"
                                                         MinValue="8" />
                                                 </dxlc:LayoutItem>
-                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutItem HorizontalAlignment="Right"
+                                                    Label="Hilight Offset"
+                                                    LabelPosition="Left">
+                                                <dxe:SpinEdit x:Name="sbHilightOffset"
+                                                        HorizontalAlignment="Right"
+                                                        Value="{Binding HilightOffset, Mode=TwoWay}"
+                                                        MinValue="1" />
+                                            </dxlc:LayoutItem>
+                                                
+                                        </dxlc:LayoutGroup>
 
                                         </dxlc:LayoutGroup>
 

@@ -88,19 +88,19 @@
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
 
-                <dxdo:LayoutPanel Caption="VNC" AutoHidden="True" ShowCloseButton="False">
+                <dxdo:LayoutPanel Caption="VNC" AutoHidden="False" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="VNCArch" AutoHidden="True" ShowCloseButton="False">
+                <dxdo:LayoutPanel Caption="VNCArch" AutoHidden="False" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="MINSK" ShowCloseButton="False">
+                    <dxdo:LayoutPanel Caption="MINSK" AutoHidden="False" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
                 </dxdo:LayoutPanel>
 
-                    <dxdo:LayoutPanel Caption="EASE" AutoHidden="True" ShowCloseButton="False">
+                    <dxdo:LayoutPanel Caption="EASE" AutoHidden="False" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
                 </dxdo:LayoutPanel>
 

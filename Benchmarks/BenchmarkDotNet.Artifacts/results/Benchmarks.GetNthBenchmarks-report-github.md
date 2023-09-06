@@ -10,7 +10,7 @@ Intel Xeon CPU E5-2687W v4 3.00GHz, 1 CPU, 16 logical and 8 physical cores
 ```
 |       Method |     Mean |    Error |   StdDev | Rank | Allocated |
 |------------- |---------:|---------:|---------:|-----:|----------:|
-| GetNthIndex3 | 24.17 ns | 0.115 ns | 0.096 ns |    1 |         - |
-| GetNthIndex4 | 27.49 ns | 0.381 ns | 0.357 ns |    2 |         - |
-| GetNthIndex2 | 29.87 ns | 0.172 ns | 0.153 ns |    3 |         - |
-|  GetNthIndex | 33.62 ns | 0.199 ns | 0.186 ns |    4 |         - |
+| GetNthIndex4 | 24.21 ns | 0.515 ns | 0.687 ns |    1 |         - |
+| GetNthIndex3 | 24.23 ns | 0.429 ns | 0.401 ns |    1 |         - |
+| GetNthIndex2 | 29.99 ns | 0.625 ns | 0.669 ns |    2 |         - |
+|  GetNthIndex | 32.17 ns | 0.239 ns | 0.212 ns |    3 |         - |

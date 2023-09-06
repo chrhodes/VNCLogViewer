@@ -53,6 +53,8 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigEASE.json";
             ViewModel.ReloadUIConfig();
 
+            ViewModel.UserName = "EASE";
+
             lg_Body_dlm.Activate(lp_RightStuff);
             lp_RightStuff.Visibility = Visibility.Visible;
             

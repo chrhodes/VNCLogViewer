@@ -135,6 +135,21 @@ namespace VNCLogViewer.Presentation.ViewModels
         private RichTextBox _richTextBox;
         public RichTextBox RichTextBox { get => _richTextBox; set => _richTextBox = value; }
 
+        private int _hilightOffset = 3;
+        public int HilightOffset
+        {
+            get => _hilightOffset;
+            set
+            {
+                if (_hilightOffset == value)
+                {
+                    return;
+                }
+
+                _hilightOffset = value;
+                OnPropertyChanged();
+            }
+        }
         private luic.LoggingColors _loggingColors = new luic.LoggingColors();
 
         public luic.LoggingColors LoggingColors
@@ -365,8 +380,6 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-
             Connection = new HubConnectionBuilder()
                 .WithUrl(ServerURI)
                 .Build();
@@ -421,11 +434,19 @@ namespace VNCLogViewer.Presentation.ViewModels
 
                 switch (priority)
                 {
-                    #region Error
+                    #region Critical / Error / Warning
 
-                    #endregion
+                    case -10:
+                        AppendRedText(formattedMessage);
+                        break;
 
-                    #region Warning
+                    case -1:
+                        AppendRedText(formattedMessage);
+                        break;
+
+                    case 1:
+                        AppendRedText(formattedMessage);
+                        break;
 
                     #endregion
 
@@ -967,9 +988,6 @@ namespace VNCLogViewer.Presentation.ViewModels
             {
                 signalrtime.ClientReceivedTime = DateTime.Now;
                 signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
-                //this.Dispatcher.InvokeAsync(() =>
-                //    rtbConsole.AppendText($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
-                //);
 
                 AppendFormattedMessage($"{message}\r");
 
@@ -1069,88 +1087,10 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         private void AppendFormattedMessage(string formattedMessage)
         {
-            _richTextBox.AppendText(formattedMessage);
+            //_richTextBox.AppendText(formattedMessage);
+            AppendWhiteText(formattedMessage);
             return;
-
-            // TODO(crhodes)
-            // Doc maybe null when program exits.
-
-            //if (Doc is not null)
-            //{
-            //    try
-            //    {
-            //        Doc.BeginUpdate();
-
-            //        Doc.AppendText(formattedMessage);
-
-            //        Doc.EndUpdate();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        string exception = ex.ToString();
-            //        string innerException = ex.InnerException.ToString();
-            //    }
-            //}
         }
-
-        //void AppendColorFormattedMessage(string formattedMessage, Color color)
-        //{
-        //    try
-        //    {
-        //        Doc.BeginUpdate();
-
-        //        //Doc.AppendText(formattedMessage);
-
-        //        DocumentRange newRange = Doc.AppendText(formattedMessage);
-
-        //        CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
-        //        charProp.ForeColor = color;
-        //        Doc.EndUpdateCharacters(charProp);
-
-        //        Doc.EndUpdate();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string exception = ex.ToString();
-        //        string innerException = ex.InnerException?.ToString();
-        //    }
-        //}
-
-        //// TODO(crhodes)
-        //// Try to remember what this was all about.
-        //// I think it might have had to do with SQL calls for EASE
-        //private void ColorFormatMessageAndAppend(string formattedMessage, Color color)
-        //{
-        //    //AppendColorFormattedMessage(formattedMessage, color);
-        //    AppendFormattedMessage(formattedMessage);
-
-        //    return;
-        //    //bool displayMessage = false;
-        //    int messageIndex = 0;
-
-        //    messageIndex = GetNthIndex(formattedMessage, '|', 3);
-        //    try
-        //    {
-        //        if (messageIndex++ > 0)
-        //        {
-        //            string prefixMessage = formattedMessage.Substring(0, messageIndex);
-        //            AppendFormattedMessage(prefixMessage);
-
-        //            string colorMessage = formattedMessage.Substring(messageIndex);
-        //            AppendColorFormattedMessage(colorMessage, color);
-        //        }
-        //        else
-        //        {
-        //            AppendColorFormattedMessage(formattedMessage, color);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        AppendColorFormattedMessage(ex.ToString(), Color.Red);
-        //    }
-
-        //    //return displayMessage;
-        //}
 
         private void ColorFormatMessageAndAppend(string formattedMessage, System.Drawing.Color color)
         {
@@ -1173,7 +1113,9 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             int messageIndex = 0;
 
-            messageIndex = GetNthIndex2(formattedMessage, '|', 3);
+            //messageIndex = GetNthIndex2(formattedMessage, '|', 3);
+            messageIndex = GetNthIndex2(formattedMessage, '|', HilightOffset);
+
             try
             {
                 if (messageIndex++ > 0)
@@ -1202,6 +1144,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
 
         SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+        SolidColorBrush redBrush = new SolidColorBrush(System.Windows.Media.Colors.Red);
         SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
 
 
@@ -1226,21 +1169,18 @@ namespace VNCLogViewer.Presentation.ViewModels
         // NOTE(crhodes)
         // Ignoring color for now
 
-        private void AppendWhiteText(string message, System.Windows.Media.Color color)
+        private void AppendWhiteText(string message)
         {
-            //_richTextBox.AppendText(message);
-            //return;
-
-            //BrushConverter bc = new BrushConverter();
-            //Brush newBrush = (Brush)bc.ConvertFrom(color);
-            //SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
-            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
-
             TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
             tr.Text = message;
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, whiteBrush);
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, whiteBrush);  
+        }
 
-            //rtbConsole.AppendText(message);   
+        private void AppendRedText(string message)
+        {
+            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+            tr.Text = message;
+            tr.ApplyPropertyValue(TextElement.ForegroundProperty, redBrush);
         }
 
         private void AppendBlueText(string message, System.Windows.Media.Color color)

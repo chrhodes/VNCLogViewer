@@ -35,5 +35,9 @@ namespace VNCLogViewer.Presentation.ViewModels
         Document Doc { get; set; }
 
         RichTextBox RichTextBox { get; set; }
+
+        string UserName { get; set; }
+
+        int HilightOffset { get; set; }
     }
 }

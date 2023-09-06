@@ -1139,8 +1139,11 @@ namespace VNCLogViewer.Presentation.ViewModels
             // HACK(crhodes)
             // Ok, let's make the whole line colored
 
-            //AppendColorFormattedMessage(formattedMessage, color);
-            //return;
+            if (HilightOffset == 0)
+            {
+                AppendColorFormattedMessage(formattedMessage, color);
+                return;
+            }
 
             int messageIndex = 0;
 

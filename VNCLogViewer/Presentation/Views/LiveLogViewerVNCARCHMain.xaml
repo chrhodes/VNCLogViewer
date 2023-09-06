@@ -371,16 +371,16 @@
 
                                         <dxlc:LayoutGroup Orientation="Horizontal">
 
-                                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                            <!--<dxlc:LayoutItem HorizontalAlignment="Left">
                                                 <dxe:CheckEdit
                                                         x:Name="ceAutoUpdate"
                                                         Content="Auto Update"
                                                         IsChecked="False"
                                                         IsEnabled="False"
                                                         ToolTip="Not available with RichEditControl-yet" />
-                                            </dxlc:LayoutItem>
+                                            </dxlc:LayoutItem>-->
 
-                                            <dxlc:LayoutItem>
+                                            <!--<dxlc:LayoutItem>
                                                 <Button
                                                         x:Name="btnUpdateScreen"
                                                         HorizontalAlignment="Left"
@@ -398,17 +398,14 @@
                                                                 Foreground="Red" />
                                                     </StackPanel>
                                                 </Button>
+                                            </dxlc:LayoutItem>-->
+
+                                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                <Label x:Name="lbLastEntry"
+                                                       Content="HH:MM:SS.xxx" />
                                             </dxlc:LayoutItem>
-                                            
-                                            <dxlc:LayoutItem HorizontalAlignment="Center" Label="Display Layout">
-                                                <dxe:ComboBoxEdit
-                                                        x:Name="cbeRichEditViewType"
-                                                        EditValueChanged="CbeRichEditViewType_EditValueChanged"
-                                                        ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
-                                                        SelectedIndex="0" />
-                                            </dxlc:LayoutItem>
-                                            
-                                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                             
+                                            <dxlc:LayoutItem HorizontalAlignment="Left">
                                                 <Button
                                                         x:Name="btnClear"
                                                         Click="btnClear_Click"
@@ -417,14 +414,22 @@
                                                         ToolTip="Clear Screen" />
                                             </dxlc:LayoutItem>
                                             
-                                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                            <dxlc:LayoutItem HorizontalAlignment="Left">
                                                 <Button
                                                         x:Name="btnCopy"
                                                         Click="btnCopy_Click"
                                                         Content="Copy Contents"
                                                         ToolTip="Copy contents to clipboard" />
                                             </dxlc:LayoutItem>
-                                            
+
+                                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="Layout">
+                                                <dxe:ComboBoxEdit
+                                                        x:Name="cbeRichEditViewType"
+                                                        EditValueChanged="CbeRichEditViewType_EditValueChanged"
+                                                        ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
+                                                        SelectedIndex="0" />
+                                            </dxlc:LayoutItem>
+
                                             <dxlc:LayoutItem
                                                     HorizontalAlignment="Right"
                                                     Label="FontSize"
@@ -442,7 +447,7 @@
                                                 <dxe:SpinEdit x:Name="sbHilightOffset"
                                                         HorizontalAlignment="Right"
                                                         Value="{Binding HilightOffset, Mode=TwoWay}"
-                                                        MinValue="1" />
+                                                        MinValue="0" />
                                             </dxlc:LayoutItem>
 
                                         </dxlc:LayoutGroup>

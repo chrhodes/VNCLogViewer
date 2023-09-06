@@ -1105,8 +1105,11 @@ namespace VNCLogViewer.Presentation.ViewModels
             // Ok, let's make the whole line colored
             // Still not bad, maybe a tad slower
 
-            //AppendColorText(formattedMessage, color);
-            //return;
+            if (HilightOffset == 0)
+            {
+                AppendColorText(formattedMessage, color);
+                return;
+            }
 
             // HACK(crhodes)
             // Ok, this is definitely slower.

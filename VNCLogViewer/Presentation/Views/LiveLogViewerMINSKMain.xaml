@@ -108,7 +108,8 @@
                                             VerticalScrollBarVisibility="Visible" 
                                             Background="Black"
                                             FontFamily="Consolas"
-                                            FontSize="{Binding ElementName=sbFontSize, Path=Value}" >
+                                            FontSize="{Binding ElementName=sbFontSize, Path=Value}" 
+                                                     TextChanged="rtbLogStream_TextChanged">
                                             <FlowDocument>
                                                 <Paragraph>
                                                 </Paragraph>
@@ -157,16 +158,16 @@
 
                                             <dxlc:LayoutGroup Orientation="Horizontal">
 
-                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                <!--<dxlc:LayoutItem HorizontalAlignment="Left">
                                                     <dxe:CheckEdit
                                                         x:Name="ceAutoUpdate"
                                                         Content="Auto Update"
                                                         IsChecked="False"
                                                         IsEnabled="False"
                                                         ToolTip="Not available with RichEditControl-yet" />
-                                                </dxlc:LayoutItem>
+                                                </dxlc:LayoutItem>-->
 
-                                                <dxlc:LayoutItem>
+                                                <!--<dxlc:LayoutItem>
                                                     <Button
                                                         x:Name="btnUpdateScreen"
                                                         HorizontalAlignment="Left"
@@ -184,52 +185,49 @@
                                                                 Foreground="Red" />
                                                         </StackPanel>
                                                     </Button>
-                                                </dxlc:LayoutItem>
-                                                <!--<dxlc:LayoutItem HorizontalAlignment="Center" Label="Display Layout">
-                                                    <dxe:ComboBoxEdit
-                                                        x:Name="cbeRichEditViewType"
-                                                        EditValueChanged="CbeRichEditViewType_EditValueChanged"
-                                                        ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
-                                                        SelectedIndex="0" />
                                                 </dxlc:LayoutItem>-->
-                                                <dxlc:LayoutItem HorizontalAlignment="Right">
-                                                    <Button
-                                                        x:Name="btnClear"
-                                                        Click="btnClear_Click"
-                                                        Content="Clear Screen"
-                                                        Foreground="Red"
-                                                        ToolTip="Clear Screen" />
-                                                </dxlc:LayoutItem>
-                                                
-                                                <dxlc:LayoutItem HorizontalAlignment="Right">
-                                                    <Button
-                                                        x:Name="btnCopy"
-                                                        Click="btnCopy_Click"
-                                                        Content="Copy Contents"
-                                                        ToolTip="Copy contents to clipboard" />
-                                                </dxlc:LayoutItem>
-                                                
-                                                <dxlc:LayoutItem
-                                                    HorizontalAlignment="Right"
-                                                    Label="FontSize"
-                                                    LabelPosition="Left">
-                                                    <dxe:SpinEdit
-                                                        x:Name="sbFontSize"
-                                                        HorizontalAlignment="Right"
-                                                        Value="10"
-                                                        MinValue="8" />
+
+                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                    <Label x:Name="lbLastEntry"
+                                                               Content="HH:MM:SS.xxx" />
                                                 </dxlc:LayoutItem>
 
-                                            <dxlc:LayoutItem HorizontalAlignment="Right"
-                                                    Label="Hilight Offset"
-                                                    LabelPosition="Left">
-                                                <dxe:SpinEdit x:Name="sbHilightOffset"
+                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                    <Button x:Name="btnClear"
+                                                            Click="btnClear_Click"
+                                                            Content="Clear Screen"
+                                                            Foreground="Red"
+                                                            ToolTip="Clear Screen" />
+                                                </dxlc:LayoutItem>
+
+                                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                                    <Button x:Name="btnCopy"
+                                                            Click="btnCopy_Click"
+                                                            Content="Copy Contents"
+                                                            ToolTip="Copy contents to clipboard" />
+                                                </dxlc:LayoutItem>
+
+                                                <dxlc:LayoutItem
                                                         HorizontalAlignment="Right"
-                                                        Value="{Binding HilightOffset, Mode=TwoWay}"
-                                                        MinValue="1" />
-                                            </dxlc:LayoutItem>
+                                                        Label="FontSize"
+                                                        LabelPosition="Left">
+                                                        <dxe:SpinEdit
+                                                            x:Name="sbFontSize"
+                                                            HorizontalAlignment="Right"
+                                                            Value="10"
+                                                            MinValue="8" />
+                                                    </dxlc:LayoutItem>
+
+                                                <dxlc:LayoutItem HorizontalAlignment="Right"
+                                                        Label="Hilight Offset"
+                                                        LabelPosition="Left">
+                                                    <dxe:SpinEdit x:Name="sbHilightOffset"
+                                                            HorizontalAlignment="Right"
+                                                            Value="{Binding HilightOffset, Mode=TwoWay}"
+                                                            MinValue="0" />
+                                                </dxlc:LayoutItem>
                                                 
-                                        </dxlc:LayoutGroup>
+                                            </dxlc:LayoutGroup>
 
                                         </dxlc:LayoutGroup>
 

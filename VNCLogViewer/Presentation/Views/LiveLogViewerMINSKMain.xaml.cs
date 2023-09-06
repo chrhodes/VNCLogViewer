@@ -109,9 +109,9 @@ namespace VNCLogViewer.Presentation.Views
         //    InitializeLogStream();
         //}
 
-        private void recLogStream_TextChanged(object sender, EventArgs e)
+        private void rtbLogStream_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
+            if (lbLastEntry != null) lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
 
             // TODO(crhodes)
             // See if can do this with a RichEditControl control
@@ -165,5 +165,7 @@ namespace VNCLogViewer.Presentation.Views
         }
 
         #endregion
+
+
     }
 }

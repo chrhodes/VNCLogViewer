@@ -133,7 +133,21 @@ namespace VNCLogViewer.Presentation.ViewModels
         public Document Doc { get; set; }
 
         private RichTextBox _richTextBox;
-        public RichTextBox RichTextBox { get => _richTextBox; set => _richTextBox = value; }
+        public RichTextBox LogStream { get => _richTextBox; set => _richTextBox = value; }
+
+        private int _fontSize = 8;
+
+        public int FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                if (_fontSize == value)
+                    return;
+                _fontSize = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _hilightOffset = 3;
         public int HilightOffset
@@ -437,7 +451,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                     #region Critical / Error / Warning
 
                     case -10:
-                        AppendRedText(formattedMessage);
+                        AppendDarkRedText(formattedMessage);
                         break;
 
                     case -1:
@@ -445,7 +459,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         break;
 
                     case 1:
-                        AppendRedText(formattedMessage);
+                        AppendDarkOrangeText(formattedMessage);
                         break;
 
                     #endregion
@@ -1116,8 +1130,8 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             int messageIndex = 0;
 
-            //messageIndex = GetNthIndex2(formattedMessage, '|', 3);
-            messageIndex = GetNthIndex2(formattedMessage, '|', HilightOffset);
+            //messageIndex = GetNthIndex3(formattedMessage, '|', 3);
+            messageIndex = GetNthIndex3(formattedMessage, '|', HilightOffset);
 
             try
             {
@@ -1146,24 +1160,28 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
 
-        SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
-        SolidColorBrush redBrush = new SolidColorBrush(System.Windows.Media.Colors.Red);
-        SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
+
 
 
         private void AppendColorText(string message, System.Drawing.Color color)
         {
-            //_richTextBox.AppendText(message);
-            //return;
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                //_richTextBox.AppendText(message);
+                //return;
 
-            //BrushConverter bc = new BrushConverter();
-            //Brush newBrush = (Brush)bc.ConvertFrom(color);
-            SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
-            //messageBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+                //BrushConverter bc = new BrushConverter();
+                //Brush newBrush = (Brush)bc.ConvertFrom(color);
+                SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+                //messageBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
 
-            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
-            tr.Text = message;
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
+            });
+
+            //tr.Text = message;
+            //tr.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
             //tr.ApplyPropertyValue(TextElement.ForegroundProperty, messageBrush);
 
             //rtbConsole.AppendText(message);   
@@ -1172,35 +1190,70 @@ namespace VNCLogViewer.Presentation.ViewModels
         // NOTE(crhodes)
         // Ignoring color for now
 
+        SolidColorBrush whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+        SolidColorBrush redBrush = new SolidColorBrush(System.Windows.Media.Colors.Red);
+        SolidColorBrush darkRedBrush = new SolidColorBrush(System.Windows.Media.Colors.DarkRed);
+        SolidColorBrush darkOrangeBrush = new SolidColorBrush(System.Windows.Media.Colors.DarkOrange);
+        SolidColorBrush blueBrush = new SolidColorBrush(System.Windows.Media.Colors.Blue);
+
         private void AppendWhiteText(string message)
         {
-            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
-            tr.Text = message;
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, whiteBrush);  
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, whiteBrush);
+            });
         }
 
         private void AppendRedText(string message)
         {
-            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
-            tr.Text = message;
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, redBrush);
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, redBrush);
+            });
+        }
+
+        private void AppendDarkRedText(string message)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, darkRedBrush);
+            });
+        }
+
+        private void AppendDarkOrangeText(string message)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, darkOrangeBrush);
+            });
         }
 
         private void AppendBlueText(string message, System.Windows.Media.Color color)
         {
-            //_richTextBox.AppendText(message);
-            //return;
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                //_richTextBox.AppendText(message);
+                //return;
 
-            //BrushConverter bc = new BrushConverter();
-            //Brush newBrush = (Brush)bc.ConvertFrom(color);
-            //SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
-            //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+                //BrushConverter bc = new BrushConverter();
+                //Brush newBrush = (Brush)bc.ConvertFrom(color);
+                //SolidColorBrush newBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
+                //newBrush.Color = System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
 
-            TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
-            tr.Text = message;
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, blueBrush);
+                TextRange tr = new TextRange(_richTextBox.Document.ContentEnd, _richTextBox.Document.ContentEnd);
+                tr.Text = message;
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, blueBrush);
 
-            //rtbConsole.AppendText(message);   
+                //rtbConsole.AppendText(message);   
+            });
         }
 
         private int GetNthIndex(string s, char c, int n)
@@ -1229,6 +1282,21 @@ namespace VNCLogViewer.Presentation.ViewModels
             while (idx >= 0 && --n > 0)
             {
                 idx = s.IndexOf(c, idx + 1);
+            }
+
+            return idx;
+        }
+
+        public int GetNthIndex3(ReadOnlySpan<char> sSpan, char c, int n)
+        {
+            var idx = sSpan.IndexOf(c);
+
+            while (idx >= 0 && --n > 0)
+            {
+                idx++;  // Go past c
+                ReadOnlySpan<char> remainingSpan = sSpan.Slice(idx, sSpan.Length - idx);
+
+                idx += remainingSpan.IndexOf(c);
             }
 
             return idx;

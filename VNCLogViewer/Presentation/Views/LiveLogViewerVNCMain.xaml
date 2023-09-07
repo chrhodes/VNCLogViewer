@@ -76,179 +76,91 @@
                         AllowHide="False" 
                         Name="lg_Body_dlm_lg_lpRoot">
 
-                        <!--<dxlc:LayoutControl Padding="0"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Background="Transparent"
+                        <dxlc:LayoutGroup Name="groupContainer"
                             Orientation="Vertical"
-                            StretchContentVertically="True">-->
-                                                   
-                            <dxlc:LayoutGroup Name="groupContainer"
-                                Orientation="Vertical"
-                                View="Group">
-                                <dxlc:LayoutGroup.GroupBoxStyle>
-                                    <Style TargetType="dxlc:GroupBox">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                        <Setter Property="Padding" Value="0" />
-                                        <Setter Property="TitleVisibility" Value="Collapsed" />
-                                    </Style>
-                                </dxlc:LayoutGroup.GroupBoxStyle>
-                                
-                                <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
+                            View="Group">
+                            <dxlc:LayoutGroup.GroupBoxStyle>
+                                <Style TargetType="dxlc:GroupBox">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                                </Style>
+                            </dxlc:LayoutGroup.GroupBoxStyle>
 
-                                <dxlc:LayoutGroup Name="lg_X" Header="LiveLogView" >
+                            <!-- Individual LayoutGroups go here (if you want tabs or groups)-->
+
+                            <dxlc:LayoutGroup Name="lg_X" Header="LiveLogView" >
+
+                                <dxlc:LayoutGroup Orientation="Vertical">
+
+                                    <!--<dxre:RichEditControl x:Name="logStream"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="Black"
+                                        FontFamily="Consolas"
+                                        FontSize="{Binding ElementName=sbFontSize, Path=Value}"
+                                        TextChanged="logStream_TextChanged" />-->
                                     
-                                    <dxlc:LayoutGroup Orientation="Vertical">
-                                       
-                                        <dxre:RichEditControl x:Name="recLogStream"
+                                    <RichTextBox x:Name="logStream" 
+                                        VerticalScrollBarVisibility="Visible" 
+                                        Background="Black"
+                                        FontFamily="Consolas"
+                                        FontSize="{Binding FontSize}" 
+                                        TextChanged="logStream_TextChanged">
+                                        <FlowDocument>
+                                            <Paragraph>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+
+                                    <!--Capture filter-->
+
+                                    <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
+                                        Visibility="Visible"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Stretch"                                            
+                                        IsCollapsible="True"                                            
+                                        View="GroupBox" >
+
+                                        <!-- Start Custom Layout -->
+
+                                        <dxlc:LayoutGroup
+                                            x:Name="lgCustomFilterLayout"
                                             HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Stretch"
-                                            Background="Black"
-                                            FontFamily="Consolas"
-                                            FontSize="{Binding ElementName=sbFontSize, Path=Value}"
-                                            TextChanged="recLogStream_TextChanged" />
+                                            Header="Custom Filter"
+                                            IsCollapsible="True"
+                                            Orientation="Vertical"
+                                            View="GroupBox"
+                                            Visibility="Visible">
 
-                                        <!--<RichTextBox x:Name="rtbConsoleStream" 
-                                            VerticalScrollBarVisibility="Visible" >
-                                            <FlowDocument>
-                                                <Paragraph>
-                                                </Paragraph>
-                                            </FlowDocument>
-                                        </RichTextBox>-->
-
-                                        <!--Capture filter-->
-
-                                        <dxlc:LayoutGroup x:Name="lgCaptureFilter" Header="{Binding LoggingUIConfig.Name}" Orientation="Vertical"
-                                            Visibility="Visible"
-                                            VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Stretch"                                            
-                                            IsCollapsible="True"                                            
-                                            View="GroupBox" >
-
-                                            <!-- Start Custom Layout -->
-
-                                            <dxlc:LayoutGroup
-                                                x:Name="lgCustomFilterLayout"
-                                                HorizontalAlignment="Stretch"
-                                                Header="Custom Filter"
-                                                IsCollapsible="True"
-                                                Orientation="Vertical"
-                                                View="GroupBox"
-                                                Visibility="Visible">
-
-                                                <Label Content="lgCustomFilterLayout Stuff Goes Here" />
-
-                                            </dxlc:LayoutGroup>
-
-                                            <!-- End Custom Layout -->
-
-                                            <!-- Start Default Filter -->
-
-                                            <views:DefaultFilter x:Name="defaultFilter" />
-
-                                            <!-- End Default Layout -->
-
-                                            <views:UIConfig x:Name="uiConfig" />
+                                            <Label Content="lgCustomFilterLayout Stuff Goes Here" />
 
                                         </dxlc:LayoutGroup>
 
-                                        <!--End Capture filter-->
+                                        <!-- End Custom Layout -->
 
-                                        <dxlc:LayoutGroup Orientation="Vertical"
-                                            VerticalAlignment="Bottom" >
-                                            
-                                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                                
-                                                <!--<dxlc:LayoutItem HorizontalAlignment="Left">
-                                                    <dxe:CheckEdit x:Name="ceAutoUpdate"
-                                                        Content="Auto Update"
-                                                        IsEnabled="False"
-                                                        ToolTip="Not available with RichEditControl-yet"
-                                                        IsChecked="False" />
-                                                </dxlc:LayoutItem>-->
-                                                
-                                                <!--<dxlc:LayoutItem>
-                                                    <Button x:Name="btnUpdateScreen"
-                                                        HorizontalAlignment="Left"
-                                                        Click="btnUpdateScreen_Click"
-                                                        IsEnabled="{cb:Binding ElementName=ceAutoUpdate, Path=!IsChecked, Mode=OneWay}"
-                                                        ToolTip="Update Screen">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <Label x:Name="lbLastEntry"
-                                                                Width="80"
-                                                                Content="HH:MM:SS.xxx" />
-                                                            <Label HorizontalAlignment="Right"
-                                                                Content="Update Screen"
-                                                                Foreground="Red" />
-                                                        </StackPanel>
-                                                    </Button>
-                                                </dxlc:LayoutItem>-->
+                                        <!-- Start Default Filter -->
 
-                                                <dxlc:LayoutItem HorizontalAlignment="Left">
-                                                    <Label x:Name="lbLastEntry"
-                                                           Content="HH:MM:SS.xxx" />
-                                                </dxlc:LayoutItem>       
-                                                
-                                                <dxlc:LayoutItem HorizontalAlignment="Left">
-                                                    <Button x:Name="btnClear"
-                                                        Click="btnClear_Click"
-                                                        Content="Clear Screen"
-                                                        Foreground="Red"
-                                                        ToolTip="Clear Screen" />
-                                                </dxlc:LayoutItem>
-                                                
-                                                <dxlc:LayoutItem HorizontalAlignment="Left">
-                                                    <Button x:Name="btnCopy"
-                                                        Click="btnCopy_Click"
-                                                        Content="Copy Contents"
-                                                        ToolTip="Copy contents to clipboard" />
-                                                </dxlc:LayoutItem>
+                                        <views:DefaultFilter x:Name="defaultFilter" />
 
-                                                <dxlc:LayoutItem HorizontalAlignment="Center" Label="Layout">
-                                                    <dxe:ComboBoxEdit x:Name="cbeRichEditViewType"
-                                                     EditValueChanged="CbeRichEditViewType_EditValueChanged"
-                                                     ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
-                                                     SelectedIndex="0" />
-                                                </dxlc:LayoutItem>
+                                        <!-- End Default Layout -->
 
-                                                <dxlc:LayoutItem HorizontalAlignment="Right"
-                                                        Label="FontSize"
-                                                        LabelPosition="Left">
-                                                        <dxe:SpinEdit x:Name="sbFontSize"
-                                                            HorizontalAlignment="Right"
-                                                            Value="10"
-                                                            MinValue="8" />
-                                                    </dxlc:LayoutItem>
+                                        <views:UIConfig x:Name="uiConfig" />
 
-                                                <dxlc:LayoutItem HorizontalAlignment="Right"
-                                                        Label="Hilight Offset"
-                                                        LabelPosition="Left">
-                                                    <dxe:SpinEdit x:Name="sbHilightOffset"
-                                                            HorizontalAlignment="Right"
-                                                            Value="{Binding HilightOffset, Mode=TwoWay}"
-                                                            MinValue="0" />
-                                                </dxlc:LayoutItem>
-
-                                            </dxlc:LayoutGroup>
-                                            
-                                        </dxlc:LayoutGroup>
-                                        
                                     </dxlc:LayoutGroup>
+
+                                    <!--End Capture filter-->
+
+                                    <views:LogStreamControls x:Name="logStreamControls" VerticalAlignment="Bottom" />
                                     
-                                </dxlc:LayoutGroup>
-                                
-                                <!--<dxlc:LayoutGroup Header="Y Stuff" Name="lg_Y">
-                                  <dxlc:LayoutItem MaxHeight="1200"
-                                                        VerticalAlignment="Top"
-                                                        Name="li_Y" />
-                                </dxlc:LayoutGroup>-->
-                                
+                                  </dxlc:LayoutGroup>
+
                             </dxlc:LayoutGroup>
-                            
-                        <!--</dxlc:LayoutControl>-->
-                        
+
+                        </dxlc:LayoutGroup>
+
                     </dxdo:LayoutPanel>
                     
                 </dxdo:LayoutGroup>

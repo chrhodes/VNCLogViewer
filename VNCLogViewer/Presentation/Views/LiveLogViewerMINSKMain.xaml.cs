@@ -1,14 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-
-using DevExpress.Xpf.Editors;
-using DevExpress.XtraRichEdit;
-using DevExpress.XtraRichEdit.API.Native;
-
-using JSONConsoleApp.jsonDeserializeClass;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -43,7 +35,9 @@ namespace VNCLogViewer.Presentation.Views
             signalRInteraction.ViewModel = (ILiveLogViewerViewModel)ViewModel;
             uiConfig.ViewModel = (ILiveLogViewerViewModel)ViewModel;
 
-            ViewModel.RichTextBox = rtbLogStream;
+            //ViewModel.Doc = logStream.Document;
+            ViewModel.LogStream = logStream;
+
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigMINSK.json";
             ViewModel.ReloadUIConfig();
 
@@ -52,29 +46,15 @@ namespace VNCLogViewer.Presentation.Views
             lg_Body_dlm.Activate(lp_RightStuff);
             lp_RightStuff.Visibility = Visibility.Visible;
 
-            // NOTE(crhodes)
-            // This works.
-            //((ILiveLogViewerViewModel)ViewModel).LoggingUIConfig = new LoggingUIConfig.LoggingUIConfigMINSK();
-
-            // NOTE(crhodes)
-            // Now let's try loading from .json
-
-            //Directory.SetCurrentDirectory("D:\\VNC\\git\\chrhodes\\VNCLogViewer\\jsonUIConfig");
-
-            //string jsonString = File.ReadAllText(ViewModel.LoggingUIConfigFileName);
-            //LoggingUIConfig_JsonRoot? jsonLoggingUIConfig = JsonSerializer.Deserialize<LoggingUIConfig_JsonRoot>(jsonString);
-
-            //ViewModel.LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
-
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private void InitializeLogStream()
         //{
-        //    rtbLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
-        //    recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
+        //    logStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
+        //    logStream.ActiveView.BackColor = System.Drawing.Color.Black;
 
-        //    //Document doc = recLogStream.Document;
+        //    //Document doc = logStream.Document;
 
         //    //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
 
@@ -90,62 +70,42 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Enums, Fields, Properties
 
+        //public ILiveLogViewerViewModelREC ViewModel
+        //{
+        //    get { return (ILiveLogViewerViewModelREC)DataContext; }
+        //    set { DataContext = value; }
+        //}
+
         public ILiveLogViewerViewModelRTB ViewModel
         {
             get { return (ILiveLogViewerViewModelRTB)DataContext; }
             set { DataContext = value; }
         }
 
-        //public String UserName { get; set; }
-
         #endregion
 
         #region Event Handlers
 
-        // NOTE(crhodes)
-        // Why would this get called
-        //private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
-        //{
-        //    InitializeLogStream();
-        //}
-
-        private void rtbLogStream_TextChanged(object sender, TextChangedEventArgs e)
+        private void logStream_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (lbLastEntry != null) lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
-
-            // TODO(crhodes)
-            // See if can do this with a RichEditControl control
-
-            //if (ceAutoUpdate.IsChecked == true)
-            //{
-            //    recLogStream.Focus();
-            //    recLogStream.SelectionStart = recLogStream.Text.Length;
-            //}
-        }
-
-        private void btnUpdateScreen_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO(crhodes)
-            // See if can do this with a RichEditControl control
-
-            //recLogStream.Focus();
-            //recLogStream.SelectionStart = recLogStream.Text.Length;
+            if (logStreamControls != null)
+            {
+                if (logStreamControls.lbLastEntry != null) logStreamControls.lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
+            }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            //recLogStream.Clear();
-            rtbLogStream.SelectAll();
-            rtbLogStream.Cut();
+            logStream.SelectAll();
+            logStream.Cut();
             //InitializeLogStream();
         }
 
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
-            rtbLogStream.SelectAll();
-            rtbLogStream.Copy();
+            logStream.SelectAll();
+            logStream.Copy();
         }
-
 
         #endregion
 

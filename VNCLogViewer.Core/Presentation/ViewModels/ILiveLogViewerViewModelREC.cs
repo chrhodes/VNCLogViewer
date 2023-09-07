@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraRichEdit.API.Native;
+﻿using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {

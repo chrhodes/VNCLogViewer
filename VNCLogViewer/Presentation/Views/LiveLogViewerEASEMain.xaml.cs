@@ -49,7 +49,9 @@ namespace VNCLogViewer.Presentation.Views
             signalRInteraction.ViewModel = ViewModel;
             uiConfig.ViewModel = ViewModel;
 
-            ViewModel.Doc = recLogStream.Document;
+            ViewModel.Doc = logStream.Document;
+            //InitializeLogStream();
+
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigEASE.json";
             ViewModel.ReloadUIConfig();
 
@@ -61,22 +63,38 @@ namespace VNCLogViewer.Presentation.Views
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void InitializeLogStream()
+        // NOTE(crhodes)
+        // It takes awhile for the RichEditControl to load.
+        // Cannot do this in InitializeView
+        private void logStreamLoaded(object sender, RoutedEventArgs e)
         {
-            recLogStream.ActiveViewType = (RichEditViewType)cbeRichEditViewType.SelectedIndex;
-            recLogStream.ActiveView.BackColor = System.Drawing.Color.Black;
-
-            //Document doc = recLogStream.Document;
-
-            //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
-
-            Section section = ((ILiveLogViewerViewModelREC)ViewModel).Doc.Sections[0];
-
-            section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
-            section.Page.Landscape = true;
-            section.Margins.Left = 0.1f;
-            section.Margins.Right = 0.1f;
+            logStream.Views.SimpleView.BackColor = Color.Black;
         }
+
+        //private void InitializeLogStream()
+        //{
+        //    if (logStream == null)
+        //    {
+
+        //    }
+        //    //logStream.Views.SimpleView.BackColor = Color.Blue;
+        //    //logStream.ActiveViewType = RichEditViewType.Simple;
+        //    //logStream.Background = System.Windows.Media.Brushes.Blue;
+
+        //    //logStream.ActiveViewType = (RichEditViewType)logStreamControls.cbeRichEditViewType.SelectedIndex;
+        //    //logStream.ActiveView.BackColor = System.Drawing.Color.Black;
+
+        //    //Document doc = recLogStream.Document;
+
+        //    //DevExpress.XtraRichEdit.API.Native.Section section = doc.Sections[0];
+
+        //    //Section section = ((ILiveLogViewerViewModelREC)ViewModel).Doc.Sections[0];
+
+        //    //section.Page.PaperKind = System.Drawing.Printing.PaperKind.B4;
+        //    //section.Page.Landscape = true;
+        //    //section.Margins.Left = 0.1f;
+        //    //section.Margins.Right = 0.1f;
+        //}
 
         #endregion
 
@@ -88,52 +106,16 @@ namespace VNCLogViewer.Presentation.Views
             set { DataContext = value; }
         }
 
-        //public String UserName { get; set; }
-
         #endregion
 
         #region Event Handlers
 
-        private void CbeRichEditViewType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        private void logStream_TextChanged(object sender, EventArgs e)
         {
-            InitializeLogStream();
-        }
-
-
-        private void recLogStream_TextChanged(object sender, EventArgs e)
-        {
-            lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
-
-            // TODO(crhodes)
-            // See if can do this with a RichEditControl control
-
-            //if (ceAutoUpdate.IsChecked == true)
-            //{
-            //    recLogStream.Focus();
-            //    recLogStream.SelectionStart = recLogStream.Text.Length;
-            //}
-        }
-
-        private void btnUpdateScreen_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO(crhodes)
-            // See if can do this with a RichEditControl control
-
-            //recLogStream.Focus();
-            //recLogStream.SelectionStart = recLogStream.Text.Length;
-        }
-
-        private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
-            //recLogStream.Clear();
-            recLogStream.Text = "";
-            InitializeLogStream();
-        }
-
-        private void btnCopy_Click(object sender, RoutedEventArgs e)
-        {
-            recLogStream.SelectAll();
-            recLogStream.Copy();
+            if (logStreamControls != null)
+            {
+                if (logStreamControls.lbLastEntry != null) logStreamControls.lbLastEntry.Content = DateTime.Now.ToString("HH:mm:ss.fff");
+            }
         }
 
         #endregion
@@ -153,5 +135,6 @@ namespace VNCLogViewer.Presentation.Views
         }
 
         #endregion
+
     }
 }

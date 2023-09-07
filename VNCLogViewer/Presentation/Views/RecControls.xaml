@@ -1,0 +1,71 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCLogViewer.Presentation.Views.RecControls"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+        xmlns:vcxe="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    mc:Ignorable="d"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource UIConfigBackground}"
+
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
+>
+    <dxlc:LayoutGroup Orientation="Vertical"
+        VerticalAlignment="Bottom">
+
+        <dxlc:LayoutGroup Orientation="Horizontal">
+
+            <dxlc:LayoutItem HorizontalAlignment="Left">
+                <Label x:Name="lbLastEntry"
+                    Content="HH:MM:SS.xxx" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left">
+                <Button x:Name="btnClear"
+                    Click="btnClear_Click"
+                    Content="Clear Screen"
+                    Foreground="Red"
+                    ToolTip="Clear Screen" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left">
+                <Button x:Name="btnCopy"
+                    Click="btnCopy_Click"
+                    Content="Copy Contents"
+                    ToolTip="Copy contents to clipboard" />
+            </dxlc:LayoutItem>
+
+            <!--<dxlc:LayoutItem HorizontalAlignment="Center" Label="Layout">
+                <dxe:ComboBoxEdit x:Name="cbeRichEditViewType"
+                    EditValueChanged="CbeRichEditViewType_EditValueChanged"
+                    ItemsSource="{Binding Source={vcxe:EnumBindingSource {x:Type drec:RichEditViewType}}}"
+                    SelectedIndex="0" />
+            </dxlc:LayoutItem>-->
+
+            <dxlc:LayoutItem HorizontalAlignment="Right"
+                Label="FontSize"
+                LabelPosition="Left">
+                <dxe:SpinEdit x:Name="sbFontSize"
+                    HorizontalAlignment="Right"
+                    Value="10"
+                    MinValue="8" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Right"
+                Label="Hilight Offset"
+                LabelPosition="Left">
+                <dxe:SpinEdit x:Name="sbHilightOffset"
+                    HorizontalAlignment="Right"
+                    Value="{Binding HilightOffset, Mode=TwoWay}"
+                    MinValue="0" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutGroup>
+</vncmvvm:ViewBase>

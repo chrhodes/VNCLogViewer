@@ -32,12 +32,13 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         //void SetLoggingUIConfig(LoggingUIConfig loggingUIConfig);
 
-        Document Doc { get; set; }
+        RichTextBox LogStream { get; set; }
 
-        RichTextBox RichTextBox { get; set; }
+        Document Doc { get; set; }
 
         string UserName { get; set; }
 
         int HilightOffset { get; set; }
+        int FontSize { get; set; }
     }
 }

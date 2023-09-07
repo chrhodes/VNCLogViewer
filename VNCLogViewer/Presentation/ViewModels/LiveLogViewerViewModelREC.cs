@@ -33,6 +33,7 @@ namespace VNCLogViewer.Presentation.ViewModels
     {
         #region Constructors, Initialization, and Load
 
+
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
 
@@ -130,7 +131,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         public Document Doc { get; set; }
 
-        public RichTextBox RichTextBox { get; set; }
+        public RichTextBox LogStream { get; set; }
 
         private int _hilightOffset = 3;
         public int HilightOffset
@@ -147,6 +148,21 @@ namespace VNCLogViewer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private int _fontSize = 9;
+
+        public int FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                if (_fontSize == value)
+                    return;
+                _fontSize = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private luic.LoggingColors _loggingColors = new luic.LoggingColors();
 
         public luic.LoggingColors LoggingColors
@@ -434,7 +450,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                     #region Critical / Error / Warning
 
                     case -10:
-                        AppendColorFormattedMessage(formattedMessage, Color.Red);
+                        AppendColorFormattedMessage(formattedMessage, Color.DarkRed);
                         break;
 
                     case -1:
@@ -442,7 +458,7 @@ namespace VNCLogViewer.Presentation.ViewModels
                         break;
 
                     case 1:
-                        AppendColorFormattedMessage(formattedMessage, Color.Red);
+                        AppendColorFormattedMessage(formattedMessage, Color.DarkOrange);
                         break;
 
                     #endregion
@@ -1147,8 +1163,8 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             int messageIndex = 0;
 
-            //messageIndex = GetNthIndex2(formattedMessage, '|', 3);
-            messageIndex = GetNthIndex2(formattedMessage, '|', HilightOffset);
+            //messageIndex = GetNthIndex3(formattedMessage, '|', 3);
+            messageIndex = GetNthIndex3(formattedMessage, '|', HilightOffset);
 
             try
             {
@@ -1199,6 +1215,21 @@ namespace VNCLogViewer.Presentation.ViewModels
             while (idx >= 0 && --n > 0)
             {
                 idx = s.IndexOf(c, idx + 1);
+            }
+
+            return idx;
+        }
+
+        public int GetNthIndex3(ReadOnlySpan<char> sSpan, char c, int n)
+        {
+            var idx = sSpan.IndexOf(c);
+
+            while (idx >= 0 && --n > 0)
+            {
+                idx++;  // Go past c
+                ReadOnlySpan<char> remainingSpan = sSpan.Slice(idx, sSpan.Length - idx);
+
+                idx += remainingSpan.IndexOf(c);
             }
 
             return idx;

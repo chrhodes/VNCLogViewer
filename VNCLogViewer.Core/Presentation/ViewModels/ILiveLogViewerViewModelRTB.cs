@@ -4,6 +4,6 @@ namespace VNCLogViewer.Presentation.ViewModels
 {
     public interface ILiveLogViewerViewModelRTB : ILiveLogViewerViewModel
     {
-        //RichTextBox RichTextBox { get; set; }
+        //RichTextBox LogStream { get; set; }
     }
 }

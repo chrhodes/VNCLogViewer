@@ -135,7 +135,7 @@ namespace VNCLogViewer.Presentation.ViewModels
         private RichTextBox _richTextBox;
         public RichTextBox LogStream { get => _richTextBox; set => _richTextBox = value; }
 
-        private int _fontSize = 8;
+        private int _fontSize = 10;
 
         public int FontSize
         {
@@ -1159,9 +1159,6 @@ namespace VNCLogViewer.Presentation.ViewModels
         }
 
         SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
-
-
-
 
         private void AppendColorText(string message, System.Drawing.Color color)
         {

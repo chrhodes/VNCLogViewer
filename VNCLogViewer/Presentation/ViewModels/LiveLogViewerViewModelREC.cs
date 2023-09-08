@@ -1102,46 +1102,51 @@ namespace VNCLogViewer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Doc maybe null when program exits.
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                if (Doc is not null)
+                {
+                    try
+                    {
+                        Doc.BeginUpdate();
 
-            if (Doc is not null)
+                        Doc.AppendText(formattedMessage);
+
+                        Doc.EndUpdate();
+                    }
+                    catch (Exception ex)
+                    {
+                        string exception = ex.ToString();
+                        string innerException = ex.InnerException.ToString();
+                    }
+                }
+            });
+        }
+
+        void AppendColorFormattedMessage(string formattedMessage, Color color)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 try
                 {
                     Doc.BeginUpdate();
 
-                    Doc.AppendText(formattedMessage);
+                    //Doc.AppendText(formattedMessage);
+
+                    DocumentRange newRange = Doc.AppendText(formattedMessage);
+
+                    CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
+                    charProp.ForeColor = color;
+                    Doc.EndUpdateCharacters(charProp);
 
                     Doc.EndUpdate();
                 }
                 catch (Exception ex)
                 {
                     string exception = ex.ToString();
-                    string innerException = ex.InnerException.ToString();
+                    string innerException = ex.InnerException?.ToString();
                 }
-            }
-        }
-
-        void AppendColorFormattedMessage(string formattedMessage, Color color)
-        {
-            try
-            {
-                Doc.BeginUpdate();
-
-                //Doc.AppendText(formattedMessage);
-
-                DocumentRange newRange = Doc.AppendText(formattedMessage);
-
-                CharacterProperties charProp = Doc.BeginUpdateCharacters(newRange);
-                charProp.ForeColor = color;
-                Doc.EndUpdateCharacters(charProp);
-
-                Doc.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-                string innerException = ex.InnerException?.ToString();
-            }
+            });
         }
 
         private void ColorFormatMessageAndAppend(string formattedMessage, Color color)

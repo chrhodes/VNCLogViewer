@@ -17,13 +17,12 @@ namespace Benchmarks
         [Benchmark]
         public void LogPlaceholders()
         {
-            DateTime now = DateTime.Now;
             Int32 count = 10;
             string message = "Hello Garbage collector";
 
             for (int i = 0; i < count; i++)
             {
-                Log.Info(string.Format("DateTime{0} i:({1}) message:({2})", now, i, message), Program.LOG_CATEGORY);
+                Log.Info(string.Format("DateTime:{0:yyyy/MM/dd HH:mm:ss.fff} i:({1}) message:({2})", DateTime.Now, i, message), Program.LOG_CATEGORY);
             }
             
         }
@@ -31,13 +30,12 @@ namespace Benchmarks
         [Benchmark]
         public void LogInterpolated()
         {
-            DateTime now = DateTime.Now;
             Int32 count = 10;
             string message = "Hello Garbage collector";
 
             for (int i = 0; i < count; i++)
             {
-                Log.Info($"DateTime{now} i:({i}) message:({message})", Program.LOG_CATEGORY);
+                Log.Info($"DateTime{DateTime.Now:yyyy/MM/dd HH:mm:ss.fff} i:({i}) message:({message})", Program.LOG_CATEGORY);
             }
         }
 

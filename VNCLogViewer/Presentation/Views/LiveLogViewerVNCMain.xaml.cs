@@ -43,7 +43,8 @@ namespace VNCLogViewer.Presentation.Views
             ViewModel.LoggingUIConfigFileName = "loggingUIConfigDefault.json";
             ViewModel.ReloadUIConfig();
 
-            ViewModel.UserName = "VNC";
+            //ViewModel.UserName = "VNC";
+            signalRInteraction.UserName = "VNC";
 
             lg_Body_dlm.Activate(lp_RightStuff);
             lp_RightStuff.Visibility = Visibility.Visible;

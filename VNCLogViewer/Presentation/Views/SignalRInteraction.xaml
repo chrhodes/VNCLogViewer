@@ -54,14 +54,14 @@
             <dxlc:LayoutItem Label="ServerURI:"
                              LabelPosition="Top"
                              HorizontalAlignment="Stretch">
-                <TextBox x:Name="ServerURI" Text="{Binding ServerURI}" />
+                <TextBox x:Name="tbServerURI" Text="{Binding ServerURI, Mode=TwoWay}" />
             </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="User name:"
-                                 LabelPosition="Top"
-                                 HorizontalAlignment="Stretch">
-                    <TextBox x:Name="UserNameTextBox" Text="{Binding UserName}" />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="User name:"
+                                LabelPosition="Top"
+                                HorizontalAlignment="Stretch">
+                <TextBox x:Name="tbUserName" Text="{Binding UserName, Mode=TwoWay}" />
+            </dxlc:LayoutItem>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem HorizontalAlignment="Left">

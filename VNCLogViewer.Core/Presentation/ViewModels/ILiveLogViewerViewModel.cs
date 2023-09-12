@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 using DevExpress.XtraRichEdit.API.Native;
 
@@ -11,14 +13,20 @@ namespace VNCLogViewer.Presentation.ViewModels
 {
     public interface ILiveLogViewerViewModel : IViewModel
     {
-        Task LoadAsync();
+        void AppendFormattedMessage(string message);
+        void AppendColorFormatedMessage(string message, System.Drawing.Color color);
+        void AppendColoredText(string message, System.Drawing.Color color);
 
-        void ConnectAsync();
-        void StopAsync();
-        void DisposeAsync();
+        void ProcessPriorityMessage(string message, Int32 priority);
 
-        void Send();
-        void SendPriority();
+        //Task LoadAsync();
+
+        //void ConnectAsync();
+        //void StopAsync();
+        //void DisposeAsync();
+
+        //void Send();
+        //void SendPriority();
 
         // HACK(crhodes)
         // How does one handle this without ugly circular references to projects
@@ -36,7 +44,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         Document Doc { get; set; }
 
-        string UserName { get; set; }
+        //string UserName { get; set; }
 
         int HilightOffset { get; set; }
         int FontSize { get; set; }

@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Drawing;
-using System.Net.Http;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 using DevExpress.XtraRichEdit.API.Native;
-using DevExpress.XtraRichEdit.Model;
 
-using Microsoft.AspNetCore.SignalR.Client;
+using JSONConsoleApp.jsonDeserializeClass;
 
-using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
@@ -18,16 +18,6 @@ using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
 using luic = VNCLogViewer.LoggingUIConfig;
-
-using CharacterProperties = DevExpress.XtraRichEdit.API.Native.CharacterProperties;
-using JSONConsoleApp.jsonDeserializeClass;
-using System.IO;
-using System.Text.Json;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Diagnostics;
-using VNCLogViewer.Domain;
 
 namespace VNCLogViewer.Presentation.ViewModels
 {
@@ -61,9 +51,9 @@ namespace VNCLogViewer.Presentation.ViewModels
             // TODO(crhodes)
             //
 
-            SignInCommand = new DelegateCommand(SignIn, SignInCanExecute);
-            SendCommand = new DelegateCommand(Send, SendCanExecute);
-            SendPriorityCommand = new DelegateCommand(SendPriority, SendPriorityCanExecute);
+            //SignInCommand = new DelegateCommand(SignIn, SignInCanExecute);
+            //SendCommand = new DelegateCommand(Send, SendCanExecute);
+            //SendPriorityCommand = new DelegateCommand(SendPriority, SendPriorityCanExecute);
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -72,63 +62,63 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #region Enums, Fields, Properties
 
-        public HubConnection Connection { get; set; }
+        //public HubConnection Connection { get; set; }
 
-        private string _serverURI = "http://localhost:58195/signalr";
+        //private string _serverURI = "http://localhost:58195/signalr";
 
-        public string ServerURI
-        {
-            get => _serverURI;
-            set
-            {
-                if (_serverURI == value)
-                    return;
-                _serverURI = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string ServerURI
+        //{
+        //    get => _serverURI;
+        //    set
+        //    {
+        //        if (_serverURI == value)
+        //            return;
+        //        _serverURI = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private string _userName;
+        //private string _userName;
 
-        public string UserName
-        {
-            get => _userName;
-            set
-            {
-                if (_userName == value)
-                    return;
-                _userName = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string UserName
+        //{
+        //    get => _userName;
+        //    set
+        //    {
+        //        if (_userName == value)
+        //            return;
+        //        _userName = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private int _priority = 0;
+        //private int _priority = 0;
 
-        public int Priority
-        {
-            get => _priority;
-            set
-            {
-                if (_priority == value)
-                    return;
-                _priority = value;
-                OnPropertyChanged();
-            }
-        }
+        //public int Priority
+        //{
+        //    get => _priority;
+        //    set
+        //    {
+        //        if (_priority == value)
+        //            return;
+        //        _priority = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private string _message;
+        //private string _message;
 
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string Message
+        //{
+        //    get => _message;
+        //    set
+        //    {
+        //        if (_message == value)
+        //            return;
+        //        _message = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public Document Doc { get; set; }
 
@@ -208,10 +198,10 @@ namespace VNCLogViewer.Presentation.ViewModels
             }
         }        
 
-        public Task LoadAsync()
-        {
-            throw new NotImplementedException();
-        }
+        //public Task LoadAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
 
@@ -219,9 +209,9 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #region SignIn Command
 
-        public DelegateCommand SignInCommand { get; set; }
-        public string SignInContent { get; set; } = "SignIn";
-        public string SignInToolTip { get; set; } = "SignIn ToolTip";
+        //public DelegateCommand SignInCommand { get; set; }
+        //public string SignInContent { get; set; } = "SignIn";
+        //public string SignInToolTip { get; set; } = "SignIn ToolTip";
 
         // Can get fancy and use Resources
         //public string SignInContent { get; set; } = "ViewName_SignInContent";
@@ -231,55 +221,55 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SignInContent">SignIn</system:String>
         //    <system:String x:Key="ViewName_SignInContentToolTip">SignIn ToolTip</system:String>  
 
-        public void SignIn()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            // Message = "Cool, you called SignIn";
+        //public void SignIn()
+        //{
+        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+        //    // Message = "Cool, you called SignIn";
 
-            // Uncomment this if you are telling someone else to handle this
+        //    // Uncomment this if you are telling someone else to handle this
 
-            // Common.EventAggregator.GetEvent<SignInEvent>().Publish();
+        //    // Common.EventAggregator.GetEvent<SignInEvent>().Publish();
 
-            // May want EventArgs
+        //    // May want EventArgs
 
-            //  EventAggregator.GetEvent<SignInEvent>().Publish(
-            //      new SignInEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
+        //    //  EventAggregator.GetEvent<SignInEvent>().Publish(
+        //    //      new SignInEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
 
-            // Start Cut Three - Put this in PrismEvents
+        //    // Start Cut Three - Put this in PrismEvents
 
-            // public class SignInEvent : PubSubEvent { }
+        //    // public class SignInEvent : PubSubEvent { }
 
-            // End Cut Three
+        //    // End Cut Three
 
-            // Start Cut Four - Put this in places that listen for event
+        //    // Start Cut Four - Put this in places that listen for event
 
-            //Common.EventAggregator.GetEvent<SignInEvent>().Subscribe(SignIn);
+        //    //Common.EventAggregator.GetEvent<SignInEvent>().Subscribe(SignIn);
 
-            // End Cut Four
+        //    // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        public bool SignInCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
+        //public bool SignInCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //}
 
         #endregion
 
         #region Send Command
 
-        public DelegateCommand SendCommand { get; set; }
-        public string SendContent { get; set; } = "Send";
-        public string SendToolTip { get; set; } = "Send ToolTip";
+        //public DelegateCommand SendCommand { get; set; }
+        //public string SendContent { get; set; } = "Send";
+        //public string SendToolTip { get; set; } = "Send ToolTip";
 
         // Can get fancy and use Resources
         //public string SendContent { get; set; } = "ViewName_SendContent";
@@ -289,82 +279,82 @@ namespace VNCLogViewer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_SendContent">Send</system:String>
         //    <system:String x:Key="ViewName_SendContentToolTip">Send ToolTip</system:String>  
 
-        public void Send()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        //public void Send()
+        //{
+        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            Connection.InvokeAsync("SendUserMessage", UserName, Message);
+        //    Connection.InvokeAsync("SendUserMessage", UserName, Message);
 
-            // TODO(crhodes)
-            // Do something amazing.
-            // Message = "Cool, you called Send";
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+        //    // Message = "Cool, you called Send";
 
-            // Uncomment this if you are telling someone else to handle this
+        //    // Uncomment this if you are telling someone else to handle this
 
-            // Common.EventAggregator.GetEvent<SendEvent>().Publish();
+        //    // Common.EventAggregator.GetEvent<SendEvent>().Publish();
 
-            // May want EventArgs
+        //    // May want EventArgs
 
-            //  EventAggregator.GetEvent<SendEvent>().Publish(
-            //      new SendEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
+        //    //  EventAggregator.GetEvent<SendEvent>().Publish(
+        //    //      new SendEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
 
-            // Start Cut Three - Put this in PrismEvents
+        //    // Start Cut Three - Put this in PrismEvents
 
-            // public class SendEvent : PubSubEvent { }
+        //    // public class SendEvent : PubSubEvent { }
 
-            // End Cut Three
+        //    // End Cut Three
 
-            // Start Cut Four - Put this in places that listen for event
+        //    // Start Cut Four - Put this in places that listen for event
 
-            //Common.EventAggregator.GetEvent<SendEvent>().Subscribe(Send);
+        //    //Common.EventAggregator.GetEvent<SendEvent>().Subscribe(Send);
 
-            // End Cut Four
+        //    // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        public bool SendCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
+        //public bool SendCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //}
 
         #endregion
 
         #region SendPriority Command
 
-        public DelegateCommand SendPriorityCommand { get; set; }
-        public string SendPriorityContent { get; set; } = "SendPriority";
-        public string SendPriorityToolTip { get; set; } = "SendPriority ToolTip";
+        //public DelegateCommand SendPriorityCommand { get; set; }
+        //public string SendPriorityContent { get; set; } = "SendPriority";
+        //public string SendPriorityToolTip { get; set; } = "SendPriority ToolTip";
 
-        // Can get fancy and use Resources
-        //public string SendPriorityContent { get; set; } = "ViewName_SendPriorityContent";
-        //public string SendPriorityToolTip { get; set; } = "ViewName_SendPriorityContentToolTip";
+        //// Can get fancy and use Resources
+        ////public string SendPriorityContent { get; set; } = "ViewName_SendPriorityContent";
+        ////public string SendPriorityToolTip { get; set; } = "ViewName_SendPriorityContentToolTip";
 
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_SendPriorityContent">SendPriority</system:String>
-        //    <system:String x:Key="ViewName_SendPriorityContentToolTip">SendPriority ToolTip</system:String>  
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_SendPriorityContent">SendPriority</system:String>
+        ////    <system:String x:Key="ViewName_SendPriorityContentToolTip">SendPriority ToolTip</system:String>  
 
-        public void SendPriority()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        //public void SendPriority()
+        //{
+        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
+        //    Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        public bool SendPriorityCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
+        //public bool SendPriorityCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //}
 
         #endregion
 
@@ -390,723 +380,1281 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #endregion
 
-        public async void ConnectAsync()
+        public void ProcessPriorityMessage(string message, Int32 priority)
         {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.Debug($"Enter/Exit message:{message}", Common.LOG_CATEGORY);
 
-            Connection = new HubConnectionBuilder()
-                .WithUrl(ServerURI)
-                .Build();
+            //Boolean displayMessage = false;
 
-            Connection.Closed += Connection_Closed;
-            Connection.Reconnecting += Connection_Reconnecting;
-            Connection.Reconnected += Connection_Reconnected;
+            // For now treat the whole message the same.
+            //message = String.Format("{0}\r", message);
 
-            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
+            // TODO(crhodes)
+            // Make this more clever, perhaps a bit field
+            // But this may be plenty fast enough just long :(
 
-            string formattedMessage = "";
-
-            //Connection.On<string>("AddMessage", (message) =>
-            //    this.Dispatcher.InvokeAsync(
-            //    () =>
-            //    {
-            //        formattedMessage = String.Format("{0}\r", message);
-            //        AppendFormattedMessage(recLogStream, formattedMessage);
-            //    })
-            //);
-
-          Connection.On<string>("AddMessage", (message) =>
-                AppendFormattedMessage($"{message}\r")
-            );
-
-            //Connection.On<string, string>("AddUserMessage", (name, message) =>
-            //    this.Dispatcher.InvokeAsync(
-            //    () =>
-            //    {
-            //        formattedMessage = String.Format("{0}: {1}\n", name, message);
-
-            //        AppendFormattedMessage(recLogStream, formattedMessage);
-            //    })
-            //);
-
-            Connection.On<string, string>("AddUserMessage", (name, message) =>
-                AppendFormattedMessage($"{name}: {message}\r")
-            );
-
-            Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
+            switch (priority)
             {
-                //Int64 startTicks = Log.Debug($"Enter/Exit message:{message}", Common.LOG_CATEGORY);
+                #region Critical / Error / Warning
 
-                Boolean displayMessage = false;
+                case -10:
+                    AppendDarkRedText(message);
+                    break;
 
-                // For now treat the whole message the same.
-                formattedMessage = String.Format("{0}\r", message);
+                case -1:
+                    AppendRedText(message);
+                    break;
+
+                case 1:
+                    AppendDarkOrangeText(message);
+                    break;
+
+                #endregion
+
+                #region Info
+
+                case 100:
+                    if (LoggingUIConfig.Info00.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Info00.Color);
+                    }
+                    break;
+
+                case 101:
+                    if (LoggingUIConfig.Info01.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Info01.Color);
+                    }
+                    break;
+
+                case 102:
+                    if (LoggingUIConfig.Info02.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Info02.Color);
+                    }
+                    break;
+
+                case 103:
+                    if (LoggingUIConfig.Info00.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Info03.Color);
+                    }
+                    break;
+
+                case 104:
+                    if (LoggingUIConfig.Info04.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Info04.Color);
+                    }
+                    break;
+
+                #endregion
+
+                #region Debug
+
+                case 1000:
+                    if (LoggingUIConfig.Debug00.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Debug00.Color);
+                    }
+                    break;
+
+                case 1001:
+                    if (LoggingUIConfig.Debug01.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Debug01.Color);
+                    }
+                    break;
 
                 // TODO(crhodes)
-                // Make this more clever, perhaps a bit field
-                // But this may be plenty fast enough just long :(
+                // Figure out how used back in EASE days.
 
-                switch (priority)
-                {
-                    #region Critical / Error / Warning
-
-                    case -10:
-                        AppendDarkRedText(formattedMessage);
-                        break;
-
-                    case -1:
-                        AppendRedText(formattedMessage);
-                        break;
-
-                    case 1:
-                        AppendDarkOrangeText(formattedMessage);
-                        break;
-
-                    #endregion
-
-                    #region Info
-
-                    case 100:
-                        if (LoggingUIConfig.Info00.IsChecked == true)
+                case 1002:
+                    if (message.Contains("Enter"))
+                    {
+                        if (LoggingUIConfig.Debug02.IsChecked == true)
                         {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Info00.Color);
-                            //displayMessage = ColorFormatMessage(formattedMessage,
-                            //    LoggingUIConfig.Info00.Color);
-                        }
-                        break;
-
-                    case 101: // Not Used
-                        if (LoggingUIConfig.Info01.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Info01.Color);
-                        }
-                        break;
-
-                    case 102: // Not Used
-                        if (LoggingUIConfig.Info02.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Info02.Color);
-                        }
-                        break;
-
-                    case 103: // Not Used
-                        if (LoggingUIConfig.Info00.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Info03.Color);
-                        }
-                        break;
-
-                    case 104: // Not Used
-                        if (LoggingUIConfig.Info04.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Info04.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    #region Debug
-
-                    case 1000: // Not Used
-                        if (LoggingUIConfig.Debug00.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Debug00.Color);
-                        }
-                        break;
-
-                    case 1001: // Not Used
-                        if (LoggingUIConfig.Debug01.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Debug01.Color);
-                        }
-                        break;
-
-                    // TODO(crhodes)
-                    // Figure out how used back in EASE days.
-
-                    case 1002: // Not Used
-                        if (formattedMessage.Contains("Enter"))
-                        {
-                            if (LoggingUIConfig.Debug02.IsChecked == true)
-                            {
-                                ColorFormatMessageAndAppend(formattedMessage,
-                                    LoggingUIConfig.Debug02.Color);
-                            }
-                        }
-                        else if (LoggingUIConfig.Debug02.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
+                            AppendColorFormatedMessage(message,
                                 LoggingUIConfig.Debug02.Color);
                         }
-                        break;
-
-                    case 1003: // Not Used
-                        if (LoggingUIConfig.Debug03.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Debug03.Color);
-                        }
-                        break;
-
-                    case 1004: // Not Used
-                        if (LoggingUIConfig.Debug04.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Debug04.Color);
-                        }
-                        break;
-
-
-                    #endregion
-
-                    #region Arch00 - Arch09
-
-                    case 9000:
-                        if (LoggingUIConfig.Arch00.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch00.Color);
-                        }
-                        break;
-
-                    case 9001:
-                        if (LoggingUIConfig.Arch01.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch01.Color);
-                        }
-                        break;
-
-                    case 9002:
-                        if (LoggingUIConfig.Arch02.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch02.Color);
-                        }
-                        break;
-
-                    case 9003:
-                        if (LoggingUIConfig.Arch03.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch03.Color);
-                        }
-                        break;
-
-                    case 9004:
-                        if (LoggingUIConfig.Arch04.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch04.Color);
-                        }
-                        break;
-
-                    case 9005:
-                        if (LoggingUIConfig.Arch05.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch05.Color);
-                        }
-                        break;
-
-                    case 9006:
-                        if (LoggingUIConfig.Arch06.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch06.Color);
-                        }
-                        break;
-
-                    case 9007:
-                        if (LoggingUIConfig.Arch07.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch07.Color);
-                        }
-                        break;
-
-                    case 9008:
-                        if (LoggingUIConfig.Arch08.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch08.Color);
-                        }
-                        break;
-
-                    case 9009:
-                        if (LoggingUIConfig.Arch09.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch09.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    #region Arch10 - Arch19
-
-                    case 9010:
-                        if (LoggingUIConfig.Arch10.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch10.Color);
-                        }
-                        break;
-
-                    case 9011:
-                        if (LoggingUIConfig.Arch11.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch11.Color);
-                        }
-                        break;
-
-                    case 9012:
-                        if (LoggingUIConfig.Arch12.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch12.Color);
-                        }
-                        break;
-
-                    case 9013:
-                        if (LoggingUIConfig.Arch13.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch13.Color);
-                        }
-                        break;
-
-                    case 9014:
-                        if (LoggingUIConfig.Arch14.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch14.Color);
-                        }
-                        break;
-
-                    case 9015:
-                        if (LoggingUIConfig.Arch15.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch15.Color);
-                        }
-                        break;
-
-                    case 9016:
-                        if (LoggingUIConfig.Arch16.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch16.Color);
-                        }
-                        break;
-
-                    case 9017:
-                        if (LoggingUIConfig.Arch17.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch17.Color);
-                        }
-                        break;
-
-                    case 9018:
-                        if (LoggingUIConfig.Arch18.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch18.Color);
-                        }
-                        break;
-
-                    case 9019:
-                        if (LoggingUIConfig.Arch19.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Arch19.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    #region Trace00 - Trace09
-
-                    case 10000: // Not Used
-                        if (LoggingUIConfig.Trace00.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace00.Color);
-                        }
-                        break;
-
-                    case 10001: // EVENT_HANDLER
-                        if (LoggingUIConfig.Trace01.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace01.Color);
-                        }
-                        break;
-
-                    case 10002: // APPLICATION_INITIALIZE
-                        if (LoggingUIConfig.Trace02.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace02.Color);
-                        }
-                        break;
-
-                    case 10003: // Not Used
-                        if (LoggingUIConfig.Trace03.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace03.Color);
-                        }
-                        break;
-
-                    case 10004: // Not Used
-                        if (LoggingUIConfig.Trace04.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace04.Color);
-                        }
-                        break;
-
-                    case 10005: // Not Used
-                        if (LoggingUIConfig.Trace05.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace05.Color);
-                        }
-                        break;
-
-                    case 10006: // Not Used
-                        if (LoggingUIConfig.Trace06.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace06.Color);
-                        }
-                        break;
-
-                    case 10007: // PRESENTATION
-                        if (LoggingUIConfig.Trace07.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace07.Color);
-                        }
-                        break;
-
-                    case 10008: // Not Used
-                        if (LoggingUIConfig.Trace08.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace08.Color);
-                        }
-                        break;
-
-                    case 10009: // CORE
-                        if (LoggingUIConfig.Trace09.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace09.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    #region Trace10 - Trace19
-
-                    case 10010: // APPLICATION
-                        if (LoggingUIConfig.Trace10.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace10.Color);
-                        }
-                        break;
-
-                    case 10011: // Not Used
-                        if (LoggingUIConfig.Trace11.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace11.Color);
-                        }
-                        break;
-
-                    case 10012: // FILE_DIR_IO
-                        if (LoggingUIConfig.Trace12.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace12.Color);
-                        }
-                        break;
-
-                    case 10013: // PERSISTENCE
-                        if (LoggingUIConfig.Trace13.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace13.Color);
-                        }
-                        break;
-
-                    case 10014: // Not Used
-                        if (LoggingUIConfig.Trace14.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace14.Color);
-                        }
-                        break;
-
-                    case 10015: // Not Used
-
-                        if (LoggingUIConfig.Trace15.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace15.Color);
-                        }
-                        break;
-
-                    case 10016: // Not Used
-                        if (LoggingUIConfig.Trace16.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace16.Color);
-                        }
-                        break;
-
-                    case 10017: // VIEW
-                        if (LoggingUIConfig.Trace17.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace17.Color);
-                        }
-                        break;
-
-                    case 10018: // VIEWMODEL
-                        if (LoggingUIConfig.Trace18.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace18.Color);
-                        }
-                        break;
-
-                    case 10019: // MODULE
-                        if (LoggingUIConfig.Trace19.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace19.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    #region Trace20 - Trace29
-
-                    case 10020: // APPLICATION_SERVICES
-                        if (LoggingUIConfig.Trace20.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace20.Color);
-                        }
-                        break;
-
-                    case 10021: // EVENT
-                        if (LoggingUIConfig.Trace21.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace21.Color);
-                        }
-                        break;
-
-                    case 10022: // DOMAIN SERVICES
-                        if (LoggingUIConfig.Trace22.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace22.Color);
-                        }
-                        break;
-
-                    case 10023: // PERSISTENCE_LOW
-                        if (LoggingUIConfig.Trace23.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace23.Color);
-                        }
-                        break;
-
-                    case 10024: // Not Used
-                        if (LoggingUIConfig.Trace24.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace24.Color);
-                        }
-                        break;
-
-                    case 10025: // CONSTRUCTOR
-                        if (LoggingUIConfig.Trace25.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace25.Color);
-                        }
-                        break;
-
-                    case 10026: // Not Used
-                        if (LoggingUIConfig.Trace26.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace26.Color);
-                        }
-                        break;
-
-                    case 10027: // VIEW_LOW
-                        if (LoggingUIConfig.Trace27.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace27.Color);
-                        }
-                        break;
-
-                    case 10028: // VIEWMODEL_LOW
-                        if (LoggingUIConfig.Trace28.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace28.Color);
-                        }
-                        break;
-
-                    case 10029: // MODULE_INITIALIZE
-                        if (LoggingUIConfig.Trace29.IsChecked == true)
-                        {
-                            ColorFormatMessageAndAppend(formattedMessage,
-                                LoggingUIConfig.Trace29.Color);
-                        }
-                        break;
-
-                    #endregion
-
-                    default:
-                        displayMessage = true;
-                        break;
-                }
-
-                if (displayMessage)
-                {
-                    AppendFormattedMessage(formattedMessage);
-                }
-            });
-
-            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
-            {
-                signalrtime.ClientReceivedTime = DateTime.Now;
-                signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
-
-                AppendFormattedMessage($"{message}\r");
-
-                signalrtime.ClientMessageTime = DateTime.Now;
-                signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
-
-                AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
-
-                AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
-
-                AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
-
-                AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
-
-                AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
-
-            });
-
-            try
-            {
-                await Connection.StartAsync();
+                    }
+                    else if (LoggingUIConfig.Debug02.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Debug02.Color);
+                    }
+                    break;
+
+                case 1003:
+                    if (LoggingUIConfig.Debug03.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Debug03.Color);
+                    }
+                    break;
+
+                case 1004:
+                    if (LoggingUIConfig.Debug04.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Debug04.Color);
+                    }
+                    break;
+
+
+                #endregion
+
+                #region Arch00 - Arch09
+
+                case 9000:
+                    if (LoggingUIConfig.Arch00.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch00.Color);
+                    }
+                    break;
+
+                case 9001:
+                    if (LoggingUIConfig.Arch01.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch01.Color);
+                    }
+                    break;
+
+                case 9002:
+                    if (LoggingUIConfig.Arch02.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch02.Color);
+                    }
+                    break;
+
+                case 9003:
+                    if (LoggingUIConfig.Arch03.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch03.Color);
+                    }
+                    break;
+
+                case 9004:
+                    if (LoggingUIConfig.Arch04.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch04.Color);
+                    }
+                    break;
+
+                case 9005:
+                    if (LoggingUIConfig.Arch05.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch05.Color);
+                    }
+                    break;
+
+                case 9006:
+                    if (LoggingUIConfig.Arch06.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch06.Color);
+                    }
+                    break;
+
+                case 9007:
+                    if (LoggingUIConfig.Arch07.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch07.Color);
+                    }
+                    break;
+
+                case 9008:
+                    if (LoggingUIConfig.Arch08.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch08.Color);
+                    }
+                    break;
+
+                case 9009:
+                    if (LoggingUIConfig.Arch09.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch09.Color);
+                    }
+                    break;
+
+                #endregion
+
+                #region Arch10 - Arch19
+
+                case 9010:
+                    if (LoggingUIConfig.Arch10.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch10.Color);
+                    }
+                    break;
+
+                case 9011:
+                    if (LoggingUIConfig.Arch11.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch11.Color);
+                    }
+                    break;
+
+                case 9012:
+                    if (LoggingUIConfig.Arch12.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch12.Color);
+                    }
+                    break;
+
+                case 9013:
+                    if (LoggingUIConfig.Arch13.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch13.Color);
+                    }
+                    break;
+
+                case 9014:
+                    if (LoggingUIConfig.Arch14.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch14.Color);
+                    }
+                    break;
+
+                case 9015:
+                    if (LoggingUIConfig.Arch15.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch15.Color);
+                    }
+                    break;
+
+                case 9016:
+                    if (LoggingUIConfig.Arch16.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch16.Color);
+                    }
+                    break;
+
+                case 9017:
+                    if (LoggingUIConfig.Arch17.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch17.Color);
+                    }
+                    break;
+
+                case 9018:
+                    if (LoggingUIConfig.Arch18.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch18.Color);
+                    }
+                    break;
+
+                case 9019:
+                    if (LoggingUIConfig.Arch19.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Arch19.Color);
+                    }
+                    break;
+
+                #endregion
+
+                #region Trace00 - Trace09
+
+                case 10000:
+                    if (LoggingUIConfig.Trace00.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace00.Color);
+                    }
+                    break;
+
+                case 10001:
+                    if (LoggingUIConfig.Trace01.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace01.Color);
+                    }
+                    break;
+
+                case 10002:
+                    if (LoggingUIConfig.Trace02.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace02.Color);
+                    }
+                    break;
+
+                case 10003:
+                    if (LoggingUIConfig.Trace03.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace03.Color);
+                    }
+                    break;
+
+                case 10004:
+                    if (LoggingUIConfig.Trace04.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace04.Color);
+                    }
+                    break;
+
+                case 10005:
+                    if (LoggingUIConfig.Trace05.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace05.Color);
+                    }
+                    break;
+
+                case 10006:
+                    if (LoggingUIConfig.Trace06.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace06.Color);
+                    }
+                    break;
+
+                case 10007:
+                    if (LoggingUIConfig.Trace07.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace07.Color);
+                    }
+                    break;
+
+                case 10008:
+                    if (LoggingUIConfig.Trace08.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace08.Color);
+                    }
+                    break;
+
+                case 10009:
+                    if (LoggingUIConfig.Trace09.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace09.Color);
+                    }
+                    break;
+
+                #endregion
+
+                #region Trace10 - Trace19
+
+                case 10010:
+                    if (LoggingUIConfig.Trace10.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace10.Color);
+                    }
+                    break;
+
+                case 10011:
+                    if (LoggingUIConfig.Trace11.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace11.Color);
+                    }
+                    break;
+
+                case 10012:
+                    if (LoggingUIConfig.Trace12.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace12.Color);
+                    }
+                    break;
+
+                case 10013:
+                    if (LoggingUIConfig.Trace13.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace13.Color);
+                    }
+                    break;
+
+                case 10014:
+                    if (LoggingUIConfig.Trace14.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace14.Color);
+                    }
+                    break;
+
+                case 10015:
+
+                    if (LoggingUIConfig.Trace15.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace15.Color);
+                    }
+                    break;
+
+                case 10016:
+                    if (LoggingUIConfig.Trace16.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace16.Color);
+                    }
+                    break;
+
+                case 10017:
+                    if (LoggingUIConfig.Trace17.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace17.Color);
+                    }
+                    break;
+
+                case 10018:
+                    if (LoggingUIConfig.Trace18.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace18.Color);
+                    }
+                    break;
+
+                case 10019:
+                    if (LoggingUIConfig.Trace19.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace19.Color);
+                    }
+                    break;
+
+                #endregion
+
+                #region Trace20 - Trace29
+
+                case 10020:
+                    if (LoggingUIConfig.Trace20.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace20.Color);
+                    }
+                    break;
+
+                case 10021:
+                    if (LoggingUIConfig.Trace21.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace21.Color);
+                    }
+                    break;
+
+                case 10022:
+                    if (LoggingUIConfig.Trace22.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace22.Color);
+                    }
+                    break;
+
+                case 10023:
+                    if (LoggingUIConfig.Trace23.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace23.Color);
+                    }
+                    break;
+
+                case 10024:
+                    if (LoggingUIConfig.Trace24.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace24.Color);
+                    }
+                    break;
+
+                case 10025:
+                    if (LoggingUIConfig.Trace25.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace25.Color);
+                    }
+                    break;
+
+                case 10026:
+                    if (LoggingUIConfig.Trace26.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace26.Color);
+                    }
+                    break;
+
+                case 10027:
+                    if (LoggingUIConfig.Trace27.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace27.Color);
+                    }
+                    break;
+
+                case 10028:
+                    if (LoggingUIConfig.Trace28.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace28.Color);
+                    }
+                    break;
+
+                case 10029:
+                    if (LoggingUIConfig.Trace29.IsChecked == true)
+                    {
+                        AppendColorFormatedMessage(message,
+                            LoggingUIConfig.Trace29.Color);
+                    }
+                    break;
+
+                #endregion
+
+                default:
+                    AppendFormattedMessage(message);
+                    break;
             }
-            catch (HttpRequestException hre)
-            {
-                formattedMessage = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                AppendFormattedMessage(formattedMessage);
-                return;
-            }
-            catch (Exception ex)
-            {
-                formattedMessage = $"Unable to connect to server, ex: {ex.Message}";
-                //No connection: Don't enable Send button or show chat UI
-                AppendFormattedMessage(formattedMessage);
-                return;
-            }
-
-            ////Show chat UI; hide login UI
-            //SignInPanel.Visibility = Visibility.Collapsed;
-            //ChatPanel.Visibility = Visibility.Visible;
-            //btnSend.IsEnabled = true;
-            //btnSendPriority.IsEnabled = true;
-            //tbMessage.Focus();
-            formattedMessage = "Connected to server at " + ServerURI + "\n";
-
-            AppendFormattedMessage(formattedMessage);
-
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async void StopAsync()
-        {
-            await Connection.StopAsync();
-        }
+        //public async void ConnectAsync()
+        //{
+        //    Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-        public async void DisposeAsync()
-        {
-            await Connection.DisposeAsync();
-            Connection = null;
-        }
+        //    Connection = new HubConnectionBuilder()
+        //        .WithUrl(ServerURI)
+        //        .Build();
 
-        Task Connection_Closed(Exception? arg)
-        {
-            ColorFormatMessageAndAppend($"Connection Closed {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
+        //    Connection.Closed += Connection_Closed;
+        //    Connection.Reconnecting += Connection_Reconnecting;
+        //    Connection.Reconnected += Connection_Reconnected;
 
-            ////Hide chat UI; show login UI
-            //var dispatcher = Application.Current.Dispatcher;
+        //    //Handle incoming event from server: use Invoke to write to console from SignalR's thread
 
-            //dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
-            //dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
-            //dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
-            //dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
-            //dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
+        //    string formattedMessage = "";
 
-            return null;
-        }
+        //    //Connection.On<string>("AddMessage", (message) =>
+        //    //    this.Dispatcher.InvokeAsync(
+        //    //    () =>
+        //    //    {
+        //    //        formattedMessage = String.Format("{0}\r", message);
+        //    //        AppendFormattedMessage(recLogStream, formattedMessage);
+        //    //    })
+        //    //);
 
-        private Task Connection_Reconnecting(Exception? arg)
-        {
-            ColorFormatMessageAndAppend($"Reconnecting {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
+        //  Connection.On<string>("AddMessage", (message) =>
+        //        AppendFormattedMessage($"{message}\r")
+        //    );
 
-            //var dispatcher = Application.Current.Dispatcher;
-            //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
+        //    //Connection.On<string, string>("AddUserMessage", (name, message) =>
+        //    //    this.Dispatcher.InvokeAsync(
+        //    //    () =>
+        //    //    {
+        //    //        formattedMessage = String.Format("{0}: {1}\n", name, message);
 
-            return null;
-        }
+        //    //        AppendFormattedMessage(recLogStream, formattedMessage);
+        //    //    })
+        //    //);
 
-        private Task Connection_Reconnected(string? arg)
-        {
-            ColorFormatMessageAndAppend($"Reconnected {(arg is null ? "" : arg)}", System.Drawing.Color.Red);
+        //    Connection.On<string, string>("AddUserMessage", (name, message) =>
+        //        AppendFormattedMessage($"{name}: {message}\r")
+        //    );
 
-            //var dispatcher = Application.Current.Dispatcher;
-            //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
+        //    Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
+        //    {
+        //        //Int64 startTicks = Log.Debug($"Enter/Exit message:{message}", Common.LOG_CATEGORY);
 
-            return null;
-        }
+        //        Boolean displayMessage = false;
 
-        private void AppendFormattedMessage(string formattedMessage)
+        //        // For now treat the whole message the same.
+        //        formattedMessage = String.Format("{0}\r", message);
+
+        //        // TODO(crhodes)
+        //        // Make this more clever, perhaps a bit field
+        //        // But this may be plenty fast enough just long :(
+
+        //        switch (priority)
+        //        {
+        //            #region Critical / Error / Warning
+
+        //            case -10:
+        //                AppendDarkRedText(formattedMessage);
+        //                break;
+
+        //            case -1:
+        //                AppendRedText(formattedMessage);
+        //                break;
+
+        //            case 1:
+        //                AppendDarkOrangeText(formattedMessage);
+        //                break;
+
+        //            #endregion
+
+        //            #region Info
+
+        //            case 100:
+        //                if (LoggingUIConfig.Info00.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Info00.Color);
+        //                    //displayMessage = ColorFormatMessage(formattedMessage,
+        //                    //    LoggingUIConfig.Info00.Color);
+        //                }
+        //                break;
+
+        //            case 101: // Not Used
+        //                if (LoggingUIConfig.Info01.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Info01.Color);
+        //                }
+        //                break;
+
+        //            case 102: // Not Used
+        //                if (LoggingUIConfig.Info02.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Info02.Color);
+        //                }
+        //                break;
+
+        //            case 103: // Not Used
+        //                if (LoggingUIConfig.Info00.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Info03.Color);
+        //                }
+        //                break;
+
+        //            case 104: // Not Used
+        //                if (LoggingUIConfig.Info04.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Info04.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            #region Debug
+
+        //            case 1000: // Not Used
+        //                if (LoggingUIConfig.Debug00.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Debug00.Color);
+        //                }
+        //                break;
+
+        //            case 1001: // Not Used
+        //                if (LoggingUIConfig.Debug01.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Debug01.Color);
+        //                }
+        //                break;
+
+        //            // TODO(crhodes)
+        //            // Figure out how used back in EASE days.
+
+        //            case 1002: // Not Used
+        //                if (formattedMessage.Contains("Enter"))
+        //                {
+        //                    if (LoggingUIConfig.Debug02.IsChecked == true)
+        //                    {
+        //                        AppendColorFormatedMessage(formattedMessage,
+        //                            LoggingUIConfig.Debug02.Color);
+        //                    }
+        //                }
+        //                else if (LoggingUIConfig.Debug02.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Debug02.Color);
+        //                }
+        //                break;
+
+        //            case 1003: // Not Used
+        //                if (LoggingUIConfig.Debug03.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Debug03.Color);
+        //                }
+        //                break;
+
+        //            case 1004: // Not Used
+        //                if (LoggingUIConfig.Debug04.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Debug04.Color);
+        //                }
+        //                break;
+
+
+        //            #endregion
+
+        //            #region Arch00 - Arch09
+
+        //            case 9000:
+        //                if (LoggingUIConfig.Arch00.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch00.Color);
+        //                }
+        //                break;
+
+        //            case 9001:
+        //                if (LoggingUIConfig.Arch01.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch01.Color);
+        //                }
+        //                break;
+
+        //            case 9002:
+        //                if (LoggingUIConfig.Arch02.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch02.Color);
+        //                }
+        //                break;
+
+        //            case 9003:
+        //                if (LoggingUIConfig.Arch03.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch03.Color);
+        //                }
+        //                break;
+
+        //            case 9004:
+        //                if (LoggingUIConfig.Arch04.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch04.Color);
+        //                }
+        //                break;
+
+        //            case 9005:
+        //                if (LoggingUIConfig.Arch05.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch05.Color);
+        //                }
+        //                break;
+
+        //            case 9006:
+        //                if (LoggingUIConfig.Arch06.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch06.Color);
+        //                }
+        //                break;
+
+        //            case 9007:
+        //                if (LoggingUIConfig.Arch07.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch07.Color);
+        //                }
+        //                break;
+
+        //            case 9008:
+        //                if (LoggingUIConfig.Arch08.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch08.Color);
+        //                }
+        //                break;
+
+        //            case 9009:
+        //                if (LoggingUIConfig.Arch09.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch09.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            #region Arch10 - Arch19
+
+        //            case 9010:
+        //                if (LoggingUIConfig.Arch10.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch10.Color);
+        //                }
+        //                break;
+
+        //            case 9011:
+        //                if (LoggingUIConfig.Arch11.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch11.Color);
+        //                }
+        //                break;
+
+        //            case 9012:
+        //                if (LoggingUIConfig.Arch12.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch12.Color);
+        //                }
+        //                break;
+
+        //            case 9013:
+        //                if (LoggingUIConfig.Arch13.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch13.Color);
+        //                }
+        //                break;
+
+        //            case 9014:
+        //                if (LoggingUIConfig.Arch14.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch14.Color);
+        //                }
+        //                break;
+
+        //            case 9015:
+        //                if (LoggingUIConfig.Arch15.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch15.Color);
+        //                }
+        //                break;
+
+        //            case 9016:
+        //                if (LoggingUIConfig.Arch16.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch16.Color);
+        //                }
+        //                break;
+
+        //            case 9017:
+        //                if (LoggingUIConfig.Arch17.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch17.Color);
+        //                }
+        //                break;
+
+        //            case 9018:
+        //                if (LoggingUIConfig.Arch18.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch18.Color);
+        //                }
+        //                break;
+
+        //            case 9019:
+        //                if (LoggingUIConfig.Arch19.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Arch19.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            #region Trace00 - Trace09
+
+        //            case 10000: // Not Used
+        //                if (LoggingUIConfig.Trace00.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace00.Color);
+        //                }
+        //                break;
+
+        //            case 10001: // EVENT_HANDLER
+        //                if (LoggingUIConfig.Trace01.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace01.Color);
+        //                }
+        //                break;
+
+        //            case 10002: // APPLICATION_INITIALIZE
+        //                if (LoggingUIConfig.Trace02.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace02.Color);
+        //                }
+        //                break;
+
+        //            case 10003: // Not Used
+        //                if (LoggingUIConfig.Trace03.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace03.Color);
+        //                }
+        //                break;
+
+        //            case 10004: // Not Used
+        //                if (LoggingUIConfig.Trace04.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace04.Color);
+        //                }
+        //                break;
+
+        //            case 10005: // Not Used
+        //                if (LoggingUIConfig.Trace05.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace05.Color);
+        //                }
+        //                break;
+
+        //            case 10006: // Not Used
+        //                if (LoggingUIConfig.Trace06.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace06.Color);
+        //                }
+        //                break;
+
+        //            case 10007: // PRESENTATION
+        //                if (LoggingUIConfig.Trace07.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace07.Color);
+        //                }
+        //                break;
+
+        //            case 10008: // Not Used
+        //                if (LoggingUIConfig.Trace08.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace08.Color);
+        //                }
+        //                break;
+
+        //            case 10009: // CORE
+        //                if (LoggingUIConfig.Trace09.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace09.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            #region Trace10 - Trace19
+
+        //            case 10010: // APPLICATION
+        //                if (LoggingUIConfig.Trace10.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace10.Color);
+        //                }
+        //                break;
+
+        //            case 10011: // Not Used
+        //                if (LoggingUIConfig.Trace11.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace11.Color);
+        //                }
+        //                break;
+
+        //            case 10012: // FILE_DIR_IO
+        //                if (LoggingUIConfig.Trace12.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace12.Color);
+        //                }
+        //                break;
+
+        //            case 10013: // PERSISTENCE
+        //                if (LoggingUIConfig.Trace13.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace13.Color);
+        //                }
+        //                break;
+
+        //            case 10014: // Not Used
+        //                if (LoggingUIConfig.Trace14.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace14.Color);
+        //                }
+        //                break;
+
+        //            case 10015: // Not Used
+
+        //                if (LoggingUIConfig.Trace15.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace15.Color);
+        //                }
+        //                break;
+
+        //            case 10016: // Not Used
+        //                if (LoggingUIConfig.Trace16.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace16.Color);
+        //                }
+        //                break;
+
+        //            case 10017: // VIEW
+        //                if (LoggingUIConfig.Trace17.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace17.Color);
+        //                }
+        //                break;
+
+        //            case 10018: // VIEWMODEL
+        //                if (LoggingUIConfig.Trace18.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace18.Color);
+        //                }
+        //                break;
+
+        //            case 10019: // MODULE
+        //                if (LoggingUIConfig.Trace19.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace19.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            #region Trace20 - Trace29
+
+        //            case 10020: // APPLICATION_SERVICES
+        //                if (LoggingUIConfig.Trace20.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace20.Color);
+        //                }
+        //                break;
+
+        //            case 10021: // EVENT
+        //                if (LoggingUIConfig.Trace21.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace21.Color);
+        //                }
+        //                break;
+
+        //            case 10022: // DOMAIN SERVICES
+        //                if (LoggingUIConfig.Trace22.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace22.Color);
+        //                }
+        //                break;
+
+        //            case 10023: // PERSISTENCE_LOW
+        //                if (LoggingUIConfig.Trace23.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace23.Color);
+        //                }
+        //                break;
+
+        //            case 10024: // Not Used
+        //                if (LoggingUIConfig.Trace24.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace24.Color);
+        //                }
+        //                break;
+
+        //            case 10025: // CONSTRUCTOR
+        //                if (LoggingUIConfig.Trace25.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace25.Color);
+        //                }
+        //                break;
+
+        //            case 10026: // Not Used
+        //                if (LoggingUIConfig.Trace26.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace26.Color);
+        //                }
+        //                break;
+
+        //            case 10027: // VIEW_LOW
+        //                if (LoggingUIConfig.Trace27.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace27.Color);
+        //                }
+        //                break;
+
+        //            case 10028: // VIEWMODEL_LOW
+        //                if (LoggingUIConfig.Trace28.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace28.Color);
+        //                }
+        //                break;
+
+        //            case 10029: // MODULE_INITIALIZE
+        //                if (LoggingUIConfig.Trace29.IsChecked == true)
+        //                {
+        //                    AppendColorFormatedMessage(formattedMessage,
+        //                        LoggingUIConfig.Trace29.Color);
+        //                }
+        //                break;
+
+        //            #endregion
+
+        //            default:
+        //                displayMessage = true;
+        //                break;
+        //        }
+
+        //        if (displayMessage)
+        //        {
+        //            AppendFormattedMessage(formattedMessage);
+        //        }
+        //    });
+
+        //    Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+        //    {
+        //        signalrtime.ClientReceivedTime = DateTime.Now;
+        //        signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+
+        //        AppendFormattedMessage($"{message}\r");
+
+        //        signalrtime.ClientMessageTime = DateTime.Now;
+        //        signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+        //        AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+
+        //        AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+        //        AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+        //        AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+        //        AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+        //    });
+
+        //    try
+        //    {
+        //        await Connection.StartAsync();
+        //    }
+        //    catch (HttpRequestException hre)
+        //    {
+        //        formattedMessage = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
+        //        //No connection: Don't enable Send button or show chat UI
+        //        AppendFormattedMessage(formattedMessage);
+        //        return;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        formattedMessage = $"Unable to connect to server, ex: {ex.Message}";
+        //        //No connection: Don't enable Send button or show chat UI
+        //        AppendFormattedMessage(formattedMessage);
+        //        return;
+        //    }
+
+        //    ////Show chat UI; hide login UI
+        //    //SignInPanel.Visibility = Visibility.Collapsed;
+        //    //ChatPanel.Visibility = Visibility.Visible;
+        //    //btnSend.IsEnabled = true;
+        //    //btnSendPriority.IsEnabled = true;
+        //    //tbMessage.Focus();
+        //    formattedMessage = "Connected to server at " + ServerURI + "\n";
+
+        //    AppendFormattedMessage(formattedMessage);
+
+        //    Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //public async void StopAsync()
+        //{
+        //    await Connection.StopAsync();
+        //}
+
+        //public async void DisposeAsync()
+        //{
+        //    await Connection.DisposeAsync();
+        //    Connection = null;
+        //}
+
+        //Task Connection_Closed(Exception? arg)
+        //{
+        //    ColorFormatMessageAndAppend($"Connection Closed {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
+
+        //    ////Hide chat UI; show login UI
+        //    //var dispatcher = Application.Current.Dispatcher;
+
+        //    //dispatcher.InvokeAsync(() => ChatPanel.Visibility = Visibility.Collapsed);
+        //    //dispatcher.InvokeAsync(() => btnSendPriority.IsEnabled = false);
+        //    //dispatcher.InvokeAsync(() => btnSend.IsEnabled = false);
+        //    //dispatcher.InvokeAsync(() => recLogStream.Text += $"Connection Closed {(arg is null ? "" : arg.Message)}.");
+        //    //dispatcher.InvokeAsync(() => SignInPanel.Visibility = Visibility.Visible);
+
+        //    return null;
+        //}
+
+        //private Task Connection_Reconnecting(Exception? arg)
+        //{
+        //    ColorFormatMessageAndAppend($"Reconnecting {(arg is null ? "" : arg.Message)}.", System.Drawing.Color.Red);
+
+        //    //var dispatcher = Application.Current.Dispatcher;
+        //    //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnecting {(arg is null ? "" : arg.Message)}.");
+
+        //    return null;
+        //}
+
+        //private Task Connection_Reconnected(string? arg)
+        //{
+        //    ColorFormatMessageAndAppend($"Reconnected {(arg is null ? "" : arg)}", System.Drawing.Color.Red);
+
+        //    //var dispatcher = Application.Current.Dispatcher;
+        //    //dispatcher.InvokeAsync(() => recLogStream.Text = $"Reconnected {arg}");
+
+        //    return null;
+        //}
+
+        public void AppendFormattedMessage(string formattedMessage)
         {
             //_richTextBox.AppendText(formattedMessage);
             AppendWhiteText(formattedMessage);
             return;
         }
 
-        private void ColorFormatMessageAndAppend(string formattedMessage, System.Drawing.Color color)
+        public void AppendColorFormatedMessage(string formattedMessage, System.Drawing.Color color)
         {
             // HACK(crhodes)
             // See if this is fast.  Skip all color formatting
@@ -1121,7 +1669,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
             if (HilightOffset == 0)
             {
-                AppendColorText(formattedMessage, color);
+                AppendColoredText(formattedMessage, color);
                 return;
             }
 
@@ -1138,21 +1686,21 @@ namespace VNCLogViewer.Presentation.ViewModels
                 if (messageIndex++ > 0)
                 {
                     string prefixMessage = formattedMessage.Substring(0, messageIndex);
-                    AppendColorText(prefixMessage, System.Drawing.Color.White);
+                    AppendColoredText(prefixMessage, System.Drawing.Color.White);
                     //AppendWhiteText(prefixMessage, System.Windows.Media.Colors.White);
 
                     string colorMessage = formattedMessage.Substring(messageIndex);
-                    AppendColorText(colorMessage, color);
+                    AppendColoredText(colorMessage, color);
                     //AppendBlueText(colorMessage, System.Windows.Media.Colors.Blue);
                 }
                 else
                 {
-                    AppendColorText(formattedMessage, color);
+                    AppendColoredText(formattedMessage, color);
                 }
             }
             catch (Exception ex)
             {
-                AppendColorText(ex.ToString(), System.Drawing.Color.Red);
+                AppendColoredText(ex.ToString(), System.Drawing.Color.Red);
             }
 
             //return displayMessage;
@@ -1160,7 +1708,7 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         SolidColorBrush messageBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
 
-        private void AppendColorText(string message, System.Drawing.Color color)
+        public void AppendColoredText(string message, System.Drawing.Color color)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {

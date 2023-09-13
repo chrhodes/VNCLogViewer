@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.7" />
+    <PackageReference Include="VNC.Logging" Version="2.1.0" />
+    <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

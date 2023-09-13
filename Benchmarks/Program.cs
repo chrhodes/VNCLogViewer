@@ -7,13 +7,16 @@ namespace Benchmarks
 {
     class Program
     {
+        public const string LOG_CATEGORY = "BENCHMARKS";
         private const string logMessage = "9/1/2023 7:44:43 PM|VNCLogViewer|100|Verbose|D:\\VNCLogViewer.exe|30988||31536|crhodes|App.Application_Startup||Enter";
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello Benchmarks!");
+
             //BenchmarkRunner.Run<DateParserBenchmarks>();
-            BenchmarkRunner.Run<GetNthBenchmarks>();
+            //BenchmarkRunner.Run<GetNthBenchmarks>();
+            BenchmarkRunner.Run<LoggingBenchmarks>();
 
             //GetNth Finder = new GetNth();
 

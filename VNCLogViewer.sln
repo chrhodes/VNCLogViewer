@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer.Core", "VNCLog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer.LoggingUIConfig", "VNCLogViewer.LoggingUIConfig\VNCLogViewer.LoggingUIConfig.csproj", "{C53F9023-6AE0-48E6-8A82-A1DFD1321092}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCSignalRClient", "..\VNC\VNC.Logging\SignalR\VNCSignalRClient\VNCSignalRClient.csproj", "{C7F1071F-6A35-44B1-B71C-BE5DC9029549}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C53F9023-6AE0-48E6-8A82-A1DFD1321092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F1071F-6A35-44B1-B71C-BE5DC9029549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F1071F-6A35-44B1-B71C-BE5DC9029549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F1071F-6A35-44B1-B71C-BE5DC9029549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F1071F-6A35-44B1-B71C-BE5DC9029549}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,19 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
-using DevExpress.Xpf.Editors;
-using DevExpress.XtraRichEdit;
-using DevExpress.XtraRichEdit.API.Native;
-
-using JSONConsoleApp.jsonDeserializeClass;
-
-using Microsoft.AspNetCore.SignalR.Client;
 
 using VNC;
 using VNC.Core.Mvvm;

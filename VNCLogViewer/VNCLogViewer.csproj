@@ -26,6 +26,10 @@
     <None Remove="DomainServices\Interfaces\**" />
     <Page Remove="DomainServices\Interfaces\**" />
   </ItemGroup>
+    
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
 
   <ItemGroup> 
     <PackageReference Include="CalcBinding" Version="2.5.2" />

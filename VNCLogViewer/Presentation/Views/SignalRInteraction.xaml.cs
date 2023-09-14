@@ -6,7 +6,13 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 
+using DevExpress.XtraPrinting.Native;
+
+#if NET48
+using Microsoft.AspNet.SignalR.Client;
+#else
 using Microsoft.AspNetCore.SignalR.Client;
+#endif
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -79,42 +85,32 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            //long startTicks = Log.VIEWMODEL_LOW("Enter (" + propertyName + ")", "VNCCore");
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //Log.VIEWMODEL_LOW("Exit", "VNCCore", startTicks);
         }
-
-        //public String UserName { get; set; }
-
-        //public new ILiveLogViewerViewModel ViewModel
-        //{
-        //    get { return (ILiveLogViewerViewModel)DataContext; }
-        //    set { DataContext = value; }
-        //}
 
         public ILiveLogViewerViewModel ViewModel { get; set; }
 
+#if NET48
+        private string _serverURI = "http://localhost:58095";
+
+        public IDisposable SignalR { get; set; }
+
+        public IHubProxy HubProxy { get; set; }
+
         public HubConnection Connection { get; set; }
+#else
+        private string _serverURI = "http://localhost:58195/signalR";
 
-        private string _serverURI = "http://localhost:58195/signalr";
+        public HubConnection Connection { get; set; }
+#endif
 
-        public string ServerURI
-        {
-            get => _serverURI;
-            set
-            {
-                if (_serverURI == value)
-                    return;
-                _serverURI = value;
-                OnPropertyChanged();
-            }
-        }
+        public string ServerURI { get => _serverURI; set => _serverURI = value; }
 
         private string _userName;
 
@@ -160,23 +156,18 @@ namespace VNCLogViewer.Presentation.Views
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            //UserName = tUserNameTextBox.Text;
-
             if (!String.IsNullOrEmpty(UserName))
             {
                 //Connect to server (use async method to avoid blocking UI thread)
                 ConnectAsync();
 
-                //Show chat UI; hide login UI
-                //SignInPanel.Visibility = Visibility.Collapsed;
                 lgChatPanel.Visibility = Visibility.Visible;
                 btnSend.IsEnabled = true;
                 btnSendPriority.IsEnabled = true;
-                tbMessage.Focus();
 
                 btnSignIn.IsEnabled = false;
                 btnSignOut.IsEnabled = true;
@@ -185,9 +176,15 @@ namespace VNCLogViewer.Presentation.Views
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
-            StopAsync();
-            DisposeAsync();
-
+#if NET48
+            Connection.Stop();
+            Connection.Dispose();
+            Connection = null;
+#else
+            Connection.StopAsync();
+            Connection.DisposeAsync();
+            Connection = null;
+#endif
             lgChatPanel.Visibility = Visibility.Hidden;
             btnSend.IsEnabled = false;
             btnSendPriority.IsEnabled = false;
@@ -198,16 +195,22 @@ namespace VNCLogViewer.Presentation.Views
 
         private async void btnSend_Click(object sender, RoutedEventArgs e)
         {
+#if NET48
+            await HubProxy.Invoke("SendUserMessage", UserName, Message);
+#else
             await Connection.InvokeAsync("SendUserMessage", UserName, Message);
-
+#endif
             tbMessage.Text = String.Empty;
             tbMessage.Focus();
         }
 
         private async void btnSendPriority_Click(object sender, RoutedEventArgs e)
         {
+#if NET48
+            HubProxy.Invoke("SendPriorityMessage", Message, Priority);
+#else
             await Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
-
+#endif
             tbMessage.Text = String.Empty;
             tbMessage.Focus();
         }
@@ -230,28 +233,80 @@ namespace VNCLogViewer.Presentation.Views
 
         #region Private Methods (None)
 
-        //public void Send()
-        //{
-        //    //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-        //    Connection.InvokeAsync("SendUserMessage", UserName, Message);
-
-        //    //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //public void SendPriority()
-        //{
-        //    //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-        //    Connection.InvokeAsync("SendPriorityMessage", Message, Priority);
-
-        //    //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
         public async void ConnectAsync()
         {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            //Connection = new HubConnectionBuilder()
+            //    .WithUrl(ServerURI)
+            //    .Build();
 
+            //Connection.Closed += Connection_Closed;
+            //Connection.Reconnecting += Connection_Reconnecting;
+            //Connection.Reconnected += Connection_Reconnected;
+
+            ////Handle incoming event from server: use Invoke to write to console from SignalR's thread
+
+            //string formattedMessage = "";
+
+            //Connection.On<string>("AddMessage", (message) =>
+            //      ViewModel.AppendFormattedMessage($"{message}\r")
+            //  );
+
+            //Connection.On<string, string>("AddUserMessage", (name, message) =>
+            //    ViewModel.AppendFormattedMessage($"{name}: {message}\r")
+            //);
+
+            //Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
+            //    ViewModel.ProcessPriorityMessage($"{message}\r", priority)
+            //);
+
+            //Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+            //{
+            //    signalrtime.ClientReceivedTime = DateTime.Now;
+            //    signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+
+            //    ViewModel.AppendFormattedMessage($"{message}\r");
+
+            //    signalrtime.ClientMessageTime = DateTime.Now;
+            //    signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+            //    ViewModel.AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+
+            //    ViewModel.AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+            //    ViewModel.AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+            //    ViewModel.AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+
+            //    ViewModel.AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+
+            //});
+
+#if NET48
+            Connection = new HubConnection(tbServerURI.Text);
+            Connection.Closed += Connection_Closed;
+            HubProxy = Connection.CreateHubProxy("SignalRHub");
+
+            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
+
+            HubProxy.On<string>("AddMessage", (message) =>
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage(String.Format("{0}\r", message))
+                )
+            );
+
+            HubProxy.On<string, string>("AddUserMessage", (name, message) =>
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage(String.Format("{0}: {1}\r", name, message))
+                )
+            );
+
+            HubProxy.On<string, Int32>("AddPriorityMessage", (message, priority) =>
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"P{priority}: {message}\r")
+                )
+            );
+
+#else
             Connection = new HubConnectionBuilder()
                 .WithUrl(ServerURI)
                 .Build();
@@ -262,93 +317,132 @@ namespace VNCLogViewer.Presentation.Views
 
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
 
-            string formattedMessage = "";
-
             Connection.On<string>("AddMessage", (message) =>
-                  ViewModel.AppendFormattedMessage($"{message}\r")
-              );
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"{message}\r")
+                )
+            );
 
             Connection.On<string, string>("AddUserMessage", (name, message) =>
-                ViewModel.AppendFormattedMessage($"{name}: {message}\r")
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"{name}: {message}\r")
+                )
             );
 
-            Connection.On<string, int>("AddPriorityMessage", (message, priority) =>
-                ViewModel.ProcessPriorityMessage($"{message}\r", priority)
+            Connection.On<string, Int32>("AddPriorityMessage", (message, priority) =>
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"P{priority}: {message}\r")
+                )
             );
 
-            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+#endif
+#if NET48
+            HubProxy.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
             {
                 signalrtime.ClientReceivedTime = DateTime.Now;
                 signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
 
-                ViewModel.AppendFormattedMessage($"{message}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"{message}\r"));
 
                 signalrtime.ClientMessageTime = DateTime.Now;
                 signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
 
-                ViewModel.AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks}\r"));
 
-                ViewModel.AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r"));
 
-                ViewModel.AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r"));
 
-                ViewModel.AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r"));
 
-                ViewModel.AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r");
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r"));
 
             });
+#else
+            Connection.On<string, SignalRTime>("AddTimedMessage", (message, signalrtime) =>
+            {
+                signalrtime.ClientReceivedTime = DateTime.Now;
+                signalrtime.ClientReceivedTicks = Stopwatch.GetTimestamp();
+                //this.Dispatcher.InvokeAsync(() =>
+                //    ViewModel.AppendFormattedMessage($"SendT:{signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks} HubRT:{signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} HubR:{signalrtime.HubReceivedTicks} ClientRT:{signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} ClientR:{signalrtime.ClientReceivedTicks} ClientMT:{signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} ClientM:{signalrtime.ClientMessageTicks} : {message}\r")
+                //);
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"{message}\r"));
+
+                signalrtime.ClientMessageTime = DateTime.Now;
+                signalrtime.ClientMessageTicks = Stopwatch.GetTimestamp();
+
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"SendT:    {signalrtime.SendTime:yyyy/MM/dd HH:mm:ss.ffff} Send:{signalrtime.SendTicks}\r"));
+
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"HubRT:    {signalrtime.HubReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.HubReceivedTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r"));
+                
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"ClientRT: {signalrtime.ClientReceivedTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientReceivedTicks - signalrtime.HubReceivedTicks) / (double)Stopwatch.Frequency}\r"));
+                
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"ClientMT: {signalrtime.ClientMessageTime:yyyy/MM/dd HH:mm:ss.ffff} - Duration:{(signalrtime.ClientMessageTicks - signalrtime.ClientReceivedTicks) / (double)Stopwatch.Frequency}\r"));
+                
+                this.Dispatcher.InvokeAsync(() =>
+                    ViewModel.AppendFormattedMessage($"Duration: {(signalrtime.ClientMessageTicks - signalrtime.SendTicks) / (double)Stopwatch.Frequency}\r"));
+
+            });
+#endif
+            string formattedMessage = "";
 
             try
             {
+#if NET48
+                await Connection.Start();
+#else
                 await Connection.StartAsync();
+#endif
             }
             catch (HttpRequestException hre)
             {
-                formattedMessage = $"Unable to connect to server: Start server before connecting clients. {hre.Message}";
-                //No connection: Don't enable Send button or show chat UI
+                formattedMessage = $"Unable to connect to server: Start server before connecting clients. {hre.Message}\r";
                 ViewModel.AppendFormattedMessage(formattedMessage);
                 return;
             }
             catch (Exception ex)
             {
-                formattedMessage = $"Unable to connect to server, ex: {ex.Message}";
-                //No connection: Don't enable Send button or show chat UI
+                formattedMessage = $"Unable to connect to server, ex: {ex.Message}\r";
                 ViewModel.AppendFormattedMessage(formattedMessage);
                 return;
             }
 
-            ////Show chat UI; hide login UI
-            //SignInPanel.Visibility = Visibility.Collapsed;
-            //ChatPanel.Visibility = Visibility.Visible;
-            //btnSend.IsEnabled = true;
-            //btnSendPriority.IsEnabled = true;
-            //tbMessage.Focus();
-            formattedMessage = "Connected to server at " + ServerURI + "\n";
-
+            formattedMessage = $"Connected to server at {ServerURI}\r";
             ViewModel.AppendFormattedMessage(formattedMessage);
 
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async void StopAsync()
+#if NET48
+        void Connection_Closed()
         {
-            await Connection.StopAsync();
+            ViewModel.AppendColorFormatedMessage($"Connection Closed.\r",
+                System.Drawing.Color.Red);
         }
-
-        public async void DisposeAsync()
-        {
-            await Connection.DisposeAsync();
-            Connection = null;
-        }
-
+#else
         Task Connection_Closed(Exception? arg)
         {
-            ViewModel.AppendColorFormatedMessage($"Connection Closed {(arg is null ? "" : arg.Message)}.", 
+            ViewModel.AppendColorFormatedMessage($"Connection Closed {(arg is null ? "" : arg.Message)}.\r", 
                 System.Drawing.Color.Red);
 
             return null;
-        }
+        }  
+#endif
 
+#if NET48
+
+#else
         private Task Connection_Reconnecting(Exception? arg)
         {
             ViewModel.AppendColorFormatedMessage($"Reconnecting {(arg is null ? "" : arg.Message)}.", 
@@ -364,6 +458,7 @@ namespace VNCLogViewer.Presentation.Views
 
             return null;
         }
+#endif
 
         #endregion
 

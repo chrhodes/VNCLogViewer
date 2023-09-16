@@ -47,21 +47,6 @@ namespace VNCLogViewer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        //private string _runtimeVersion = ".NET Runtime Version";
-
-        //public string RuntimeVersion
-        //{
-        //    get => _runtimeVersion;
-        //    set
-        //    {
-        //        if (_runtimeVersion == value)
-        //            return;
-        //        _runtimeVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
         private string _title = "VNCLogViewer - Shell";
 
         public string Title
